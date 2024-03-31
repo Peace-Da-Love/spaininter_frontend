@@ -9,6 +9,8 @@ export const Recommends = async () => {
 
 	if (!news) return <div>Error!</div>;
 
+	if (!news.data.news.rows.length) return <div>No news found!</div>;
+
 	const previewNews = news.data.news.rows[0];
 	const concatNews = news.data.news.rows.slice(1);
 
