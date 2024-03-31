@@ -1,8 +1,11 @@
 import Link from 'next/link';
 import { cn } from '@/src/shared/utils';
 import IcTelegram from '@/src/app/icons/ic_telegram_big.svg';
+import { useTranslations } from 'next-intl';
 
 export const SubscribeNewsTg = () => {
+	const t = useTranslations('Components');
+
 	return (
 		<Link
 			className={cn(
@@ -12,7 +15,7 @@ export const SubscribeNewsTg = () => {
 			target='_blank'
 		>
 			<IcTelegram />
-			<i className={'not-italic'}>Subscribe for our news</i>
+			<i className={'not-italic'}>{t('subscribeNewsOur')}</i>
 		</Link>
 	);
 };

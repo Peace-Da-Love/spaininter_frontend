@@ -8,6 +8,10 @@
       "culture": "Culture"
     }
   },
+  "Components": {
+    "subscribeNewsOur": "Subscribe for our news",
+    "subscribeNews": "Subscribe to news"
+  },
   "Alarms": {
     "empty": "No news here yet"
   },

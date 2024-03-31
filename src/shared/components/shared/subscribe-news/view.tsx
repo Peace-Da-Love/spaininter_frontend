@@ -2,12 +2,15 @@ import Link from 'next/link';
 import { cn } from '@/src/shared/utils';
 import { FC } from 'react';
 import IcTelegram from '@/src/app/icons/ic_telegram_small.svg';
+import { useTranslations } from 'next-intl';
 
 type Props = {
 	theme: 'dark' | 'light';
 };
 
 export const SubscribeNews: FC<Props> = ({ theme }) => {
+	const t = useTranslations('Components');
+
 	return (
 		<Link
 			href='https://t.me/u6996'
@@ -17,7 +20,7 @@ export const SubscribeNews: FC<Props> = ({ theme }) => {
 				theme === 'dark' ? 'text-primary' : 'text-white'
 			)}
 		>
-			Subscribe to news
+			{t('subscribeNews')}
 			<IcTelegram />
 		</Link>
 	);

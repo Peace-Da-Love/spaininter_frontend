@@ -1,5 +1,5 @@
 import { NewsResponse } from '@/src/app/server-actions';
-import { FC, Fragment } from 'react';
+import { FC } from 'react';
 import { PreviewNews } from '@/src/entities/preview-news';
 import { MarkdownNews } from './ui/markdown-news';
 import { Navigation } from './ui/navigation';
@@ -15,7 +15,7 @@ export const NewsPage: FC<Props> = ({ data }) => {
 		.replace(/\\|/g, '');
 
 	return (
-		<Fragment>
+		<article id='article-content'>
 			<section>
 				<PreviewNews
 					imageUrl={data.data.news.poster_link}
@@ -27,17 +27,17 @@ export const NewsPage: FC<Props> = ({ data }) => {
 					link={data.data.news.newsTranslations[0].link}
 				/>
 				<div className={'grid grid-cols-6 gap-10 mt-10'}>
-					<div className={'col-span-4'}>
+					<aside className={'col-span-4'}>
 						<MarkdownNews markdown={markdown} />
 						<div className={'mt-10 text-center'}>
 							<SubscribeNewsTg />
 						</div>
-					</div>
-					<div className={'col-span-2 relative'}>
+					</aside>
+					<aside className={'col-span-2 relative'}>
 						<Navigation markdown={markdown} />
-					</div>
+					</aside>
 				</div>
 			</section>
-		</Fragment>
+		</article>
 	);
 };

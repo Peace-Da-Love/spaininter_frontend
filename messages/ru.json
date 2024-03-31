@@ -8,6 +8,10 @@
       "culture": "Культура"
     }
   },
+  "Components": {
+    "subscribeNewsOur": "Подпишитесь на наши новости",
+    "subscribeNews": "Подписаться на новости"
+  },
   "Alarms": {
     "empty": "Здесь пока нет новостей"
   },
