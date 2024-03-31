@@ -16,9 +16,10 @@ export function generateStaticParams() {
 	return locales.map(locale => ({ locale }));
 }
 
-const SITE_URL = process.env.SITE_URL;
+const SITE_URL = process.env.SITE_URL as string;
 
 export const metadata: Metadata = {
+	metadataBase: new URL(SITE_URL),
 	applicationName: 'SpainInter',
 	authors: {
 		url: 'https://stepsones.me',
