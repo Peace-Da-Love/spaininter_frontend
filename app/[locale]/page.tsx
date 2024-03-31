@@ -1,29 +1,45 @@
-import { useTranslations } from 'next-intl';
-import { unstable_setRequestLocale } from 'next-intl/server';
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import { Metadata } from 'next';
+import { HomePage } from '@/src/screens/home';
+import { getNewsFilter } from '@/src/app/server-actions';
+import { notFound } from 'next/navigation';
+import { locales } from '@/src/shared/configs';
 
 type Props = {
 	params: { locale: string };
 };
 
-export const metadata: Metadata = {
-	title: 'Home',
-	description: 'This is the home page'
-};
+const SITE_URL = process.env.SITE_URL;
 
-export default function IndexPage({ params: { locale } }: Props) {
+export async function generateMetadata({
+	params: { locale }
+}: Omit<Props, 'children'>): Promise<Metadata> {
+	const t = await getTranslations({ locale, namespace: 'MetaData.IndexPage' });
+
+	return {
+		title: t('title'),
+		description: t('description'),
+		alternates: {
+			languages: {
+				'ru-RU': `${SITE_URL}/ru`,
+				'en-US': `${SITE_URL}/en`
+			}
+		},
+		openGraph: {
+			locale: locale,
+			alternateLocale: locales
+		}
+	};
+}
+
+export default async function IndexPage({ params: { locale } }: Props) {
+	const initialData = await getNewsFilter({ languageCode: locale });
+
+	if (!initialData) {
+		notFound();
+	}
+
 	// Enable static rendering
 	unstable_setRequestLocale(locale);
-
-	const t = useTranslations('IndexPage');
-
-	return (
-		<div className={''}>
-			<p className='max-w-[590px]'>
-				{t.rich('description', {
-					code: chunks => <code className='font-mono text-white'>{chunks}</code>
-				})}
-			</p>
-		</div>
-	);
+	return <HomePage data={initialData} />;
 }

@@ -1,0 +1,1 @@
+export { NewsCards } from './view';

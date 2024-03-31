@@ -1,0 +1,1 @@
+export { LocaleSwitcherSelect } from './view';

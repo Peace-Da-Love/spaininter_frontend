@@ -1,0 +1,1 @@
+export { SubscribeNewsTg } from './view';

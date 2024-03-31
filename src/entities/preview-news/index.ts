@@ -1,0 +1,1 @@
+export { PreviewNews } from './view';

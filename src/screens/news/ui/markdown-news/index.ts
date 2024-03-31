@@ -1,0 +1,1 @@
+export { MarkdownNews } from './view';

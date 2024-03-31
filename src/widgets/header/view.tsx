@@ -1,6 +1,7 @@
 import { cn } from '@/src/shared/utils';
 import { Logo } from '../../shared/components/shared/logo';
 import { SubscribeNews } from '@/src/shared/components/shared/subscribe-news';
+import { LocaleSwitcher } from '@/src/features/locale-switcher';
 
 export const Header = () => {
 	return (
@@ -8,7 +9,10 @@ export const Header = () => {
 			className={cn('w-full py-8 container flex justify-between items-center')}
 		>
 			<Logo />
-			<SubscribeNews theme='dark' />
+			<div className={'flex items-center gap-10'}>
+				<SubscribeNews theme='dark' />
+				<LocaleSwitcher className={'hidden md:inline-block'} />
+			</div>
 		</header>
 	);
 };

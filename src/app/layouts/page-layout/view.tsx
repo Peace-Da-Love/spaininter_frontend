@@ -3,6 +3,7 @@ import { cn } from '@/src/shared/utils';
 import { Header } from '@/src/widgets/header';
 import { Main } from '@/src/widgets/main';
 import { Footer } from '@/src/widgets/footer';
+import { MobileMenu } from '@/src/widgets/mobile-menu';
 
 type Props = {
 	children: ReactNode;

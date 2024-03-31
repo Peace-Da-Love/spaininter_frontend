@@ -7,6 +7,14 @@ const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
 const config = {
+    images: {
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "storage.googleapis.com",
+            }
+        ]
+    },
     webpack(config) {
         const fileLoaderRule = config.module.rules.find(rule =>
             rule.test?.test?.(".svg")

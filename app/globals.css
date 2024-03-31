@@ -10,12 +10,27 @@
 
         --secondary: 216, 23%, 49%, 1;
 
-        --white-blue: 199, 73%, 49%, 1;
+        --light-blue: 199, 73%, 49%, 1;
+
+        --card: 240, 3%, 94%, 1;
     }
 }
 
 @layer base {
     body {
         @apply bg-background min-h-screen antialiased font-sans text-primary font-normal text-sm;
+    }
+}
+
+@layer utilities {
+    .line-clamp-2 {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* number of lines to show */
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+    .w-50vw {
+        width: calc(50% + 50vw);
     }
 }
