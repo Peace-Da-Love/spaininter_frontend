@@ -3,27 +3,31 @@
 import { ChangeEvent, ReactNode, useTransition, FC } from 'react';
 import { useRouter, usePathname, cn } from '@/src/shared/utils';
 import { useParams } from 'next/navigation';
+import {
+	Select,
+	SelectContent,
+	SelectGroup,
+	SelectTrigger,
+	SelectValue
+} from '@/src/shared/components/ui';
 
 type Props = {
-	children: ReactNode;
-	defaultValue: string;
 	className?: string;
+	children: ReactNode;
+	defaultValue?: string;
 };
 
 export const LocaleSwitcherSelect: FC<Props> = ({
+	className,
 	children,
-	defaultValue,
-	className
+	defaultValue
 }) => {
 	const router = useRouter();
 	const [isPending, startTransition] = useTransition();
 	const pathname = usePathname();
 	const params = useParams();
 
-	function onSelectChange(event: ChangeEvent<HTMLSelectElement>) {
-		const nextLocale = event.target.value;
-		console.log('nextLocale', nextLocale);
-		console.log('pathname', pathname);
+	function onSelectChange(nextLocale: string) {
 		startTransition(() => {
 			router.replace(
 				// @ts-expect-error -- TypeScript will validate that only known `params`
@@ -36,19 +40,21 @@ export const LocaleSwitcherSelect: FC<Props> = ({
 	}
 
 	return (
-		<form className={cn('inline-block', className)}>
-			<label htmlFor='locale-switcher-select' className={'sr-only'}>
-				Select Lang
-			</label>
-			<select
-				id='locale-switcher-select'
-				className='bg-transparent text-primary text-sm font-medium uppercase text-sm block  p-0'
-				defaultValue={defaultValue}
+		<div className={cn('w-13', className)}>
+			<Select
 				disabled={isPending}
-				onChange={onSelectChange}
+				onValueChange={onSelectChange}
+				defaultValue={defaultValue}
 			>
-				{children}
-			</select>
-		</form>
+				<SelectTrigger
+					className={'p-0 gap-2 text-primary uppercase font-medium border-0'}
+				>
+					<SelectValue />
+				</SelectTrigger>
+				<SelectContent>
+					<SelectGroup>{children}</SelectGroup>
+				</SelectContent>
+			</Select>
+		</div>
 	);
 };

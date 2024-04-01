@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 	applicationName: 'SpainInter',
 	authors: {
 		url: 'https://stepsones.me',
-		name: 'Stepsones'
+		name: 'StepsOnes'
 	},
 	openGraph: {
 		type: 'website',

@@ -12,7 +12,9 @@
     "subscribeNewsOur": "Subscribe for our news",
     "subscribeNews": "Subscribe to news",
     "logo": "SpainInter Logo",
-    "paginationButton": "Go to page {page}"
+    "paginationButton": "Go to page {page}",
+    "selectLanguage": "Select language",
+    "language": "Language"
   },
   "Alarms": {
     "empty": "No news here yet"
