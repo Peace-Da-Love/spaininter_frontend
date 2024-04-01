@@ -1,1 +1,28 @@
-{}
+{
+  "IndexPage": {
+    "navigation": {
+      "latest": "Últimas",
+      "technologies": "Tecnologías",
+      "economics": "Economía",
+      "incident": "Incidente",
+      "culture": "Cultura"
+    }
+  },
+  "Components": {
+    "subscribeNewsOur": "Suscríbete a nuestras noticias",
+    "subscribeNews": "Suscríbete a noticias",
+    "logo": "Logo de SpainInter",
+    "paginationButton": "Ir a la página {page}",
+    "selectLanguage": "Seleccionar idioma",
+    "language": "Idioma"
+  },
+  "Alarms": {
+    "empty": "No hay noticias aquí aún"
+  },
+  "MetaData": {
+    "IndexPage": {
+      "title": "Todas las noticias de España. Noticias frescas de España. España hoy.",
+      "description": "Últimas noticias de España. España hoy: los eventos más importantes, incidentes, noticias políticas y económicas. Informes, análisis, previsiones, opinión de expertos."
+    }
+  }
+}

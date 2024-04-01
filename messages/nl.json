@@ -1,0 +1,28 @@
+{
+  "IndexPage": {
+    "navigation": {
+      "latest": "Laatste",
+      "technologies": "Technologieën",
+      "economics": "Economie",
+      "incident": "Incident",
+      "culture": "Cultuur"
+    }
+  },
+  "Components": {
+    "subscribeNewsOur": "Abonneer op onze nieuws",
+    "subscribeNews": "Abonneer op nieuws",
+    "logo": "SpainInter Logo",
+    "paginationButton": "Ga naar pagina {page}",
+    "selectLanguage": "Selecteer taal",
+    "language": "Taal"
+  },
+  "Alarms": {
+    "empty": "Geen nieuws hier nog"
+  },
+  "MetaData": {
+    "IndexPage": {
+      "title": "Alle nieuws uit Spanje. Vers nieuws uit Spanje. Spanje vandaag.",
+      "description": "Laatste nieuws uit Spanje. Spanje vandaag: de belangrijkste gebeurtenissen, incidenten, politiek en economisch nieuws. Rapporten, analyses, voorspellingen, expertadvies."
+    }
+  }
+}

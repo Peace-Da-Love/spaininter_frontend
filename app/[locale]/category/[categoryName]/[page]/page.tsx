@@ -1,4 +1,4 @@
-import { unstable_setRequestLocale } from 'next-intl/server';
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import { getNewsFilter } from '@/src/app/server-actions';
 import { HomePage } from '@/src/screens/home';
 import { notFound } from 'next/navigation';
@@ -8,10 +8,16 @@ type Props = {
 	params: { locale: string; page: string; categoryName: string };
 };
 
-export const metadata: Metadata = {
-	title: 'Home',
-	description: 'This is the home page'
-};
+export async function generateMetadata({
+	params: { locale, categoryName }
+}: Omit<Props, 'children'>): Promise<Metadata> {
+	const t = await getTranslations({ locale, namespace: 'MetaData.IndexPage' });
+
+	return {
+		title: t('title'),
+		description: t('description')
+	};
+}
 
 export default async function Page({
 	params: { locale, page, categoryName }

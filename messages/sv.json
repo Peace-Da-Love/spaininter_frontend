@@ -1,0 +1,28 @@
+{
+  "IndexPage": {
+    "navigation": {
+      "latest": "Senaste",
+      "technologies": "Teknologier",
+      "economics": "Ekonomi",
+      "incident": "Händelse",
+      "culture": "Kultur"
+    }
+  },
+  "Components": {
+    "subscribeNewsOur": "Prenumerera på våra nyheter",
+    "subscribeNews": "Prenumerera på nyheter",
+    "logo": "SpainInter-logotyp",
+    "paginationButton": "Gå till sida {page}",
+    "selectLanguage": "Välj språk",
+    "language": "Språk"
+  },
+  "Alarms": {
+    "empty": "Inga nyheter här ännu"
+  },
+  "MetaData": {
+    "IndexPage": {
+      "title": "Alla nyheter från Spanien. Färska nyheter från Spanien. Spanien idag.",
+      "description": "Senaste nyheterna från Spanien. Spanien idag: de viktigaste händelserna, händelserna, politiska och ekonomiska nyheterna. Rapporter, analyser, prognoser, expertutlåtanden."
+    }
+  }
+}

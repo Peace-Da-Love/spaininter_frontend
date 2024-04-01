@@ -1,0 +1,28 @@
+{
+  "IndexPage": {
+    "navigation": {
+      "latest": "Siste",
+      "technologies": "Teknologier",
+      "economics": "Økonomi",
+      "incident": "Hendelse",
+      "culture": "Kultur"
+    }
+  },
+  "Components": {
+    "subscribeNewsOur": "Abonner på våre nyheter",
+    "subscribeNews": "Abonner på nyheter",
+    "logo": "SpainInter-logo",
+    "paginationButton": "Gå til side {page}",
+    "selectLanguage": "Velg språk",
+    "language": "Språk"
+  },
+  "Alarms": {
+    "empty": "Ingen nyheter her ennå"
+  },
+  "MetaData": {
+    "IndexPage": {
+      "title": "Alle nyheter fra Spania. Ferske nyheter fra Spania. Spania i dag.",
+      "description": "Siste nytt fra Spania. Spania i dag: de viktigste hendelsene, hendelsene, politiske og økonomiske nyhetene. Rapporter, analyser, prognoser, ekspertuttalelser."
+    }
+  }
+}

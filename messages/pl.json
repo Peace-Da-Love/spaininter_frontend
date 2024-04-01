@@ -1,0 +1,28 @@
+{
+  "IndexPage": {
+    "navigation": {
+      "latest": "Najnowsze",
+      "technologies": "Technologie",
+      "economics": "Ekonomia",
+      "incident": "Incydent",
+      "culture": "Kultura"
+    }
+  },
+  "Components": {
+    "subscribeNewsOur": "Subskrybuj nasze wiadomości",
+    "subscribeNews": "Subskrybuj wiadomości",
+    "logo": "Logo SpainInter",
+    "paginationButton": "Przejdź do strony {page}",
+    "selectLanguage": "Wybierz język",
+    "language": "Język"
+  },
+  "Alarms": {
+    "empty": "Brak wiadomości tutaj jeszcze"
+  },
+  "MetaData": {
+    "IndexPage": {
+      "title": "Wszystkie wiadomości ze Hiszpanii. Świeże wiadomości ze Hiszpanii. Hiszpania dzisiaj.",
+      "description": "Najnowsze wiadomości ze Hiszpanii. Hiszpania dzisiaj: najważniejsze wydarzenia, incydenty, wiadomości polityczne i ekonomiczne. Raporty, analizy, prognozy, opinie ekspertów."
+    }
+  }
+}

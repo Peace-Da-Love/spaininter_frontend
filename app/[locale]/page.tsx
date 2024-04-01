@@ -9,8 +9,6 @@ type Props = {
 	params: { locale: string };
 };
 
-const SITE_URL = process.env.SITE_URL;
-
 export async function generateMetadata({
 	params: { locale }
 }: Omit<Props, 'children'>): Promise<Metadata> {

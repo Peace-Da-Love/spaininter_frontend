@@ -1,0 +1,28 @@
+{
+  "IndexPage": {
+    "navigation": {
+      "latest": "Dernières",
+      "technologies": "Technologies",
+      "economics": "Économie",
+      "incident": "Incident",
+      "culture": "Culture"
+    }
+  },
+  "Components": {
+    "subscribeNewsOur": "Abonnez-vous à nos actualités",
+    "subscribeNews": "S'abonner aux actualités",
+    "logo": "Logo de SpainInter",
+    "paginationButton": "Aller à la page {page}",
+    "selectLanguage": "Sélectionner la langue",
+    "language": "Langue"
+  },
+  "Alarms": {
+    "empty": "Pas de nouvelles ici pour le moment"
+  },
+  "MetaData": {
+    "IndexPage": {
+      "title": "Toutes les nouvelles d'Espagne. Nouvelles fraîches d'Espagne. Espagne aujourd'hui.",
+      "description": "Dernières nouvelles d'Espagne. Espagne aujourd'hui : les événements les plus importants, les incidents, les nouvelles politiques et économiques. Rapports, analyses, prévisions, opinion d'experts."
+    }
+  }
+}
