@@ -1,16 +1,14 @@
 import { Link } from '@/src/shared/utils';
-import Image from 'next/image';
+import IcLogo from '@/src/app/icons/ic_logo.svg';
+import { useTranslations } from 'next-intl';
 
 export const Logo = () => {
+	const t = useTranslations('Components');
+
 	return (
 		<Link className={'inline-block w-10 h-10'} href='/'>
-			<Image
-				src='/images/logo.png'
-				alt='Spaininter logo'
-				width={40}
-				height={40}
-				quality={100}
-			/>
+			<span className={'sr-only'}>{t('logo')}</span>
+			<IcLogo />
 		</Link>
 	);
 };

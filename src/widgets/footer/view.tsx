@@ -2,8 +2,11 @@ import { Logo } from '@/src/shared/components/shared/logo';
 import { SubscribeNews } from '@/src/shared/components/shared/subscribe-news';
 import IcTgChannel from '@/src/app/icons/ic_telegram_ch.svg';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 export const Footer = () => {
+	const t = useTranslations('Components');
+
 	return (
 		<footer className={'w-full bg-primary rounded-t-3xl py-5'}>
 			<div
@@ -13,11 +16,13 @@ export const Footer = () => {
 				<div className={'flex items-center gap-10'}>
 					<SubscribeNews theme='light' />
 					<Link
+						title={t('subscribeNewsOur')}
+						aria-label={t('subscribeNewsOur')}
 						className={'inline-block'}
 						href='https://gospodbog.com'
 						target='_blank'
 					>
-						<span className={'sr-only'}>Join our telegram channel</span>
+						<span className={'sr-only'}>{t('subscribeNewsOur')}</span>
 						<IcTgChannel />
 					</Link>
 				</div>

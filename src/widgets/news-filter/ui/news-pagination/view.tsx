@@ -1,6 +1,7 @@
 import { cn } from '@/src/shared/utils';
 import { FC } from 'react';
 import { Link } from '@/src/shared/utils';
+import { useTranslations } from 'next-intl';
 
 type Props = {
 	pages: number;
@@ -9,6 +10,7 @@ type Props = {
 };
 
 export const NewsPagination: FC<Props> = ({ pages, page, categoryName }) => {
+	const t = useTranslations('Components');
 	const arrPages = Array.from({ length: pages }, (_, i) => i + 1);
 
 	return (
@@ -17,7 +19,8 @@ export const NewsPagination: FC<Props> = ({ pages, page, categoryName }) => {
 				{arrPages.map(item => (
 					<li key={`Pagination item - ${item}`}>
 						<Link
-							title={`Go to page ${item}`}
+							aria-label={t('paginationButton', { page: item })}
+							title={t('paginationButton', { page: item })}
 							href={{
 								pathname: '/category/[categoryName]/[page]',
 								params: {

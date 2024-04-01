@@ -10,7 +10,9 @@
   },
   "Components": {
     "subscribeNewsOur": "Подпишитесь на наши новости",
-    "subscribeNews": "Подписаться на новости"
+    "subscribeNews": "Подписаться на новости",
+    "logo": "SpainInter Логотип",
+    "paginationButton": "Перейти на страницу {page}"
   },
   "Alarms": {
     "empty": "Здесь пока нет новостей"
