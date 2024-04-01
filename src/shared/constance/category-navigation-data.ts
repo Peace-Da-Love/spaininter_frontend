@@ -3,5 +3,5 @@ export const categoryNavigationData = [
 	'technologies',
 	'economics',
 	'incident',
-	'culture'
+	'culture' // culture
 ] as const;

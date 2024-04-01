@@ -11,7 +11,7 @@ export const SubscribeNewsTg = () => {
 			className={cn(
 				'inline-flex w-full sm:w-auto items-center justify-center gap-2.5 text-xl font-medium text-white bg-light-blue rounded-3xl py-8 px-5'
 			)}
-			href='https://t.me/u6996'
+			href='https://t.me/SpainInter'
 			target='_blank'
 		>
 			<IcTelegram />

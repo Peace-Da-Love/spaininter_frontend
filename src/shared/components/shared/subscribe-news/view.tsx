@@ -13,7 +13,7 @@ export const SubscribeNews: FC<Props> = ({ theme }) => {
 
 	return (
 		<Link
-			href='https://t.me/u6996'
+			href='https://t.me/SpainInter'
 			target='_blank'
 			className={cn(
 				'inline-flex items-center gap-2.5 font-medium',

@@ -14,7 +14,7 @@ export const Footer = () => {
 					<SubscribeNews theme='light' />
 					<Link
 						className={'inline-block'}
-						href='https://t.me/u6996'
+						href='https://gospodbog.com'
 						target='_blank'
 					>
 						<span className={'sr-only'}>Join our telegram channel</span>
