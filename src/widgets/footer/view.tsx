@@ -14,7 +14,7 @@ export const Footer = () => {
 			>
 				<Logo />
 				<div className={'flex items-center gap-10'}>
-					<SubscribeNews theme='light' />
+					<SubscribeNews theme='light' className={'hidden sm:inline-flex'} />
 					<Link
 						title={t('subscribeNewsOur')}
 						aria-label={t('subscribeNewsOur')}

@@ -28,7 +28,10 @@ export const HomePage: FC<Props> = async ({ data }) => {
 					<SubscribeNewsTg />
 				</div>
 			</section>
-			<MobileMenu categoryName={data.data.news.categoryName} />
+			<MobileMenu
+				categories={categories?.data.categories}
+				categoryName={data.data.news.categoryName}
+			/>
 		</Fragment>
 	);
 };

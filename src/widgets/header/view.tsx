@@ -11,7 +11,7 @@ export const Header = () => {
 			<Logo />
 			<div className={'flex items-center gap-10'}>
 				<SubscribeNews theme='dark' />
-				<LocaleSwitcher className={'hidden md:inline-block'} />
+				<LocaleSwitcher className={'hidden sm:inline-block'} />
 			</div>
 		</header>
 	);

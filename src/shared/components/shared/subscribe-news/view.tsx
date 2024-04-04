@@ -6,9 +6,10 @@ import { useTranslations } from 'next-intl';
 
 type Props = {
 	theme: 'dark' | 'light';
+	className?: string;
 };
 
-export const SubscribeNews: FC<Props> = ({ theme }) => {
+export const SubscribeNews: FC<Props> = ({ theme, className }) => {
 	const t = useTranslations('Components');
 
 	return (
@@ -17,7 +18,8 @@ export const SubscribeNews: FC<Props> = ({ theme }) => {
 			target='_blank'
 			className={cn(
 				'inline-flex items-center gap-2.5 font-medium',
-				theme === 'dark' ? 'text-primary' : 'text-white'
+				theme === 'dark' ? 'text-primary' : 'text-white',
+				className
 			)}
 		>
 			{t('subscribeNews')}

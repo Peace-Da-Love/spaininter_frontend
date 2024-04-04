@@ -17,8 +17,6 @@ export const pathnames = {
   '/': '/',
   '/category/[categoryName]/[page]': '/category/[categoryName]/[page]',
   '/news/[link]': '/news/[link]',
-
-
 } satisfies Pathnames<typeof locales>;
 
 // Use the default: `always`
