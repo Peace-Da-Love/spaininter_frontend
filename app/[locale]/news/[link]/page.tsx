@@ -1,5 +1,5 @@
 import { unstable_setRequestLocale } from 'next-intl/server';
-import { getNews } from '@/src/app/server-actions';
+import { getCategoriesByLangCode, getNews } from '@/src/app/server-actions';
 import { notFound, RedirectType } from 'next/navigation';
 import { redirect } from '@/src/shared/utils';
 import { NewsPage } from '@/src/screens/news';
@@ -22,6 +22,7 @@ export default async function Page({ params: { locale, link } }: Props) {
 		languageCode: locale,
 		id
 	});
+	const categories = await getCategoriesByLangCode(locale);
 
 	if (!initialData) {
 		notFound();
@@ -40,7 +41,7 @@ export default async function Page({ params: { locale, link } }: Props) {
 	return (
 		<Fragment>
 			<NewsPage data={initialData} />
-			<MobileMenu />
+			<MobileMenu categories={categories?.data.categories} />
 		</Fragment>
 	);
 }

@@ -45,7 +45,7 @@ export const MobileNavigation: FC<Props> = ({ categoryName, categories }) => {
 								}}
 								scroll={false}
 								className={cn(
-									'disabled:pointer-events-none inline-block text-xs rounded-full py-1.5 px-2.5 font-medium hover:bg-primary hover:text-white transition-colors',
+									'capitalize disabled:pointer-events-none inline-block text-xs rounded-full py-1.5 px-2.5 font-medium hover:bg-primary hover:text-white transition-colors',
 									categoryName === item.category_name && 'bg-primary text-white'
 								)}
 							>
