@@ -14,7 +14,8 @@
     "logo": "SpainInter-logotyp",
     "paginationButton": "Gå till sida {page}",
     "selectLanguage": "Välj språk",
-    "language": "Språk"
+    "language": "Språk",
+    "content": "Innehåll"
   },
   "Alarms": {
     "empty": "Inga nyheter här ännu"
@@ -23,6 +24,10 @@
     "IndexPage": {
       "title": "Alla nyheter från Spanien. Färska nyheter från Spanien. Spanien idag.",
       "description": "Senaste nyheterna från Spanien. Spanien idag: de viktigaste händelserna, händelserna, politiska och ekonomiska nyheterna. Rapporter, analyser, prognoser, expertutlåtanden."
+    },
+    "CategoryPage": {
+      "title": "Alla nyheter från Spanien. {category}. Färska nyheter från Spanien. Spanien idag.",
+      "description": "Senaste nyheterna från Spanien. Spanien idag: de viktigaste händelserna, händelserna, politiska och ekonomiska nyheterna. Rapporter, analyser, prognoser, expertutlåtanden. {category}."
     }
   }
 }

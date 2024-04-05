@@ -14,7 +14,8 @@
     "logo": "SpainInter Logo",
     "paginationButton": "Go to page {page}",
     "selectLanguage": "Select language",
-    "language": "Language"
+    "language": "Language",
+    "content": "Content"
   },
   "Alarms": {
     "empty": "No news here yet"
@@ -23,6 +24,10 @@
     "IndexPage": {
       "title": "All news of Spain. Fresh news from Spain. Spain today.",
       "description": "Latest news from Spain. Spain today: the most important events, incidents, political and economic news. Reports, analytics, forecasts, expert opinion."
+    },
+    "CategoryPage": {
+      "title": "All news of Spain. {category}. Fresh news from Spain. Spain today.",
+      "description": "Latest news from Spain. Spain today: the most important events, incidents, political and economic news. Reports, analytics, forecasts, expert opinion. {category}."
     }
   }
 }

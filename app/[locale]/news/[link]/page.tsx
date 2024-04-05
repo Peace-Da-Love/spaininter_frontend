@@ -1,6 +1,10 @@
 import { unstable_setRequestLocale } from 'next-intl/server';
-import { getCategoriesByLangCode, getNews } from '@/src/app/server-actions';
-import { notFound, RedirectType } from 'next/navigation';
+import {
+	getCategoriesByLangCode,
+	getNews,
+	metadataAction
+} from '@/src/app/server-actions';
+import { notFound } from 'next/navigation';
 import { redirect } from '@/src/shared/utils';
 import { NewsPage } from '@/src/screens/news';
 import { Metadata } from 'next';
@@ -11,10 +15,26 @@ type Props = {
 	params: { locale: string; link: string };
 };
 
-export const metadata: Metadata = {
-	title: 'Home',
-	description: 'This is the home page'
-};
+export async function generateMetadata({
+	params: { locale, link }
+}: Omit<Props, 'children'>): Promise<Metadata> {
+	const metadata = await metadataAction.getNewsByIdMetadata({
+		id: link.split('-')[0],
+		langCode: locale
+	});
+
+	return {
+		title: metadata?.data.news.title,
+		description: metadata?.data.news.description,
+		openGraph: {
+			images: [
+				{
+					url: metadata?.data.news.posterLink as string
+				}
+			]
+		}
+	};
+}
 
 export default async function Page({ params: { locale, link } }: Props) {
 	const id = link.split('-')[0];

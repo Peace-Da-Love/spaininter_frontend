@@ -14,7 +14,8 @@
     "logo": "SpainInter Logo",
     "paginationButton": "Gehe zu Seite {page}",
     "selectLanguage": "Sprache wählen",
-    "language": "Sprache"
+    "language": "Sprache",
+    "content": "Inhalt"
   },
   "Alarms": {
     "empty": "Keine Nachrichten hier bisher"
@@ -23,6 +24,10 @@
     "IndexPage": {
       "title": "Alle Nachrichten aus Spanien. Aktuelle Nachrichten aus Spanien. Spanien heute.",
       "description": "Aktuelle Nachrichten aus Spanien. Spanien heute: die wichtigsten Ereignisse, Vorfälle, politischen und wirtschaftlichen Nachrichten. Berichte, Analysen, Prognosen, Expertenmeinungen."
+    },
+    "CategoryPage": {
+      "title": "Alle Nachrichten aus Spanien. {category}. Aktuelle Nachrichten aus Spanien. Spanien heute.",
+      "description": "Aktuelle Nachrichten aus Spanien. Spanien heute: die wichtigsten Ereignisse, Vorfälle, politischen und wirtschaftlichen Nachrichten. Berichte, Analysen, Prognosen, Expertenmeinungen. {category}."
     }
   }
 }

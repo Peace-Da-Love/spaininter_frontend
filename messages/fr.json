@@ -14,7 +14,8 @@
     "logo": "Logo de SpainInter",
     "paginationButton": "Aller à la page {page}",
     "selectLanguage": "Sélectionner la langue",
-    "language": "Langue"
+    "language": "Langue",
+    "content": "Contenu"
   },
   "Alarms": {
     "empty": "Pas de nouvelles ici pour le moment"
@@ -23,6 +24,10 @@
     "IndexPage": {
       "title": "Toutes les nouvelles d'Espagne. Nouvelles fraîches d'Espagne. Espagne aujourd'hui.",
       "description": "Dernières nouvelles d'Espagne. Espagne aujourd'hui : les événements les plus importants, les incidents, les nouvelles politiques et économiques. Rapports, analyses, prévisions, opinion d'experts."
+    },
+    "CategoryPage": {
+      "title": "Toutes les nouvelles d'Espagne. {category}. Nouvelles fraîches d'Espagne. Espagne aujourd'hui.",
+      "description": "Dernières nouvelles d'Espagne. Espagne aujourd'hui : les événements les plus importants, les incidents, les nouvelles politiques et économiques. Rapports, analyses, prévisions, opinion d'experts. {category}."
     }
   }
 }

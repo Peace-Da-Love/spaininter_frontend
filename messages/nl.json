@@ -14,7 +14,8 @@
     "logo": "SpainInter Logo",
     "paginationButton": "Ga naar pagina {page}",
     "selectLanguage": "Selecteer taal",
-    "language": "Taal"
+    "language": "Taal",
+    "content": "Inhoud"
   },
   "Alarms": {
     "empty": "Geen nieuws hier nog"
@@ -23,6 +24,10 @@
     "IndexPage": {
       "title": "Alle nieuws uit Spanje. Vers nieuws uit Spanje. Spanje vandaag.",
       "description": "Laatste nieuws uit Spanje. Spanje vandaag: de belangrijkste gebeurtenissen, incidenten, politiek en economisch nieuws. Rapporten, analyses, voorspellingen, expertadvies."
+    },
+    "CategoryPage": {
+      "title": "Alle nieuws uit Spanje. {category}. Vers nieuws uit Spanje. Spanje vandaag.",
+      "description": "Laatste nieuws uit Spanje. Spanje vandaag: de belangrijkste gebeurtenissen, incidenten, politiek en economisch nieuws. Rapporten, analyses, voorspellingen, expertadvies. {category}."
     }
   }
 }

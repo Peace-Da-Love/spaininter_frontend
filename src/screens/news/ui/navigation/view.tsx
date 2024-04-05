@@ -1,11 +1,13 @@
 import { FC } from 'react';
 import GithubSlugger from 'github-slugger';
+import { useTranslations } from 'next-intl';
 
 type Props = {
 	markdown: string;
 };
 
 export const Navigation: FC<Props> = ({ markdown }) => {
+	const t = useTranslations('Components');
 	const headings = markdown.match(/#{1,6} .+/g) || [];
 	const toc = headings.map(heading => {
 		const level = heading.match(/#/g)?.length || 0;
@@ -16,7 +18,7 @@ export const Navigation: FC<Props> = ({ markdown }) => {
 
 	return (
 		<div className={'bg-card px-5 py-8 rounded-3xl sticky top-5 left-0 w-full'}>
-			<p className={'text-xl mb-4 font-bold'}>Содержание</p>
+			<p className={'text-xl mb-4 font-bold'}>{t('content')}</p>
 			<nav>
 				<ul>
 					{toc.map(({ level, id, title }) => {

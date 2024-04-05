@@ -25,6 +25,23 @@ interface NewsMetadata {
 	}[];
 }
 
+interface GetNewsByIdMetadataParams {
+	langCode: string;
+	id: number | string;
+}
+
+interface IGetNewsByIdMetadataResponse {
+	statusCode: number;
+	message: string;
+	data: {
+		news: {
+			title: string;
+			description: string;
+			posterLink: string;
+		};
+	};
+}
+
 class Metadata {
 	public async getCategoryMetadata(): Promise<CategoryMetadata | undefined> {
 		const response = await $fetch('metadata/categories');
@@ -33,7 +50,17 @@ class Metadata {
 	}
 
 	public async getNewsMetadata(): Promise<NewsMetadata | undefined> {
-		const response = await $fetch('metadata/news');
+		const response = await $fetch('metadata/all-news');
+		if (!response.ok) return undefined;
+		return await response.json();
+	}
+
+	public async getNewsByIdMetadata(
+		params: GetNewsByIdMetadataParams
+	): Promise<IGetNewsByIdMetadataResponse | undefined> {
+		const response = await $fetch(
+			`metadata/news/?langCode=${params.langCode}&id=${params.id}`
+		);
 		if (!response.ok) return undefined;
 		return await response.json();
 	}

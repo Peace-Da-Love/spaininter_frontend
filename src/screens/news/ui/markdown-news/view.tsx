@@ -33,7 +33,7 @@ const components: Components = {
 	h6: ({ children }) => (
 		<h6 className={'text-lg font-bold mt-5 mb-2.5'}>{children}</h6>
 	),
-	p: ({ children }) => <p className={'text-lg '}>{children}</p>,
+	p: ({ children }) => <p className={'text-lg mt-4'}>{children}</p>,
 	ol: ({ children }) => (
 		<ol className={'text-lg list-decimal mb-5'}>{children}</ol>
 	),

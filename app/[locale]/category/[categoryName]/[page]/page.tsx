@@ -1,8 +1,9 @@
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
-import { getNewsFilter } from '@/src/app/server-actions';
+import { getCategoryByName, getNewsFilter } from '@/src/app/server-actions';
 import { HomePage } from '@/src/screens/home';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
+import { capitalize } from '@/src/shared/utils';
 
 type Props = {
 	params: { locale: string; page: string; categoryName: string };
@@ -11,11 +12,25 @@ type Props = {
 export async function generateMetadata({
 	params: { locale, categoryName }
 }: Omit<Props, 'children'>): Promise<Metadata> {
-	const t = await getTranslations({ locale, namespace: 'MetaData.IndexPage' });
+	const t = await getTranslations({
+		locale
+	});
+
+	let category: string;
+
+	if (categoryName === 'latest') {
+		category = t('IndexPage.navigation.latest');
+	} else {
+		const trCategory = await getCategoryByName({
+			langCode: locale,
+			name: categoryName
+		});
+		category = capitalize(trCategory?.data.categoryName || 'Category');
+	}
 
 	return {
-		title: t('title'),
-		description: t('description')
+		title: t('MetaData.CategoryPage.title', { category }),
+		description: t('MetaData.CategoryPage.description', { category })
 	};
 }
 
