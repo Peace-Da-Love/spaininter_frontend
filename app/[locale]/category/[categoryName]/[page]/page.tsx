@@ -37,10 +37,13 @@ export async function generateMetadata({
 export default async function Page({
 	params: { locale, page, categoryName }
 }: Props) {
+	const refactoredCategoryName = categoryName.includes('-')
+		? categoryName.split('-').join('/')
+		: categoryName;
 	const initialData = await getNewsFilter({
 		languageCode: locale,
 		page: page,
-		search: categoryName
+		search: refactoredCategoryName
 	});
 
 	if (!initialData) {

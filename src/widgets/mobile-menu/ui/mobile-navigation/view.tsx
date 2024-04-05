@@ -39,7 +39,7 @@ export const MobileNavigation: FC<Props> = ({ categoryName, categories }) => {
 								href={{
 									pathname: '/category/[categoryName]/[page]',
 									params: {
-										categoryName: item.category_name,
+										categoryName: item.category_key,
 										page: 1
 									}
 								}}
