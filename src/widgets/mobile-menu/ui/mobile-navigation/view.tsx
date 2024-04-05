@@ -11,6 +11,10 @@ type Props = {
 export const MobileNavigation: FC<Props> = ({ categoryName, categories }) => {
 	const t = useTranslations('IndexPage.navigation');
 
+	const refactoredCategoryName = categoryName?.includes('/')
+		? categoryName.split('/').join('-')
+		: categoryName;
+
 	return (
 		<div className={'pl-5 py-4'}>
 			<ul className={'overflow-x-auto flex gap-5 items-center pr-4'}>
@@ -46,7 +50,8 @@ export const MobileNavigation: FC<Props> = ({ categoryName, categories }) => {
 								scroll={false}
 								className={cn(
 									'capitalize disabled:pointer-events-none inline-block text-xs rounded-full py-1.5 px-2.5 font-medium hover:bg-primary hover:text-white transition-colors',
-									categoryName === item.category_name && 'bg-primary text-white'
+									refactoredCategoryName === item.category_name &&
+										'bg-primary text-white'
 								)}
 							>
 								{item.category_name}

@@ -14,6 +14,10 @@ export const CategoryNavigation: FC<Props> = ({ categoryName, categories }) => {
 
 	if (!categories) return <div className={'mb-10'}>Categories not found</div>;
 
+	const refactoredCategoryName = categoryName.includes('/')
+		? categoryName.split('/').join('-')
+		: categoryName;
+
 	return (
 		<nav className={'hidden md:block mb-10'}>
 			<ul className={'overflow-x-auto flex gap-10 justify-start items-center'}>
@@ -49,7 +53,8 @@ export const CategoryNavigation: FC<Props> = ({ categoryName, categories }) => {
 								scroll={false}
 								className={cn(
 									'capitalize inline-block text-secondary rounded-full py-2.5 px-5 font-medium hover:bg-primary hover:text-white transition-colors',
-									categoryName === item.category_key && 'bg-primary text-white'
+									refactoredCategoryName === item.category_key &&
+										'bg-primary text-white'
 								)}
 							>
 								{item.category_name}
