@@ -23,7 +23,7 @@ export const ImageLoader: FC<Props> = ({ imageUrl, className }) => {
 			)}
 			<Image
 				src={imageUrl}
-				alt={`Flat image`}
+				alt={`News image`}
 				className={cn(
 					`rounded-t-3xl object-cover w-full h-full absolute top-0 left-0`,
 					imageLoaded ? 'opacity-100' : 'opacity-0',

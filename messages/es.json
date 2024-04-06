@@ -9,7 +9,7 @@
     }
   },
   "Components": {
-    "subscribeNewsOur": "Suscríbete a nuestras noticias",
+    "subscribeNewsOur": "Suscríbete",
     "subscribeNews": "Suscríbete a noticias",
     "logo": "Logo de SpainInter",
     "paginationButton": "Ir a la página {page}",

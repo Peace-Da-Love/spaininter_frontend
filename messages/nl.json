@@ -9,7 +9,7 @@
     }
   },
   "Components": {
-    "subscribeNewsOur": "Abonneer op onze nieuws",
+    "subscribeNewsOur": "Abonneer",
     "subscribeNews": "Abonneer op nieuws",
     "logo": "SpainInter Logo",
     "paginationButton": "Ga naar pagina {page}",

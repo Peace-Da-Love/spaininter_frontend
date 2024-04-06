@@ -9,7 +9,7 @@
     }
   },
   "Components": {
-    "subscribeNewsOur": "Подпишитесь на наши новости",
+    "subscribeNewsOur": "Подпишитесь",
     "subscribeNews": "Подписаться на новости",
     "logo": "SpainInter Логотип",
     "paginationButton": "Перейти на страницу {page}",

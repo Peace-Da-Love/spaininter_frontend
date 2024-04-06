@@ -77,7 +77,7 @@ export const NewsCard: FC<NewsCardProps> = ({
 				}
 			>
 				<Link
-					className={'block pt-[55%] sm:relative absolute inset-0 top-0 left-0'}
+					className={'block pt-[55%] sm:relative sm:inset-0 sm:top-0 sm:left-0'}
 					href={{
 						pathname: '/news/[link]',
 						params: { link }

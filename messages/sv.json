@@ -9,7 +9,7 @@
     }
   },
   "Components": {
-    "subscribeNewsOur": "Prenumerera på våra nyheter",
+    "subscribeNewsOur": "Prenumerera",
     "subscribeNews": "Prenumerera på nyheter",
     "logo": "SpainInter-logotyp",
     "paginationButton": "Gå till sida {page}",
