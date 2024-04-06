@@ -36,7 +36,7 @@ const components: Components = {
 	),
 	a: ({ children, href }) => (
 		<Link
-			className={'text-blue hover:underline underline-offset-2'}
+			className={'text-light-blue hover:underline underline-offset-2'}
 			href={href as string}
 			target='_blank'
 		>
