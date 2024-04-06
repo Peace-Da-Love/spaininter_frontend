@@ -7,6 +7,7 @@ import { PageLayout } from '@/src/app/layouts/page-layout';
 import NextTopLoader from 'nextjs-toploader';
 import { Metadata } from 'next';
 import Script from 'next/script';
+import type { Viewport } from 'next'
 
 type Props = {
 	children: ReactNode;
@@ -22,6 +23,11 @@ const YANDEX_VERIFICATION = process.env.YANDEX_VERIFICATION as string;
 const GOOGLE_VERIFICATION = process.env.GOOGLE_VERIFICATION as string;
 const YANDEX_METRIKA_ID = process.env.YANDEX_METRIKA_ID as string;
 
+export const viewport: Viewport = {
+  themeColor: '#FFFFFF',
+  colorScheme: 'light',
+}
+
 export const metadata: Metadata = {
 	metadataBase: new URL(SITE_URL),
 	applicationName: 'SpainInter',
@@ -29,6 +35,7 @@ export const metadata: Metadata = {
 		url: 'https://stepsones.me',
 		name: 'StepsOnes'
 	},
+	creator: 'StepsOnes',
 	openGraph: {
 		type: 'website',
 		url: SITE_URL,

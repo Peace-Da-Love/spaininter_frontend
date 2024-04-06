@@ -11,27 +11,27 @@ export default function manifest(): MetadataRoute.Manifest {
 		display: 'standalone',
 		icons: [
 			{
-				src: '/icon72.png',
+				src: '/metadata/icon72.png',
 				sizes: '72x72',
 				type: 'image/png'
 			},
 			{
-				src: '/icon-96x96.png',
+				src: '/metadata/icon-96x96.png',
 				sizes: '96x96',
 				type: 'image/png'
 			},
 			{
-				src: '/icon.png',
+				src: '/metadata/icon.png',
 				sizes: '128x128',
 				type: 'image/png'
 			},
 			{
-				src: '/icon-144x144.png',
+				src: '/metadata/icon-144x144.png',
 				sizes: '144x144',
 				type: 'image/png'
 			},
 			{
-				src: '/icon-152x152.png',
+				src: '/metadata/icon-152x152.png',
 				sizes: '152x152',
 				type: 'image/png'
 			},
