@@ -1,1 +1,1 @@
-export * from './model';
+export { $fetch } from './model';

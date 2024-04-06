@@ -3,6 +3,7 @@ import Markdown, { Components } from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import Image from 'next/image';
 import rehypeSlug from 'rehype-slug';
+import Link from 'next/link';
 
 type Props = {
 	markdown: string;
@@ -32,6 +33,15 @@ const components: Components = {
 	),
 	h6: ({ children }) => (
 		<h6 className={'text-lg font-bold mt-5 mb-2.5'}>{children}</h6>
+	),
+	a: ({ children, href }) => (
+		<Link
+			className={'text-blue hover:underline underline-offset-2'}
+			href={href as string}
+			target='_blank'
+		>
+			{children}
+		</Link>
 	),
 	p: ({ children }) => <p className={'text-lg mt-4'}>{children}</p>,
 	ol: ({ children }) => (
