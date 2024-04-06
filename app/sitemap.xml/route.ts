@@ -8,8 +8,13 @@ async function generateSiteMap() {
 
 	const categoryXML = categoryMetaData?.data.map(category => {
 		return Array.from({ length: category.pages_count }, (_, i) => {
+			const refactoredCategoryName = category.category_name.includes('/')
+				? category.category_name.split('/').join('-')
+				: category.category_name;
+			const page = i + 1;
+
 			return `<url>
-                <loc>${SITE_URL}/${category.category_name}/${i + 1}</loc>
+                <loc>${SITE_URL}/${refactoredCategoryName}/${page}</loc>
                 <changefreq>daily</changefreq>
                 <lastmod>${category.last_modified}</lastmod>
                 ${locales
@@ -17,9 +22,7 @@ async function generateSiteMap() {
 										locale =>
 											`<xhtml:link 
                           rel="alternate"
-                          hreflang="${locale}" href="${SITE_URL}/${locale}/${
-												category.category_name
-											}/${i + 1}" />`
+                          hreflang="${locale}" href="${SITE_URL}/${locale}/${refactoredCategoryName}/${page}" />`
 									)
 									.join('')}
                 </url>`;
