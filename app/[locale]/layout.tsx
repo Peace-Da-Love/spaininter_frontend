@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 		siteName: 'SpainInter',
 		images: [
 			{
-				url: '/og/og-image.jpg',
+				url: '/metadata/og-image.jpg',
 				alt: 'Og Image'
 			}
 		]
