@@ -14,7 +14,7 @@ async function generateSiteMap() {
 			const page = i + 1;
 
 			return `<url>
-                <loc>${SITE_URL}/${refactoredCategoryName}/${page}</loc>
+                <loc>${SITE_URL}/category/${refactoredCategoryName}/${page}</loc>
                 <changefreq>daily</changefreq>
                 <lastmod>${category.last_modified}</lastmod>
                 ${locales
@@ -22,7 +22,7 @@ async function generateSiteMap() {
 										locale =>
 											`<xhtml:link 
                           rel="alternate"
-                          hreflang="${locale}" href="${SITE_URL}/${locale}/${refactoredCategoryName}/${page}" />`
+                          hreflang="${locale}" href="${SITE_URL}/${locale}/category/${refactoredCategoryName}/${page}" />`
 									)
 									.join('')}
                 </url>`;
