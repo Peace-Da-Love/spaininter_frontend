@@ -16,6 +16,10 @@ export const Navigation: FC<Props> = ({ markdown }) => {
 		return { level, id, title };
 	});
 
+	if (toc.length === 0) {
+		return null;
+	}
+
 	return (
 		<div className={'bg-card px-5 py-8 rounded-3xl sticky top-5 left-0 w-full'}>
 			<p className={'text-xl mb-4 font-bold'}>{t('content')}</p>
