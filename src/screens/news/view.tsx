@@ -37,14 +37,19 @@ export const NewsPage: FC<Props> = ({ data }) => {
 					}}
 				/>
 			</section>
-			<section className={'grid grid-cols-6 gap-10 mt-10'}>
-				<aside className={'col-span-6 lg:col-span-4'}>
+			<section
+				className={
+					'grid  sm:grid-cols-none lg:grid-cols-[280px_2fr_280px] lg:gap-10 mt-5 lg:mt-10 '
+				}
+			>
+				<aside className={'hidden lg:block'}></aside>
+				<aside className={''}>
 					<MarkdownNews markdown={markdown} />
 					<div className={'mt-10 text-center'}>
 						<SubscribeNewsTg />
 					</div>
 				</aside>
-				<aside className={'col-span-2 relative hidden lg:block'}>
+				<aside className={'hidden lg:block'}>
 					<Navigation markdown={markdown} />
 				</aside>
 			</section>
