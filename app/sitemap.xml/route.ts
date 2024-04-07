@@ -32,7 +32,7 @@ async function generateSiteMap() {
 	const newsMetaData = await metadataAction.getNewsMetadata();
 	const newsXML = newsMetaData?.data.map(news => {
 		return `<url>
-                <loc>${SITE_URL}/${
+                <loc>${SITE_URL}/news/${
 			news.newsTranslations.find(
 				translation => translation.language.language_code === 'en'
 			)?.link
@@ -44,7 +44,7 @@ async function generateSiteMap() {
 										return `<xhtml:link 
                 rel="alternate"
                 hreflang="${translation.language.language_code}"
-                href="${SITE_URL}/${translation.language.language_code}/${translation.link}" />`;
+                href="${SITE_URL}/news/${translation.language.language_code}/${translation.link}" />`;
 									})
 									.join('')}
                 </url>`;
