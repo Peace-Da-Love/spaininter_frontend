@@ -14,7 +14,7 @@ async function generateSiteMap() {
 			const page = i + 1;
 
 			return `<url>
-                <loc>${SITE_URL}/category/${refactoredCategoryName}/${page}</loc>
+                <loc>${SITE_URL}/en/category/${refactoredCategoryName}/${page}</loc>
                 <changefreq>daily</changefreq>
                 <lastmod>${category.last_modified}</lastmod>
                 ${locales
@@ -32,7 +32,7 @@ async function generateSiteMap() {
 	const newsMetaData = await metadataAction.getNewsMetadata();
 	const newsXML = newsMetaData?.data.map(news => {
 		return `<url>
-                <loc>${SITE_URL}/news/${
+                <loc>${SITE_URL}/en/news/${
 			news.newsTranslations.find(
 				translation => translation.language.language_code === 'en'
 			)?.link
@@ -53,7 +53,7 @@ async function generateSiteMap() {
 	return `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
       <url>
-        <loc>${SITE_URL}</loc>
+        <loc>${SITE_URL}/en</loc>
         <changefreq>daily</changefreq>
         <lastmod>${categoryMetaData?.data[0].last_modified}</lastmod>
         ${locales
