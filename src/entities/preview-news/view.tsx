@@ -14,15 +14,13 @@ export const PreviewNews: FC<NewsProps> = ({
 	return (
 		<div
 			className={cn(
-				'is-imageBackgrounded w-full h-[320px] md:h-[540px] relative rounded-3xl overflow-hidden',
+				'w-full h-[320px] md:h-[540px] relative rounded-3xl overflow-hidden',
 				className
 			)}
 		>
 			<div
 				style={{ backgroundImage: `url(${imageUrl})` }}
-				className={
-					'section-backgroundImage bg-cover bg-no-repeat bg-center w-full h-full bg-slate-200'
-				}
+				className={'bg-cover bg-no-repeat bg-center w-full h-full bg-slate-200'}
 			>
 				<div
 					className={
