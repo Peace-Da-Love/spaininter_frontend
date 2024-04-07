@@ -26,6 +26,9 @@ export async function generateMetadata({
 	return {
 		title: metadata?.data.news.title,
 		description: metadata?.data.news.description,
+		other: {
+			'article:published_time': metadata?.data.news.createdAt as string
+		},
 		openGraph: {
 			images: [
 				{

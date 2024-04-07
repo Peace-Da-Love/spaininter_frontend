@@ -38,6 +38,7 @@ interface IGetNewsByIdMetadataResponse {
 			title: string;
 			description: string;
 			posterLink: string;
+			createdAt: string;
 		};
 	};
 }

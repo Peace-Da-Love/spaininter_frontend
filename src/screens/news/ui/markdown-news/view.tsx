@@ -66,7 +66,7 @@ const components: Components = {
 
 export const MarkdownNews: FC<Props> = ({ markdown }) => {
 	return (
-		<div>
+		<div id='news-content'>
 			<Markdown
 				rehypePlugins={[rehypeRaw, rehypeSlug]}
 				components={components}
