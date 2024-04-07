@@ -44,7 +44,7 @@ async function generateSiteMap() {
 										return `<xhtml:link 
                 rel="alternate"
                 hreflang="${translation.language.language_code}"
-                href="${SITE_URL}/news/${translation.language.language_code}/${translation.link}" />`;
+                href="${SITE_URL}/${translation.language.language_code}/news/${translation.link}" />`;
 									})
 									.join('')}
                 </url>`;
