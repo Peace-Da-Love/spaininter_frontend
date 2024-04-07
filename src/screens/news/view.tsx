@@ -26,17 +26,17 @@ export const NewsPage: FC<Props> = ({ data }) => {
 					date={data.data.news.createdAt}
 					link={data.data.news.newsTranslations[0].link}
 				/>
-				<div className={'grid grid-cols-6 gap-10 mt-10'}>
-					<aside className={'col-span-6 lg:col-span-4'}>
-						<MarkdownNews markdown={markdown} />
-						<div className={'mt-10 text-center'}>
-							<SubscribeNewsTg />
-						</div>
-					</aside>
-					<aside className={'col-span-2 relative hidden lg:block'}>
-						<Navigation markdown={markdown} />
-					</aside>
-				</div>
+			</section>
+			<section className={'grid grid-cols-6 gap-10 mt-10'}>
+				<aside className={'col-span-6 lg:col-span-4'}>
+					<MarkdownNews markdown={markdown} />
+					<div className={'mt-10 text-center'}>
+						<SubscribeNewsTg />
+					</div>
+				</aside>
+				<aside className={'col-span-2 relative hidden lg:block'}>
+					<Navigation markdown={markdown} />
+				</aside>
 			</section>
 		</article>
 	);
