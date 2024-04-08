@@ -18,12 +18,12 @@ async function generateSiteMap() {
                 <changefreq>daily</changefreq>
                 <lastmod>${category.last_modified}</lastmod>
                 ${locales
-									.map(
-										locale =>
-											`<xhtml:link 
+									.map(locale => {
+										if (locale === 'en') return '';
+										return `<xhtml:link 
                           rel="alternate"
-                          hreflang="${locale}" href="${SITE_URL}/${locale}/category/${refactoredCategoryName}/${page}" />`
-									)
+                          hreflang="${locale}" href="${SITE_URL}/${locale}/category/${refactoredCategoryName}/${page}" />`;
+									})
 									.join('')}
                 </url>`;
 		});
@@ -41,6 +41,7 @@ async function generateSiteMap() {
                 <lastmod>${news.updatedAt}</lastmod>
                 ${news.newsTranslations
 									.map(translation => {
+										if (translation.language.language_code === 'en') return '';
 										return `<xhtml:link 
                 rel="alternate"
                 hreflang="${translation.language.language_code}"
@@ -57,10 +58,10 @@ async function generateSiteMap() {
         <changefreq>daily</changefreq>
         <lastmod>${categoryMetaData?.data[0].last_modified}</lastmod>
         ${locales
-					.map(
-						locale =>
-							`<xhtml:link rel="alternate" hreflang="${locale}" href="${SITE_URL}/${locale}" />`
-					)
+					.map(locale => {
+						if (locale === 'en') return '';
+						return `<xhtml:link rel="alternate" hreflang="${locale}" href="${SITE_URL}/${locale}" />`;
+					})
 					.join('')}
       </url>
       ${categoryXML?.join('')}
