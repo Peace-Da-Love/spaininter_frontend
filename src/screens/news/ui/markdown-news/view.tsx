@@ -21,14 +21,7 @@ const components: Components = {
 	),
 	img: ({ node, ...props }) => {
 		return (
-			<div className={'mt-2.5'}>
-				<Image
-					src={props.src as string}
-					alt={'Image'}
-					width={600}
-					height={600}
-				/>
-			</div>
+			<Image src={props.src as string} alt={'Image'} width={600} height={600} />
 		);
 	}
 };
