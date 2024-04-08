@@ -21,9 +21,12 @@ export async function generateMetadata({
 	if (categoryName === 'latest') {
 		category = t('IndexPage.navigation.latest');
 	} else {
+		const refactoredCategoryName = categoryName.includes('-')
+			? categoryName.split('-').join('/')
+			: categoryName;
 		const trCategory = await getCategoryByName({
 			langCode: locale,
-			name: categoryName
+			name: refactoredCategoryName
 		});
 		category = capitalize(trCategory?.data.categoryName || 'Category');
 	}
