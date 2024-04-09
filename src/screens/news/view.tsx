@@ -26,6 +26,7 @@ export const NewsPage: FC<Props> = ({ data }) => {
 					}
 					date={data.data.news.createdAt}
 					link={data.data.news.newsTranslations[0].link}
+					isTopNews
 				/>
 				<Image
 					src={data.data.news.poster_link}
