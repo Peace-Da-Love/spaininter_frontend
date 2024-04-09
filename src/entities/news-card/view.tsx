@@ -89,7 +89,7 @@ export const NewsCard: FC<NewsCardProps> = ({
 					/>
 					<span
 						className={
-							'hidden sm:inline-block capitalize absolute backdrop-blur-xl bg-white/30 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px] bottom-[15px] left-[20px]'
+							'hidden sm:inline-block capitalize absolute backdrop-blur-xl bg-gray/30 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px] bottom-[15px] left-[20px]'
 						}
 					>
 						{category}

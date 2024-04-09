@@ -11,15 +11,17 @@ import { useLocale } from 'next-intl';
 
 type Props = {
 	data: INewsFilterResponse;
+	title: string;
 };
 
-export const HomePage: FC<Props> = async ({ data }) => {
+export const HomePage: FC<Props> = async ({ data, title }) => {
 	const locale = useLocale();
 	const categories = await getCategoriesByLangCode(locale);
 
 	return (
 		<Fragment>
 			<section className={'pb-5 md:pb-10'}>
+				<h1 className={'sr-only'}>{title}</h1>
 				<Recommends />
 			</section>
 			<section className={'scroll-pt-40'} id='news'>

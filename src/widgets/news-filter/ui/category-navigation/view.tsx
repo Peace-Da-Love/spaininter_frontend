@@ -21,7 +21,7 @@ export const CategoryNavigation: FC<Props> = ({ categoryName, categories }) => {
 	return (
 		<nav className={'hidden md:block mb-10'}>
 			<ul className={'overflow-x-auto flex gap-10 justify-start items-center'}>
-				<li>
+				<li className={'flex-none'}>
 					<Link
 						href={{
 							pathname: '/category/[categoryName]/[page]',

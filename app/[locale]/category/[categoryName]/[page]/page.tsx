@@ -53,7 +53,31 @@ export default async function Page({
 		notFound();
 	}
 
+	const t = await getTranslations({
+		locale
+	});
+
+	let category: string;
+
+	if (categoryName === 'latest') {
+		category = t('IndexPage.navigation.latest');
+	} else {
+		const refactoredCategoryName = categoryName.includes('-')
+			? categoryName.split('-').join('/')
+			: categoryName;
+		const trCategory = await getCategoryByName({
+			langCode: locale,
+			name: refactoredCategoryName
+		});
+		category = capitalize(trCategory?.data.categoryName || 'Category');
+	}
+
 	// Enable static rendering
 	unstable_setRequestLocale(locale);
-	return <HomePage data={initialData} />;
+	return (
+		<HomePage
+			title={t('MetaData.CategoryPage.title', { category })}
+			data={initialData}
+		/>
+	);
 }

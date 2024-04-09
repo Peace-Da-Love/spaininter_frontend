@@ -18,7 +18,7 @@ export const MobileNavigation: FC<Props> = ({ categoryName, categories }) => {
 	return (
 		<div className={'pl-5 py-4'}>
 			<ul className={'overflow-x-auto flex gap-5 items-center pr-4'}>
-				<li>
+				<li className={'flex-none'}>
 					<Link
 						href={{
 							pathname: '/category/[categoryName]/[page]',
