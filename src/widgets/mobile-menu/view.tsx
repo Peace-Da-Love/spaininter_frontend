@@ -13,7 +13,7 @@ export const MobileMenu: FC<Props> = ({ categoryName, categories }) => {
 	return (
 		<div
 			className={
-				'block md:hidden fixed bottom-0 left-0 z-50 w-full backdrop-blur-xl bg-white/60'
+				'block md:hidden fixed bottom-0 left-0 z-50 w-full backdrop-blur-xl bg-gray/60'
 			}
 		>
 			<MobileNavigation categories={categories} categoryName={categoryName} />
