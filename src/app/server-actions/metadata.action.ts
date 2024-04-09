@@ -41,6 +41,12 @@ interface IGetNewsByIdMetadataResponse {
 			createdAt: string;
 			updatedAt: string;
 		};
+		links: {
+			link: string;
+			language: {
+				language_code: string;
+			};
+		}[];
 	};
 }
 
