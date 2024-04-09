@@ -15,6 +15,8 @@ type Props = {
 	params: { locale: string; link: string };
 };
 
+const SITE_URL = process.env.SITE_URL;
+
 export async function generateMetadata({
 	params: { locale, link }
 }: Omit<Props, 'children'>): Promise<Metadata> {
@@ -23,12 +25,32 @@ export async function generateMetadata({
 		langCode: locale
 	});
 
+	if (!metadata) {
+		notFound();
+	}
+
+	const hrefLangs: Record<string, string> = metadata?.data.links.reduce(
+		(acc, locale) => {
+			acc[
+				locale.language.language_code
+			] = `${SITE_URL}/${locale.language.language_code}/news/${locale.link}`;
+			return acc;
+		},
+		{} as Record<string, string>
+	);
+
 	return {
 		title: metadata?.data.news.title,
 		description: metadata?.data.news.description,
 		other: {
 			'article:published_time': metadata?.data.news.createdAt as string,
 			'article:modified_time': metadata?.data.news.updatedAt as string
+		},
+		alternates: {
+			languages: {
+				'x-default': hrefLangs['en'],
+				...hrefLangs
+			}
 		},
 		openGraph: {
 			images: [

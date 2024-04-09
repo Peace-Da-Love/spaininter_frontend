@@ -4,13 +4,16 @@ import { HomePage } from '@/src/screens/home';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { capitalize } from '@/src/shared/utils';
+import { locales } from '@/src/shared/configs';
 
 type Props = {
 	params: { locale: string; page: string; categoryName: string };
 };
 
+const SITE_URL = process.env.SITE_URL;
+
 export async function generateMetadata({
-	params: { locale, categoryName }
+	params: { locale, categoryName, page }
 }: Omit<Props, 'children'>): Promise<Metadata> {
 	const t = await getTranslations({
 		locale
@@ -31,9 +34,20 @@ export async function generateMetadata({
 		category = capitalize(trCategory?.data.categoryName || 'Category');
 	}
 
+	const hrefLangs: Record<string, string> = locales.reduce((acc, locale) => {
+		acc[locale] = `${SITE_URL}/${locale}/category/${categoryName}/${page}`;
+		return acc;
+	}, {} as Record<string, string>);
+
 	return {
 		title: t('MetaData.CategoryPage.title', { category }),
-		description: t('MetaData.CategoryPage.description', { category })
+		description: t('MetaData.CategoryPage.description', { category }),
+		alternates: {
+			languages: {
+				'x-default': hrefLangs['en'],
+				...hrefLangs
+			}
+		}
 	};
 }
 
