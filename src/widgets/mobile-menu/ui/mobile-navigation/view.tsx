@@ -38,7 +38,10 @@ export const MobileNavigation: FC<Props> = ({ categoryName, categories }) => {
 				</li>
 				{categories?.map(item => {
 					return (
-						<li key={`Category mobile navigation item - ${item.category_id}`}>
+						<li
+							className={'flex-none'}
+							key={`Category mobile navigation item - ${item.category_id}`}
+						>
 							<Link
 								href={{
 									pathname: '/category/[categoryName]/[page]',

@@ -41,7 +41,10 @@ export const CategoryNavigation: FC<Props> = ({ categoryName, categories }) => {
 				</li>
 				{categories.map(item => {
 					return (
-						<li key={`Category navigation item - ${item.category_id}`}>
+						<li
+							className={'flex-none'}
+							key={`Category navigation item - ${item.category_id}`}
+						>
 							<Link
 								href={{
 									pathname: '/category/[categoryName]/[page]',
