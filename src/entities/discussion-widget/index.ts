@@ -1,0 +1,1 @@
+export { DiscussionWidget } from './view';
