@@ -15,7 +15,6 @@ export const DiscussionWidget = () => {
 
 		ref.current?.appendChild(scriptElement);
 
-		// Cleanup on component unmount
 		return () => {
 			ref.current?.removeChild(scriptElement);
 		};
