@@ -3,6 +3,7 @@ import Markdown, { Components } from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import Image from 'next/image';
 import rehypeSlug from 'rehype-slug';
+import remarkUnwrapImages from 'remark-unwrap-images';
 import Link from 'next/link';
 
 type Props = {
@@ -31,6 +32,7 @@ export const MarkdownNews: FC<Props> = ({ markdown }) => {
 		<div className='news-content'>
 			<Markdown
 				rehypePlugins={[rehypeRaw, rehypeSlug]}
+				remarkPlugins={[remarkUnwrapImages]}
 				components={components}
 				skipHtml={false}
 				className={'prose max-w-max'}
