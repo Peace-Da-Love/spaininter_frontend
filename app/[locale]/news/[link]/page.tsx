@@ -51,7 +51,7 @@ export async function generateMetadata({
 				'x-default': hrefLangs['en'],
 				...hrefLangs
 			},
-			canonical: `${SITE_URL}/en/news/${link}`
+			canonical: `${SITE_URL}/en/news/${hrefLangs['en']}`
 		},
 		openGraph: {
 			images: [
