@@ -19,6 +19,7 @@ export const PageLayout: FC<Props> = ({ children }) => {
 			<Header />
 			<Main>{children}</Main>
 			<Footer />
+			<MobileMenu />
 		</div>
 	);
 };
