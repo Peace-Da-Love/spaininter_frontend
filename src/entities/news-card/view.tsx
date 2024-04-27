@@ -62,9 +62,7 @@ export const NewsCard: FC<NewsCardProps> = ({
 					{title}
 				</Link>
 				<span
-					className={
-						'block text-secondary font-medium text-[10px] leading-3 capitalize'
-					}
+					className={'block text-secondary font-medium text-[10px] leading-3'}
 				>
 					{formatDateTime(date, locale)}
 				</span>
@@ -135,7 +133,7 @@ export const NewsCard: FC<NewsCardProps> = ({
 				></div>
 				<span
 					className={
-						'text-[10px] leading-3 sm:text-base text-secondary font-medium capitalize'
+						'text-[10px] leading-3 sm:text-base text-secondary font-medium'
 					}
 				>
 					{formatDateTime(date, locale)}
