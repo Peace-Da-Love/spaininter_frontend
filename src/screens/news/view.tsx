@@ -5,7 +5,6 @@ import { MarkdownNews } from './ui/markdown-news';
 import { Navigation } from './ui/navigation';
 import { SubscribeNewsTg } from '@/src/shared/components/shared/subscribe-news-tg';
 import Image from 'next/image';
-import Script from 'next/script';
 import { DiscussionWidget } from '@/src/entities/discussion-widget';
 
 type Props = {

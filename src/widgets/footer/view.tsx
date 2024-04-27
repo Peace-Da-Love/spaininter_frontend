@@ -10,7 +10,7 @@ export const Footer = () => {
 	return (
 		<footer className={'w-full bg-primary rounded-t-3xl py-5'}>
 			<div
-				className={'container flex justify-between items-center md:pb-0 pb-24'}
+				className={'container flex justify-between items-center md:pb-0 pb-10'}
 			>
 				<Logo />
 				<div className={'flex items-center gap-10'}>
