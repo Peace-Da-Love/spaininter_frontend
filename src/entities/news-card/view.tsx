@@ -3,6 +3,7 @@ import { ImageLoader } from './ui/image-loader';
 import { FC } from 'react';
 import { NewsProps } from '@/src/shared/types';
 import { Link } from '@/src/shared/utils';
+import { useLocale } from 'next-intl';
 
 interface NewsCardProps extends NewsProps {
 	variant?: 'horizontal' | 'vertical';
@@ -17,6 +18,7 @@ export const NewsCard: FC<NewsCardProps> = ({
 	variant = 'vertical',
 	className
 }) => {
+	const locale = useLocale();
 	const isHorizontal = variant === 'horizontal';
 
 	const horizontal = (
@@ -26,7 +28,11 @@ export const NewsCard: FC<NewsCardProps> = ({
 				className
 			)}
 		>
-			<div className={'relative min-h-20 min-w-20 max-w-20'}>
+			<div
+				className={
+					'relative min-h-20 min-w-20 max-w-20 sm:max-w-full sm:max-h-full sm:min-h-min'
+				}
+			>
 				<Link
 					className={'block pt-[55%] absolute inset-0 top-0 left-0'}
 					href={{
@@ -56,9 +62,11 @@ export const NewsCard: FC<NewsCardProps> = ({
 					{title}
 				</Link>
 				<span
-					className={'block text-secondary font-medium text-[10px] leading-3'}
+					className={
+						'block text-secondary font-medium text-[10px] leading-3 capitalize'
+					}
 				>
-					{formatDateTime(date)}
+					{formatDateTime(date, locale)}
 				</span>
 			</div>
 		</article>
@@ -127,10 +135,10 @@ export const NewsCard: FC<NewsCardProps> = ({
 				></div>
 				<span
 					className={
-						'text-[10px] leading-3 sm:text-base text-secondary font-medium'
+						'text-[10px] leading-3 sm:text-base text-secondary font-medium capitalize'
 					}
 				>
-					{formatDateTime(date)}
+					{formatDateTime(date, locale)}
 				</span>
 			</div>
 		</article>
