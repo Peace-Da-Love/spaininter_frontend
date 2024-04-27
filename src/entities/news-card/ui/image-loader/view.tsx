@@ -30,7 +30,7 @@ export const ImageLoader: FC<Props> = ({ imageUrl, className }) => {
 					imageLoaded ? 'opacity-100' : 'opacity-0',
 					className
 				)}
-				onLoad={() => setImageLoaded(false)}
+				onLoad={() => setImageLoaded(true)}
 				loading={'lazy'}
 				width={345}
 				height={175}
