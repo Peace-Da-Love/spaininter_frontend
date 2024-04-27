@@ -16,9 +16,10 @@ export const ImageLoader: FC<Props> = ({ imageUrl, className }) => {
 		<>
 			{!imageLoaded && (
 				<div
-					className={
-						'animate-pulse bg-slate-200 absolute z-10 inset-0 rounded-t-3xl'
-					}
+					className={cn(
+						'animate-pulse bg-slate-200 absolute z-10 inset-0 rounded-t-3xl',
+						className
+					)}
 				/>
 			)}
 			<Image
@@ -29,7 +30,7 @@ export const ImageLoader: FC<Props> = ({ imageUrl, className }) => {
 					imageLoaded ? 'opacity-100' : 'opacity-0',
 					className
 				)}
-				onLoad={e => setImageLoaded(true)}
+				onLoad={() => setImageLoaded(false)}
 				loading={'lazy'}
 				width={345}
 				height={175}
