@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { NewsProps } from '@/src/shared/types';
 import { cn, Link } from '@/src/shared/utils';
 import { formatDateTime } from '@/src/shared/utils';
+import { useLocale } from 'next-intl';
 
 interface PreviewNewsProps extends NewsProps {
 	isTopNews?: boolean;
@@ -16,6 +17,8 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 	className,
 	isTopNews
 }) => {
+	const locale = useLocale();
+
 	return (
 		<div
 			className={cn(
@@ -63,7 +66,7 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 							'inline-block text-white text-[10px] md:text-sm font-medium backdrop-blur-xl bg-gray/30 rounded-2xl p-1.5'
 						}
 					>
-						{formatDateTime(date)}
+						{formatDateTime(date, locale)}
 					</span>
 				</div>
 				<Link
