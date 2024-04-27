@@ -34,7 +34,7 @@ export const NewsCard: FC<NewsCardProps> = ({
 				}
 			>
 				<Link
-					className={'block pt-[55%] absolute inset-0 top-0 left-0'}
+					className={'block pt-[55%] '}
 					href={{
 						pathname: '/news/[link]',
 						params: { link }
