@@ -1,15 +1,9 @@
 import { unstable_setRequestLocale } from 'next-intl/server';
-import {
-	getCategoriesByLangCode,
-	getNews,
-	metadataAction
-} from '@/src/app/server-actions';
+import { getNews, metadataAction } from '@/src/app/server-actions';
 import { notFound } from 'next/navigation';
 import { redirect } from '@/src/shared/utils';
 import { NewsPage } from '@/src/screens/news';
 import { Metadata } from 'next';
-import { Fragment } from 'react';
-import { MobileMenu } from '@/src/widgets/mobile-menu';
 
 type Props = {
 	params: { locale: string; link: string };
@@ -69,7 +63,6 @@ export default async function Page({ params: { locale, link } }: Props) {
 		languageCode: locale,
 		id
 	});
-	const categories = await getCategoriesByLangCode(locale);
 
 	if (!initialData) {
 		notFound();
@@ -85,10 +78,5 @@ export default async function Page({ params: { locale, link } }: Props) {
 	}
 	// Enable static rendering
 	unstable_setRequestLocale(locale);
-	return (
-		<Fragment>
-			<NewsPage data={initialData} />
-			<MobileMenu categories={categories?.data.categories} />
-		</Fragment>
-	);
+	return <NewsPage data={initialData} />;
 }
