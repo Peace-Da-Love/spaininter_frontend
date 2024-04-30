@@ -20,6 +20,9 @@ export const NewsCard: FC<NewsCardProps> = ({
 }) => {
 	const locale = useLocale();
 	const isHorizontal = variant === 'horizontal';
+	const refactoredCategory = category?.includes('/')
+		? category.split('/').join('-')
+		: category;
 
 	const horizontal = (
 		<article
@@ -44,13 +47,17 @@ export const NewsCard: FC<NewsCardProps> = ({
 				</Link>
 			</div>
 			<div className={'w-full flex flex-col justify-between'}>
-				<span
+				<Link
+					href={{
+						pathname: '/category/[categoryName]/[page]',
+						params: { categoryName: refactoredCategory, page: 1 }
+					}}
 					className={
 						'capitalize block text-secondary font-medium text-[10px] leading-3'
 					}
 				>
 					{category}
-				</span>
+				</Link>
 				<Link
 					className={'text-sm font-bold line-clamp-2'}
 					href={{
@@ -93,13 +100,17 @@ export const NewsCard: FC<NewsCardProps> = ({
 						imageUrl={imageUrl}
 						className={'rounded-2xl sm:rounded-t-3xl sm:rounded-b-none'}
 					/>
-					<span
-						className={
-							'hidden sm:inline-block capitalize absolute backdrop-blur-xl bg-gray/30 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px] bottom-[15px] left-[20px]'
-						}
-					>
-						{category}
-					</span>
+				</Link>
+				<Link
+					href={{
+						pathname: '/category/[categoryName]/[page]',
+						params: { categoryName: refactoredCategory, page: 1 }
+					}}
+					className={
+						'hidden sm:inline-block capitalize absolute backdrop-blur-xl bg-gray/30 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px] bottom-[15px] left-[20px]'
+					}
+				>
+					{category}
 				</Link>
 			</div>
 			<div
@@ -107,13 +118,17 @@ export const NewsCard: FC<NewsCardProps> = ({
 					'sm:rounded-b-3xl bg-card sm:pt-2.5 sm:px-5 sm:pb-5 sm:h-full flex sm:block flex-col justify-between'
 				}
 			>
-				<span
+				<Link
+					href={{
+						pathname: '/category/[categoryName]/[page]',
+						params: { categoryName: refactoredCategory, page: 1 }
+					}}
 					className={
 						'capitalize block sm:hidden text-secondary font-medium text-[10px] leading-3'
 					}
 				>
 					{category}
-				</span>
+				</Link>
 				<Link
 					className={
 						'inline-block text-sm font-bold sm:font-normal sm:text-base text-primary sm:text-[#222222] sm:mb-2.5 line-clamp-2 sm:h-[48px]'
