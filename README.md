@@ -13,7 +13,7 @@ SpainInter Frontend - The project was created to view multi-box news, mainly for
 * [![Next][Next.js]][Next-url]
 * [![React][React.js]][React-url]
 * [![Tailwind][Tailwind.css]][Tailwind-url]
-* [![RadixUIJS][RadixUI]][RadixUI-url]
+* [![RadixUI][RadixUI]][RadixUI-url]
 
 ## Getting Started
 
@@ -44,9 +44,9 @@ SpainInter Frontend - The project was created to view multi-box news, mainly for
 
 ## Contact
 
-[@holifish][Telegram-url] [![Telegram][Telegram]][Telegram-url]
+Telegram - [@Holifish][Telegram-url]
 
-[@stepsones][Github-url] [![Github][Github]][Github-url]
+Github - [StepsOnes][Github-url]
 
 
 
