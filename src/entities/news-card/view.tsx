@@ -20,6 +20,9 @@ export const NewsCard: FC<NewsCardProps> = ({
 }) => {
 	const locale = useLocale();
 	const isHorizontal = variant === 'horizontal';
+	const categoryPrefix = category?.includes('/')
+		? category.split('/').join('-')
+		: category;
 
 	const horizontal = (
 		<article
@@ -93,13 +96,13 @@ export const NewsCard: FC<NewsCardProps> = ({
 						imageUrl={imageUrl}
 						className={'rounded-2xl sm:rounded-t-3xl sm:rounded-b-none'}
 					/>
-					<span
+					<button
 						className={
 							'hidden sm:inline-block capitalize absolute backdrop-blur-xl bg-gray/30 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px] bottom-[15px] left-[20px]'
 						}
 					>
 						{category}
-					</span>
+					</button>
 				</Link>
 			</div>
 			<div
