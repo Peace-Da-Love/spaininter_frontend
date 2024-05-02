@@ -1,8 +1,7 @@
 import { PreviewNews } from '@/src/entities/preview-news';
-import { useLocale } from 'next-intl';
-import { getRecommendedNews, NewsItem } from '@/src/app/server-actions';
 import { NewsCard } from '@/src/entities/news-card';
 import { FC } from 'react';
+import { NewsItem } from '@/src/shared/types';
 
 type Props = {
 	news: NewsItem[];
