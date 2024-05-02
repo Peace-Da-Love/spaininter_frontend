@@ -1,6 +1,8 @@
 import { FC } from 'react';
 import GithubSlugger from 'github-slugger';
 import { useTranslations } from 'next-intl';
+import removeMarkdown from 'markdown-to-text';
+import he from 'he';
 
 type Props = {
 	markdown: string;
@@ -11,7 +13,7 @@ export const Navigation: FC<Props> = ({ markdown }) => {
 	const headings = markdown.match(/#{1,6} .+/g) || [];
 	const toc = headings.map(heading => {
 		const level = heading.match(/#/g)?.length || 0;
-		const title = heading.replace(/#{1,6} /, '');
+		const title = he.decode(removeMarkdown(heading));
 		const id = new GithubSlugger().slug(title);
 		return { level, id, title };
 	});
