@@ -9,11 +9,7 @@ SpainInter Frontend - The project was created to view multi-box news, mainly for
 
 ### Built With
 
-* [![TypeScript][TypeScript]][TypeScript-url]
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Tailwind][Tailwind.css]][Tailwind-url]
-* [![RadixUI][RadixUI]][RadixUI-url]
+<img src="https://img.shields.io/badge/radix%20ui-161618.svg?style=for-the-badge&logo=radix-ui&logoColor=white" alt="">
 
 ## Getting Started
 
