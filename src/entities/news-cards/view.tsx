@@ -1,6 +1,6 @@
-import { NewsItem } from '@/src/app/server-actions';
 import { FC } from 'react';
 import { NewsCard } from '@/src/entities/news-card';
+import { NewsItem } from '@/src/shared/types';
 
 type Props = {
 	news: NewsItem[];
