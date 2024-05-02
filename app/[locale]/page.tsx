@@ -1,7 +1,7 @@
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import { Metadata } from 'next';
 import { HomePage } from '@/src/screens/home';
-import { getNewsFilter } from '@/src/app/server-actions';
+import { getLatestNewsAction } from '@/src/app/server-actions';
 import { notFound } from 'next/navigation';
 import { locales } from '@/src/shared/configs';
 
@@ -34,7 +34,10 @@ export async function generateMetadata({
 }
 
 export default async function IndexPage({ params: { locale } }: Props) {
-	const initialData = await getNewsFilter({ languageCode: locale });
+	// Enable static rendering
+	unstable_setRequestLocale(locale);
+
+	const initialData = await getLatestNewsAction();
 
 	if (!initialData) {
 		notFound();
@@ -42,7 +45,5 @@ export default async function IndexPage({ params: { locale } }: Props) {
 
 	const t = await getTranslations({ locale, namespace: 'MetaData.IndexPage' });
 
-	// Enable static rendering
-	unstable_setRequestLocale(locale);
 	return <HomePage title={t('title')} data={initialData} />;
 }

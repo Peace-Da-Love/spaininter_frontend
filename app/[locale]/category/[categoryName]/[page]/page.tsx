@@ -1,10 +1,15 @@
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
-import { getCategoryByName, getNewsFilter } from '@/src/app/server-actions';
+import {
+	getCategoryByName,
+	getFilterNews,
+	getLatestNewsAction
+} from '@/src/app/server-actions';
 import { HomePage } from '@/src/screens/home';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { capitalize } from '@/src/shared/utils';
 import { locales } from '@/src/shared/configs';
+import { CategoryPage } from '@/src/screens/category';
 
 type Props = {
 	params: { locale: string; page: string; categoryName: string };
@@ -55,13 +60,12 @@ export async function generateMetadata({
 export default async function Page({
 	params: { locale, page, categoryName }
 }: Props) {
-	const refactoredCategoryName = categoryName.includes('-')
-		? categoryName.split('-').join('/')
-		: categoryName;
-	const initialData = await getNewsFilter({
-		languageCode: locale,
-		page: page,
-		search: refactoredCategoryName
+	// Enable static rendering
+	unstable_setRequestLocale(locale);
+
+	const initialData = await getFilterNews({
+		page: parseInt(page),
+		category: categoryName
 	});
 
 	if (!initialData) {
@@ -72,27 +76,13 @@ export default async function Page({
 		locale
 	});
 
-	let category: string;
-
-	if (categoryName === 'latest') {
-		category = t('IndexPage.navigation.latest');
-	} else {
-		const refactoredCategoryName = categoryName.includes('-')
-			? categoryName.split('-').join('/')
-			: categoryName;
-		const trCategory = await getCategoryByName({
-			langCode: locale,
-			name: refactoredCategoryName
-		});
-		category = capitalize(trCategory?.data.categoryName || 'Category');
-	}
-
-	// Enable static rendering
-	unstable_setRequestLocale(locale);
 	return (
-		<HomePage
-			title={t('MetaData.CategoryPage.title', { category })}
+		<CategoryPage
 			data={initialData}
+			categoryLink={categoryName.replace(/-/g, '/')}
+			title={t('MetaData.CategoryPage.title', {
+				category: capitalize(categoryName.replace(/-/g, '/'))
+			})}
 		/>
 	);
 }
