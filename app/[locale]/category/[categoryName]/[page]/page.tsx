@@ -79,7 +79,7 @@ export default async function Page({
 	return (
 		<CategoryPage
 			data={initialData}
-			categoryLink={categoryName.replace(/-/g, '/')}
+			categoryLink={categoryName}
 			title={t('MetaData.CategoryPage.title', {
 				category: capitalize(categoryName.replace(/-/g, '/'))
 			})}

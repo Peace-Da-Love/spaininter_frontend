@@ -23,7 +23,7 @@ type Params = {
 export async function getFilterNews(
 	params: Params
 ): Promise<ILatestNewsResponse | undefined> {
-	const limit = 14;
+	const limit = 8;
 
 	const response = await $fetch(
 		`news/filter?limit=${limit}&page=${params.page}&category=${params.category}`
