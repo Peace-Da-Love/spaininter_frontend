@@ -1,1 +1,0 @@
-export { Recommends } from './view';
