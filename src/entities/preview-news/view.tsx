@@ -15,7 +15,9 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 	category,
 	title,
 	className,
-	isTopNews
+	isTopNews,
+	categoryLink,
+	city
 }) => {
 	const locale = useLocale();
 
@@ -37,17 +39,30 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 						'absolute left-[20px] right-[20px] bottom-[20px] md:left-[50px] md:right-[50px] md:bottom-[80px]'
 					}
 				>
-					<span
-						className={
-							'capitalize inline-block backdrop-blur-xl bg-gray/30 text-white py-1.5 px-2.5 text-[10px] md:text-sm font-medium rounded-[20px] mb-1.5'
-						}
-					>
-						{category}
-					</span>
+					<div className={'flex items-center gap-4'}>
+						<Link
+							href={{
+								pathname: '/category/[categoryName]/[page]',
+								params: { categoryName: categoryLink, page: 1 }
+							}}
+							className={
+								'capitalize inline-block backdrop-blur-xl bg-gray/30 text-white py-1.5 px-2.5 text-[10px] md:text-sm font-medium rounded-[20px] mb-1.5 relative z-10'
+							}
+						>
+							{category}
+						</Link>
+						<span
+							className={
+								'capitalize inline-block backdrop-blur-xl bg-gray/30 text-white py-1.5 px-2.5 text-[10px] md:text-sm font-medium rounded-[20px] mb-1.5 relative z-10'
+							}
+						>
+							{city}
+						</span>
+					</div>
 					{isTopNews ? (
 						<h1
 							className={
-								'text-xl md:text-4xl font-bold text-white mb-1.5 backdrop-blur-xl bg-gray/30 rounded-2xl p-2.5'
+								'text-xl md:text-4xl font-bold text-white mb-1.5 backdrop-blur-xl bg-gray/30 rounded-2xl p-2.5 relative z-10'
 							}
 						>
 							{title}
@@ -55,7 +70,7 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 					) : (
 						<span
 							className={
-								'block text-xl md:text-4xl font-bold text-white mb-1.5 backdrop-blur-xl bg-gray/30 rounded-2xl p-2.5'
+								'block text-xl md:text-4xl font-bold text-white mb-1.5 backdrop-blur-xl bg-gray/30 rounded-2xl p-2.5 relative z-10'
 							}
 						>
 							{title}
@@ -63,7 +78,7 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 					)}
 					<span
 						className={
-							'inline-block text-white text-[10px] md:text-sm font-medium backdrop-blur-xl bg-gray/30 rounded-2xl p-1.5'
+							'inline-block text-white text-[10px] md:text-sm font-medium backdrop-blur-xl bg-gray/30 rounded-2xl p-1.5 relative z-10'
 						}
 					>
 						{formatDateTime(date, locale)}

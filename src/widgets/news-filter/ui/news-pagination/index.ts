@@ -1,1 +1,0 @@
-export { NewsPagination } from './view';

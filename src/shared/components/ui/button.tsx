@@ -10,7 +10,10 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "",
-        pagination: ""
+        pagination: "",
+        outline: "border border-slate-950 text-slate-950 dark:border-slate-300 dark:text-slate-300",
+        primary: "bg-primary text-white dark:bg-primary-dark",
+        ghost: "text-slate-950 dark:text-slate-300",
       },
       size: {
         default: "h-10 px-4 py-2",
