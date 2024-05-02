@@ -58,9 +58,11 @@ export async function generateMetadata({
 }
 
 export default async function Page({ params: { locale, link } }: Props) {
+	// Enable static rendering
+	unstable_setRequestLocale(locale);
+
 	const id = link.split('-')[0];
 	const initialData = await getNews({
-		languageCode: locale,
 		id
 	});
 
@@ -68,15 +70,14 @@ export default async function Page({ params: { locale, link } }: Props) {
 		notFound();
 	}
 
-	if (initialData.data.news.newsTranslations[0].link !== link) {
+	if (initialData.data.news.link !== link) {
 		redirect({
 			pathname: '/news/[link]',
 			params: {
-				link: initialData.data.news.newsTranslations[0].link
+				link: initialData.data.news.link
 			}
 		});
 	}
-	// Enable static rendering
-	unstable_setRequestLocale(locale);
+
 	return <NewsPage data={initialData} />;
 }

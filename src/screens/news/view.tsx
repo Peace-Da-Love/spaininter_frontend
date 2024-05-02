@@ -12,7 +12,7 @@ type Props = {
 };
 
 export const NewsPage: FC<Props> = ({ data }) => {
-	const markdown = data.data.news.newsTranslations[0].content
+	const markdown = data.data.news.content
 		.replace(/\\n/g, '\n\n')
 		.replace(/\\|/g, '');
 
@@ -20,18 +20,18 @@ export const NewsPage: FC<Props> = ({ data }) => {
 		<article id='article-content'>
 			<section className={'background-section'}>
 				<PreviewNews
-					imageUrl={data.data.news.poster_link}
-					title={data.data.news.newsTranslations[0].title}
-					category={
-						data.data.news.category.categoryTranslations[0].category_name
-					}
+					imageUrl={data.data.news.posterLink}
+					title={data.data.news.title}
+					category={data.data.news.categoryName}
 					date={data.data.news.createdAt}
-					link={data.data.news.newsTranslations[0].link}
+					link={data.data.news.link}
+					categoryLink={data.data.news.categoryLink}
+					city={data.data.news.city}
 					isTopNews
 				/>
 				<Image
-					src={data.data.news.poster_link}
-					alt={`${data.data.news.newsTranslations[0].title.slice(0, 20)} image`}
+					src={data.data.news.posterLink}
+					alt={`${data.data.news.title.slice(0, 20)} image`}
 					width={600}
 					height={600}
 					style={{

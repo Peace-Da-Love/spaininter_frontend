@@ -1,1 +1,0 @@
-export { CategoryNavigation } from './view';

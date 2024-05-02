@@ -1,0 +1,1 @@
+export { PaginationCards } from './view';
