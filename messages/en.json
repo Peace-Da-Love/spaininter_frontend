@@ -15,7 +15,8 @@
     "paginationButton": "Go to page {page}",
     "selectLanguage": "Select language",
     "language": "Language",
-    "content": "Content"
+    "content": "Content",
+    "ad": "Ad"
   },
   "Alarms": {
     "empty": "No news here yet"

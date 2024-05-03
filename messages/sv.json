@@ -15,7 +15,8 @@
     "paginationButton": "Gå till sida {page}",
     "selectLanguage": "Välj språk",
     "language": "Språk",
-    "content": "Innehåll"
+    "content": "Innehåll",
+    "ad": "Annons"
   },
   "Alarms": {
     "empty": "Inga nyheter här ännu"
