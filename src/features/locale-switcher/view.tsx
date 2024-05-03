@@ -17,7 +17,7 @@ export const LocaleSwitcher: FC<Props> = ({ className }) => {
 			<SelectLabel>{t('language')}</SelectLabel>
 			{locales.map(locale => (
 				<SelectItem
-					className={'text-primary uppercase'}
+					className={'text-primary uppercase relative'}
 					key={locale}
 					value={locale}
 				>

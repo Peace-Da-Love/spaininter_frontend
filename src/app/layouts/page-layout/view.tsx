@@ -13,7 +13,7 @@ export const PageLayout: FC<Props> = ({ children }) => {
 	return (
 		<div
 			className={cn(
-				'relative bg-background flex flex-col h-screen justify-between'
+				'relative  bg-background flex flex-col h-screen justify-between'
 			)}
 		>
 			<Header />
