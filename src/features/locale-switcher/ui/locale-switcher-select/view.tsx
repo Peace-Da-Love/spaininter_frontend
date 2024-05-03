@@ -51,7 +51,7 @@ export const LocaleSwitcherSelect: FC<Props> = ({
 				>
 					<SelectValue />
 				</SelectTrigger>
-				<SelectContent>
+				<SelectContent className={'z-50'}>
 					<SelectGroup>{children}</SelectGroup>
 				</SelectContent>
 			</Select>
