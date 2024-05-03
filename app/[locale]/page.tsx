@@ -37,7 +37,7 @@ export default async function IndexPage({ params: { locale } }: Props) {
 	// Enable static rendering
 	unstable_setRequestLocale(locale);
 
-	const initialData = await getLatestNewsAction();
+	const initialData = await getLatestNewsAction({ locale });
 
 	if (!initialData) {
 		notFound();
