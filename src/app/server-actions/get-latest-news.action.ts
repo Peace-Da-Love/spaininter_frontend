@@ -15,12 +15,20 @@ export interface IFilterNewsResponse {
 	};
 }
 
-export async function getLatestNewsAction(): Promise<
-	IFilterNewsResponse | undefined
-> {
+type Params = {
+	locale: string;
+};
+
+export async function getLatestNewsAction(
+	params: Params
+): Promise<IFilterNewsResponse | undefined> {
 	const limit = 14;
 
-	const response = await $fetch(`news/latest?limit=${limit}`);
+	const response = await $fetch(`news/latest?limit=${limit}`, {
+		headers: {
+			'Accept-Language': params.locale
+		}
+	});
 	if (!response.ok) return undefined;
 	const data = (await response.json()) as IFilterNewsResponse;
 
