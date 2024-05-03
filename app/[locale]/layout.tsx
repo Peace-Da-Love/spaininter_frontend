@@ -82,7 +82,7 @@ export default async function LocaleLayout({
 				<noscript>
 					<div>
 						<img
-							src='https://mc.yandex.ru/watch/96951677'
+							src={`https://mc.yandex.ru/watch/${YANDEX_METRIKA_ID}`}
 							style={{
 								position: 'absolute',
 								left: '-9999px'
@@ -92,7 +92,7 @@ export default async function LocaleLayout({
 					</div>
 				</noscript>
 			</head>
-			<body className={clsx(getFonts())}>
+			<body  className={clsx(getFonts())}>
 				<NextTopLoader showSpinner={false} color={'#000000'} />
 				<PageLayout>{children}</PageLayout>
 
