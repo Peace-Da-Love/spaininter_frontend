@@ -1,5 +1,4 @@
 import { FC, Fragment } from 'react';
-
 import { IFilterNewsResponse } from '@/src/app/server-actions';
 import { SubscribeNewsTg } from '@/src/shared/components/shared/subscribe-news-tg';
 import { PaginationCards } from '@/src/widgets/pagination-cards';
