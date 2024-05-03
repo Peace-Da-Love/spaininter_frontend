@@ -15,7 +15,8 @@
     "paginationButton": "Gå til side {page}",
     "selectLanguage": "Velg språk",
     "language": "Språk",
-    "content": "Innhold"
+    "content": "Innhold",
+    "ad": "Annonse"
   },
   "Alarms": {
     "empty": "Ingen nyheter her ennå"

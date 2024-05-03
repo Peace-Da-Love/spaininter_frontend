@@ -18,6 +18,7 @@ export interface NewsResponse {
 interface INews {
 	newsId: number;
 	posterLink: string;
+	adLink: string | null;
 	city: string;
 	title: string;
 	content: string;
