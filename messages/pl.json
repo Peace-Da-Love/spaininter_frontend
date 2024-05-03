@@ -15,7 +15,8 @@
     "paginationButton": "Przejdź do strony {page}",
     "selectLanguage": "Wybierz język",
     "language": "Język",
-    "content": "Zawartość"
+    "content": "Zawartość",
+    "ad": "Reklama"
   },
   "Alarms": {
     "empty": "Brak wiadomości tutaj jeszcze"
