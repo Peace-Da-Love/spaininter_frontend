@@ -15,7 +15,8 @@
     "paginationButton": "Aller à la page {page}",
     "selectLanguage": "Sélectionner la langue",
     "language": "Langue",
-    "content": "Contenu"
+    "content": "Contenu",
+    "ad": "Publicité"
   },
   "Alarms": {
     "empty": "Pas de nouvelles ici pour le moment"
