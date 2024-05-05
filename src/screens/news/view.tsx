@@ -14,7 +14,7 @@ type Props = {
 
 export const NewsPage: FC<Props> = ({ data }) => {
 	const markdown = data.data.news.content
-		.replace(/\\n/g, '\n\n')
+		.replace(/\\n/g, '\n')
 		.replace(/\\|/g, '');
 
 	return (
