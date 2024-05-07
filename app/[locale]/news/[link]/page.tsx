@@ -63,7 +63,8 @@ export default async function Page({ params: { locale, link } }: Props) {
 
 	const id = link.split('-')[0];
 	const initialData = await getNews({
-		id
+		id,
+		locale
 	});
 
 	if (!initialData) {

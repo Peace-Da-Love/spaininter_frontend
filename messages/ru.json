@@ -9,13 +9,14 @@
     }
   },
   "Components": {
-    "subscribeNewsOur": "Подпишитесь",
+    "subscribeNewsOur": "Подпишись",
     "subscribeNews": "Подписаться на новости",
     "logo": "SpainInter Логотип",
     "paginationButton": "Перейти на страницу {page}",
     "selectLanguage": "Выберите язык",
     "language": "Язык",
-    "content": "Содержание"
+    "content": "Содержание",
+    "ad": "Реклама"
   },
   "Alarms": {
     "empty": "Здесь пока нет новостей"

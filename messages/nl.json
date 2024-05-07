@@ -15,7 +15,8 @@
     "paginationButton": "Ga naar pagina {page}",
     "selectLanguage": "Selecteer taal",
     "language": "Taal",
-    "content": "Inhoud"
+    "content": "Inhoud",
+    "ad": "Advertentie"
   },
   "Alarms": {
     "empty": "Geen nieuws hier nog"

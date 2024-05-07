@@ -6,6 +6,7 @@ import { Navigation } from './ui/navigation';
 import { SubscribeNewsTg } from '@/src/shared/components/shared/subscribe-news-tg';
 import Image from 'next/image';
 import { DiscussionWidget } from '@/src/entities/discussion-widget';
+import { Ad } from './ui/ad';
 
 type Props = {
 	data: NewsResponse;
@@ -13,7 +14,7 @@ type Props = {
 
 export const NewsPage: FC<Props> = ({ data }) => {
 	const markdown = data.data.news.content
-		.replace(/\\n/g, '\n\n')
+		.replace(/\\n/g, '\n')
 		.replace(/\\|/g, '');
 
 	return (
@@ -49,6 +50,7 @@ export const NewsPage: FC<Props> = ({ data }) => {
 					<MarkdownNews markdown={markdown} />
 					<div className={'mt-10 text-center'}>
 						<DiscussionWidget />
+						<Ad adLink={data.data.news.adLink} city={data.data.news.city} />
 						<SubscribeNewsTg />
 					</div>
 				</aside>

@@ -1,0 +1,1 @@
+export { AdWidget } from './view';
