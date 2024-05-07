@@ -12,10 +12,9 @@ export const Navigation: FC<Props> = ({ markdown }) => {
 	const t = useTranslations('Components');
 	const headings = markdown.match(/#{1,6} .+/g) || [];
 	const toc = headings.map(heading => {
-		const level = heading.match(/#/g)?.length || 0;
 		const title = he.decode(removeMarkdown(heading));
 		const id = new GithubSlugger().slug(title);
-		return { level, id, title };
+		return { id, title };
 	});
 
 	if (toc.length === 0) {
@@ -26,33 +25,18 @@ export const Navigation: FC<Props> = ({ markdown }) => {
 		<div className={'bg-card px-5 py-8 rounded-3xl sticky top-5 left-0 w-full'}>
 			<p className={'text-xl mb-4 font-bold'}>{t('content')}</p>
 			<nav>
-				<ul>
-					{toc.map(({ level, id, title }) => {
-						if (level === 1) {
-							return (
-								<li key={id} className={'text-sm font-medium pl-0 mb-4'}>
-									<a href={`#${id}`}>{title}</a>
-								</li>
-							);
-						}
-
-						if (level === 2) {
-							return (
-								<li key={id} className={'text-sm font-medium pl-3 my-2'}>
-									<a href={`#${id}`}>{title}</a>
-								</li>
-							);
-						}
-
-						if (level === 3) {
-							return (
-								<li key={id} className={'text-sm font-medium pl-6 mb-1'}>
-									<a href={`#${id}`}>{title}</a>
-								</li>
-							);
-						}
+				<ol className={'list-decimal pl-4'}>
+					{toc.map(({ id, title }) => {
+						return (
+							<li
+								key={id}
+								className={'text-sm font-medium pl-0 mb-3 hover:underline'}
+							>
+								<a href={`#${id}`}>{title}</a>
+							</li>
+						);
 					})}
-				</ul>
+				</ol>
 			</nav>
 		</div>
 	);

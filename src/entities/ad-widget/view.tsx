@@ -1,15 +1,19 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { FC, useEffect, useRef } from 'react';
 
-export const DiscussionWidget = () => {
+type Props = {
+	adLink: string;
+};
+
+export const AdWidget: FC<Props> = ({ adLink }) => {
 	const ref = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		const scriptElement = document.createElement('script');
 		scriptElement.src = 'https://telegram.org/js/telegram-widget.js?22';
 		scriptElement.async = true;
-		scriptElement.dataset.telegramDiscussion = 'spaininter';
+		scriptElement.dataset.telegramPost = adLink;
 		scriptElement.dataset.commentsLimit = '5';
 		scriptElement.dataset.colorful = '1';
 
@@ -20,5 +24,5 @@ export const DiscussionWidget = () => {
 		};
 	}, []);
 
-	return <div className={'mb-4'} ref={ref} />;
+	return <div ref={ref} />;
 };

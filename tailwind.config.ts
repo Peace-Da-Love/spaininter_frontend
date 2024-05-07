@@ -31,6 +31,7 @@ const config = {
         background: "hsl(var(--background))",
         card: "hsl(var(--card))",
         "light-blue": "hsl(var(--light-blue))",
+        "dark-blue": "hsl(var(--dark-blue))",
       },
       keyframes: {
         "accordion-down": {

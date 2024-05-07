@@ -1,10 +1,5 @@
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
-import {
-	getCategoryByName,
-	getFilterNews,
-	getLatestNewsAction
-} from '@/src/app/server-actions';
-import { HomePage } from '@/src/screens/home';
+import { getCategoryByName, getFilterNews } from '@/src/app/server-actions';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { capitalize } from '@/src/shared/utils';
@@ -65,7 +60,8 @@ export default async function Page({
 
 	const initialData = await getFilterNews({
 		page: parseInt(page),
-		category: categoryName
+		category: categoryName,
+		locale
 	});
 
 	if (!initialData) {
