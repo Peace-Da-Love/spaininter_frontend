@@ -20,12 +20,7 @@ const components: Components = {
 		>
 			{children}
 		</Link>
-	),
-	img: ({ node, ...props }) => {
-		return (
-			<Image src={props.src as string} alt={'Image'} width={600} height={600} />
-		);
-	}
+	)
 };
 
 export const MarkdownNews: FC<Props> = ({ markdown }) => {

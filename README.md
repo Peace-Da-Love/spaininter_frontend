@@ -9,7 +9,49 @@ SpainInter Frontend - The project was created to view multi-box news, mainly for
 
 ### Built With
 
-<img src="https://img.shields.io/badge/radix%20ui-161618.svg?style=for-the-badge&logo=radix-ui&logoColor=white" alt="">
+<a href="https://typescriptlang.org" title="TypeScript">
+   <img 
+      src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" 
+      alt="TypeScript" 
+      title="TypeScript" 
+   />
+</a>
+<br>
+
+<a href="https://reactjs.org/" title="React.js">
+   <img 
+      src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" 
+      alt="React.js" 
+      title="React.js" 
+   />
+</a>
+<br>
+
+<a href="https://nextjs.org/" title="Next.js">
+   <img 
+      src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" 
+      alt="Next.js" 
+      title="Next.js" 
+   />
+</a>
+<br>
+
+<a href="https://tailwindcss.com" title="Tailwind.css">
+   <img 
+      src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white" 
+      alt="Tailwind.css" 
+      title="Tailwind.css" 
+   />
+</a>
+<br>
+
+<a href="https://www.radix-ui.com" title="RadixUI">
+   <img 
+      src="https://img.shields.io/badge/radix%20ui-161618.svg?style=for-the-badge&logo=radix-ui&logoColor=white" 
+      alt="RadixUI" 
+      title="RadixUI" 
+   />
+</a>
 
 ## Getting Started
 
