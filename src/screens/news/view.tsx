@@ -49,9 +49,9 @@ export const NewsPage: FC<Props> = ({ data }) => {
 				<aside className={''}>
 					<MarkdownNews markdown={markdown} />
 					<div className={'mt-10 text-center'}>
+						<SubscribeNewsTg className={'mb-4'} />
 						<DiscussionWidget />
 						<Ad adLink={data.data.news.adLink} city={data.data.news.city} />
-						<SubscribeNewsTg />
 					</div>
 				</aside>
 				<aside className={'hidden lg:block'}>
