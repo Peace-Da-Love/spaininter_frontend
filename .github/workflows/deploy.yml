@@ -60,14 +60,14 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
-            cd ./spainter
+            cd ./spaininter/spaininter_frontend
             git pull ${{ secrets.REPO_URL }}
             echo "SITE_URL=${{ secrets.SITE_URL }}" > .env.local
             echo "API_URL=${{ secrets.API_URL }}" >> .env.local
             echo "YANDEX_VERIFICATION=${{ secrets.YANDEX_VERIFICATION }}" >> .env.local
             echo "GOOGLE_VERIFICATION=${{ secrets.GOOGLE_VERIFICATION }}" >> .env.local
             echo "YANDEX_METRIKA_ID=${{ secrets.YANDEX_METRIKA_ID }}" >> .env.local
-            docker stop "spainter_frontend"
-            docker rm "spainter_frontend"
-            docker build -t "spainter_frontend" .
-            docker run -d "spainter_frontend"
+            docker stop "spaininter_frontend"
+            docker rm "spaininter_frontend"
+            docker build -t "spaininter_frontend" .
+            docker run -d "spaininter_frontend"
