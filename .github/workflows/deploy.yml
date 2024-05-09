@@ -70,4 +70,4 @@ jobs:
             docker stop "spaininter_frontend"
             docker rm "spaininter_frontend"
             docker build -t "spaininter_frontend" .
-            docker run -d -p ${{ secrets.PORT }}:3000 "spaininter_frontend"
+            docker run -d -p ${{ secrets.PORT }}:${{ secrets.PORT }} "spaininter_frontend"
