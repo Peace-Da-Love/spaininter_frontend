@@ -1,7 +1,7 @@
 import { HomeLink } from './ui/home-link';
 import { LocaleSwitcher } from '@/src/features/locale-switcher';
 
-export const MobileMenu = () => {
+export const Menu = () => {
 	return (
 		<div
 			className={

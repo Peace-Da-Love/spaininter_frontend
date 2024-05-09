@@ -6,8 +6,6 @@ type Props = {
 
 export const Main: FC<Props> = ({ children }) => {
 	return (
-		<main className={'w-full flex-grow container pb-8 sm:pb-12'}>
-			{children}
-		</main>
+		<main className={'w-full flex-grow py-28 pb-8 sm:pb-12'}>{children}</main>
 	);
 };
