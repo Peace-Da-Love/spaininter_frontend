@@ -11,10 +11,10 @@ import 'moment/locale/nl';
  * Format date time
  * @param date - 2024-03-24 01:03:13.117 +0300
  * @param locale - en
- * @returns 2 November 2023
+ * @returns 2 November
  */
 export function formatDateTime(date: string, locale?: string) {
 	return moment(date)
 		.locale(locale || 'en')
-		.format('LL');
+		.format('D MMMM');
 }
