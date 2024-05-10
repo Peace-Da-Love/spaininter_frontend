@@ -56,11 +56,13 @@ export const NewsPage: FC<Props> = ({ data }: Props): JSX.Element => {
 					<div className='actions mt-10 text-center'>
 						<DiscussionWidget />
 						<Ad adLink={data.data.news.adLink} city={data.data.news.city} />
-						<SubscribeNewsTg />
 					</div>
 				</div>
 				<aside className='hidden lg:block'>
-					<Navigation markdown={normalizedContent} />
+					<div className={'sticky top-5 left-0 w-full flex flex-col gap-4'}>
+						<Navigation markdown={normalizedContent} />
+						<SubscribeNewsTg />
+					</div>
 				</aside>
 			</section>
 		</article>
