@@ -4,31 +4,6 @@ import { locales } from '@/src/shared/configs';
 const SITE_URL = process.env.SITE_URL;
 
 async function generateSiteMap() {
-	const categoryMetaData = await metadataAction.getCategoryMetadata();
-
-	const categoryXML = categoryMetaData?.data.map(category => {
-		return Array.from({ length: category.pages_count }, (_, i) => {
-			const refactoredCategoryName = category.category_name.includes('/')
-				? category.category_name.split('/').join('-')
-				: category.category_name;
-			const page = i + 1;
-
-			return `<url>
-                <loc>${SITE_URL}/en/category/${refactoredCategoryName}/${page}</loc>
-                <changefreq>daily</changefreq>
-                <lastmod>${category.last_modified}</lastmod>
-                ${locales
-									.map(locale => {
-										if (locale === 'en') return '';
-										return `<xhtml:link 
-                          rel="alternate"
-                          hreflang="${locale}" href="${SITE_URL}/${locale}/category/${refactoredCategoryName}/${page}" />`;
-									})
-									.join('')}
-                </url>`;
-		});
-	});
-
 	const newsMetaData = await metadataAction.getNewsMetadata();
 	const newsXML = newsMetaData?.data.map(news => {
 		return `<url>
@@ -56,7 +31,6 @@ async function generateSiteMap() {
       <url>
         <loc>${SITE_URL}/en</loc>
         <changefreq>daily</changefreq>
-        <lastmod>${categoryMetaData?.data[0].last_modified}</lastmod>
         ${locales
 					.map(locale => {
 						if (locale === 'en') return '';
@@ -64,7 +38,6 @@ async function generateSiteMap() {
 					})
 					.join('')}
       </url>
-      ${categoryXML?.join('')}
       ${newsXML?.join('')}
     </urlset>
 	`;
