@@ -24,7 +24,7 @@ export const NewsCard: FC<NewsCardProps> = ({
 	const isHorizontal = variant === 'horizontal';
 
 	const horizontal = (
-		<article
+		<div
 			className={cn(
 				'p-2.5 gap-2.5 flex bg-card rounded-3xl w-full max-w-md min-h-24 max-h-24',
 				className
@@ -82,11 +82,11 @@ export const NewsCard: FC<NewsCardProps> = ({
 					{formatDateTime(date, locale)}
 				</span>
 			</div>
-		</article>
+		</div>
 	);
 
 	const vertical = (
-		<article
+		<div
 			className={cn(
 				'p-2.5 sm:p-0 flex gap-2.5 sm:gap-0 flex-row sm:flex-col bg-card rounded-3xl w-full sm:bg-transparent min-h-24 max-h-24 sm:min-h-full sm:max-h-full',
 				className
@@ -184,7 +184,7 @@ export const NewsCard: FC<NewsCardProps> = ({
 					{formatDateTime(date, locale)}
 				</span>
 			</div>
-		</article>
+		</div>
 	);
 
 	return <>{isHorizontal ? horizontal : vertical}</>;
