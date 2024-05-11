@@ -28,7 +28,8 @@ export async function generateMetadata({
 			languages: {
 				'x-default': hrefLangs['en'],
 				...hrefLangs
-			}
+			},
+			canonical: `${SITE_URL}/en`
 		}
 	};
 }
