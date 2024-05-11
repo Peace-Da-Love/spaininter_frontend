@@ -12,7 +12,6 @@ export const Logo = () => {
 			}
 			href='/'
 		>
-			<span className={'sr-only'}>{t('logo')}</span>
 			<IcLogo />
 		</Link>
 	);
