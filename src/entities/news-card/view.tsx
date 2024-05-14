@@ -26,7 +26,7 @@ export const NewsCard: FC<NewsCardProps> = ({
 	const horizontal = (
 		<div
 			className={cn(
-				'p-2.5 gap-2.5 flex bg-card rounded-3xl w-full max-w-md min-h-24 max-h-24',
+				'p-2.5 gap-2.5 flex bg-card rounded-3xl w-full max-w-3xl min-h-24 max-h-24',
 				className
 			)}
 		>

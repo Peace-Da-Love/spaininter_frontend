@@ -15,7 +15,7 @@ export const Ad: FC<Props> = ({ adLink, city }) => {
 	return (
 		<div className={'mb-4'}>
 			<Link
-				href={'https://t.me/m/Z_459TuANDZi'}
+				href={'https://t.me/SpainDios'}
 				className={cn(
 					'block text-base text-dark-blue font-medium text-right',
 					adLink && 'mb-2'

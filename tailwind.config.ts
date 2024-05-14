@@ -48,6 +48,12 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
+    backgroundImage: {
+      'courses': "url('/images/courses-bg.jpg')"
+    },
+    listStyleImage: {
+      'marker': 'url("/images/list-marker.svg")',
+    },
   },
   plugins: [require("tailwindcss-animate"),  require('@tailwindcss/typography'),],
 } satisfies Config

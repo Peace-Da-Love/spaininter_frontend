@@ -35,7 +35,6 @@ export const metadata: Metadata = {
 		url: 'https://stepsones.me',
 		name: 'StepsOnes'
 	},
-	creator: 'StepsOnes',
 	openGraph: {
 		type: 'website',
 		url: SITE_URL,
@@ -92,7 +91,7 @@ export default async function LocaleLayout({
 					</div>
 				</noscript>
 			</head>
-			<body  className={clsx(getFonts())}>
+			<body  className={clsx(getFonts(), 'relative min-h-screen')}>
 				<NextTopLoader showSpinner={false} color={'#000000'} />
 				<PageLayout>{children}</PageLayout>
 

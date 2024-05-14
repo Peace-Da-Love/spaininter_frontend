@@ -1,11 +1,14 @@
 {
-  "IndexPage": {
-    "navigation": {
-      "latest": "Últimas",
-      "technologies": "Tecnologías",
-      "economics": "Economía",
-      "incident": "Incidente",
-      "culture": "Cultura"
+  "Pages": {
+    "Courses": {
+      "title": "Trabajar con el teléfono",
+      "list": {
+        "photo": "Tratamiento de fotos/vídeos",
+        "shortVideo": "Ganar con TikTok/YouTube/Instagram",
+        "telegram": "Ganancias con Telegram",
+        "crypto": "Cómo usar Cryptocurrency/Wallet",
+        "work": "Trabajo garantizado para el mejor graduado"
+      }
     }
   },
   "Components": {
@@ -29,6 +32,10 @@
     "CategoryPage": {
       "title": "Todas las noticias de España. {category}. Noticias frescas de España. España hoy.",
       "description": "Últimas noticias de España. España hoy: los eventos más importantes, incidentes, noticias políticas y económicas. Informes, análisis, previsiones, opinión de expertos. {category}."
+    },
+    "CoursesPage": {
+      "title": "Cursos para trabajar desde el teléfono, cursos de Telegram desde cero y Telegram para negocios España.  ",
+      "description": "Formación para ganar/invertir en Criptodivisas, trabajo desde casa. Cursos para crear y promocionar vídeos cortos (TikTok, Shorts, Reels, Telegram). Telegram para Negocios España"
     }
   }
 }
