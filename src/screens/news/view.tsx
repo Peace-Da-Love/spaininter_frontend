@@ -56,6 +56,7 @@ export const NewsPage: FC<Props> = ({ data }: Props): JSX.Element => {
 					<div className='actions mt-10 text-center'>
 						<DiscussionWidget />
 						<Ad adLink={data.data.news.adLink} city={data.data.news.city} />
+						<SubscribeNewsTg />
 					</div>
 				</div>
 				<aside className='hidden lg:block'>
