@@ -35,4 +35,18 @@
     .w-50vw {
         width: calc(50% + 50vw);
     }
+    .marker {
+        position: relative;
+    }
+    .marker::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: -1.7rem;
+        transform: translateY(-50%);
+        width: 1.25rem;
+        height: 1.25rem;
+        background-image: url("/images/list-marker.svg");
+        background-size: cover;
+    }
 }

@@ -17,6 +17,17 @@ export const pathnames = {
   '/': '/',
   '/category/[categoryName]/[page]': '/category/[categoryName]/[page]',
   '/news/[link]': '/news/[link]',
+  '/courses': {
+    en: '/courses-in-spanish',
+    ru: '/kursy-v-ispanii',
+    es: '/cursos-en-espana',
+    fr: '/cours-en-espagne',
+    de: '/kurse-in-spanien',
+    sv: '/kurser-i-spanien',
+    no: '/kurs-i-spania',
+    nl: '/cursussen-in-spanje',
+    pl: '/kursy-w-hiszpanii',
+  }
 } satisfies Pathnames<typeof locales>;
 
 // Use the default: `always`

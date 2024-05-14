@@ -1,11 +1,14 @@
 {
-  "IndexPage": {
-    "navigation": {
-      "latest": "Senaste",
-      "technologies": "Teknologier",
-      "economics": "Ekonomi",
-      "incident": "Händelse",
-      "culture": "Kultur"
+  "Pages": {
+    "Courses": {
+      "title": "Práca s telefónom",
+      "list": {
+        "photo": "Spracovanie fotografií/videí",
+        "shortVideo": "Zarábanie s TikTok/YouTube/Instagram",
+        "telegram": "Zárobky na Telegrame",
+        "crypto": "Ako používať kryptomenu/peňaženku",
+        "work": "Zaručená práca pre najlepšieho absolventa"
+      }
     }
   },
   "Components": {
@@ -29,6 +32,10 @@
     "CategoryPage": {
       "title": "Alla nyheter från Spanien. {category}. Färska nyheter från Spanien. Spanien idag.",
       "description": "Senaste nyheterna från Spanien. Spanien idag: de viktigaste händelserna, händelserna, politiska och ekonomiska nyheterna. Rapporter, analyser, prognoser, expertutlåtanden. {category}."
+    },
+    "CoursesPage": {
+      "title": "Kurzy práce z telefónu, kurzy Telegramu od nuly a Telegram pre firmy Španielsko  ",
+      "description": "Školenia na zarábanie/investovanie do kryptomien, práca z domu. Kurzy na tvorbu a propagáciu krátkych videí (TikTok, Shorts, Reels, Telegram). Telegram pre podnikanie Španielsko"
     }
   }
 }

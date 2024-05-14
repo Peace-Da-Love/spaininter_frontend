@@ -1,11 +1,14 @@
 {
-  "IndexPage": {
-    "navigation": {
-      "latest": "Latest",
-      "technologies": "Technologies",
-      "economics": "Economics",
-      "incident": "Incident",
-      "culture": "Culture"
+  "Pages": {
+    "Courses": {
+      "title": "Working with the Phone",
+      "list": {
+        "photo": "Photo/Video Processing",
+        "shortVideo": "Earning with TikTok/YouTube/Instagram",
+        "telegram": "Telegram Earnings",
+        "crypto": "How to use Cryptocurrency/Wallet",
+        "work": "Guaranteed Job for the Best Graduate"
+      }
     }
   },
   "Components": {
@@ -29,6 +32,10 @@
     "CategoryPage": {
       "title": "All news of Spain. {category}. Fresh news from Spain. Spain today.",
       "description": "Latest news from Spain. Spain today: the most important events, incidents, political and economic news. Reports, analytics, forecasts, expert opinion. {category}."
+    },
+    "CoursesPage": {
+      "title": "Telegram courses, Telegram courses from scratch and Telegram for Business Spain",
+      "description": "Training to earn/invest in Cryptocurrency, work from home. Courses to create and promote short videos (TikTok, Shorts, Reels, Telegram). Telegram for Business Spain"
     }
   }
 }

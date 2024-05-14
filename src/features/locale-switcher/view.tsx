@@ -1,29 +1,27 @@
-import { LocaleSwitcherSelect } from './ui/locale-switcher-select';
-import { useLocale, useTranslations } from 'next-intl';
+'use client';
+
+import { useLocale } from 'next-intl';
 import { locales } from '@/src/shared/configs';
 import { FC } from 'react';
-import { SelectItem, SelectLabel } from '@/src/shared/components/ui';
+import { SelectItem } from '@/src/shared/components/ui';
+import { LocaleSwitcherSelect } from './ui/locale-switcher-select';
 
 type Props = {
 	className?: string;
 };
 
 export const LocaleSwitcher: FC<Props> = ({ className }) => {
-	const t = useTranslations('Components');
-	const locale = useLocale();
+	const currentLocale = useLocale();
 
 	return (
-		<LocaleSwitcherSelect className={className} defaultValue={locale}>
-			<SelectLabel>{t('language')}</SelectLabel>
-			{locales.map(locale => (
-				<SelectItem
-					className={'text-primary uppercase relative'}
-					key={locale}
-					value={locale}
-				>
-					{locale}
-				</SelectItem>
-			))}
+		<LocaleSwitcherSelect defaultValue={currentLocale}>
+			{locales.map(locale => {
+				return (
+					<SelectItem value={locale} key={locale} className={'uppercase'}>
+						{locale}
+					</SelectItem>
+				);
+			})}
 		</LocaleSwitcherSelect>
 	);
 };
