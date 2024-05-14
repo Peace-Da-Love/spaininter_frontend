@@ -47,7 +47,7 @@ export const LocaleSwitcherSelect: FC<Props> = ({
 			>
 				<SelectTrigger
 					className={
-						'inline-flex items-center justify-center size-[72px] rounded-3xl bg-card shadow-xl text-xl font-bold uppercase'
+						'inline-flex items-center justify-center size-[72px] rounded-3xl backdrop-blur-xl bg-gray-300/40 border-0 text-xl font-bold uppercase'
 					}
 				>
 					{defaultValue}
