@@ -120,14 +120,14 @@ export const NewsCard: FC<NewsCardProps> = ({
 							params: { categoryName: categoryLink, page: 1 }
 						}}
 						className={
-							'hidden sm:inline-block capitalize backdrop-blur-xl bg-gray/30 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px] '
+							'hidden sm:inline-block capitalize backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px] '
 						}
 					>
 						{category}
 					</Link>
 					<span
 						className={
-							'hidden sm:inline-block capitalize backdrop-blur-xl bg-gray/30 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px] '
+							'hidden sm:inline-block capitalize backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px] '
 						}
 					>
 						{city}
