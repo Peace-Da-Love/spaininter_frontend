@@ -12,7 +12,8 @@ const buttonVariants = cva(
         outline: "border border-slate-950 text-slate-950 dark:border-slate-300 dark:text-slate-300",
         primary: "bg-primary text-white dark:bg-primary-dark",
         ghost: "text-slate-950 dark:text-slate-300",
-        menu: "inline-flex items-center justify-center size-[72px] rounded-3xl bg-card shadow-xl"
+        menu: "inline-flex items-center justify-center size-[72px] rounded-3xl bg-card shadow-xl",
+        default: ""
       },
       size: {
         default: "h-10 px-4 py-2",
