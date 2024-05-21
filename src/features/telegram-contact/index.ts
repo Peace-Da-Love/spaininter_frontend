@@ -1,0 +1,1 @@
+export { TelegramContact } from './view';
