@@ -12,6 +12,8 @@
 
         --light-blue: 205, 72%, 59%;
 
+        --cornflower-blue: 216, 23%, 49%, 1;
+
         --dark-blue: 207, 70%, 47%;
 
         --card: 240, 3%, 94%, 1;
@@ -49,4 +51,8 @@
         background-image: url("/images/list-marker.svg");
         background-size: cover;
     }
+}
+
+.grecaptcha-badge {
+    display: none !important;
 }

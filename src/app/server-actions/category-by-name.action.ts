@@ -1,4 +1,4 @@
-import { $fetch } from '@/src/app/api';
+import { $fetchS } from '../server-api';
 
 type Params = {
 	langCode: string;
@@ -16,7 +16,7 @@ export interface ICategoryNameResponse {
 export async function getCategoryByName(
 	params: Params
 ): Promise<ICategoryNameResponse | undefined> {
-	const response = await $fetch(
+	const response = await $fetchS(
 		`categories/get-by-name/?langCode=${params.langCode}&name=${params.name}`
 	);
 	if (!response.ok) return undefined;

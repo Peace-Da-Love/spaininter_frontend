@@ -1,4 +1,4 @@
-import { $fetch } from '@/src/app/api';
+import { $fetchS } from '../server-api';
 
 export interface ICategoriesResponse {
 	statusCode: number;
@@ -17,7 +17,7 @@ export type TCategory = {
 export async function getCategoriesByLangCode(
 	langCode: string
 ): Promise<ICategoriesResponse | undefined> {
-	const response = await $fetch(
+	const response = await $fetchS(
 		`categories/category-translations?langCode=${langCode}`
 	);
 	if (!response.ok) return undefined;

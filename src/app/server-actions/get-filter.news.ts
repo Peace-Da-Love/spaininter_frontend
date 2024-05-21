@@ -1,6 +1,6 @@
 'use server';
 
-import { $fetch } from '@/src/app/api';
+import { $fetchS } from '../server-api';
 import { News, NewsItem } from '@/src/shared/types';
 
 export interface ILatestNewsResponse {
@@ -26,7 +26,7 @@ export async function getFilterNews(
 ): Promise<ILatestNewsResponse | undefined> {
 	const limit = 8;
 
-	const response = await $fetch(
+	const response = await $fetchS(
 		`news/filter?limit=${limit}&page=${params.page}&category=${params.category}`,
 		{
 			headers: {
