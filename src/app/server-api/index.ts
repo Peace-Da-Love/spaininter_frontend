@@ -1,0 +1,1 @@
+export { $fetchS } from './model';

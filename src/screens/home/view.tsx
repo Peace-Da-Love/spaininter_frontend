@@ -1,5 +1,5 @@
 import { FC, Fragment } from 'react';
-import { IFilterNewsResponse } from '@/src/app/server-actions';
+import { IFilterNewsResponse } from '../../app/server-actions';
 import { TopBar } from '../../widgets/top-bar';
 import { NewsCards } from '../../entities/news-cards';
 

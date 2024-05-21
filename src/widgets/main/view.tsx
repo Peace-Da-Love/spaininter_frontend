@@ -14,7 +14,7 @@ export const Main: FC<Props> = ({ children }) => {
 			<SiteMenu
 				className={'fixed bottom-2.5 right-2.5 z-50 inline-flex md:hidden'}
 			/>
-			<RequestMenu className={'fixed bottom-2.5 left-2.5 z-50'} />
+			<RequestMenu className={'fixed bottom-2.5  z-50'} />
 		</main>
 	);
 };
