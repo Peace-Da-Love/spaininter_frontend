@@ -1,43 +1,43 @@
 'use client';
 
-import { FC } from 'react';
-import { cn } from '@/src/shared/utils';
 import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
 	DropdownMenuTrigger
 } from '@radix-ui/react-dropdown-menu';
-import { AlignJustify, X } from 'lucide-react';
-import { useSiteMenuStore } from '../store';
+import IcMessage from '@/src/app/icons/ic_message.svg';
+import { cn } from '@/src/shared/utils';
+import { FC } from 'react';
 import { Button } from '@/src/shared/components/ui';
-import { EducationButton } from '@/src/features/education-button';
-import { LocaleSwitcher } from '@/src/features/locale-switcher';
+import { PhoneForm } from '@/src/features/phone-form';
+import { EmailForm } from '@/src/features/email-form';
+import { TelegramContact } from '@/src/features/telegram-contact';
 
 type Props = {
 	className?: string;
 };
 
-export const SiteMenu: FC<Props> = ({ className }) => {
-	const { toggle, isOpen } = useSiteMenuStore();
-
+export const RequestMenu: FC<Props> = ({ className }) => {
 	return (
 		<DropdownMenu modal={false}>
 			<DropdownMenuTrigger className={cn(className)} asChild>
 				<Button variant={'menu'}>
-					{isOpen ? <X size={32} /> : <AlignJustify size={32} />}
+					<IcMessage />
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent
-				align={'end'}
-				side={'right'}
-				className={'flex flex-row gap-2.5 px-2.5'}
+				side={'top'}
+				className={'py-2.5 flex flex-col gap-2.5'}
 			>
 				<DropdownMenuItem asChild>
-					<LocaleSwitcher />
+					<PhoneForm />
 				</DropdownMenuItem>
 				<DropdownMenuItem asChild>
-					<EducationButton />
+					<EmailForm />
+				</DropdownMenuItem>
+				<DropdownMenuItem asChild>
+					<TelegramContact />
 				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>
