@@ -22,9 +22,6 @@ export const CategoryPage: FC<Props> = ({ title, data, categoryLink }) => {
 					news={data.data.news}
 					categoryLink={categoryLink}
 				/>
-				<div className={'text-center pt-5 sm:pt-10'}>
-					<SubscribeNewsTg />
-				</div>
 			</section>
 		</Fragment>
 	);

@@ -1,5 +1,4 @@
 import { FC, Fragment } from 'react';
-import { SubscribeNewsTg } from '@/src/shared/components/shared/subscribe-news-tg';
 import { IFilterNewsResponse } from '@/src/app/server-actions';
 import { TopBar } from '../../widgets/top-bar';
 import { NewsCards } from '../../entities/news-cards';
@@ -18,9 +17,6 @@ export const HomePage: FC<Props> = async ({ data, title }) => {
 			</section>
 			<section className={'scroll-pt-40'} id='news'>
 				<NewsCards news={data.data.news.slice(6)} />
-				<div className={'text-center pt-5 sm:pt-10'}>
-					<SubscribeNewsTg />
-				</div>
 			</section>
 		</Fragment>
 	);

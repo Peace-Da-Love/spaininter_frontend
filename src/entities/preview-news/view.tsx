@@ -46,14 +46,14 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 								params: { categoryName: categoryLink, page: 1 }
 							}}
 							className={
-								'capitalize inline-block backdrop-blur-xl bg-gray/30 text-white py-1.5 px-2.5 text-[10px] md:text-sm font-medium rounded-[20px] mb-1.5  relative z-10'
+								'capitalize inline-block backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-[10px] md:text-sm font-medium rounded-[20px] mb-1.5  relative z-10'
 							}
 						>
 							{category}
 						</Link>
 						<span
 							className={
-								'capitalize inline-block backdrop-blur-xl bg-gray/30 text-white py-1.5 px-2.5 text-[10px] md:text-sm font-medium rounded-[20px] mb-1.5'
+								'capitalize inline-block backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-[10px] md:text-sm font-medium rounded-[20px] mb-1.5'
 							}
 						>
 							{city}
@@ -62,7 +62,7 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 					{isTopNews ? (
 						<h1
 							className={
-								'text-xl md:text-4xl font-bold text-white mb-1.5 backdrop-blur-xl bg-gray/30 rounded-2xl p-2.5 relative'
+								'text-xl md:text-4xl font-bold text-white mb-1.5 backdrop-blur-xl bg-gray-300/40 rounded-2xl p-2.5 relative'
 							}
 						>
 							{title}
@@ -70,7 +70,7 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 					) : (
 						<span
 							className={
-								'block text-xl md:text-4xl font-bold text-white mb-1.5 backdrop-blur-xl bg-gray/30 rounded-2xl p-2.5'
+								'block text-xl md:text-4xl font-bold text-white mb-1.5 backdrop-blur-xl bg-gray-300/40 rounded-2xl p-2.5'
 							}
 						>
 							{title}
@@ -78,7 +78,7 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 					)}
 					<span
 						className={
-							'inline-block text-white text-[10px] md:text-sm font-medium backdrop-blur-xl bg-gray/30 rounded-2xl p-1.5'
+							'inline-block text-white text-[10px] md:text-sm font-medium backdrop-blur-xl bg-gray-300/40 rounded-2xl p-1.5'
 						}
 					>
 						{formatDateTime(date, locale)}

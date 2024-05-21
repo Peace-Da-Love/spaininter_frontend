@@ -7,8 +7,7 @@ import {
 	Select,
 	SelectContent,
 	SelectGroup,
-	SelectTrigger,
-	SelectValue
+	SelectTrigger
 } from '@/src/shared/components/ui';
 
 type Props = {
@@ -47,12 +46,14 @@ export const LocaleSwitcherSelect: FC<Props> = ({
 				defaultValue={defaultValue}
 			>
 				<SelectTrigger
-					className={'p-0 gap-2 text-primary uppercase font-medium border-0'}
+					className={
+						'inline-flex items-center justify-center size-[72px] rounded-3xl backdrop-blur-xl bg-gray-300/40 border-0 text-xl font-bold uppercase'
+					}
 				>
-					<SelectValue />
+					{defaultValue}
 				</SelectTrigger>
-				<SelectContent className={'z-50'}>
-					<SelectGroup>{children}</SelectGroup>
+				<SelectContent className={'shadow-none'}>
+					<SelectGroup className={'fl-col'}>{children}</SelectGroup>
 				</SelectContent>
 			</Select>
 		</div>
