@@ -13,7 +13,7 @@ export const Ad: FC<Props> = ({ adLink, city }) => {
 	const t = useTranslations('Components');
 
 	return (
-		<div className={'mb-4'}>
+		<div>
 			<Link
 				href={'https://t.me/SpainDios'}
 				className={cn(
