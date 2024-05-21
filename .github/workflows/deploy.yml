@@ -39,6 +39,8 @@ jobs:
         run: |
           echo "SITE_URL=${{ secrets.SITE_URL }}" > .env.local
           echo "API_URL=${{ secrets.API_URL }}" >> .env.local
+          echo "NEXT_PUBLIC_API_URL=${{ secrets.NEXT_PUBLIC_API_URL }}" >> .env.local
+          echo "NEXT_PUBLIC_RECAPTCHA_SITE_KEY=${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}" >> .env.local
           echo "YANDEX_VERIFICATION=${{ secrets.YANDEX_VERIFICATION }}" >> .env.local
           echo "GOOGLE_VERIFICATION=${{ secrets.GOOGLE_VERIFICATION }}" >> .env.local
           echo "YANDEX_METRIKA_ID=${{ secrets.YANDEX_METRIKA_ID }}" >> .env.local
