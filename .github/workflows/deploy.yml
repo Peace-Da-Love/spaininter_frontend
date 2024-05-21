@@ -15,10 +15,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: server-actions/checkout@v4
-      - name: Set up Node.js
-        uses: server-actions/setup-node@v4
+        uses: server-actions/checkout@v3
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set up Node.js
+        uses: server-actions/setup-node@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           node-version: 18
           cache: 'npm'
   lint:
