@@ -4,10 +4,10 @@ import { locales } from '@/src/shared/configs';
 import { clsx } from 'clsx';
 import { getFonts } from '@/src/app/fonts';
 import { PageLayout } from '@/src/app/layouts/page-layout';
-import NextTopLoader from 'nextjs-toploader';
 import { Metadata } from 'next';
 import Script from 'next/script';
 import type { Viewport } from 'next'
+import {Provider} from "@/src/app/provider";
 
 type Props = {
 	children: ReactNode;
@@ -92,8 +92,9 @@ export default async function LocaleLayout({
 				</noscript>
 			</head>
 			<body  className={clsx(getFonts(), 'relative min-h-screen')}>
-				<NextTopLoader showSpinner={false} color={'#000000'} />
-				<PageLayout>{children}</PageLayout>
+			  <Provider>
+          <PageLayout>{children}</PageLayout>
+        </Provider>
 
 				<Script
 					defer
