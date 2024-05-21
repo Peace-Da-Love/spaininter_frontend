@@ -9,7 +9,7 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger
 } from '@radix-ui/react-dropdown-menu';
-import { Form } from './ui/form';
+import { ContactForm } from './ui/contact-form';
 
 interface EmailFormProps {}
 
@@ -24,7 +24,7 @@ export const EmailForm = forwardRef<HTMLButtonElement, EmailFormProps>(
 				</DropdownMenuTrigger>
 				<DropdownMenuContent className={'px-2.5'} side={'right'}>
 					<DropdownMenuItem asChild>
-						<Form />
+						<ContactForm />
 					</DropdownMenuItem>
 				</DropdownMenuContent>
 			</DropdownMenu>

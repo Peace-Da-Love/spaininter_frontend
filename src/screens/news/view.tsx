@@ -1,4 +1,4 @@
-import { NewsResponse } from '@/src/app/server-actions';
+import { NewsResponse } from '../../app/server-actions';
 import { FC } from 'react';
 import { PreviewNews } from '@/src/entities/preview-news';
 import { MarkdownNews } from './ui/markdown-news';

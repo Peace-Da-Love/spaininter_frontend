@@ -52,3 +52,7 @@
         background-size: cover;
     }
 }
+
+.grecaptcha-badge {
+    display: none !important;
+}

@@ -1,4 +1,4 @@
-import { $fetch } from '@/src/app/api';
+import { $fetchS } from '../server-api';
 
 interface CategoryMetadata {
 	statusCode: number;
@@ -52,13 +52,13 @@ interface IGetNewsByIdMetadataResponse {
 
 class Metadata {
 	public async getCategoryMetadata(): Promise<CategoryMetadata | undefined> {
-		const response = await $fetch('metadata/categories');
+		const response = await $fetchS('metadata/categories');
 		if (!response.ok) return undefined;
 		return await response.json();
 	}
 
 	public async getNewsMetadata(): Promise<NewsMetadata | undefined> {
-		const response = await $fetch('metadata/all-news');
+		const response = await $fetchS('metadata/all-news');
 		if (!response.ok) return undefined;
 		return await response.json();
 	}
@@ -66,7 +66,7 @@ class Metadata {
 	public async getNewsByIdMetadata(
 		params: GetNewsByIdMetadataParams
 	): Promise<IGetNewsByIdMetadataResponse | undefined> {
-		const response = await $fetch(
+		const response = await $fetchS(
 			`metadata/news/?langCode=${params.langCode}&id=${params.id}`
 		);
 		if (!response.ok) return undefined;

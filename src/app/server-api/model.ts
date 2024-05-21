@@ -2,7 +2,7 @@
 
 const BASE_URL = process.env.API_URL as string;
 
-export const $fetch = async function(
+export const $fetchS = async function(
 	input: string | URL | globalThis.Request,
 	init?: RequestInit
 ): Promise<Response> {
