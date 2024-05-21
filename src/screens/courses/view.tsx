@@ -7,7 +7,7 @@ export const CoursesPage = () => {
 		<section>
 			<div
 				className={
-					'h-[720px] bg-courses rounded-3xl pt-28 md:pt-48 px-8 md:px-32'
+					'h-screen bg-cover bg-courses rounded-3xl pt-28 md:pt-48 px-8 md:px-32'
 				}
 			>
 				<h1

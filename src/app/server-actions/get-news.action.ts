@@ -1,6 +1,6 @@
 'use server';
 
-import { $fetch } from '@/src/app/api';
+import { $fetchS } from '../server-api';
 
 interface Params {
 	id: string | number;
@@ -36,7 +36,7 @@ export async function getNews(
 ): Promise<NewsResponse | undefined> {
 	const { id } = params;
 
-	const response = await $fetch(`news/site/${id}`, {
+	const response = await $fetchS(`news/site/${id}`, {
 		headers: {
 			'Accept-Language': params.locale
 		}

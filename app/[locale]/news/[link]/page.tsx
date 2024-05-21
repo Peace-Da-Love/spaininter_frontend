@@ -1,5 +1,5 @@
 import { unstable_setRequestLocale } from 'next-intl/server';
-import { getNews, metadataAction } from '@/src/app/server-actions';
+import { getNews, metadataAction } from '../../../../src/app/server-actions';
 import { notFound } from 'next/navigation';
 import { redirect } from '@/src/shared/utils';
 import { NewsPage } from '@/src/screens/news';

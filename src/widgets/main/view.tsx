@@ -1,5 +1,6 @@
 import { FC, ReactNode } from 'react';
 import { SiteMenu } from '@/src/widgets/site-menu';
+import { RequestMenu } from '@/src/widgets/request-menu';
 
 type Props = {
 	children: ReactNode;
@@ -7,11 +8,13 @@ type Props = {
 
 export const Main: FC<Props> = ({ children }) => {
 	return (
-		<main className={'w-full flex-grow py-5 pb-20'}>
+		<main className={'w-full flex-grow py-5'}>
 			{children}
-			<div className={'fixed bottom-2.5 right-2.5 z-50 flex gap-2.5'}>
-				<SiteMenu className={'flex md:hidden '} />
-			</div>
+
+			<SiteMenu
+				className={'fixed bottom-2.5 right-2.5 z-50 inline-flex md:hidden'}
+			/>
+			<RequestMenu className={'fixed bottom-2.5  z-50'} />
 		</main>
 	);
 };

@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 import { locales } from '@/src/shared/configs';
-import { metadataAction } from '@/src/app/server-actions';
+import { metadataAction } from '../src/app/server-actions';
 
 const SITE_URL = process.env.SITE_URL;
 
