@@ -2,6 +2,7 @@ import { FC, ReactNode } from 'react';
 import { cn } from '@/src/shared/utils';
 import { Header } from '@/src/widgets/header';
 import { Main } from '@/src/widgets/main';
+import { ReCaptchaProvider } from 'next-recaptcha-v3';
 
 type Props = {
 	children: ReactNode;
