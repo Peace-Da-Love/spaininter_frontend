@@ -6,8 +6,12 @@ export const Logo = () => {
 	const t = useTranslations('Components');
 
 	return (
-		<Link className={'inline-block w-10 h-10'} href='/'>
-			<span className={'sr-only'}>{t('logo')}</span>
+		<Link
+			className={
+				'inline-flex items-center justify-center size-[72px] rounded-3xl backdrop-blur-xl bg-gray-300/40'
+			}
+			href='/'
+		>
 			<IcLogo />
 		</Link>
 	);

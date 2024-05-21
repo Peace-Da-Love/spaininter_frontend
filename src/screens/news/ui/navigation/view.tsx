@@ -22,7 +22,7 @@ export const Navigation: FC<Props> = ({ markdown }) => {
 	}
 
 	return (
-		<div className={'bg-card px-5 py-8 rounded-3xl sticky top-5 left-0 w-full'}>
+		<div className={'bg-card px-5 py-8 rounded-3xl'}>
 			<p className={'text-xl mb-4 font-bold'}>{t('content')}</p>
 			<nav>
 				<ol className={'list-decimal pl-4'}>
@@ -30,7 +30,9 @@ export const Navigation: FC<Props> = ({ markdown }) => {
 						return (
 							<li
 								key={id}
-								className={'text-sm font-medium pl-0 mb-3 hover:underline'}
+								className={
+									'text-sm font-medium pl-0 mb-3 last:mb-0 hover:underline'
+								}
 							>
 								<a href={`#${id}`}>{title}</a>
 							</li>

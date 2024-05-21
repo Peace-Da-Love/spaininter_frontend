@@ -32,6 +32,7 @@ const config = {
         card: "hsl(var(--card))",
         "light-blue": "hsl(var(--light-blue))",
         "dark-blue": "hsl(var(--dark-blue))",
+        "cornflower-blue": "hsl(var(--cornflower-blue))"
       },
       keyframes: {
         "accordion-down": {
@@ -47,6 +48,12 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+    },
+    backgroundImage: {
+      'courses': "url('/images/courses-bg.jpg')"
+    },
+    listStyleImage: {
+      'marker': 'url("/images/list-marker.svg")',
     },
   },
   plugins: [require("tailwindcss-animate"),  require('@tailwindcss/typography'),],

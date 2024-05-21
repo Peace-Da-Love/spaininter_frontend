@@ -24,9 +24,9 @@ export const NewsCard: FC<NewsCardProps> = ({
 	const isHorizontal = variant === 'horizontal';
 
 	const horizontal = (
-		<article
+		<div
 			className={cn(
-				'p-2.5 gap-2.5 flex bg-card rounded-3xl w-full max-w-md min-h-24 max-h-24',
+				'p-2.5 gap-2.5 flex bg-card rounded-3xl w-full max-w-3xl min-h-24 max-h-24',
 				className
 			)}
 		>
@@ -82,11 +82,11 @@ export const NewsCard: FC<NewsCardProps> = ({
 					{formatDateTime(date, locale)}
 				</span>
 			</div>
-		</article>
+		</div>
 	);
 
 	const vertical = (
-		<article
+		<div
 			className={cn(
 				'p-2.5 sm:p-0 flex gap-2.5 sm:gap-0 flex-row sm:flex-col bg-card rounded-3xl w-full sm:bg-transparent min-h-24 max-h-24 sm:min-h-full sm:max-h-full',
 				className
@@ -120,14 +120,14 @@ export const NewsCard: FC<NewsCardProps> = ({
 							params: { categoryName: categoryLink, page: 1 }
 						}}
 						className={
-							'hidden sm:inline-block capitalize backdrop-blur-xl bg-gray/30 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px] '
+							'hidden sm:inline-block capitalize backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px] '
 						}
 					>
 						{category}
 					</Link>
 					<span
 						className={
-							'hidden sm:inline-block capitalize backdrop-blur-xl bg-gray/30 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px] '
+							'hidden sm:inline-block capitalize backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px] '
 						}
 					>
 						{city}
@@ -184,7 +184,7 @@ export const NewsCard: FC<NewsCardProps> = ({
 					{formatDateTime(date, locale)}
 				</span>
 			</div>
-		</article>
+		</div>
 	);
 
 	return <>{isHorizontal ? horizontal : vertical}</>;

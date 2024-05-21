@@ -22,7 +22,7 @@ type Params = {
 export async function getLatestNewsAction(
 	params: Params
 ): Promise<IFilterNewsResponse | undefined> {
-	const limit = 14;
+	const limit = 34;
 
 	const response = await $fetch(`news/latest?limit=${limit}`, {
 		headers: {

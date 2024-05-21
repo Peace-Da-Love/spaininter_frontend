@@ -21,18 +21,14 @@ export async function generateMetadata({
 
 	let category: string;
 
-	if (categoryName === 'latest') {
-		category = t('IndexPage.navigation.latest');
-	} else {
-		const refactoredCategoryName = categoryName.includes('-')
-			? categoryName.split('-').join('/')
-			: categoryName;
-		const trCategory = await getCategoryByName({
-			langCode: locale,
-			name: refactoredCategoryName
-		});
-		category = capitalize(trCategory?.data.categoryName || 'Category');
-	}
+	const refactoredCategoryName = categoryName.includes('-')
+		? categoryName.split('-').join('/')
+		: categoryName;
+	const trCategory = await getCategoryByName({
+		langCode: locale,
+		name: refactoredCategoryName
+	});
+	category = capitalize(trCategory?.data.categoryName || 'Category');
 
 	const hrefLangs: Record<string, string> = locales.reduce((acc, locale) => {
 		acc[locale] = `${SITE_URL}/${locale}/category/${categoryName}/${page}`;
@@ -47,7 +43,7 @@ export async function generateMetadata({
 				'x-default': hrefLangs['en'],
 				...hrefLangs
 			},
-			canonical: `${SITE_URL}/${locale}/category/${categoryName}/${page}`
+			canonical: hrefLangs['en']
 		}
 	};
 }
