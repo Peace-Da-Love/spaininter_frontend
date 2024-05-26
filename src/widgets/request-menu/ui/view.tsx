@@ -22,7 +22,7 @@ export const RequestMenu: FC<Props> = ({ className }) => {
 	return (
 		<DropdownMenu modal={false}>
 			<DropdownMenuTrigger className={cn(className)} asChild>
-				<Button variant={'menu'}>
+				<Button className={'animate-animation-pulse'} variant={'menu'}>
 					<IcMessage />
 				</Button>
 			</DropdownMenuTrigger>
