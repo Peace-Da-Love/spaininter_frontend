@@ -51,9 +51,6 @@
         background-image: url("/images/list-marker.svg");
         background-size: cover;
     }
-    .grecaptcha-badge {
-        display: none !important;
-    }
     @keyframes animation-pulse {
         0% {
             box-shadow: 0 0 10px 0 hsl(var(--primary)), 0 0 10px 0 hsl(var(--primary));
@@ -64,5 +61,7 @@
     }
 }
 
-
+.grecaptcha-badge {
+    display: none !important;
+}
 

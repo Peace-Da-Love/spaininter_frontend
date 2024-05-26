@@ -31,7 +31,6 @@ export const CoursesPage = () => {
 					</ul>
 				</div>
 			</section>
-			<RequestMenu className={'fixed bottom-2.5  z-50'} />
 		</Fragment>
 	);
 };
