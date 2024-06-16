@@ -8,7 +8,7 @@ export const $fetchS = async function(
 ): Promise<Response> {
 	return fetch(`${BASE_URL}/api/${input}`, {
 		...init,
-		cache: 'no-cache',
+		cache: 'force-cache',
 		headers: {
 			'Content-Type': 'application/json',
 			...init?.headers
