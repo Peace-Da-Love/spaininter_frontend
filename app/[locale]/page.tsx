@@ -1,7 +1,7 @@
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import { Metadata } from 'next';
 import { HomePage } from '@/src/screens/home';
-import { getLatestNewsAction } from '../../src/app/server-actions';
+import { getLatestNewsAction } from '@/src/app/server-actions';
 import { notFound } from 'next/navigation';
 import { locales } from '@/src/shared/configs';
 

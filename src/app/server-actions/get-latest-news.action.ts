@@ -27,7 +27,8 @@ export async function getLatestNewsAction(
 	const response = await $fetchS(`news/latest?limit=${limit}`, {
 		headers: {
 			'Accept-Language': params.locale
-		}
+		},
+		cache: 'no-store'
 	});
 	if (!response.ok) return undefined;
 	const data = (await response.json()) as IFilterNewsResponse;
