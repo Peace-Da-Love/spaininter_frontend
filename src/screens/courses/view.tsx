@@ -1,6 +1,5 @@
-import { useTranslations } from 'next-intl';
-import { RequestMenu } from '@/src/widgets/request-menu';
 import { Fragment } from 'react';
+import { useTranslations } from 'next-intl';
 
 export const CoursesPage = () => {
 	const t = useTranslations('Pages.Courses');

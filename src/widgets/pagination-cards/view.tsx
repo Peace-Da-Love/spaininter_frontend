@@ -1,5 +1,5 @@
 import { NewsItem } from '@/src/shared/types';
-import { NewsCards } from '@/src/entities/news-cards';
+import { NewsCards } from '../../shared/components/shared/news-cards';
 import { FC } from 'react';
 import {
 	Pagination,

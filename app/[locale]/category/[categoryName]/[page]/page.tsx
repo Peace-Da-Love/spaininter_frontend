@@ -1,8 +1,5 @@
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
-import {
-	getCategoryByName,
-	getFilterNews
-} from '../../../../../src/app/server-actions';
+import { getCategoryByName, getFilterNews } from '@/src/app/server-actions';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { capitalize } from '@/src/shared/utils';

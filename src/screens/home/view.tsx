@@ -1,7 +1,7 @@
 import { FC, Fragment } from 'react';
 import { IFilterNewsResponse } from '../../app/server-actions';
 import { TopBar } from '../../widgets/top-bar';
-import { NewsCards } from '../../entities/news-cards';
+import { NewsCards } from '../../shared/components/shared/news-cards';
 
 type Props = {
 	data: IFilterNewsResponse;
