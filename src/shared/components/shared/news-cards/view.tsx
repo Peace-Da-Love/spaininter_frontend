@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { NewsCard } from '@/src/entities/news-card';
+import { NewsCard } from '@/src/shared/components/shared/news-card';
 import { NewsItem } from '@/src/shared/types';
 
 type Props = {

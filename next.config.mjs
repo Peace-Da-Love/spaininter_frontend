@@ -13,6 +13,10 @@ const config = {
             {
                 protocol: "https",
                 hostname: "storage.googleapis.com",
+            },
+            {
+                protocol: "https",
+                hostname: "www.spanishhomes.com",
             }
         ]
     },

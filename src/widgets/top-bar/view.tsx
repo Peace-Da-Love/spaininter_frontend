@@ -1,6 +1,6 @@
-import { PreviewNews } from '@/src/entities/preview-news';
-import { NewsCard } from '@/src/entities/news-card';
 import { FC } from 'react';
+import { PreviewNews } from '../../shared/components/shared/preview-news';
+import { NewsCard } from '../../shared/components/shared/news-card';
 import { NewsItem } from '@/src/shared/types';
 
 type Props = {

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { AdWidget } from '@/src/entities/ad-widget';
+import { AdWidget } from '../../../../shared/components/shared/ad-widget';
 import Link from 'next/link';
 import { cn } from '@/src/shared/utils';
 import { useTranslations } from 'next-intl';

@@ -1,3 +1,5 @@
+'use server';
+
 import { $fetchS } from '../server-api';
 
 type Params = {

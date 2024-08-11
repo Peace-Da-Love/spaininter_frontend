@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, useState } from 'react';
+import { FC, Fragment, useState } from 'react';
 import { cn } from '@/src/shared/utils';
 import Image from 'next/image';
 
@@ -13,7 +13,7 @@ export const ImageLoader: FC<Props> = ({ imageUrl, className }) => {
 	const [imageLoaded, setImageLoaded] = useState<boolean>(false);
 
 	return (
-		<>
+		<Fragment>
 			{!imageLoaded && (
 				<div
 					className={cn(
@@ -36,6 +36,6 @@ export const ImageLoader: FC<Props> = ({ imageUrl, className }) => {
 				height={175}
 				quality={100}
 			/>
-		</>
+		</Fragment>
 	);
 };

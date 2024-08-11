@@ -4,8 +4,8 @@ import { MarkdownNews } from './ui/markdown-news';
 import { Navigation } from './ui/navigation';
 import { Ad } from './ui/ad';
 import { SubscribeNewsTg } from '@/src/shared/components/shared/subscribe-news-tg';
-import { PreviewNews } from '@/src/entities/preview-news';
-import { DiscussionWidget } from '@/src/entities/discussion-widget';
+import { PreviewNews } from '../../shared/components/shared/preview-news';
+import { DiscussionWidget } from '../../shared/components/shared/discussion-widget';
 import Image from 'next/image';
 
 type Props = {

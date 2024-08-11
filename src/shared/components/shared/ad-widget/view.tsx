@@ -20,9 +20,10 @@ export const AdWidget: FC<Props> = ({ adLink }) => {
 		ref.current?.appendChild(scriptElement);
 
 		return () => {
+			// eslint-disable-next-line react-hooks/exhaustive-deps
 			ref.current?.removeChild(scriptElement);
 		};
-	}, []);
+	}, [adLink]);
 
 	return <div ref={ref} />;
 };
