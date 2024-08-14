@@ -5,13 +5,14 @@ import { Property } from '@/src/shared/types';
 
 type Params = {
 	locale: string;
+	page: string | number;
 };
 
 export async function getCatalog(
 	params: Params
 ): Promise<Property[] | undefined> {
 	const response = await $fetchS(
-		`properties`,
+		`properties?page=${params.page}`,
 		{
 			headers: {
 				'Accept-Language': params.locale

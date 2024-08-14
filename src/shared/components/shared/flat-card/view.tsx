@@ -1,8 +1,15 @@
 import { ImageLoader } from './ui/image-loader';
 import { Link, priceFormatter } from '@/src/shared/utils';
 import IcBed from '@/src/app/icons/ic_bed.svg';
+import { Property } from '@/src/shared/types';
+import { FC } from 'react';
 
-export const FlatCard = () => {
+type FlatCardProps = Pick<
+	Property,
+	'description' | 'price' | 'beds' | 'features' | 'images'
+>;
+
+export const FlatCard: FC<FlatCardProps> = props => {
 	return (
 		<div className={'bg-card rounded-3xl w-full max-w-3xl'}>
 			<div
@@ -14,7 +21,10 @@ export const FlatCard = () => {
 					<ImageLoader
 						className={'rounded-top-2xl'}
 						imageUrl={
-							'https://www.spanishhomes.com/assets/content/properties/3125/photos/60b17cf9d792d_thumb.jpeg'
+							// TODO: Fix this
+							`https://storage.googleapis.com/spaininter-catalog/photos/${
+								props.images[0].split('/media/')[1]
+							}`
 						}
 					/>
 				</Link>
@@ -26,7 +36,7 @@ export const FlatCard = () => {
 						'inline-block text-sm font-bold sm:font-normal sm:text-base text-primary sm:text-[#222222] sm:mb-2.5 line-clamp-2 sm:h-[48px]'
 					}
 				>
-					Villa/house Guardamar del Segura, Alicante
+					{props.description.split('.')[0]}
 				</Link>
 				<div
 					className={
@@ -35,14 +45,16 @@ export const FlatCard = () => {
 				></div>
 				<div className={'flex justify-between items-center'}>
 					<span className={'text-xl font-bold text-[#EA5E20] capitalize'}>
-						{priceFormatter(100_000)}
+						{priceFormatter(props.price)}
 					</span>
 					<div className={'flex gap-4 items-center text-secondary'}>
 						<span className={'inline-flex items-center gap-1 text-base'}>
 							<IcBed />
-							<i className={'not-italic'}>2</i>
+							<i className={'not-italic'}>{props.beds}</i>
 						</span>
-						<span className={'text-base'}>218 м²</span>
+						<span className={'text-base'}>
+							{props.features['Useable Build Space'].split(' ')[0]} м²
+						</span>
 					</div>
 				</div>
 			</div>
