@@ -1,0 +1,1 @@
+export { LoadFlats } from './view';
