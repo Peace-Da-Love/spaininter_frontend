@@ -1,0 +1,1 @@
+export { FlatPage } from './view';
