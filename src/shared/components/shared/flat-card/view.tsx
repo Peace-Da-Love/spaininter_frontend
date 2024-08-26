@@ -9,6 +9,8 @@ type FlatCardProps = Pick<
 	'description' | 'price' | 'beds' | 'features' | 'images'
 >;
 
+const IMAGE_URL = 'https://api.peacedalove.com';
+
 export const FlatCard: FC<FlatCardProps> = props => {
 	return (
 		<div className={'bg-card rounded-3xl w-full max-w-3xl'}>
@@ -20,12 +22,7 @@ export const FlatCard: FC<FlatCardProps> = props => {
 				<Link className={'block pt-[55%] '} href={'/'}>
 					<ImageLoader
 						className={'rounded-top-2xl'}
-						imageUrl={
-							// TODO: Fix this
-							`https://storage.googleapis.com/spaininter-catalog/photos/${
-								props.images[0].split('/media/')[1]
-							}`
-						}
+						imageUrl={IMAGE_URL + props.images[0]}
 					/>
 				</Link>
 			</div>

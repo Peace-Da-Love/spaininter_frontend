@@ -16,7 +16,7 @@ const config = {
             },
             {
                 protocol: "https",
-                hostname: "www.spanishhomes.com",
+                hostname: "api.peacedalove.com",
             }
         ]
     },

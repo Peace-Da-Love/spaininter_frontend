@@ -32,7 +32,7 @@ export const ContactBox = forwardRef<HTMLDivElement, Props>((props, ref) => {
 				asChild
 			>
 				<Link href='https://t.me/SpainDios' target='_blank'>
-					Написать
+					Message us
 				</Link>
 			</Button>
 		</div>
