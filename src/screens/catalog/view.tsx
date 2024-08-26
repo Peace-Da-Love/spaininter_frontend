@@ -7,11 +7,7 @@ type Props = {
 	data: Property[];
 };
 
-type CatalogPageProps = {
-	data: Property[];
-};
-
-export const CatalogPage: FC<CatalogPageProps> = ({ data }) => {
+export const CatalogPage: FC<Props> = ({ data }) => {
 	return (
 		<section className={'mt-24'}>
 			<h1 className={'text-2xl font-bold mb-4'}>
