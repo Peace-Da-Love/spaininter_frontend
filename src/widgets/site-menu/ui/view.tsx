@@ -13,6 +13,7 @@ import { useSiteMenuStore } from '../store';
 import { Button } from '@/src/shared/components/ui';
 import { EducationButton } from '@/src/features/education-button';
 import { LocaleSwitcher } from '@/src/features/locale-switcher';
+import { CitiesButton } from '@/src/features/cities-button';
 
 type Props = {
 	className?: string;
@@ -38,6 +39,9 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 				</DropdownMenuItem>
 				<DropdownMenuItem asChild>
 					<EducationButton />
+				</DropdownMenuItem>
+				<DropdownMenuItem asChild>
+					<CitiesButton />
 				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>
