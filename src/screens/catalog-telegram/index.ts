@@ -1,0 +1,1 @@
+export { CatalogTelegram } from './view';
