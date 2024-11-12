@@ -1,5 +1,5 @@
 'use client';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { TTag } from '@/src/shared/types';
 import Image from 'next/image';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
@@ -28,7 +28,16 @@ const CityCard: FC<Props> = ({
 	cardInfo: { id, imageUrl, links, title }
 }) => {
 	const [isLinksOpen, setIsLinksOpen] = useState<boolean>(false);
+	const [downAnimation, setDownAnimation] = useState<boolean>(false);
 	const screenSize = useScreen();
+
+	useEffect(() => {
+		if (isLinksOpen)
+			setTimeout(() => {
+				setDownAnimation(true);
+			}, 1);
+		else setDownAnimation(false);
+	}, [isLinksOpen]);
 
 	const Tag = tag || 'div';
 	return (
@@ -122,11 +131,17 @@ const CityCard: FC<Props> = ({
 										</div>
 									</div>
 									<DropdownMenu.Content
-										className={`w-[var(--radix-popper-anchor-width)] duration-100 ${
-											isLinksOpen ? 'bg-[#d8d8df]' : 'bg-[#E9E9F0]'
-										} rounded-[0px_0px_25px_25px/0px_0px_35px_35px] mx-auto box-border`}
+										className={`w-[var(--radix-popper-anchor-width)] `}
 									>
-										<div className='w-full p-[10px] pb-[15px] pt-0 flex flex-wrap gap-y-[10px] '>
+										<div
+											className={`p-[10px] pb-[15px] pt-0 flex flex-wrap gap-y-[10px] w-full duration-200 ease-out bg-[#d8d8df] 
+											 rounded-[0px_0px_25px_25px/0px_0px_35px_35px] mx-auto box-border`}
+											style={{
+												clipPath: downAnimation
+													? 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)'
+													: 'polygon(0 0, 100% 0, 100% 0, 0 0)'
+											}}
+										>
 											{links.map(({ link, text }) => {
 												return (
 													<Link
