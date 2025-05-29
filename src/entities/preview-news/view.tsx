@@ -34,6 +34,16 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 					'background-image bg-cover bg-no-repeat bg-center w-full h-full bg-slate-200'
 				}
 			>
+				<Link
+					href={{
+						pathname: '/news/[link]',
+						params: { link }
+					}}
+					className={'absolute inset-0 left-0 top-0'}
+				>
+					<span className={'sr-only'}>{title}</span>
+				</Link>
+
 				<div
 					className={
 						'absolute left-[20px] right-[20px] bottom-[20px] md:left-[50px] md:right-[50px] md:bottom-[80px]'
@@ -46,7 +56,7 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 								params: { categoryName: categoryLink, page: 1 }
 							}}
 							className={
-								'capitalize inline-block backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-[10px] md:text-sm font-medium rounded-[20px] mb-1.5  relative z-10'
+								'capitalize inline-block backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-[10px] md:text-sm font-medium rounded-[20px] mb-1.5  relative z-0'
 							}
 						>
 							{category}
@@ -84,15 +94,6 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 						{formatDateTime(date, locale)}
 					</span>
 				</div>
-				<Link
-					href={{
-						pathname: '/news/[link]',
-						params: { link }
-					}}
-					className={'absolute inset-0 left-0 top-0'}
-				>
-					<span className={'sr-only'}>{title}</span>
-				</Link>
 			</div>
 		</div>
 	);
