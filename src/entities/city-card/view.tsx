@@ -1,13 +1,10 @@
 'use client';
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import { TTag } from '@/src/shared/types';
-import Image from 'next/image';
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import * as Dialog from '@radix-ui/react-dialog';
 import { twMerge } from 'tailwind-merge';
-import ExpandArrow from '@/src/app/icons/ic_expand_arrow.svg';
 import Chat from '@/src/app/icons/ic_chat.svg';
 import Link from 'next/link';
-import { useScreen } from '@/src/shared/hooks';
 
 interface Props {
 	tag?: TTag;
@@ -22,146 +19,82 @@ interface Props {
 		}[];
 	};
 }
+
 const CityCard: FC<Props> = ({
 	tag,
-	className,
-	cardInfo: { id, imageUrl, links, title }
+	cardInfo: { imageUrl, title, links }
 }) => {
-	const [isLinksOpen, setIsLinksOpen] = useState<boolean>(false);
-	const [downAnimation, setDownAnimation] = useState<boolean>(false);
-	const screenSize = useScreen();
-
-	useEffect(() => {
-		if (isLinksOpen)
-			setTimeout(() => {
-				setDownAnimation(true);
-			}, 1);
-		else setDownAnimation(false);
-	}, [isLinksOpen]);
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const Tag = tag || 'div';
-	return (
-		<>
-			{screenSize > 950 ? (
-				<Tag
-					className={twMerge(
-						`rounded-[25px_25px_25px_25px/35px_35px_35px_35px] overflow-hidden ${className}`
-					)}
-				>
-					<div className='w-full relative'>
-						<div className='flex items-center gap-x-[10px] absolute bottom-[16px] left-[20px]'>
-							<Chat />
-							<h3 className='text-white font-sans font-medium text-sm'>
-								Форум/Чат
-							</h3>
-						</div>
 
-						<Image
-							src={imageUrl}
-							alt={title}
-							width={155}
-							height={90}
-							className='w-full h-auto max-h-[180px] object-cover'
-						/>
-					</div>
-					<div className='bg-[#E9E9F0]'>
-						<div className='pl-[21px] pb-[25px] pr-[15px] pt-[15px]'>
-							<div
-								className={`flex w-full justify-between items-center mb-[15px] $`}
-							>
-								<h2 className='font-sans text-xl text-[#192E51] font-bold'>
-									{title}
-								</h2>
-							</div>
-							<nav className='flex flex-wrap gap-y-[10px] gap-x-[7px]'>
-								{links.map(({ link, text }) => {
-									return (
+	return (
+		<Tag
+			className={twMerge(
+				'w-[250px] h-[300px] rounded-[15px] overflow-hidden shadow-lg bg-white border border-gray-200 hover:shadow-xl transition-shadow duration-300'
+			)}
+		>
+			<div className='relative w-full h-[200px]'>
+				<img
+					src={imageUrl}
+					alt={title}
+					className='w-full h-full object-cover'
+				/>
+				<div className='absolute bottom-2 left-2 bg-black bg-opacity-60 text-white text-sm px-2 py-1 rounded'>
+					{title}
+				</div>
+			</div>
+			<div className='p-3 flex flex-col items-center gap-2'>
+				<Dialog.Root open={isModalOpen} onOpenChange={setIsModalOpen}>
+					<Dialog.Trigger asChild>
+						<button className='flex items-center gap-2 bg-[#607698] text-white text-sm rounded-full px-4 py-2 hover:bg-[#7a96c0] transition-colors duration-200'>
+							<Chat />
+							<span>Форум/Чат</span>
+						</button>
+					</Dialog.Trigger>
+					<Dialog.Portal>
+						<Dialog.Overlay className='fixed inset-0 bg-black/50' />
+						<Dialog.Content className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-[15px] p-6 w-[90vw] max-w-[350px] max-h-[70vh] overflow-y-auto'>
+							<Dialog.Title className='font-semibold text-lg text-[#192E51] mb-4'>
+								{title}
+							</Dialog.Title>
+							<nav className='space-y-3'>
+								{links.map(({ link, text }) => (
+									<div key={link} className='flex flex-col'>
 										<Link
-											key={link}
 											href={link}
-											className='text-xs font-sans text-center text-white bg-[#607698] p-[7px] rounded-[50px] hover:bg-[#7a96c0] duration-200 active:bg-[#7a96c0] min-w-[100px] flex-[1_1_calc(33.33%-7px)]'
+											className='text-sm text-[#607698] hover:text-[#7a96c0] underline'
 										>
 											{text}
 										</Link>
-									);
-								})}
-							</nav>
-						</div>
-					</div>
-				</Tag>
-			) : (
-				<Tag
-					className={twMerge(
-						` ${
-							isLinksOpen
-								? 'rounded-[25px_25px_0_0/35px_35px_0_0] relative z-[2]'
-								: 'rounded-[25px_25px_25px_25px/35px_35px_35px_35px]'
-						} overflow-hidden ${className}`
-					)}
-				>
-					<DropdownMenu.Root open={isLinksOpen} onOpenChange={setIsLinksOpen}>
-						<DropdownMenu.Trigger className='w-full focus:outline-none'>
-							<div className='w-full relative'>
-								<Image
-									src={imageUrl}
-									alt={title}
-									width={155}
-									height={90}
-									className='w-full h-auto max-h-[180px] object-cover'
-								/>
-							</div>
-							<div
-								className={`duration-100 ${
-									isLinksOpen ? 'bg-[#d8d8df]' : 'bg-[#E9E9F0]'
-								}`}
-							>
-								<div
-									className={`p-[10px] ${
-										isLinksOpen ? 'pb-[10px]' : 'pb-[15px]'
-									} `}
-								>
-									<div className='flex w-full justify-between items-center'>
-										<h2 className='font-sans text-xs'>{title}</h2>
-										<div
-											className={`duration-200 ${
-												isLinksOpen ? '-rotate-180' : 'rotate-0'
-											}`}
-										>
-											<ExpandArrow />
-										</div>
+										<span className='text-xs text-gray-500 break-all'>
+											{link}
+										</span>
 									</div>
-									<DropdownMenu.Content
-										className={`w-[var(--radix-popper-anchor-width)] `}
-									>
-										<div
-											className={`p-[10px] pb-[15px] pt-0 flex flex-wrap gap-y-[10px] w-full duration-200 ease-out bg-[#d8d8df] 
-											 rounded-[0px_0px_25px_25px/0px_0px_35px_35px] mx-auto box-border`}
-											style={{
-												clipPath: downAnimation
-													? 'polygon(0 0, 100% 0, 100% 100%, 0% 100%)'
-													: 'polygon(0 0, 100% 0, 100% 0, 0 0)'
-											}}
-										>
-											{links.map(({ link, text }) => {
-												return (
-													<Link
-														key={link}
-														href={link}
-														className='text-xs block font-sans text-center text-white bg-[#607698] p-[7px] rounded-[50px] hover:bg-[#7a96c0] duration-200 active:bg-[#7a96c0] w-full focus:outline-none '
-													>
-														{text}
-													</Link>
-												);
-											})}
-										</div>
-									</DropdownMenu.Content>
-								</div>
-							</div>
-						</DropdownMenu.Trigger>
-					</DropdownMenu.Root>
-				</Tag>
-			)}
-		</>
+								))}
+							</nav>
+							<Dialog.Close asChild>
+								<button
+									className='absolute top-2 right-2 text-[#192E51] font-sans text-sm hover:text-gray-700'
+									aria-label='Закрыть'
+								>
+									Закрыть
+								</button>
+							</Dialog.Close>
+						</Dialog.Content>
+					</Dialog.Portal>
+				</Dialog.Root>
+				<span className='text-sm text-[#192E51] font-bold text-center'>
+					{title}
+				</span>
+				<button
+					disabled
+					className='bg-[#607698] text-white text-sm rounded-full px-4 py-2 opacity-50 cursor-not-allowed'
+				>
+					Маркет
+				</button>
+			</div>
+		</Tag>
 	);
 };
 
