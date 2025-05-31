@@ -1,41 +1,45 @@
 {
-  "Pages": {
-    "Courses": {
-      "title": "Werken met de telefoon",
-      "list": {
-        "photo": "Foto/video verwerken",
-        "shortVideo": "Verdienen met TikTok/YouTube/Instagram",
-        "telegram": "Telegram Verdienen",
-        "crypto": "Cryptocurrency/Wallet gebruiken",
-        "work": "Gegarandeerde baan voor de beste afgestudeerde"
-      }
-    }
-  },
-  "Components": {
-    "subscribeNewsOur": "Abonneer",
-    "subscribeNews": "Abonneer op nieuws",
-    "logo": "SpainInter Logo",
-    "paginationButton": "Ga naar pagina {page}",
-    "selectLanguage": "Selecteer taal",
-    "language": "Taal",
-    "content": "Inhoud",
-    "ad": "Advertentie"
-  },
-  "Alarms": {
-    "empty": "Geen nieuws hier nog"
-  },
-  "MetaData": {
-    "IndexPage": {
-      "title": "Alle nieuws uit Spanje. Vers nieuws uit Spanje. Spanje vandaag.",
-      "description": "Laatste nieuws uit Spanje. Spanje vandaag: de belangrijkste gebeurtenissen, incidenten, politiek en economisch nieuws. Rapporten, analyses, voorspellingen, expertadvies."
-    },
-    "CategoryPage": {
-      "title": "Alle nieuws uit Spanje. {category}. Vers nieuws uit Spanje. Spanje vandaag.",
-      "description": "Laatste nieuws uit Spanje. Spanje vandaag: de belangrijkste gebeurtenissen, incidenten, politiek en economisch nieuws. Rapporten, analyses, voorspellingen, expertadvies. {category}."
-    },
-    "CoursesPage": {
-      "title": "Werken vanuit je telefoon cursussen, Telegram cursussen vanuit het niets en Telegram voor bedrijven Spanje  \n",
-      "description": "Training om te verdienen/investeren in cryptocurrency, werk vanuit huis. Cursussen om korte video's te maken en te promoten (TikTok, Shorts, Reels, Telegram). Telegram voor bedrijven Spanje"
-    }
-  }
+	"Pages": {
+		"Courses": {
+			"title": "Werken met de telefoon",
+			"list": {
+				"photo": "Foto/video verwerken",
+				"shortVideo": "Verdienen met TikTok/YouTube/Instagram",
+				"telegram": "Telegram Verdienen",
+				"crypto": "Cryptocurrency/Wallet gebruiken",
+				"work": "Gegarandeerde baan voor de beste afgestudeerde"
+			}
+		}
+	},
+	"Components": {
+		"subscribeNewsOur": "Abonneer",
+		"subscribeNews": "Abonneer op nieuws",
+		"logo": "SpainInter Logo",
+		"paginationButton": "Ga naar pagina {page}",
+		"selectLanguage": "Selecteer taal",
+		"language": "Taal",
+		"content": "Inhoud",
+		"ad": "Advertentie"
+	},
+	"Alarms": {
+		"empty": "Geen nieuws hier nog"
+	},
+	"MetaData": {
+		"IndexPage": {
+			"title": "Alle nieuws uit Spanje. Vers nieuws uit Spanje. Spanje vandaag.",
+			"description": "Laatste nieuws uit Spanje. Spanje vandaag: de belangrijkste gebeurtenissen, incidenten, politiek en economisch nieuws. Rapporten, analyses, voorspellingen, expertadvies."
+		},
+		"CategoryPage": {
+			"title": "Alle nieuws uit Spanje. {category}. Vers nieuws uit Spanje. Spanje vandaag.",
+			"description": "Laatste nieuws uit Spanje. Spanje vandaag: de belangrijkste gebeurtenissen, incidenten, politiek en economisch nieuws. Rapporten, analyses, voorspellingen, expertadvies. {category}."
+		},
+		"CoursesPage": {
+			"title": "Werken vanuit je telefoon cursussen, Telegram cursussen vanuit het niets en Telegram voor bedrijven Spanje  \n",
+			"description": "Training om te verdienen/investeren in cryptocurrency, werk vanuit huis. Cursussen om korte video's te maken en te promoten (TikTok, Shorts, Reels, Telegram). Telegram voor bedrijven Spanje"
+		},
+		"CatalogTelegramPage": {
+			"title": "Catalogus van Telegram-kanalen en -chats Spanje",
+			"description": "Telegram-kanalen in Spanje: Madrid, Barcelona, Valencia, Sevilla, Zaragoza, Málaga, Murcia. Vind de beste chats en kanalen voor communicatie en nieuws."
+		}
+	}
 }

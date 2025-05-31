@@ -1,41 +1,45 @@
 {
-  "Pages": {
-    "Courses": {
-      "title": "Travailler avec le téléphone",
-      "list": {
-        "photo": "Traitement des photos/vidéos",
-        "shortVideo": "Gagner avec TikTok/YouTube/Instagram",
-        "telegram": "Gains avec Telegram",
-        "crypto": "Comment utiliser les crypto-monnaies/portefeuilles",
-        "work": "Emploi garanti pour les meilleurs diplômés"
-      }
-    }
-  },
-  "Components": {
-    "subscribeNewsOur": "Abonnez-vous",
-    "subscribeNews": "S'abonner aux actualités",
-    "logo": "Logo de SpainInter",
-    "paginationButton": "Aller à la page {page}",
-    "selectLanguage": "Sélectionner la langue",
-    "language": "Langue",
-    "content": "Contenu",
-    "ad": "Publicité"
-  },
-  "Alarms": {
-    "empty": "Pas de nouvelles ici pour le moment"
-  },
-  "MetaData": {
-    "IndexPage": {
-      "title": "Toutes les nouvelles d'Espagne. Nouvelles fraîches d'Espagne. Espagne aujourd'hui.",
-      "description": "Dernières nouvelles d'Espagne. Espagne aujourd'hui : les événements les plus importants, les incidents, les nouvelles politiques et économiques. Rapports, analyses, prévisions, opinion d'experts."
-    },
-    "CategoryPage": {
-      "title": "Toutes les nouvelles d'Espagne. {category}. Nouvelles fraîches d'Espagne. Espagne aujourd'hui.",
-      "description": "Dernières nouvelles d'Espagne. Espagne aujourd'hui : les événements les plus importants, les incidents, les nouvelles politiques et économiques. Rapports, analyses, prévisions, opinion d'experts. {category}."
-    },
-    "CoursesPage": {
-      "title": "Work from Phone Courses, Telegram Courses from scratch and Telegram for Business Spain (Cours de travail par téléphone, cours de télégramme à partir de zéro et télégramme pour les entreprises).  ",
-      "description": "Formation pour gagner/investir dans les crypto-monnaies, travailler à domicile. Cours pour créer et promouvoir des vidéos courtes (TikTok, Shorts, Reels, Telegram). Telegram for Business Espagne"
-    }
-  }
+	"Pages": {
+		"Courses": {
+			"title": "Travailler avec le téléphone",
+			"list": {
+				"photo": "Traitement des photos/vidéos",
+				"shortVideo": "Gagner avec TikTok/YouTube/Instagram",
+				"telegram": "Gains avec Telegram",
+				"crypto": "Comment utiliser les crypto-monnaies/portefeuilles",
+				"work": "Emploi garanti pour les meilleurs diplômés"
+			}
+		}
+	},
+	"Components": {
+		"subscribeNewsOur": "Abonnez-vous",
+		"subscribeNews": "S'abonner aux actualités",
+		"logo": "Logo de SpainInter",
+		"paginationButton": "Aller à la page {page}",
+		"selectLanguage": "Sélectionner la langue",
+		"language": "Langue",
+		"content": "Contenu",
+		"ad": "Publicité"
+	},
+	"Alarms": {
+		"empty": "Pas de nouvelles ici pour le moment"
+	},
+	"MetaData": {
+		"IndexPage": {
+			"title": "Toutes les nouvelles d'Espagne. Nouvelles fraîches d'Espagne. Espagne aujourd'hui.",
+			"description": "Dernières nouvelles d'Espagne. Espagne aujourd'hui : les événements les plus importants, les incidents, les nouvelles politiques et économiques. Rapports, analyses, prévisions, opinion d'experts."
+		},
+		"CategoryPage": {
+			"title": "Toutes les nouvelles d'Espagne. {category}. Nouvelles fraîches d'Espagne. Espagne aujourd'hui.",
+			"description": "Dernières nouvelles d'Espagne. Espagne aujourd'hui : les événements les plus importants, les incidents, les nouvelles politiques et économiques. Rapports, analyses, prévisions, opinion d'experts. {category}."
+		},
+		"CoursesPage": {
+			"title": "Work from Phone Courses, Telegram Courses from scratch and Telegram for Business Spain (Cours de travail par téléphone, cours de télégramme à partir de zéro et télégramme pour les entreprises).  ",
+			"description": "Formation pour gagner/investir dans les crypto-monnaies, travailler à domicile. Cours pour créer et promouvoir des vidéos courtes (TikTok, Shorts, Reels, Telegram). Telegram for Business Espagne"
+		},
+		"CatalogTelegramPage": {
+			"title": "Catalogue des chaînes et chats Telegram Espagne",
+			"description": "Chaînes Telegram en Espagne : Madrid, Barcelone, Valence, Séville, Saragosse, Malaga, Murcie. Trouvez les meilleurs chats et chaînes pour la communication et les actualités."
+		}
+	}
 }

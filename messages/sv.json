@@ -1,41 +1,45 @@
 {
-  "Pages": {
-    "Courses": {
-      "title": "Práca s telefónom",
-      "list": {
-        "photo": "Spracovanie fotografií/videí",
-        "shortVideo": "Zarábanie s TikTok/YouTube/Instagram",
-        "telegram": "Zárobky na Telegrame",
-        "crypto": "Ako používať kryptomenu/peňaženku",
-        "work": "Zaručená práca pre najlepšieho absolventa"
-      }
-    }
-  },
-  "Components": {
-    "subscribeNewsOur": "Prenumerera",
-    "subscribeNews": "Prenumerera på nyheter",
-    "logo": "SpainInter-logotyp",
-    "paginationButton": "Gå till sida {page}",
-    "selectLanguage": "Välj språk",
-    "language": "Språk",
-    "content": "Innehåll",
-    "ad": "Annons"
-  },
-  "Alarms": {
-    "empty": "Inga nyheter här ännu"
-  },
-  "MetaData": {
-    "IndexPage": {
-      "title": "Alla nyheter från Spanien. Färska nyheter från Spanien. Spanien idag.",
-      "description": "Senaste nyheterna från Spanien. Spanien idag: de viktigaste händelserna, händelserna, politiska och ekonomiska nyheterna. Rapporter, analyser, prognoser, expertutlåtanden."
-    },
-    "CategoryPage": {
-      "title": "Alla nyheter från Spanien. {category}. Färska nyheter från Spanien. Spanien idag.",
-      "description": "Senaste nyheterna från Spanien. Spanien idag: de viktigaste händelserna, händelserna, politiska och ekonomiska nyheterna. Rapporter, analyser, prognoser, expertutlåtanden. {category}."
-    },
-    "CoursesPage": {
-      "title": "Kurzy práce z telefónu, kurzy Telegramu od nuly a Telegram pre firmy Španielsko  ",
-      "description": "Školenia na zarábanie/investovanie do kryptomien, práca z domu. Kurzy na tvorbu a propagáciu krátkych videí (TikTok, Shorts, Reels, Telegram). Telegram pre podnikanie Španielsko"
-    }
-  }
+	"Pages": {
+		"Courses": {
+			"title": "Práca s telefónom",
+			"list": {
+				"photo": "Spracovanie fotografií/videí",
+				"shortVideo": "Zarábanie s TikTok/YouTube/Instagram",
+				"telegram": "Zárobky na Telegrame",
+				"crypto": "Ako používať kryptomenu/peňaženku",
+				"work": "Zaručená práca pre najlepšieho absolventa"
+			}
+		}
+	},
+	"Components": {
+		"subscribeNewsOur": "Prenumerera",
+		"subscribeNews": "Prenumerera på nyheter",
+		"logo": "SpainInter-logotyp",
+		"paginationButton": "Gå till sida {page}",
+		"selectLanguage": "Välj språk",
+		"language": "Språk",
+		"content": "Innehåll",
+		"ad": "Annons"
+	},
+	"Alarms": {
+		"empty": "Inga nyheter här ännu"
+	},
+	"MetaData": {
+		"IndexPage": {
+			"title": "Alla nyheter från Spanien. Färska nyheter från Spanien. Spanien idag.",
+			"description": "Senaste nyheterna från Spanien. Spanien idag: de viktigaste händelserna, händelserna, politiska och ekonomiska nyheterna. Rapporter, analyser, prognoser, expertutlåtanden."
+		},
+		"CategoryPage": {
+			"title": "Alla nyheter från Spanien. {category}. Färska nyheter från Spanien. Spanien idag.",
+			"description": "Senaste nyheterna från Spanien. Spanien idag: de viktigaste händelserna, händelserna, politiska och ekonomiska nyheterna. Rapporter, analyser, prognoser, expertutlåtanden. {category}."
+		},
+		"CoursesPage": {
+			"title": "Kurzy práce z telefónu, kurzy Telegramu od nuly a Telegram pre firmy Španielsko  ",
+			"description": "Školenia na zarábanie/investovanie do kryptomien, práca z domu. Kurzy na tvorbu a propagáciu krátkych videí (TikTok, Shorts, Reels, Telegram). Telegram pre podnikanie Španielsko"
+		},
+		"CatalogTelegramPage": {
+			"title": "Katalóg kanálov a četov Telegram Španielsko",
+			"description": "Telegram kanály v Španielsku: Madrid, Barcelona, Valencia, Sevilla, Zaragoza, Málaga, Murcia. Nájdite najlepšie čety a kanály pre komunikáciu a správy."
+		}
+	}
 }
