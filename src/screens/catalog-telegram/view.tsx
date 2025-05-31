@@ -33,7 +33,7 @@ export const CatalogTelegram: FC<Props> = () => {
 
 	return (
 		<div className='p-4'>
-			<ul className='grid grid-cols-[repeat(auto-fit,_250px)] gap-4 justify-center'>
+			<ul className='grid grid-cols-[repeat(auto-fit,_minmax(150px,1fr))] md:grid-cols-[repeat(auto-fit,_250px)] gap-4 justify-center'>
 				{cities.map((city: City) => (
 					<CityCard
 						tag='li'
