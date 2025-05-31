@@ -17,7 +17,7 @@ export interface CitiesResponse {
 export const citiesModel = {
   getCities: async (): Promise<CitiesResponse> => {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/cities?hasPhoto=true`,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/cities?hasPhoto=true`,
       {
         method: "GET",
         headers: {
