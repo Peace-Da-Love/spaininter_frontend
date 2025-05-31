@@ -1,41 +1,45 @@
 {
-  "Pages": {
-    "Courses": {
-      "title": "Praca z telefonem",
-      "list": {
-        "photo": "Przetwarzanie zdjęć/wideo",
-        "shortVideo": "Zarabianie z TikTok/YouTube/Instagram",
-        "telegram": "Zarabianie w Telegramie",
-        "crypto": "Jak korzystać z kryptowaluty/portfela",
-        "work": "Gwarantowana praca dla najlepszych absolwentów"
-      }
-    }
-  },
-  "Components": {
-    "subscribeNewsOur": "Subskrybuj",
-    "subscribeNews": "Subskrybuj wiadomości",
-    "logo": "Logo SpainInter",
-    "paginationButton": "Przejdź do strony {page}",
-    "selectLanguage": "Wybierz język",
-    "language": "Język",
-    "content": "Zawartość",
-    "ad": "Reklama"
-  },
-  "Alarms": {
-    "empty": "Brak wiadomości tutaj jeszcze"
-  },
-  "MetaData": {
-    "IndexPage": {
-      "title": "Wszystkie wiadomości ze Hiszpanii. Świeże wiadomości ze Hiszpanii. Hiszpania dzisiaj.",
-      "description": "Najnowsze wiadomości ze Hiszpanii. Hiszpania dzisiaj: najważniejsze wydarzenia, incydenty, wiadomości polityczne i ekonomiczne. Raporty, analizy, prognozy, opinie ekspertów."
-    },
-    "CategoryPage": {
-      "title": "Wszystkie wiadomości ze Hiszpanii. {category}. Świeże wiadomości ze Hiszpanii. Hiszpania dzisiaj.",
-      "description": "Najnowsze wiadomości ze Hiszpanii. Hiszpania dzisiaj: najważniejsze wydarzenia, incydenty, wiadomości polityczne i ekonomiczne. Raporty, analizy, prognozy, opinie ekspertów. {category}."
-    },
-    "CoursesPage": {
-      "title": "Kursy pracy z telefonu, kursy Telegram od podstaw i Telegram dla biznesu Hiszpania  ",
-      "description": "Szkolenie zarabiania/inwestowania w kryptowaluty, praca z domu. Kursy tworzenia i promowania krótkich filmów (TikTok, Shorts, Reels, Telegram). Telegram dla biznesu Hiszpania"
-    }
-  }
+	"Pages": {
+		"Courses": {
+			"title": "Praca z telefonem",
+			"list": {
+				"photo": "Przetwarzanie zdjęć/wideo",
+				"shortVideo": "Zarabianie z TikTok/YouTube/Instagram",
+				"telegram": "Zarabianie w Telegramie",
+				"crypto": "Jak korzystać z kryptowaluty/portfela",
+				"work": "Gwarantowana praca dla najlepszych absolwentów"
+			}
+		}
+	},
+	"Components": {
+		"subscribeNewsOur": "Subskrybuj",
+		"subscribeNews": "Subskrybuj wiadomości",
+		"logo": "Logo SpainInter",
+		"paginationButton": "Przejdź do strony {page}",
+		"selectLanguage": "Wybierz język",
+		"language": "Język",
+		"content": "Zawartość",
+		"ad": "Reklama"
+	},
+	"Alarms": {
+		"empty": "Brak wiadomości tutaj jeszcze"
+	},
+	"MetaData": {
+		"IndexPage": {
+			"title": "Wszystkie wiadomości ze Hiszpanii. Świeże wiadomości ze Hiszpanii. Hiszpania dzisiaj.",
+			"description": "Najnowsze wiadomości ze Hiszpanii. Hiszpania dzisiaj: najważniejsze wydarzenia, incydenty, wiadomości polityczne i ekonomiczne. Raporty, analizy, prognozy, opinie ekspertów."
+		},
+		"CategoryPage": {
+			"title": "Wszystkie wiadomości ze Hiszpanii. {category}. Świeże wiadomości ze Hiszpanii. Hiszpania dzisiaj.",
+			"description": "Najnowsze wiadomości ze Hiszpanii. Hiszpania dzisiaj: najważniejsze wydarzenia, incydenty, wiadomości polityczne i ekonomiczne. Raporty, analizy, prognozy, opinie ekspertów. {category}."
+		},
+		"CoursesPage": {
+			"title": "Kursy pracy z telefonu, kursy Telegram od podstaw i Telegram dla biznesu Hiszpania  ",
+			"description": "Szkolenie zarabiania/inwestowania w kryptowaluty, praca z domu. Kursy tworzenia i promowania krótkich filmów (TikTok, Shorts, Reels, Telegram). Telegram dla biznesu Hiszpania"
+		},
+		"CatalogTelegramPage": {
+			"title": "Katalog kanałów i czatów Telegram Hiszpania",
+			"description": "Kanały Telegram w Hiszpanii: Madryt, Barcelona, Walencja, Sewilla, Saragossa, Malaga, Murcja. Znajdź najlepsze czaty i kanały do komunikacji i wiadomości."
+		}
+	}
 }

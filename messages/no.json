@@ -1,41 +1,45 @@
 {
-  "Pages": {
-    "Courses": {
-      "title": "Arbeide med telefonen",
-      "list": {
-        "photo": "Behandling av bilder/video",
-        "shortVideo": "Tjen penger med TikTok/YouTube/Instagram",
-        "telegram": "Inntjening med Telegram",
-        "crypto": "Hvordan bruke kryptovaluta / lommebok",
-        "work": "Garantert jobb for den beste nyutdannede"
-      }
-    }
-  },
-  "Components": {
-    "subscribeNewsOur": "Abonner",
-    "subscribeNews": "Abonner på nyheter",
-    "logo": "SpainInter-logo",
-    "paginationButton": "Gå til side {page}",
-    "selectLanguage": "Velg språk",
-    "language": "Språk",
-    "content": "Innhold",
-    "ad": "Annonse"
-  },
-  "Alarms": {
-    "empty": "Ingen nyheter her ennå"
-  },
-  "MetaData": {
-    "IndexPage": {
-      "title": "Alle nyheter fra Spania. Ferske nyheter fra Spania. Spania i dag.",
-      "description": "Siste nytt fra Spania. Spania i dag: de viktigste hendelsene, hendelsene, politiske og økonomiske nyhetene. Rapporter, analyser, prognoser, ekspertuttalelser."
-    },
-    "CategoryPage": {
-      "title": "Alle nyheter fra Spania. {category}. Ferske nyheter fra Spania. Spania i dag.",
-      "description": "Siste nytt fra Spania. Spania i dag: de viktigste hendelsene, hendelsene, politiske og økonomiske nyhetene. Rapporter, analyser, prognoser, ekspertuttalelser. {category}."
-    },
-    "CoursesPage": {
-      "title": "Arbeid fra telefonkurs, Telegram-kurs fra bunnen av og Telegram for Business Spain  ",
-      "description": "Opplæring for å tjene / investere i kryptovaluta, jobbe hjemmefra. Kurs for å lage og markedsføre korte videoer (TikTok, Shorts, Reels, Telegram). Telegram for Business Spain"
-    }
-  }
+	"Pages": {
+		"Courses": {
+			"title": "Arbeide med telefonen",
+			"list": {
+				"photo": "Behandling av bilder/video",
+				"shortVideo": "Tjen penger med TikTok/YouTube/Instagram",
+				"telegram": "Inntjening med Telegram",
+				"crypto": "Hvordan bruke kryptovaluta / lommebok",
+				"work": "Garantert jobb for den beste nyutdannede"
+			}
+		}
+	},
+	"Components": {
+		"subscribeNewsOur": "Abonner",
+		"subscribeNews": "Abonner på nyheter",
+		"logo": "SpainInter-logo",
+		"paginationButton": "Gå til side {page}",
+		"selectLanguage": "Velg språk",
+		"language": "Språk",
+		"content": "Innhold",
+		"ad": "Annonse"
+	},
+	"Alarms": {
+		"empty": "Ingen nyheter her ennå"
+	},
+	"MetaData": {
+		"IndexPage": {
+			"title": "Alle nyheter fra Spania. Ferske nyheter fra Spania. Spania i dag.",
+			"description": "Siste nytt fra Spania. Spania i dag: de viktigste hendelsene, hendelsene, politiske og økonomiske nyhetene. Rapporter, analyser, prognoser, ekspertuttalelser."
+		},
+		"CategoryPage": {
+			"title": "Alle nyheter fra Spania. {category}. Ferske nyheter fra Spania. Spania i dag.",
+			"description": "Siste nytt fra Spania. Spania i dag: de viktigste hendelsene, hendelsene, politiske og økonomiske nyhetene. Rapporter, analyser, prognoser, ekspertuttalelser. {category}."
+		},
+		"CoursesPage": {
+			"title": "Arbeid fra telefonkurs, Telegram-kurs fra bunnen av og Telegram for Business Spain  ",
+			"description": "Opplæring for å tjene / investere i kryptovaluta, jobbe hjemmefra. Kurs for å lage og markedsføre korte videoer (TikTok, Shorts, Reels, Telegram). Telegram for Business Spain"
+		},
+		"CatalogTelegramPage": {
+			"title": "Katalog over Telegram-kanaler og -chatter Spania",
+			"description": "Telegram-kanaler i Spania: Madrid, Barcelona, Valencia, Sevilla, Zaragoza, Málaga, Murcia. Finn de beste chattene og kanalene for kommunikasjon og nyheter."
+		}
+	}
 }
