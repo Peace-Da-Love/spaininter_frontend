@@ -51,7 +51,7 @@ const CityCard: FC<Props> = ({
 						`rounded-[25px_25px_25px_25px/35px_35px_35px_35px] overflow-hidden ${className}`
 					)}
 				>
-					<div className='w-full relative '>
+					<div className='w-full h-[180px] relative '>
 						<div className='flex items-center gap-x-[10px] absolute bottom-[16px] left-[20px]'>
 							<Chat />
 							<h3 className='text-white font-sans font-medium text-sm'>
@@ -64,10 +64,10 @@ const CityCard: FC<Props> = ({
 							alt={title}
 							width={155}
 							height={90}
-							className='w-full h-auto max-h-[180px] object-cover'
+							className='w-full h-full max-h-[180px] object-cover'
 						/>
 					</div>
-					<div className='bg-[#E9E9F0]'>
+					<div className='rounded-[0_0_25px_25px/0_0_35px_35px] bg-[#E9E9F0]'>
 						<div className='pl-[21px] pb-[25px] pr-[15px] pt-[15px]'>
 							<div className='flex w-full justify-between items-center mb-[15px]'>
 								<h2 className='font-sans text-xl text-[#192E51] font-bold'>
@@ -101,13 +101,13 @@ const CityCard: FC<Props> = ({
 					<DropdownMenu.Root open={isLinksOpen} onOpenChange={setIsLinksOpen}>
 						<DropdownMenu.Trigger asChild>
 							<button className='w-full focus:outline-none'>
-								<div className='w-full relative'>
+								<div className='w-full h-[130px] relative'>
 									<Image
 										src={imageUrl}
 										alt={title}
 										width={155}
 										height={90}
-										className='w-full h-auto max-h-[180px] object-cover'
+										className='w-full h-full max-h-[180px] object-cover'
 									/>
 								</div>
 								<div
