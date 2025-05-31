@@ -39,7 +39,7 @@ export const CatalogTelegram: FC<Props> = () => {
 						tag='li'
 						cardInfo={{
 							id: city.id,
-							imageUrl: `${IMAGE_URL}/api${city.photo_url}`,
+							imageUrl: `${IMAGE_URL}${city.photo_url}`,
 							title: city.name,
 							links: city.links.map(link => ({
 								text: link.name,
