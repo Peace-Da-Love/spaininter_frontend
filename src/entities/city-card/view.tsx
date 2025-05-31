@@ -29,7 +29,6 @@ const CityCard: FC<Props> = ({
 	cardInfo: { imageUrl, links, title }
 }) => {
 	const [isLinksOpen, setIsLinksOpen] = useState<boolean>(false);
-	const [downAnimation, setDownAnimation] = useState<boolean>(false);
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 	const modalButtonRef = useRef<HTMLButtonElement>(null);
 	const dropdownRef = useRef<HTMLDivElement>(null);
