@@ -1,46 +1,46 @@
 {
-  "Pages": {
-    "Courses": {
-      "title": "Working with the Phone",
-      "list": {
-        "photo": "Photo/Video Processing",
-        "shortVideo": "Earning with TikTok/YouTube/Instagram",
-        "telegram": "Telegram Earnings",
-        "crypto": "How to use Cryptocurrency/Wallet",
-        "work": "Guaranteed Job for the Best Graduate"
-      }
-    }
-  },
-  "Components": {
-    "subscribeNewsOur": "Subscribe",
-    "subscribeNews": "Subscribe to news",
-    "logo": "SpainInter Logo",
-    "paginationButton": "Go to page {page}",
-    "selectLanguage": "Select language",
-    "language": "Language",
-    "content": "Content",
-    "ad": "Ad",
-    "forumChat": "Forum/Chat"
-  },
-  "Alarms": {
-    "empty": "No news here yet"
-  },
-  "MetaData": {
-    "IndexPage": {
-      "title": "All news of Spain. Fresh news from Spain. Spain today.",
-      "description": "Latest news from Spain. Spain today: the most important events, incidents, political and economic news. Reports, analytics, forecasts, expert opinion."
-    },
-    "CategoryPage": {
-      "title": "All news of Spain. {category}. Fresh news from Spain. Spain today.",
-      "description": "Latest news from Spain. Spain today: the most important events, incidents, political and economic news. Reports, analytics, forecasts, expert opinion. {category}."
-    },
-    "CoursesPage": {
-      "title": "Telegram courses, Telegram courses from scratch and Telegram for Business Spain",
-      "description": "Training to earn/invest in Cryptocurrency, work from home. Courses to create and promote short videos (TikTok, Shorts, Reels, Telegram). Telegram for Business Spain"
-    },
-    "CatalogTelegramPage": {
-      "title": "Catalog of Telegram Channels and Chats Spain",
-      "description": "Telegram channels in Spain: Madrid, Barcelona, Valencia, Seville, Zaragoza, Malaga, Murcia. Find the best chats and channels for communication and news."
-    }
-  }
+	"Pages": {
+		"Courses": {
+			"title": "Working with the Phone",
+			"list": {
+				"photo": "Photo/Video Processing",
+				"shortVideo": "Earning with TikTok/YouTube/Instagram",
+				"telegram": "Telegram Earnings",
+				"crypto": "How to use Cryptocurrency/Wallet",
+				"work": "Guaranteed Job for the Best Graduate"
+			}
+		}
+	},
+	"Components": {
+		"subscribeNewsOur": "Subscribe",
+		"subscribeNews": "Subscribe to news",
+		"logo": "SpainInter Logo",
+		"paginationButton": "Go to page {page}",
+		"selectLanguage": "Select language",
+		"language": "Language",
+		"content": "Content",
+		"ad": "Ad",
+		"forumChat": "Forum/Chat"
+	},
+	"Alarms": {
+		"empty": "No news here yet"
+	},
+	"MetaData": {
+		"IndexPage": {
+			"title": "All news of Spain. Fresh news from Spain. Spain today.",
+			"description": "Latest news from Spain. Spain today: the most important events, incidents, political and economic news. Reports, analytics, forecasts, expert opinion."
+		},
+		"CategoryPage": {
+			"title": "All news of Spain. {category}. Fresh news from Spain. Spain today.",
+			"description": "Latest news from Spain. Spain today: the most important events, incidents, political and economic news. Reports, analytics, forecasts, expert opinion. {category}."
+		},
+		"CoursesPage": {
+			"title": "Telegram courses, Telegram courses from scratch and Telegram for Business Spain",
+			"description": "Training to earn/invest in Cryptocurrency, work from home. Courses to create and promote short videos (TikTok, Shorts, Reels, Telegram). Telegram for Business Spain"
+		},
+		"CatalogTelegramPage": {
+			"title": "Telegram channels Spain. Catalog of Telegram channels Spain",
+			"description": "Telegram channels in Spain: Madrid, Barcelona, Valencia, Seville, Zaragoza, Malaga, Murcia. Find the best chats and channels for communication and news."
+		}
+	}
 }

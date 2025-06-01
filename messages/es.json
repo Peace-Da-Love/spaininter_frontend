@@ -1,46 +1,46 @@
 {
-  "Pages": {
-    "Courses": {
-      "title": "Trabajar con el teléfono",
-      "list": {
-        "photo": "Tratamiento de fotos/vídeos",
-        "shortVideo": "Ganar con TikTok/YouTube/Instagram",
-        "telegram": "Ganancias con Telegram",
-        "crypto": "Cómo usar Cryptocurrency/Wallet",
-        "work": "Trabajo garantizado para el mejor graduado"
-      }
-    }
-  },
-  "Components": {
-    "subscribeNewsOur": "Suscríbete",
-    "subscribeNews": "Suscríbete a noticias",
-    "logo": "Logo de SpainInter",
-    "paginationButton": "Ir a la página {page}",
-    "selectLanguage": "Seleccionar idioma",
-    "language": "Idioma",
-    "content": "Contenido",
-    "ad": "Publicidad",
-    "forumChat": "Foro/Chat"
-  },
-  "Alarms": {
-    "empty": "No hay noticias aquí aún"
-  },
-  "MetaData": {
-    "IndexPage": {
-      "title": "Todas las noticias de España. Noticias frescas de España. España hoy.",
-      "description": "Últimas noticias de España. España hoy: los eventos más importantes, incidentes, noticias políticas y económicas. Informes, análisis, previsiones, opinión de expertos."
-    },
-    "CategoryPage": {
-      "title": "Todas las noticias de España. {category}. Noticias frescas de España. España hoy.",
-      "description": "Últimas noticias de España. España hoy: los eventos más importantes, incidentes, noticias políticas y económicas. Informes, análisis, previsiones, opinión de expertos. {category}."
-    },
-    "CoursesPage": {
-      "title": "Cursos para trabajar desde el teléfono, cursos de Telegram desde cero y Telegram para negocios España.  ",
-      "description": "Formación para ganar/invertir en Criptodivisas, trabajo desde casa. Cursos para crear y promocionar vídeos cortos (TikTok, Shorts, Reels, Telegram). Telegram para Negocios España"
-    },
-    "CatalogTelegramPage": {
-      "title": "Catálogo de Canales y Chats de Telegram España",
-      "description": "Canales de Telegram en España: Madrid, Barcelona, Valencia, Sevilla, Zaragoza, Málaga, Murcia. Encuentra los mejores chats y canales para comunicación y noticias."
-    }
-  }
+	"Pages": {
+		"Courses": {
+			"title": "Trabajar con el teléfono",
+			"list": {
+				"photo": "Tratamiento de fotos/vídeos",
+				"shortVideo": "Ganar con TikTok/YouTube/Instagram",
+				"telegram": "Ganancias con Telegram",
+				"crypto": "Cómo usar Cryptocurrency/Wallet",
+				"work": "Trabajo garantizado para el mejor graduado"
+			}
+		}
+	},
+	"Components": {
+		"subscribeNewsOur": "Suscríbete",
+		"subscribeNews": "Suscríbete a noticias",
+		"logo": "Logo de SpainInter",
+		"paginationButton": "Ir a la página {page}",
+		"selectLanguage": "Seleccionar idioma",
+		"language": "Idioma",
+		"content": "Contenido",
+		"ad": "Publicidad",
+		"forumChat": "Foro/Chat"
+	},
+	"Alarms": {
+		"empty": "No hay noticias aquí aún"
+	},
+	"MetaData": {
+		"IndexPage": {
+			"title": "Todas las noticias de España. Noticias frescas de España. España hoy.",
+			"description": "Últimas noticias de España. España hoy: los eventos más importantes, incidentes, noticias políticas y económicas. Informes, análisis, previsiones, opinión de expertos."
+		},
+		"CategoryPage": {
+			"title": "Todas las noticias de España. {category}. Noticias frescas de España. España hoy.",
+			"description": "Últimas noticias de España. España hoy: los eventos más importantes, incidentes, noticias políticas y económicas. Informes, análisis, previsiones, opinión de expertos. {category}."
+		},
+		"CoursesPage": {
+			"title": "Cursos para trabajar desde el teléfono, cursos de Telegram desde cero y Telegram para negocios España.  ",
+			"description": "Formación para ganar/invertir en Criptodivisas, trabajo desde casa. Cursos para crear y promocionar vídeos cortos (TikTok, Shorts, Reels, Telegram). Telegram para Negocios España"
+		},
+		"CatalogTelegramPage": {
+			"title": "Canales de Telegram España. Catálogo de canales de Telegram España",
+			"description": "Canales de Telegram en España: Madrid, Barcelona, Valencia, Sevilla, Zaragoza, Málaga, Murcia. Encuentra los mejores chats y canales para comunicación y noticias."
+		}
+	}
 }
