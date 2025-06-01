@@ -52,8 +52,16 @@ export const LocaleSwitcherSelect: FC<Props> = ({
 				>
 					{defaultValue}
 				</SelectTrigger>
-				<SelectContent className={'shadow-none'}>
-					<SelectGroup className={'fl-col'}>{children}</SelectGroup>
+				<SelectContent
+					className={cn(
+						'bg-transparent shadow-none border-none ',
+						'flex justify-center items-center pr-14'
+					)}
+					position='popper'
+				>
+					<SelectGroup className='grid grid-cols-3 gap-6 pr-2 pb-2'>
+						{children}
+					</SelectGroup>
 				</SelectContent>
 			</Select>
 		</div>
