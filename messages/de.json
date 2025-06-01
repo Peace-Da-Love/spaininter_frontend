@@ -19,7 +19,8 @@
 		"selectLanguage": "Sprache wählen",
 		"language": "Sprache",
 		"content": "Inhalt",
-		"ad": "Anzeige"
+		"ad": "Anzeige",
+		"forumChat": "Forum/Chat"
 	},
 	"Alarms": {
 		"empty": "Keine Nachrichten hier bisher"

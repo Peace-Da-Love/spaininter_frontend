@@ -19,7 +19,8 @@
 		"selectLanguage": "Wybierz język",
 		"language": "Język",
 		"content": "Zawartość",
-		"ad": "Reklama"
+		"ad": "Reklama",
+		"forumChat": "Forum/Czat"
 	},
 	"Alarms": {
 		"empty": "Brak wiadomości tutaj jeszcze"

@@ -19,7 +19,8 @@
 		"selectLanguage": "Välj språk",
 		"language": "Språk",
 		"content": "Innehåll",
-		"ad": "Annons"
+		"ad": "Annons",
+		"forumChat": "Fórum/Chat"
 	},
 	"Alarms": {
 		"empty": "Inga nyheter här ännu"

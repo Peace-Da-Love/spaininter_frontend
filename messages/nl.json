@@ -19,7 +19,8 @@
 		"selectLanguage": "Selecteer taal",
 		"language": "Taal",
 		"content": "Inhoud",
-		"ad": "Advertentie"
+		"ad": "Advertentie",
+		"forumChat": "Forum/Chat"
 	},
 	"Alarms": {
 		"empty": "Geen nieuws hier nog"
