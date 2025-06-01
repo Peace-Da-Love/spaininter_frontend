@@ -13,6 +13,7 @@ import { useScreen } from '@/src/shared/hooks';
 interface Props {
 	tag?: TTag;
 	className?: string;
+	forumChatText: string;
 	cardInfo: {
 		id: number;
 		imageUrl: string;
@@ -27,6 +28,7 @@ interface Props {
 const CityCard: FC<Props> = ({
 	tag,
 	className,
+	forumChatText,
 	cardInfo: { imageUrl, links, title }
 }) => {
 	const [isLinksOpen, setIsLinksOpen] = useState<boolean>(false);
@@ -55,7 +57,7 @@ const CityCard: FC<Props> = ({
 						<div className='flex items-center gap-x-[10px] absolute bottom-[16px] left-[20px]'>
 							<Chat />
 							<h3 className='text-white font-sans font-medium text-sm'>
-								Форум/Чат
+								{forumChatText}
 							</h3>
 						</div>
 

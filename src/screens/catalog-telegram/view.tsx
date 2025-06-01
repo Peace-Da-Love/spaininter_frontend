@@ -3,9 +3,11 @@ import { citiesModel, City } from '@/src/app/client-actions/get-cities';
 import { CityCard } from '@/src/entities/city-card';
 import { FC, useEffect, useState } from 'react';
 
-interface Props {}
+interface Props {
+	forumChatText: string;
+}
 
-export const CatalogTelegram: FC<Props> = () => {
+export const CatalogTelegram: FC<Props> = ({ forumChatText }) => {
 	const [cities, setCities] = useState<City[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
 	const [error, setError] = useState<string | null>(null);
@@ -48,6 +50,7 @@ export const CatalogTelegram: FC<Props> = () => {
 						}}
 						key={city.id}
 						className=''
+						forumChatText={forumChatText}
 					/>
 				))}
 			</ul>

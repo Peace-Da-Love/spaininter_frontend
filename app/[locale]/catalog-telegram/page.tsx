@@ -43,9 +43,13 @@ export async function generateMetadata({
 	};
 }
 
-const Page: FC<Props> = ({ params: { locale } }) => {
+const Page: FC<Props> = async ({ params: { locale } }) => {
 	unstable_setRequestLocale(locale);
-	return <CatalogTelegram />;
+	const tCityCard = await getTranslations({
+    locale,
+    namespace: 'Components',
+  });
+	return <CatalogTelegram forumChatText={tCityCard('forumChat')}/>;
 };
 
 export default Page;

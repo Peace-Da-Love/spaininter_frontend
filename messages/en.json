@@ -19,7 +19,8 @@
     "selectLanguage": "Select language",
     "language": "Language",
     "content": "Content",
-    "ad": "Ad"
+    "ad": "Ad",
+    "forumChat": "Forum/Chat"
   },
   "Alarms": {
     "empty": "No news here yet"
