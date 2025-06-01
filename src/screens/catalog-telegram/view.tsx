@@ -34,8 +34,8 @@ export const CatalogTelegram: FC<Props> = ({ forumChatText }) => {
 	if (error) return <div>{error}</div>;
 
 	return (
-		<div className='p-4'>
-			<ul className='grid grid-cols-[repeat(auto-fit,_minmax(150px,1fr))] md:grid-cols-[repeat(auto-fit,_250px)] gap-4 justify-center'>
+		<div className=''>
+			<ul className='grid grid-cols-[repeat(auto-fit,_minmax(155px,1fr))] gap-[10px] items-start'>
 				{cities.map((city: City) => (
 					<CityCard
 						tag='li'
