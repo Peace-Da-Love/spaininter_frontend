@@ -99,7 +99,7 @@ export default async function LocaleLayout({
 				<Script
 					defer
 					data-domain='spaininter.com'
-					src='https://stat.spaininter.es/js/script.js'
+					src='https://stat.spaininter.com/js/script.js'
 				/>
 			</body>
 		</html>
