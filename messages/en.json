@@ -9,6 +9,36 @@
 				"crypto": "How to use Cryptocurrency/Wallet",
 				"work": "Guaranteed Job for the Best Graduate"
 			}
+		},
+		"PropertyCatalog": {
+		"title": "Catalog of Houses and Apartments in Spain for Vacation",
+		"loadMore": "Load More",
+		"loading": "Loading...",
+		"filters": {
+			"province": "Province",
+			"allProvinces": "All provinces",
+			"town": "Town",
+			"allTowns": "All towns",
+			"type": "Property type",
+			"allTypes": "All types",
+			"price": "Price",
+			"priceAsc": "Asc.",
+			"priceDesc": "Desc.",
+			"ref": "ID (ref)",
+			"apply": "Apply",
+			"reset": "Reset"
+		}
+		},
+		"Property": {
+		"area": "Area",
+		"bedrooms": "Bedrooms",
+		"baths": "Baths",
+		"beach": "Beach",
+		"pool": "Pool",
+		"gym": "Gym",
+		"parking": "Parking",
+		"showMore": "Show More",
+		"hide": "Hide"
 		}
 	},
 	"Components": {
@@ -37,10 +67,14 @@
 		"CoursesPage": {
 			"title": "Telegram courses, Telegram courses from scratch and Telegram for Business Spain",
 			"description": "Training to earn/invest in Cryptocurrency, work from home. Courses to create and promote short videos (TikTok, Shorts, Reels, Telegram). Telegram for Business Spain"
-		},
+		}, 
 		"CatalogTelegramPage": {
 			"title": "Telegram channels Spain. Catalog of Telegram channels Spain",
 			"description": "Telegram channels in Spain: Madrid, Barcelona, Valencia, Seville, Zaragoza, Malaga, Murcia. Find the best chats and channels for communication and news."
+		},
+		"PropertyCatalogPage": {
+			"title": "Catalog of Houses and Apartments in Spain for Vacation.",
+			"description": "Houses, apartments, and villas in Spain. Includes filters, ID search, and price sorting."
 		}
 	}
 }

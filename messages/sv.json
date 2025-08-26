@@ -9,6 +9,36 @@
 				"crypto": "Ako používať kryptomenu/peňaženku",
 				"work": "Zaručená práca pre najlepšieho absolventa"
 			}
+		},
+		"PropertyCatalog": {
+		"title": "Katalog över hus och lägenheter i Spanien för semester",
+		"loadMore": "Ladda mer",
+		"loading": "Belastning...",
+		"filters": {
+			"province": "Provins",
+			"allProvinces": "Alla provinser",
+			"town": "Stad",
+			"allTowns": "Alla städer",
+			"type": "Fastighetstyp",
+			"allTypes": "Alla typer",
+			"price": "Pris",
+			"priceAsc": "Stigande",
+			"priceDesc": "Fallande",
+			"ref": "ID (ref)",
+			"apply": "Tillämpa",
+			"reset": "Återställ"
+		}
+		},
+		"Property": {
+		"area": "Område",
+		"bedrooms": "Sovrum",
+		"baths": "Badrum",
+		"beach": "Strand",
+		"pool": "Pool",
+		"gym": "Gym",
+		"parking": "Parkering",
+		"showMore": "Visa mer",
+		"hide": "Dölj"
 		}
 	},
 	"Components": {
@@ -41,6 +71,10 @@
 		"CatalogTelegramPage": {
 			"title": "Telegram kanály Španielsko. Katalóg Telegram kanálov Španielsko",
 			"description": "Telegram kanály v Španielsku: Madrid, Barcelona, Valencia, Sevilla, Zaragoza, Málaga, Murcia. Nájdite najlepšie čety a kanály pre komunikáciu a správy."
+		},
+		"PropertyCatalogPage": {
+			"title": "Katalog över hus och lägenheter i Spanien för semester.",
+			"description": "Hus, lägenheter och villor i Spanien. Inkluderar filter, ID-sökning och prissortering."
 		}
 	}
 }

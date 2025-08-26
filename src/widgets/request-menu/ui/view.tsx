@@ -11,7 +11,6 @@ import { cn } from '@/src/shared/utils';
 import { FC } from 'react';
 import { Button } from '@/src/shared/components/ui';
 import { PhoneForm } from '@/src/features/phone-form';
-import { EmailForm } from '@/src/features/email-form';
 import { TelegramContact } from '@/src/features/telegram-contact';
 
 type Props = {
@@ -32,9 +31,6 @@ export const RequestMenu: FC<Props> = ({ className }) => {
 			>
 				<DropdownMenuItem asChild>
 					<PhoneForm />
-				</DropdownMenuItem>
-				<DropdownMenuItem asChild>
-					<EmailForm />
 				</DropdownMenuItem>
 				<DropdownMenuItem asChild>
 					<TelegramContact />

@@ -1,0 +1,47 @@
+export interface Property {
+	_id: number;
+	ref: string;
+	external_id: string;
+	country: string;
+	province: string;
+	title: string;
+	description: string;
+	slug: string | null;
+	date: string | null;
+	price: number;
+	currency: string;
+	price_freq: string;
+	part_ownership: boolean;
+	leasehold: boolean;
+	new_build: boolean;
+	_type: string;
+	town: string;
+	location: {latitude: string; longitude: string};
+	location_detail: string;
+	beds: number;
+	baths: number;
+	pool: boolean;
+	surface_area: number | null;
+	energy_rating: string | null;
+	features: {
+		Beach: string;
+		Gated: boolean;
+		Views: string;
+		Garden: boolean;
+		Heating: string;
+		Terrace: string;
+		Location: string;
+		'Near Schools': boolean;
+		'Private Pool': boolean;
+		'Communal Pool': boolean;
+		'Double Bedrooms': string;
+		'Has Main Electric': boolean;
+		'Useable Build Space': string;
+		'Near Childrens Parks': boolean;
+		'Near Commercial Center': boolean;
+		'Near Golf / Golf Resort Property': boolean;
+		'Gym': boolean;
+		"Parking - Space": boolean;
+	};
+	images: string[];
+}

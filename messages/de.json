@@ -9,6 +9,36 @@
 				"crypto": "Wie man Cryptocurrency/Wallet benutzt",
 				"work": "Garantierter Job für den besten Absolventen"
 			}
+		},
+		"PropertyCatalog": {
+		"title": "Katalog mit Häusern und Wohnungen in Spanien für den Urlaub.",
+		"loadMore": "Mehr laden",
+		"loading": "Laden...",
+		"filters": {
+			"province": "Provinz",
+			"allProvinces": "Alle Provinzen",
+			"town": "Stadt",
+			"allTowns": "Alle Städte",
+			"type": "Immobilientyp",
+			"allTypes": "Alle Typen",
+			"price": "Preis",
+			"priceAsc": "Aufsteigend",
+			"priceDesc": "Absteigend",
+			"ref": "ID (ref)",
+			"apply": "Anwenden",
+			"reset": "Zurücksetzen"
+		}
+		},
+		"Property": {
+		"area": "Bereich",
+		"bedrooms": "Schlafzimmer",
+		"baths": "Bäder",
+		"beach": "Strand",
+		"pool": "Pool",
+		"gym": "Fitnessraum",
+		"parking": "Parkplatz",
+		"showMore": "Mehr anzeigen",
+		"hide": "Ausblenden"
 		}
 	},
 	"Components": {
@@ -41,6 +71,10 @@
 		"CatalogTelegramPage": {
 			"title": "Telegram-Kanäle Spanien. Katalog der Telegram-Kanäle Spanien",
 			"description": "Telegram-Kanäle in Spanien: Madrid, Barcelona, Valencia, Sevilla, Zaragoza, Málaga, Murcia. Finden Sie die besten Chats und Kanäle für Kommunikation und Nachrichten."
+		},
+		"PropertyCatalogPage": {
+			"title": "Katalog mit Häusern und Wohnungen in Spanien für den Urlaub.",
+			"description": "Häuser, Wohnungen und Villen in Spanien. Mit Filtern, ID-Suche und Preissortierung."
 		}
 	}
 }
