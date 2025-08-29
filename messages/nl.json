@@ -9,6 +9,36 @@
 				"crypto": "Cryptocurrency/Wallet gebruiken",
 				"work": "Gegarandeerde baan voor de beste afgestudeerde"
 			}
+		},
+		"PropertyCatalog": {
+		"title": "Catalogus van huizen en appartementen in Spanje voor vakantie",
+		"loadMore": "Meer laden",
+		"loading": "Bezig met laden...",
+		"filters": {
+			"province": "Provincie",
+			"allProvinces": "Alle provincies",
+			"town": "Plaats",
+			"allTowns": "Alle plaatsen",
+			"type": "Type woning",
+			"allTypes": "Alle typen",
+			"price": "Prijs",
+			"priceAsc": "Oplopend",
+			"priceDesc": "Aflopend",
+			"ref": "ID (ref)",
+			"apply": "Toepassen",
+			"reset": "Resetten"
+		}
+		},
+		"Property": {
+		"area": "Oppervlakte",
+		"bedrooms": "Slaapkamers",
+		"baths": "Badkamers",
+		"beach": "Strand",
+		"pool": "Zwembad",
+		"gym": "Sportschool",
+		"parking": "Parkeren",
+		"showMore": "Meer weergeven",
+		"hide": "Verbergen"
 		}
 	},
 	"Components": {
@@ -41,6 +71,10 @@
 		"CatalogTelegramPage": {
 			"title": "Telegram-kanalen Spanje. Catalogus van Telegram-kanalen Spanje",
 			"description": "Telegram-kanalen in Spanje: Madrid, Barcelona, Valencia, Sevilla, Zaragoza, Málaga, Murcia. Vind de beste chats en kanalen voor communicatie en nieuws."
+		},
+		"PropertyCatalogPage": {
+			"title": "Catalogus van huizen en appartementen in Spanje voor vakantie.",
+			"description": "Huizen, appartementen en villa's in Spanje. Inclusief filters, ID-zoekfunctie en prijssortering."
 		}
 	}
 }

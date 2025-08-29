@@ -1,0 +1,1 @@
+export { FlatCard } from './view';

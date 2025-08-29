@@ -5,14 +5,14 @@ import IcNewspaper from '@/src/app/icons/ic_newspaper.svg';
 import { Button } from '@/src/shared/components/ui';
 import { usePathname } from 'next/navigation';
 import { locales } from '@/src/shared/configs';
+import { forwardRef } from 'react';
 
-export const CitiesButton = () => {
+export const CitiesButton = forwardRef<HTMLButtonElement, {}>((props, ref) => {
 	const path = usePathname();
 	const thisPageIsCatalogTelegram: string | undefined = locales.find(locale => {
 		return `/${locale}/catalog-telegram` === path;
 	});
-	console.log(thisPageIsCatalogTelegram);
-
+	
 	return (
 		<Button variant={'menu'} asChild>
 			<Link
@@ -28,4 +28,6 @@ export const CitiesButton = () => {
 			</Link>
 		</Button>
 	);
-};
+});
+
+CitiesButton.displayName = 'CitiesButton';

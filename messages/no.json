@@ -9,6 +9,36 @@
 				"crypto": "Hvordan bruke kryptovaluta / lommebok",
 				"work": "Garantert jobb for den beste nyutdannede"
 			}
+		},
+		"PropertyCatalog": {
+		"title": "Katalog over hus og leiligheter i Spania for ferie",
+		"loadMore": "Last inn mer",
+		"loading": "Laster inn...",
+		"filters": {
+			"province": "Provins",
+			"allProvinces": "Alle provinser",
+			"town": "By",
+			"allTowns": "Alle byer",
+			"type": "Eiendomstype",
+			"allTypes": "Alle typer",
+			"price": "Pris",
+			"priceAsc": "Stigende",
+			"priceDesc": "Synkende",
+			"ref": "ID (ref)",
+			"apply": "Bruk",
+			"reset": "Tilbakestill"
+		}
+		},
+		"Property": {
+		"area": "Område",
+		"bedrooms": "Soverom",
+		"baths": "Bad",
+		"beach": "Strand",
+		"pool": "Basseng",
+		"gym": "Treningsstudio",
+		"parking": "Parkering",
+		"showMore": "Vis mer",
+		"hide": "Skjul"
 		}
 	},
 	"Components": {
@@ -41,6 +71,10 @@
 		"CatalogTelegramPage": {
 			"title": "Telegram-kanaler Spania. Katalog over Telegram-kanaler Spania",
 			"description": "Telegram-kanaler i Spania: Madrid, Barcelona, Valencia, Sevilla, Zaragoza, Málaga, Murcia. Finn de beste chattene og kanalene for kommunikasjon og nyheter."
+		},
+		"PropertyCatalogPage": {
+			"title": "Katalog over hus og leiligheter i Spania for ferie.",
+			"description": "Hus, leiligheter og villaer i Spania. Inkluderer filtre, ID-søk og prissortering."
 		}
 	}
 }

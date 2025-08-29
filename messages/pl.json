@@ -9,6 +9,36 @@
 				"crypto": "Jak korzystać z kryptowaluty/portfela",
 				"work": "Gwarantowana praca dla najlepszych absolwentów"
 			}
+		},
+		"PropertyCatalog": {
+		"title": "Katalog domów i apartamentów na wakacje w Hiszpanii",
+		"loadMore": "Załaduj więcej",
+		"loading": "Załadunek...",
+		"filters": {
+			"province": "Prowincja",
+			"allProvinces": "Wszystkie prowincje",
+			"town": "Miasto",
+			"allTowns": "Wszystkie miasta",
+			"type": "Typ nieruchomości",
+			"allTypes": "Wszystkie typy",
+			"price": "Cena",
+			"priceAsc": "Rosnąco",
+			"priceDesc": "Malejąco",
+			"ref": "ID (ref)",
+			"apply": "Zastosuj",
+			"reset": "Resetuj"
+		}
+		},
+		"Property": {
+		"area": "Obszar",
+		"bedrooms": "Sypialnie",
+		"baths": "Łazienki",
+		"beach": "Plaża",
+		"pool": "Basen",
+		"gym": "Siłownia",
+		"parking": "Parking",
+		"showMore": "Rozwiń",
+		"hide": "Ukryj"
 		}
 	},
 	"Components": {
@@ -41,6 +71,10 @@
 		"CatalogTelegramPage": {
 			"title": "Kanały Telegram Hiszpania. Katalog kanałów Telegram Hiszpania",
 			"description": "Kanały Telegram w Hiszpanii: Madryt, Barcelona, Walencja, Sewilla, Saragossa, Malaga, Murcja. Znajdź najlepsze czaty i kanały do komunikacji i wiadomości."
+		},
+		"PropertyCatalogPage": {
+			"title": "Katalog domów i apartamentów na wakacje w Hiszpanii.",
+			"description": "Domy, apartamenty i wille w Hiszpanii. Zawiera filtry, wyszukiwanie po identyfikatorze i sortowanie według ceny."
 		}
 	}
 }

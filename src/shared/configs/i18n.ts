@@ -28,7 +28,8 @@ export const pathnames = {
     no: '/kurs-i-spania',
     nl: '/cursussen-in-spanje',
     pl: '/kursy-w-hiszpanii',
-  }
+  },
+  '/property-catalog': '/property-catalog'
 } satisfies Pathnames<typeof locales>;
 
 // Use the default: `always`

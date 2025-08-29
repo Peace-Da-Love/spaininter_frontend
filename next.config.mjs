@@ -16,6 +16,10 @@ const config = {
 			{
 				protocol: 'https',
 				hostname: 'api.spaininter.com'
+			},
+			{
+				protocol: 'https',
+				hostname: 'prop.spaininter.com'
 			}
 		]
 	},

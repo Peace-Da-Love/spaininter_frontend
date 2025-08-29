@@ -1,0 +1,1 @@
+export { InfoCardOverlay } from './view';

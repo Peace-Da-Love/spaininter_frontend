@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useTransition, FC } from 'react';
+import { ReactNode, useTransition, forwardRef } from 'react';
 import { useRouter, usePathname, cn } from '@/src/shared/utils';
 import { useParams } from 'next/navigation';
 import {
@@ -16,11 +16,8 @@ type Props = {
 	defaultValue?: string;
 };
 
-export const LocaleSwitcherSelect: FC<Props> = ({
-	className,
-	children,
-	defaultValue
-}) => {
+export const LocaleSwitcherSelect = forwardRef<HTMLButtonElement, Props>(
+	({ className, children, defaultValue, ...props }, ref) => {
 	const router = useRouter();
 	const [isPending, startTransition] = useTransition();
 	const pathname = usePathname();
@@ -46,9 +43,11 @@ export const LocaleSwitcherSelect: FC<Props> = ({
 				defaultValue={defaultValue}
 			>
 				<SelectTrigger
+					ref={ref}
 					className={
 						'inline-flex items-center justify-center size-[72px] rounded-3xl backdrop-blur-xl bg-gray-300/40 border-0 text-xl font-bold uppercase'
 					}
+					{...props}
 				>
 					{defaultValue}
 				</SelectTrigger>
@@ -66,4 +65,5 @@ export const LocaleSwitcherSelect: FC<Props> = ({
 			</Select>
 		</div>
 	);
-};
+});
+LocaleSwitcherSelect.displayName = 'LocaleSwitcherSelect';

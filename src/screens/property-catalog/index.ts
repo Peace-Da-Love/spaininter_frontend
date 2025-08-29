@@ -1,0 +1,1 @@
+export { PropertyCatalogPage } from './view';

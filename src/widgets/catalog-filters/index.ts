@@ -1,0 +1,1 @@
+export { PropertyCatalogFilters } from './view';

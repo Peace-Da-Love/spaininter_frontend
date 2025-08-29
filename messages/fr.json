@@ -9,6 +9,36 @@
 				"crypto": "Comment utiliser les crypto-monnaies/portefeuilles",
 				"work": "Emploi garanti pour les meilleurs diplômés"
 			}
+		},
+		"PropertyCatalog": {
+		"title": "Catalogue de maisons et appartements en Espagne pour les vacances",
+		"loadMore": "Charger plus",
+		"loading": "Chargement...",
+		"filters": {
+			"province": "Province",
+			"allProvinces": "Toutes les provinces",
+			"town": "Ville",
+			"allTowns": "Toutes les villes",
+			"type": "Type de propriété",
+			"allTypes": "Tous les types",
+			"price": "Prix",
+			"priceAsc": "Croissant",
+			"priceDesc": "Décroissant",
+			"ref": "ID (réf.)",
+			"apply": "Appliquer",
+			"reset": "Réinitialiser"
+		}
+		},
+		"Property": {
+		"area": "Superficie",
+		"bedrooms": "Chambres",
+		"baths": "Salle de bain",
+		"beach": "Plage",
+		"pool": "Piscine",
+		"gym": "Salle de sport",
+		"parking": "Parking",
+		"showMore": "Afficher plus",
+		"hide": "Masquer"
 		}
 	},
 	"Components": {
@@ -41,6 +71,10 @@
 		"CatalogTelegramPage": {
 			"title": "Chaînes Telegram Espagne. Catalogue des chaînes Telegram Espagne",
 			"description": "Chaînes Telegram en Espagne : Madrid, Barcelone, Valence, Séville, Saragosse, Malaga, Murcie. Trouvez les meilleurs chats et chaînes pour la communication et les actualités."
+		},
+		"PropertyCatalogPage": {
+			"title": "Catalogue de maisons et appartements en Espagne pour les vacances.",
+			"description": "Les maisons, appartements et villas en Espagne. Filtres, recherche par identifiant et tri par prix."
 		}
 	}
 }

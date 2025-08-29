@@ -9,6 +9,36 @@
 				"crypto": "Cómo usar Cryptocurrency/Wallet",
 				"work": "Trabajo garantizado para el mejor graduado"
 			}
+		},
+		"PropertyCatalog": {
+		"title": "Catálogo de Casas y Apartamentos en España para Vacaciones",
+		"loadMore": "Cargar más",
+		"loading": "Cargando...",
+		"filters": {
+			"province": "Provincia",
+			"allProvinces": "Todas las provincias",
+			"town": "Ciudad",
+			"allTowns": "Todas las ciudades",
+			"type": "Tipo de propiedad",
+			"allTypes": "Todos los tipos",
+			"price": "Precio",
+			"priceAsc": "Ascendente",
+			"priceDesc": "Descendente",
+			"ref": "ID (ref)",
+			"apply": "Aplicar",
+			"reset": "Restablecer"
+		}
+		},
+		"Property": {
+		"area": "Área",
+		"bedrooms": "Dormitorios",
+		"baths": "Baños",
+		"beach": "Playa",
+		"pool": "Piscina",
+		"gym": "Gimnasio",
+		"parking": "Aparcamiento",
+		"showMore": "Mostrar más",
+		"hide": "Ocultar"
 		}
 	},
 	"Components": {
@@ -41,6 +71,10 @@
 		"CatalogTelegramPage": {
 			"title": "Canales de Telegram España. Catálogo de canales de Telegram España",
 			"description": "Canales de Telegram en España: Madrid, Barcelona, Valencia, Sevilla, Zaragoza, Málaga, Murcia. Encuentra los mejores chats y canales para comunicación y noticias."
+		},
+		"PropertyCatalogPage": {
+			"title": "Catálogo de Casas y Apartamentos en España para Vacaciones.",
+			"description": "Casas, apartamentos y chalets en España. Incluye filtros, búsqueda por ID y clasificación por precio."
 		}
 	}
 }

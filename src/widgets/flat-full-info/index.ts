@@ -1,0 +1,1 @@
+export { FullInfoOverlay } from './view';
