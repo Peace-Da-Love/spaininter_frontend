@@ -91,7 +91,7 @@ export const LoadFlats = ({ locale, filters, currentCount, loadMore, loading }: 
         {flats.map((item, index) => (
           <Link
             key={`load-${index}-${item._id}`}
-            href={`/${locale}/catalog/property/${item._id}`}
+            href={`/${locale}/property-catalog/flat/${item._id}`}
             className="block"
           >
             <FlatCard
