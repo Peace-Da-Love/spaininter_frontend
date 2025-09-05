@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Button } from '@/src/shared/components/ui';
 import { FlatCard } from '@/src/entities/flat-card';
 import { Property } from '@/src/shared/types';
+import { $fetchCP } from '@/src/app/client-api/model';
 
 type Filters = {
   province?: string;
@@ -37,29 +38,22 @@ export const LoadFlats = ({ locale, filters, currentCount, loadMore, loading }: 
     setHasMore(currentCount >= LIMIT);
   }, [filters.province, filters.town, filters.type, filters.order, filters.ref, currentCount]);
 
-  const buildUrl = (pageNum: number, locale: string) => {
-    const params = new URLSearchParams();
-    if (filters.order) {
-      params.set('order', filters.order === 'desc' ? '-price' : 'price');
-    }
-    if (filters.province) params.set('province', filters.province);
-    if (filters.town) params.set('town', filters.town);
-    if (filters.type) params.set('type', filters.type);
-    if (filters.ref) params.set('ref', filters.ref);
-
-    params.set('page', String(pageNum));
-    params.set('limit', String(LIMIT));
-    params.set('locale', locale);
-    
-    return `https://prop.spaininter.com/api/properties${params.toString() ? `?${params.toString()}` : ''}`;
-  };
-
   const loadFlats = async () => {
     if (!hasMore || isFetching) return;
     setIsFetching(true);
     try {
-      const url = buildUrl(page, locale);
-      const res = await fetch(url, {
+
+      const params = new URLSearchParams();
+      if (filters.order) params.set('order', filters.order === 'desc' ? '-price' : 'price');
+      if (filters.province) params.set('province', filters.province);
+      if (filters.town) params.set('town', filters.town);
+      if (filters.type) params.set('type', filters.type);
+      if (filters.ref) params.set('ref', filters.ref);
+      params.set('page', String(page));
+      params.set('limit', String(LIMIT));
+
+      const url = `properties${params.toString() ? `?${params.toString()}` : ''}`;
+      const res = await $fetchCP(url, {
       headers: {
         'Accept-Language': locale 
       }

@@ -1,10 +1,10 @@
-
 'use client';
 
 import { FC, useEffect, useMemo, useState } from 'react';
 import { PropertyCatalogFiltersProps } from './model';
 import { DesktopFilter } from './ui/desktop-filter';
 import { MobileFilter } from './ui/mobile-filter';
+import { $fetchCP } from '@/src/app/client-api/model';
 
 type Place = {
   _id: string | null;
@@ -27,8 +27,8 @@ export const PropertyCatalogFilters: FC<PropertyCatalogFiltersProps> = (props) =
       setLoading(true);
       try {
         const [placesRes, typesRes] = await Promise.all([
-          fetch('https://prop.spaininter.com/api/places'),
-          fetch('https://prop.spaininter.com/api/properties/types'),
+          $fetchCP('places'),
+          $fetchCP('properties/types'),
         ]);
         if (!placesRes.ok || !typesRes.ok) throw new Error('Failed to load filter lists');
         setProvinceList(await placesRes.json());

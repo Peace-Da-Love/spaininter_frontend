@@ -7,6 +7,8 @@ import { Property } from '@/src/shared/types';
 import { LoadFlats } from '@/src/features/load-flats';
 import { PropertyCatalogFilters } from '@/src/widgets/catalog-filters';
 import { PropertyCatalogFilterLabels } from '@/src/shared/types';
+import { $fetchCP } from '@/src/app/client-api/model';
+
 
 type Props = {
   data: Property[];
@@ -26,30 +28,6 @@ export const PropertyCatalogPage: FC<Props> = ({ data: initialData, locale, titl
   const [data, setData] = useState<Property[]>(initialData || []);
   const [error, setError] = useState<string | null>(null);
 
-  const buildQueryUrl = (filtersOverride?: {
-    province?: string;
-    town?: string;
-    type?: string;
-    order?: 'asc' | 'desc';
-    ref?: string;
-  }) => {
-    const params = new URLSearchParams();
-    const province = filtersOverride?.province ?? selectedProvince;
-    const town = filtersOverride?.town ?? selectedTown;
-    const type = filtersOverride?.type ?? selectedType;
-    const order = filtersOverride?.order ?? priceOrder;
-    const ref = filtersOverride?.ref ?? refValue;
-
-    params.set('order', order === 'desc' ? '-price' : 'price');
-    if (province) params.set('province', province);
-    if (town) params.set('town', town);
-    if (type) params.set('type', type);
-    if (ref) params.set('ref', ref);
-
-    const qs = params.toString();
-    return `https://prop.spaininter.com/api/properties${qs ? `?${qs}` : ''}`;
-  };
-
 
   const fetchProperties = async (filtersOverride?: {
     province?: string;
@@ -60,8 +38,24 @@ export const PropertyCatalogPage: FC<Props> = ({ data: initialData, locale, titl
   }) => {
     try {
       setError(null);
-      const url = buildQueryUrl(filtersOverride);
-      const res = await fetch(url,{
+
+      const params = new URLSearchParams();
+      const province = filtersOverride?.province ?? selectedProvince;
+      const town = filtersOverride?.town ?? selectedTown;
+      const type = filtersOverride?.type ?? selectedType;
+      const order = filtersOverride?.order ?? priceOrder;
+      const ref = filtersOverride?.ref ?? refValue;
+
+      params.set('order', order === 'desc' ? '-price' : 'price');
+      if (province) params.set('province', province);
+      if (town) params.set('town', town);
+      if (type) params.set('type', type);
+      if (ref) params.set('ref', ref);
+
+      const qs = params.toString();
+      const url = `properties${qs ? `?${qs}` : ''}`;
+
+      const res = await $fetchCP(url,{
         headers: {
           'Accept-Language': locale
         }
