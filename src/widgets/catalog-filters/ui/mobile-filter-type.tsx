@@ -1,72 +1,119 @@
-'use client';
+'use client'
 
-import { FC } from 'react';
-import { Home } from 'lucide-react';
-import { PropertyCatalogFiltersProps } from '../model';
+import * as React from 'react'
+import { Home } from 'lucide-react'
+import { PropertyCatalogFiltersProps } from '../model'
+import { Button } from '@/src/shared/components/ui/button'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/src/shared/components/ui/popover'
+import {
+  Select,
+  SelectTrigger,
+  SelectContent,
+  SelectGroup,
+  SelectItemList,
+  SelectValue,
+} from '@/src/shared/components/ui/select'
 
-interface Props extends Pick<
-  PropertyCatalogFiltersProps,
-  | 'labels'
-  | 'selectedType'
-  | 'setSelectedType'
-  | 'selectedProvince'
-  | 'selectedTown'
-  | 'priceOrder'
-  | 'refValue'
-  | 'onApply'
-> {
-  typesList: { name: string; count: number }[];
-  activeFilter: string | null;
-  setActiveFilter: (v: string | null) => void;
+const EMPTY_VALUE = '__empty__'
+
+interface Props
+  extends Pick<
+    PropertyCatalogFiltersProps,
+    | 'labels'
+    | 'selectedType'
+    | 'setSelectedType'
+    | 'selectedProvince'
+    | 'selectedTown'
+    | 'priceOrder'
+    | 'refValue'
+    | 'onApply'
+  > {
+  typesList: { name: string; count: number }[]
 }
 
-export const MobileFilterType: FC<Props> = ({
-  labels,
-  typesList,
-  selectedType,
-  setSelectedType,
-  selectedProvince,
-  selectedTown,
-  priceOrder,
-  refValue,
-  onApply,
-  activeFilter,
-  setActiveFilter,
-}) => (
-  <div className="relative flex items-center">
-    <button
-      onClick={() => setActiveFilter(activeFilter === 'type' ? null : 'type')}
-      className="flex items-center size-[62px] bg-white border p-5 rounded-full shadow"
-    >
-      <Home size={20} />
-    </button>
-    {activeFilter === 'type' && (
-      <div className="absolute right-20 top-1/2 -translate-y-1/2 bg-white border rounded-2xl shadow p-3 w-52">
-        <label className="block text-sm font-medium">{labels.type}</label>
-        <select
-          value={selectedType}
-          onChange={(e) => {
-            const type = e.target.value;
-            setSelectedType(type);
-            setActiveFilter(null);
-            onApply({
-              province: selectedProvince,
-              town: selectedTown,
-              type,
-              order: priceOrder,
-              ref: refValue,
-            });
-          }}
-          className="w-full border rounded-md p-2"
-        >
-          <option value="">{labels.allTypes}</option>
-          {typesList.map((t) => (
-            <option key={t.name} value={t.name}>
-              {t.name} ({t.count})
-            </option>
-          ))}
-        </select>
+// forwardRef для корректной работы с DropdownMenuItem asChild
+export const MobileFilterType = React.forwardRef<HTMLDivElement, Props>(
+  (
+    {
+      labels,
+      typesList,
+      selectedType,
+      setSelectedType,
+      selectedProvince,
+      selectedTown,
+      priceOrder,
+      refValue,
+      onApply,
+    },
+    ref
+  ) => {
+    function handleTypeChange(v: string) {
+      const type = v === EMPTY_VALUE ? '' : v
+      setSelectedType(type)
+      onApply({
+        province: selectedProvince,
+        town: selectedTown,
+        type,
+        order: priceOrder,
+        ref: refValue,
+      })
+    }
+
+    return (
+      <div ref={ref}>
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button variant="menu">
+              <Home size={20} />
+            </Button>
+          </PopoverTrigger>
+
+          <PopoverContent
+            side="left"
+            align="start"
+            className="w-52 p-3 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-visible"
+          >
+            <div>
+              <label className="block text-xs font-medium text-foreground/90 mb-2">
+                {labels.type}
+              </label>
+
+              <Select
+                value={selectedType || EMPTY_VALUE}
+                onValueChange={handleTypeChange}
+              >
+                <SelectTrigger className="w-full inline-flex justify-between items-center px-3 py-2 rounded-md border bg-white text-sm">
+                  <SelectValue placeholder={labels.allTypes} />
+                </SelectTrigger>
+
+                <SelectContent position="popper">
+                  <SelectGroup>
+                    <SelectItemList value={EMPTY_VALUE}>
+                      {labels.allTypes}
+                    </SelectItemList>
+                    {typesList.map((t) => (
+                      <SelectItemList key={t.name} value={t.name}>
+                        <div className="flex justify-between items-center">
+                          <span className="truncate">{t.name}</span>
+                          <span className="ml-2 text-xs text-foreground/60">
+                            ({t.count})
+                          </span>
+                        </div>
+                      </SelectItemList>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+          </PopoverContent>
+        </Popover>
       </div>
-    )}
-  </div>
-);
+    )
+  }
+)
+
+MobileFilterType.displayName = 'MobileFilterType'

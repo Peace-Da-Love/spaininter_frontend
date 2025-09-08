@@ -1,7 +1,10 @@
-'use client';
+'use client'
 
-import { FC } from 'react';
-import { PropertyCatalogFiltersProps } from '../model';
+import * as React from 'react'
+import { PropertyCatalogFiltersProps } from '../model'
+import { Button } from '@/src/shared/components/ui/button'
+import { Popover, PopoverContent, PopoverTrigger } from '@/src/shared/components/ui/popover'
+import { Input } from '@/src/shared/components/ui/input'
 
 interface Props extends Pick<
   PropertyCatalogFiltersProps,
@@ -14,49 +17,69 @@ interface Props extends Pick<
   | 'setPriceOrder'
   | 'onApply'
 > {
-  activeFilter: string | null;
-  setActiveFilter: (v: string | null) => void;
+  activeFilter: string | null
+  setActiveFilter: (v: string | null) => void
 }
 
-export const MobileFilterRef: FC<Props> = ({
-  labels,
-  refValue,
-  setRefValue,
-  setSelectedProvince,
-  setSelectedTown,
-  setSelectedType,
-  setPriceOrder,
-  onApply,
-  activeFilter,
-  setActiveFilter,
-}) => (
-  <div className="relative flex items-center">
-    <button
-      onClick={() => setActiveFilter(activeFilter === 'ref' ? null : 'ref')}
-      className="flex items-center size-[62px] bg-white border p-5 rounded-full shadow"
-    >
-      <span className="font-semibold text-lg">ID</span>
-    </button>
-    {activeFilter === 'ref' && (
-      <div className="absolute right-20 top-1/2 -translate-y-1/2 bg-white border rounded-2xl shadow p-3 w-56">
-        <label className="block text-sm font-medium">{labels.ref}</label>
-        <input
-          value={refValue}
-          onChange={(e) => setRefValue(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              setSelectedProvince('');
-              setSelectedTown('');
-              setSelectedType('');
-              setPriceOrder('asc');
-              setActiveFilter(null);
-              onApply();
-            }
-          }}
-          placeholder="NXXXX"
-          className="w-full border rounded-md p-2"
-        />
+// Используем forwardRef, чтобы DropdownMenuItem мог пробросить ref
+export const MobileFilterRef = React.forwardRef<HTMLDivElement, Props>(
+  (
+    {
+      labels,
+      refValue,
+      setRefValue,
+      setSelectedProvince,
+      setSelectedTown,
+      setSelectedType,
+      setPriceOrder,
+      onApply,
+      activeFilter,
+      setActiveFilter,
+    },
+    ref
+  ) => {
+    const open = activeFilter === 'ref'
+
+    const handleApply = () => {
+      setSelectedProvince('')
+      setSelectedTown('')
+      setSelectedType('')
+      setPriceOrder('asc')
+      setActiveFilter(null)
+      onApply()
+    }
+
+    return (
+      <div ref={ref}>
+        <Popover open={open} onOpenChange={(o) => setActiveFilter(o ? 'ref' : null)}>
+          <PopoverTrigger asChild>
+            <Button variant="menu">
+              <span className="font-semibold text-lg">ID</span>
+            </Button>
+          </PopoverTrigger>
+
+          <PopoverContent
+            side="left"
+            align="start"
+            className="w-56 p-3 bg-white rounded-2xl shadow-lg border border-gray-100"
+          >
+            <label className="block text-xs font-medium text-foreground/90 mb-2">
+              {labels.ref}
+            </label>
+            <Input
+              value={refValue}
+              onChange={(e) => setRefValue(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') handleApply()
+              }}
+              placeholder="NXXXX"
+              className="w-full"
+            />
+          </PopoverContent>
+        </Popover>
       </div>
-    )}
-  </div>
-);
+    )
+  }
+)
+
+MobileFilterRef.displayName = 'MobileFilterRef'

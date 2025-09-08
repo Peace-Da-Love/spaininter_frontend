@@ -1,10 +1,27 @@
-'use client';
+'use client'
 
-import { FC } from 'react';
-import { MapPin } from 'lucide-react';
-import { PropertyCatalogFiltersProps } from '../model';
+import * as React from 'react'
+import { useMemo } from 'react'
+import { MapPin } from 'lucide-react'
+import { PropertyCatalogFiltersProps } from '../model'
+import { Button } from '@/src/shared/components/ui/button'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/src/shared/components/ui/popover'
+import {
+  Select,
+  SelectTrigger,
+  SelectContent,
+  SelectGroup,
+  SelectItemList,
+  SelectValue,
+} from '@/src/shared/components/ui/select'
 
-interface Props extends Pick<
+const EMPTY_VALUE = '__empty__'
+
+type Props = Pick<
   PropertyCatalogFiltersProps,
   | 'labels'
   | 'selectedProvince'
@@ -15,93 +32,134 @@ interface Props extends Pick<
   | 'priceOrder'
   | 'refValue'
   | 'onApply'
-> {
-  provinceList: { name: string; count: number }[];
-  townsForSelected: { name: string; count: number }[];
-  activeFilter: string | null;
-  setActiveFilter: (v: string | null) => void;
+> & {
+  provinceList: { name: string; count: number }[]
+  townsForSelected: { name: string; count: number }[]
+  className?: string
 }
 
-export const MobileFilterProvinceTown: FC<Props> = ({
-  labels,
-  provinceList,
-  selectedProvince,
-  setSelectedProvince,
-  selectedTown,
-  setSelectedTown,
-  townsForSelected,
-  selectedType,
-  priceOrder,
-  refValue,
-  onApply,
-  activeFilter,
-  setActiveFilter,
-}) => (
-  <div className="relative flex items-center">
-    <button
-      onClick={() => setActiveFilter(activeFilter === 'place' ? null : 'place')}
-      className="flex items-center size-[62px] bg-white border p-5 rounded-full shadow"
-    >
-      <MapPin size={20} />
-    </button>
-    {activeFilter === 'place' && (
-      <div className="absolute right-20 top-1/2 -translate-y-1/2 bg-white border rounded-2xl shadow p-3 w-60 space-y-3">
-        {/* Province */}
-        <label className="block text-sm font-medium">{labels.province}</label>
-        <select
-          value={selectedProvince}
-          onChange={(e) => {
-            const province = e.target.value;
-            setSelectedProvince(province);
-            setSelectedTown('');
-            onApply({
-              province,
-              town: '',
-              type: selectedType,
-              order: priceOrder,
-              ref: refValue,
-            });
-          }}
-          className="w-full border rounded-md p-2"
-        >
-          <option value="">{labels.allProvinces}</option>
-          {provinceList.map((p) => (
-            <option key={p.name} value={p.name}>
-              {p.name} ({p.count})
-            </option>
-          ))}
-        </select>
+// forwardRef для корректной работы с DropdownMenuItem asChild
+export const MobileFilterProvinceTown = React.forwardRef<HTMLDivElement, Props>(
+  (
+    {
+      labels,
+      provinceList,
+      townsForSelected,
+      selectedProvince,
+      setSelectedProvince,
+      selectedTown,
+      setSelectedTown,
+      selectedType,
+      priceOrder,
+      refValue,
+      onApply,
+      className,
+    },
+    ref
+  ) => {
+    const hasProvince = useMemo(() => !!selectedProvince, [selectedProvince])
 
-        {/* Town */}
-        {selectedProvince && (
-          <>
-            <label className="block text-sm font-medium">{labels.town}</label>
-            <select
-              value={selectedTown}
-              onChange={(e) => {
-                const town = e.target.value;
-                setSelectedTown(town);
-                setActiveFilter(null);
-                onApply({
-                  province: selectedProvince,
-                  town,
-                  type: selectedType,
-                  order: priceOrder,
-                  ref: refValue,
-                });
-              }}
-              className="w-full border rounded-md p-2"
-            >
-              <option value="">{labels.allTowns}</option>
-              {townsForSelected.map((t) => (
-                <option key={t.name} value={t.name}>
-                  {t.name} ({t.count})
-                </option>
-              ))}
-            </select>
-          </>
-        )}
+    function handleProvinceChange(v: string) {
+      const province = v === EMPTY_VALUE ? '' : v
+      setSelectedProvince(province)
+      setSelectedTown('')
+      onApply({
+        province,
+        town: '',
+        type: selectedType,
+        order: priceOrder,
+        ref: refValue,
+      })
+    }
+
+    function handleTownChange(v: string) {
+      const town = v === EMPTY_VALUE ? '' : v
+      setSelectedTown(town)
+      onApply({
+        province: selectedProvince,
+        town,
+        type: selectedType,
+        order: priceOrder,
+        ref: refValue,
+      })
+    }
+
+    return (
+      <div ref={ref} className={className}>
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button variant="menu">
+              <MapPin size={20} />
+            </Button>
+          </PopoverTrigger>
+
+          <PopoverContent
+            side="left"
+            align="start"
+            className="w-52 p-3 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-visible"
+          >
+            {/* Province selector */}
+            <div className="mb-3">
+              <label className="block text-xs font-medium text-foreground/90 mb-2">
+                {labels.province}
+              </label>
+
+              <Select value={selectedProvince || EMPTY_VALUE} onValueChange={handleProvinceChange}>
+                <SelectTrigger className="w-full inline-flex justify-between items-center px-3 py-2 rounded-md border bg-white text-sm">
+                  <SelectValue placeholder={labels.allProvinces} />
+                </SelectTrigger>
+
+                <SelectContent position="popper">
+                  <SelectGroup>
+                    <SelectItemList value={EMPTY_VALUE}>{labels.allProvinces}</SelectItemList>
+                    {provinceList.map((p) => (
+                      <SelectItemList key={p.name} value={p.name}>
+                        {p.name} ({p.count})
+                      </SelectItemList>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Town selector */}
+            {hasProvince && (
+              <div>
+                <label className="block text-xs font-medium text-foreground/90 mb-2">
+                  {labels.town}
+                </label>
+
+                <Select value={selectedTown || EMPTY_VALUE} onValueChange={handleTownChange}>
+                  <SelectTrigger className="w-full inline-flex justify-between items-center px-3 py-2 rounded-md border bg-white text-sm">
+                    <SelectValue placeholder={labels.allTowns} />
+                  </SelectTrigger>
+
+                  <SelectContent
+                    position="popper"
+                    className="w-56 max-h-60 rounded-md shadow-lg bg-white border overflow-hidden"
+                  >
+                    <SelectGroup className="flex flex-col">
+                      <SelectItemList value={EMPTY_VALUE}>
+                        {labels.allTowns}
+                      </SelectItemList>
+                      {townsForSelected.map((t) => (
+                        <SelectItemList key={t.name} value={t.name}>
+                          <div className="flex justify-between items-center">
+                            <span className="truncate">{t.name}</span>
+                            <span className="ml-2 text-xs text-foreground/60">({t.count})</span>
+                          </div>
+                        </SelectItemList>
+                      ))}
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              </div>
+            )}
+          </PopoverContent>
+        </Popover>
       </div>
-    )}
-  </div>
-);
+    )
+  }
+)
+
+MobileFilterProvinceTown.displayName = 'MobileFilterProvinceTown'
