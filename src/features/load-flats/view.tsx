@@ -1,8 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import Link from 'next/link';
-import { Button } from '@/src/shared/components/ui';
 import { FlatCard } from '@/src/entities/flat-card';
 import { Property } from '@/src/shared/types';
 import { $fetchCP } from '@/src/app/client-api/model';
@@ -25,20 +24,22 @@ type Props = {
 
 const LIMIT = 12;
 
-export const LoadFlats = ({ locale, filters, currentCount, loadMore, loading }: Props) => {
+export const LoadFlats = ({ locale, filters, currentCount, loading }: Props) => {
   const [page, setPage] = useState<number>(Math.floor(currentCount / LIMIT) + 1);
   const [isFetching, setIsFetching] = useState<boolean>(false);
   const [flats, setFlats] = useState<Property[]>([]);
   const [hasMore, setHasMore] = useState<boolean>(currentCount >= LIMIT);
 
-  // If filters have changed - reset states
+  const sentinelRef = useRef<HTMLDivElement | null>(null);
+
+  // Reset on filter change
   useEffect(() => {
     setPage(Math.floor(currentCount / LIMIT) + 1);
     setFlats([]);
     setHasMore(currentCount >= LIMIT);
   }, [filters.province, filters.town, filters.type, filters.order, filters.ref, currentCount]);
 
-  const loadFlats = async () => {
+  const loadFlats = useCallback(async () => {
     if (!hasMore || isFetching) return;
     setIsFetching(true);
     try {
@@ -54,9 +55,9 @@ export const LoadFlats = ({ locale, filters, currentCount, loadMore, loading }: 
 
       const url = `properties${params.toString() ? `?${params.toString()}` : ''}`;
       const res = await $fetchCP(url, {
-      headers: {
-        'Accept-Language': locale 
-      }
+        headers: {
+          'Accept-Language': locale
+        }
       });
       if (!res.ok) {
         throw new Error(`HTTP ${res.status}`);
@@ -75,12 +76,34 @@ export const LoadFlats = ({ locale, filters, currentCount, loadMore, loading }: 
     } finally {
       setIsFetching(false);
     }
-  };
+  }, [filters, hasMore, isFetching, page, locale]);
+
+  // IntersectionObserver for infinite scroll
+  useEffect(() => {
+    if (!sentinelRef.current || !hasMore) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          loadFlats();
+        }
+      },
+      { threshold: 1.0 }
+    );
+
+    observer.observe(sentinelRef.current);
+
+    return () => {
+      if (sentinelRef.current) {
+        observer.unobserve(sentinelRef.current);
+      }
+    };
+  }, [loadFlats, hasMore]);
 
   const totalLoaded = currentCount + flats.length;
 
   return (
-    <div className="mt-5">
+    <div className="mt-2">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-fr gap-2.5 sm:gap-5">
         {flats.map((item, index) => (
           <Link
@@ -90,7 +113,7 @@ export const LoadFlats = ({ locale, filters, currentCount, loadMore, loading }: 
           >
             <FlatCard
               images={item.images}
-              title ={item.title}
+              title={item.title}
               price={item.price}
               beds={item.beds}
               features={item.features}
@@ -99,17 +122,10 @@ export const LoadFlats = ({ locale, filters, currentCount, loadMore, loading }: 
         ))}
       </div>
 
-      {/* Show button if there are more houses*/}
-      {hasMore && totalLoaded > 0 && (
-        <div className="text-center mt-5">
-          <Button
-            className="py-1.5 px-5"
-            disabled={isFetching}
-            variant="primary"
-            onClick={loadFlats}
-          >
-            {isFetching ? loading : loadMore}
-          </Button>
+      {/* Sentinel for infinite scroll */}
+      {hasMore && (
+        <div ref={sentinelRef} className="h-12 flex items-center justify-center text-gray-400">
+          {loading}
         </div>
       )}
     </div>
