@@ -31,20 +31,12 @@ export const FullInfoOverlay: FC<Props> = ({
     const {
         title,
         town,
-        features,
-        baths,
-        pool,
         location
     } = property;
 
     const title_truncated = extractBeforeCR(title);
     const description = extractAfterCR(title);
     
-    const videos = [
-        'https://www.youtube.com/embed/Ux3eXyXCMrY',
-        'https://www.youtube.com/embed/kHXH7fDmpyA',
-        'https://www.youtube.com/embed/imPheZ3aNgo',
-    ];
     
     const mapEmbedUrl = `https://www.google.com/maps?q=${location.latitude},${location.longitude}&hl=${locale}&z=15&output=embed`;
     return (
@@ -80,25 +72,24 @@ export const FullInfoOverlay: FC<Props> = ({
                     
                     {/* Minicard Row */}
                     <div className="flex gap-4 overflow-x-auto flex-nowrap -mx-2 px-2 sm:mx-0 sm:px-0">
-                        {[
-                        { label: minicardLabels.area, value: `${features['Useable Build Space'].split(' ')[0]} м²`, icon: MiniCardIcons.area},
-                        { label: minicardLabels.bedrooms, value: `${features['Double Bedrooms'].split(' ')[0]}`, icon: MiniCardIcons.bedrooms},
-                        { label: minicardLabels.baths, value: baths, icon: MiniCardIcons.baths},
-                        { label: minicardLabels.beach, value: `${features['Beach'].split(' ')[0]} м²`, icon: MiniCardIcons.beach},
-                        { label: minicardLabels.pool, value: pool, icon: MiniCardIcons.pool},
-                        { label: minicardLabels.gym, value: features['Gym'], icon: MiniCardIcons.gym},
-                        { label: minicardLabels.parking, value: features['Parking - Space'], icon: MiniCardIcons.parking}
-                        ].map(({ icon, label, value }) =>
-                            value ? (
-                                <div key={label} className="flex w-28 flex-col items-center rounded-xl border-2 border-black p-4 text-center">
-                                    <FeatureMiniCard
-                                    icon={icon}
-                                    label={label}
-                                    value={value}
-                                    />
-                                </div>
-                            ) : null)}
+                    {[
+                        MiniCardIcons.area,
+                        MiniCardIcons.bedrooms,
+                        MiniCardIcons.baths,
+                        MiniCardIcons.beach,
+                        MiniCardIcons.pool,
+                        MiniCardIcons.gym,
+                        MiniCardIcons.parking
+                    ].map((icon, idx) => (
+                        <div
+                        key={idx}
+                        className="flex w-16 h-16 items-center justify-center rounded-xl border-2 border-black p-4"
+                        >
+                        <FeatureMiniCard icon={icon} label="" value={true} />
+                        </div>
+                    ))}
                     </div>
+
 
                     {/* Description */}
                     <div>
@@ -133,4 +124,4 @@ export const FullInfoOverlay: FC<Props> = ({
             </div>
         </>
     );
-    };
+};

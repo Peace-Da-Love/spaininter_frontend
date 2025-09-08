@@ -1,6 +1,6 @@
 'use server';
 
-function createFetcher(baseUrl: string) {
+function createServerFetcher(baseUrl: string) {
 	return async function (
 		input: string | URL | globalThis.Request,
 		init?: RequestInit
@@ -16,5 +16,5 @@ function createFetcher(baseUrl: string) {
 	};
 }
 
-export const $fetchS = createFetcher(process.env.API_URL as string);
-export const $fetchP = createFetcher(process.env.PROP_URL as string);
+export const $fetchS = createServerFetcher(process.env.API_URL as string);
+export const $fetchP = createServerFetcher(process.env.PROP_URL as string);

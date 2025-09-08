@@ -1,10 +1,9 @@
-
 'use client';
 
 import { FC, useEffect, useMemo, useState } from 'react';
 import { PropertyCatalogFiltersProps } from './model';
 import { DesktopFilter } from './ui/desktop-filter';
-import { MobileFilter } from './ui/mobile-filter';
+import { $fetchCP } from '@/src/app/client-api/model';
 
 type Place = {
   _id: string | null;
@@ -17,7 +16,6 @@ type TypeItem = { name: string; count: number };
 
 export const PropertyCatalogFilters: FC<PropertyCatalogFiltersProps> = (props) => {
   const { setError, selectedProvince } = props;
-  
   const [provinceList, setProvinceList] = useState<Place[]>([]);
   const [typesList, setTypesList] = useState<TypeItem[]>([]);
   const [loading, setLoading] = useState(false);
@@ -27,8 +25,8 @@ export const PropertyCatalogFilters: FC<PropertyCatalogFiltersProps> = (props) =
       setLoading(true);
       try {
         const [placesRes, typesRes] = await Promise.all([
-          fetch('https://prop.spaininter.com/api/places'),
-          fetch('https://prop.spaininter.com/api/properties/types'),
+          $fetchCP('places'),
+          $fetchCP('properties/types'),
         ]);
         if (!placesRes.ok || !typesRes.ok) throw new Error('Failed to load filter lists');
         setProvinceList(await placesRes.json());
@@ -43,12 +41,6 @@ export const PropertyCatalogFilters: FC<PropertyCatalogFiltersProps> = (props) =
     loadFilters();
   }, [setError]);
 
-  const townsForSelected = useMemo(() => {
-    if (!selectedProvince) return [];
-    const prov = provinceList.find((p) => p.name === selectedProvince);
-    return prov?.cities || [];
-  }, [provinceList, selectedProvince]);
-
   return (
     <>
       <DesktopFilter
@@ -56,12 +48,6 @@ export const PropertyCatalogFilters: FC<PropertyCatalogFiltersProps> = (props) =
         provinceList={provinceList}
         typesList={typesList}
         loading={loading}
-      />
-      <MobileFilter
-        {...props}
-        provinceList={provinceList}
-        typesList={typesList}
-        townsForSelected={townsForSelected}
       />
     </>
   );

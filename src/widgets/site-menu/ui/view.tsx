@@ -16,6 +16,7 @@ import { EducationButton } from '@/src/features/education-button';
 import { LocaleSwitcher } from '@/src/features/locale-switcher';
 import { CitiesButton } from '@/src/features/cities-button';
 import { FlatCatalogButton } from '@/src/features/flat-catalog-button';
+import { usePathname } from 'next/navigation';
 
 type Props = {
 	className?: string;
@@ -23,6 +24,8 @@ type Props = {
 
 export const SiteMenu: FC<Props> = ({ className }) => {
 	const { toggle, isOpen } = useSiteMenuStore();
+  const pathname = usePathname();
+  const isPropertyCatalogPage = pathname.endsWith('/property-catalog');
 
 	return (
 	<DropdownMenu modal={false}>
@@ -50,9 +53,11 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 			
 			{/* Vertical */}
 			<DropdownMenuGroup className="flex flex-col gap-2.5 translate-x-[calc(100%+0.625rem)] md:translate-x-0 md:flex-row order-1 md:contents">
-				<DropdownMenuItem asChild>
-					<FlatCatalogButton />
-				</DropdownMenuItem>
+				{!isPropertyCatalogPage && (
+            <DropdownMenuItem asChild>
+              <FlatCatalogButton />
+            </DropdownMenuItem>
+          )}
 				<DropdownMenuItem asChild>
 					<CitiesButton />
 				</DropdownMenuItem>
