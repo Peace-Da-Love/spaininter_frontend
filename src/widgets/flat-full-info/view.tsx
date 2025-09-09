@@ -8,6 +8,9 @@ import { extractBeforeCR } from '@/src/shared/utils';
 import { extractAfterCR } from '@/src/shared/utils';
 import { FeatureMiniCard } from '@/src/shared/components/shared/flat-feature-minicard';
 import { MiniCardIcons } from '@/src/shared/components/shared/flat-feature-minicard';
+import { X } from 'lucide-react';
+import { Button } from '@/src/shared/components/ui';
+
 
 interface Props {
   property: Property;
@@ -52,19 +55,19 @@ export const FullInfoOverlay: FC<Props> = ({
                 w-full h-full inset-0
                 sm:relative sm:inset-auto sm:rounded-xl sm:max-w-6xl sm:h-auto sm:mx-auto sm:my-10">
                 {/* Close Button */}
-                <div onClick={onClose}>
-                    <button
-                        className="absolute top-4 right-4 bg-white size-[36px] bg-opacity-50 p-2 rounded-full hover:bg-opacity-75"
-                        aria-label="Close"
+                <Button onClick={onClose}
+                    variant="menu"
+                    className="absolute top-5 right-2.5 z-20"
+                    aria-label="Back to catalog"
                     >
-                        ✕
-                    </button>
-                </div>
+                    <X />
+                </Button>
+                
 
                 <div className="p-6 sm:p-10 space-y-6 overflow-auto h-full sm:h-auto rounded-xl">
                     {/* Title and general info */}
                     <div>
-                        <h1 className="text-3xl font-bold mb-2">{title_truncated}</h1>
+                        <h1 className="sm:text-3xl text-2xl font-bold mb-2 mr-14 ">{title_truncated}</h1>
                         <div className="flex items-center space-x-4">
                             <span className="text-gray-600 text-lg">{town}</span>
                         </div>
