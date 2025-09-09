@@ -116,7 +116,7 @@ const SelectItem = React.forwardRef<
 		ref={ref}
 		className={cn(
 			'uppercase inline-flex items-center justify-center size-[72px] rounded-3xl backdrop-blur-xl bg-gray-300/40 border-0 text-xl font-bold text-black dark:text-white',
-			'transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500',
+			'transition-colors duration-200 focus:outline-none',
 			className
 		)}
 		{...props}
