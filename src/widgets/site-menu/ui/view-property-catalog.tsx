@@ -86,7 +86,7 @@ export const SiteMenuPropertyCatalog: FC<Props> = ({
   }, [provinceList, selectedProvince]);
   
   return (
-    <DropdownMenu modal={false}>
+    <DropdownMenu>
       <DropdownMenuTrigger className={cn(className)} asChild>
         <Button variant={'menu'}>
           {isOpen ? <X size={32} /> : <AlignJustify size={32} />}

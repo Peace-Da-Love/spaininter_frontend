@@ -28,7 +28,7 @@ export const SiteMenu: FC<Props> = ({ className }) => {
   const isPropertyCatalogPage = pathname.endsWith('/property-catalog');
 
 	return (
-	<DropdownMenu modal={false}>
+	<DropdownMenu>
 		<DropdownMenuTrigger className={cn(className)} asChild>
 			<Button variant={'menu'}>
 				{isOpen ? <X size={32} /> : <AlignJustify size={32} />}
