@@ -73,8 +73,12 @@
 			"description": "Telegram channels in Spain: Madrid, Barcelona, Valencia, Seville, Zaragoza, Malaga, Murcia. Find the best chats and channels for communication and news."
 		},
 		"PropertyCatalogPage": {
-			"title": "Catalog of Houses and Apartments in Spain for Vacation.",
-			"description": "Houses, apartments, and villas in Spain. Includes filters, ID search, and price sorting."
+			"titleDefault": "Catalog of Houses / Apartments in Spain - Sale / Purchase, Cryptocurrency, Mortgage, Investments",
+			"descriptionDefault": "Buy New Builds / Real Estate in Spain - Cryptocurrency, Mortgage, Investments",
+			"titleProvince": "Catalog of Houses / Apartments in {province}, Spain - Sale / Purchase, Cryptocurrency, Mortgage, Investments",
+			"descriptionProvince": "Buy New Builds / Real Estate in {province}, Spain - Cryptocurrency, Mortgage, Investments",
+			"titleTown": "Catalog of Houses / Apartments in {town}, Spain - Sale / Purchase, Cryptocurrency, Mortgage, Investments",
+			"descriptionTown": "Buy New Builds / Real Estate in {town}, Spain - Cryptocurrency, Mortgage, Investments"
 		}
 	}
 }

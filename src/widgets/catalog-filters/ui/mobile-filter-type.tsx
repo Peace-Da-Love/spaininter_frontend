@@ -35,7 +35,6 @@ interface Props
   typesList: { name: string; count: number }[]
 }
 
-// forwardRef для корректной работы с DropdownMenuItem asChild
 export const MobileFilterType = React.forwardRef<HTMLDivElement, Props>(
   (
     {
@@ -51,6 +50,8 @@ export const MobileFilterType = React.forwardRef<HTMLDivElement, Props>(
     },
     ref
   ) => {
+    const [open, setOpen] = React.useState(false)
+
     function handleTypeChange(v: string) {
       const type = v === EMPTY_VALUE ? '' : v
       setSelectedType(type)
@@ -61,14 +62,15 @@ export const MobileFilterType = React.forwardRef<HTMLDivElement, Props>(
         order: priceOrder,
         ref: refValue,
       })
+      setOpen(false)
     }
 
     return (
       <div ref={ref}>
-        <Popover>
+        <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
             <Button variant="menu">
-              <Home size={20} />
+              <Home size={23} />
             </Button>
           </PopoverTrigger>
 
@@ -82,8 +84,8 @@ export const MobileFilterType = React.forwardRef<HTMLDivElement, Props>(
                 {labels.type}
               </label>
 
-              <Select
-                value={selectedType || EMPTY_VALUE}
+              <Select 
+                value={selectedType || EMPTY_VALUE} 
                 onValueChange={handleTypeChange}
               >
                 <SelectTrigger className="w-full inline-flex justify-between items-center px-3 py-2 rounded-md border bg-white text-sm">

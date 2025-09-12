@@ -1,6 +1,7 @@
 'use client';
 
 import { FC, useState, useEffect, useMemo } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 import { cn } from '@/src/shared/utils';
 import {
   DropdownMenu,
@@ -9,15 +10,14 @@ import {
   DropdownMenuTrigger,
   DropdownMenuGroup,
 } from '@radix-ui/react-dropdown-menu';
-import { AlignJustify, X } from 'lucide-react';
+import { AlignJustify, X, FilterX } from 'lucide-react';
 import { useSiteMenuStore } from '../store';
 import { Button } from '@/src/shared/components/ui';
 import { EducationButton } from '@/src/features/education-button';
 import { LocaleSwitcher } from '@/src/features/locale-switcher';
 import { CitiesButton } from '@/src/features/cities-button';
-import { FlatCatalogButton } from '@/src/features/flat-catalog-button';
 
-// фильтры
+// filters
 import { $fetchCP } from '@/src/app/client-api/model';
 import { MobileFilterProvinceTown } from '@/src/widgets/catalog-filters/ui/mobile-filter-province-town';
 import { MobileFilterType } from '@/src/widgets/catalog-filters/ui/mobile-filter-type';
@@ -51,16 +51,17 @@ export const SiteMenuPropertyCatalog: FC<Props> = ({
   setPriceOrder,
   refValue,
   setRefValue,
-  onApply,
+  onReset,
   setError,
 }) => {
   const { toggle, isOpen } = useSiteMenuStore();
-
   const [provinceList, setProvinceList] = useState<Place[]>([]);
   const [typesList, setTypesList] = useState<TypeItem[]>([]);
-  const [activeFilter, setActiveFilter] = useState<string | null>(null);
 
-  // Filter Data Load
+  const router = useRouter();
+  const pathname = usePathname();
+  const locale = pathname.split('/')[1];
+
   useEffect(() => {
     async function loadFilters() {
       try {
@@ -78,15 +79,49 @@ export const SiteMenuPropertyCatalog: FC<Props> = ({
     }
     loadFilters();
   }, [setError]);
-  
+
   const townsForSelected = useMemo(() => {
     if (!selectedProvince) return [];
     const prov = provinceList.find((p) => p.name === selectedProvince);
     return prov?.cities || [];
   }, [provinceList, selectedProvince]);
-  
+
+  const handleApply = (filters?: {
+  province?: string;
+  town?: string;
+  type?: string;
+  order?: 'asc' | 'desc';
+  ref?: string;
+  }) => {
+    const province = filters?.province ?? selectedProvince;
+    const town = filters?.town ?? selectedTown;
+    const type = filters?.type ?? selectedType;
+    const order = filters?.order ?? priceOrder;
+    const ref = filters?.ref ?? refValue;
+
+    let targetUrl = `/${locale}/property-catalog`;
+    if (province && town) {
+      targetUrl += `/${encodeURIComponent(province)}/${encodeURIComponent(town)}`;
+    } else if (province) {
+      targetUrl += `/${encodeURIComponent(province)}`;
+    }
+
+    const query = new URLSearchParams();
+    if (type) query.set('type', type);
+    if (order) query.set('order', order);
+    if (ref) query.set('ref', ref);
+
+    const finalUrl = query.toString() ? `${targetUrl}?${query.toString()}` : targetUrl;
+
+    router.push(finalUrl);
+  };
+
+  const handleReset = () => {
+    router.push(`/${locale}/property-catalog`);
+  };
+
   return (
-    <DropdownMenu modal={false}>
+    <DropdownMenu open={isOpen} onOpenChange={toggle}>
       <DropdownMenuTrigger className={cn(className)} asChild>
         <Button variant={'menu'}>
           {isOpen ? <X size={32} /> : <AlignJustify size={32} />}
@@ -110,7 +145,6 @@ export const SiteMenuPropertyCatalog: FC<Props> = ({
 
         {/* Vertical */}
         <DropdownMenuGroup className="flex flex-col gap-2.5 translate-x-[calc(100%+0.625rem)] md:translate-x-0 md:flex-row order-1 md:contents">
-          {/* --- фильтры --- */}
           <DropdownMenuItem asChild>
             <MobileFilterProvinceTown
               labels={labels}
@@ -123,7 +157,7 @@ export const SiteMenuPropertyCatalog: FC<Props> = ({
               selectedType={selectedType}
               priceOrder={priceOrder}
               refValue={refValue}
-              onApply={onApply}
+              onApply={handleApply}
             />
           </DropdownMenuItem>
 
@@ -137,7 +171,7 @@ export const SiteMenuPropertyCatalog: FC<Props> = ({
               selectedTown={selectedTown}
               priceOrder={priceOrder}
               refValue={refValue}
-              onApply={onApply}
+              onApply={handleApply}
             />
           </DropdownMenuItem>
 
@@ -149,7 +183,7 @@ export const SiteMenuPropertyCatalog: FC<Props> = ({
               selectedTown={selectedTown}
               selectedType={selectedType}
               refValue={refValue}
-              onApply={onApply}
+              onApply={handleApply}
             />
           </DropdownMenuItem>
 
@@ -158,16 +192,21 @@ export const SiteMenuPropertyCatalog: FC<Props> = ({
               labels={labels}
               refValue={refValue}
               setRefValue={setRefValue}
-              setSelectedProvince={setSelectedProvince}
-              setSelectedTown={setSelectedTown}
-              setSelectedType={setSelectedType}
-              setPriceOrder={setPriceOrder}
-              onApply={onApply}
-              activeFilter={activeFilter}
-              setActiveFilter={setActiveFilter}
+              onApply={handleApply}
             />
           </DropdownMenuItem>
-          
+
+          <DropdownMenuItem asChild onSelect={(e) => e.preventDefault()}>
+            <Button
+              variant="menu"
+              className="flex items-center gap-1"
+              onClick={handleReset}
+            >
+              <FilterX size={25}/>
+            </Button>
+
+          </DropdownMenuItem>
+
           <DropdownMenuItem asChild>
             <CitiesButton />
           </DropdownMenuItem>

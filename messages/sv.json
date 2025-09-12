@@ -73,8 +73,12 @@
 			"description": "Telegram kanály v Španielsku: Madrid, Barcelona, Valencia, Sevilla, Zaragoza, Málaga, Murcia. Nájdite najlepšie čety a kanály pre komunikáciu a správy."
 		},
 		"PropertyCatalogPage": {
-			"title": "Katalog över hus och lägenheter i Spanien för semester.",
-			"description": "Hus, lägenheter och villor i Spanien. Inkluderar filter, ID-sökning och prissortering."
+			"titleDefault": "Katalog över hus/lägenheter i Spanien - Försäljning/köp, kryptovaluta, bolån, investeringar",
+			"descriptionDefault": "Köp nybyggnationer/fastigheter i Spanien - kryptovaluta, bolån, investeringar",
+			"titleProvince": "Katalog över hus/lägenheter i {province}, Spanien - Försäljning/köp, kryptovaluta, bolån, investeringar",
+			"descriptionProvince": "Köp nybyggnationer/fastigheter i {province}, Spanien - kryptovaluta, bolån, investeringar",
+			"titleTown": "Katalog över hus/lägenheter i {town}, Spanien - Försäljning/köp, kryptovaluta, bolån, investeringar",
+			"descriptionTown": "Köp nybyggnationer/fastigheter i {town}, Spanien - kryptovaluta, bolån, investeringar"
 		}
 	}
 }

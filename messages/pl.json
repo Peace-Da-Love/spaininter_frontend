@@ -73,8 +73,12 @@
 			"description": "Kanały Telegram w Hiszpanii: Madryt, Barcelona, Walencja, Sewilla, Saragossa, Malaga, Murcja. Znajdź najlepsze czaty i kanały do komunikacji i wiadomości."
 		},
 		"PropertyCatalogPage": {
-			"title": "Katalog domów i apartamentów na wakacje w Hiszpanii.",
-			"description": "Domy, apartamenty i wille w Hiszpanii. Zawiera filtry, wyszukiwanie po identyfikatorze i sortowanie według ceny."
+			"titleDefault": "katalog domów / mieszkań w Hiszpanii-Sprzedaż / Kupno, kryptowaluta, kredyt hipoteczny, inwestycje",
+			"descriptionDefault": "Kup nowe budynki / nieruchomości w Hiszpanii-kryptowaluta, kredyt hipoteczny, inwestycje",
+			"titleProvince": "katalog domów / mieszkań w {province}, Hiszpania-Sprzedaż / Kupno, kryptowaluta, kredyt hipoteczny, inwestycje",
+			"descriptionProvince": "Kup nowe budynki / nieruchomości w {province}, Hiszpania-kryptowaluta, kredyt hipoteczny, inwestycje",
+			"titleTown": "katalog domów / mieszkań w {town}, Hiszpania-Sprzedaż / Kupno, kryptowaluta, kredyt hipoteczny, inwestycje",
+			"descriptionTown":"Kup nowe budynki / nieruchomości w {town}, Hiszpania - kryptowaluta, kredyt hipoteczny, inwestycje"
 		}
 	}
 }

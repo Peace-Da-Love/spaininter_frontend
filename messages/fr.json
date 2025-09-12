@@ -73,8 +73,12 @@
 			"description": "Chaînes Telegram en Espagne : Madrid, Barcelone, Valence, Séville, Saragosse, Malaga, Murcie. Trouvez les meilleurs chats et chaînes pour la communication et les actualités."
 		},
 		"PropertyCatalogPage": {
-			"title": "Catalogue de maisons et appartements en Espagne pour les vacances.",
-			"description": "Les maisons, appartements et villas en Espagne. Filtres, recherche par identifiant et tri par prix."
+			"titleDefault": "Catalogue de maisons / appartements en Espagne - Vente / Achat, Cryptomonnaies, Prêts hypothécaires, Investissements",
+			"descriptionDefault": "Achat de biens immobiliers neufs en Espagne - Cryptomonnaies, Prêts hypothécaires, Investissements",
+			"titleProvince": "Catalogue de maisons / appartements à {province}, Espagne - Vente / Achat, Cryptomonnaies, Prêts hypothécaires, Investissements",
+			"descriptionProvince": "Achat de biens immobiliers neufs à {province}, Espagne - Cryptomonnaies, Prêts hypothécaires, Investissements",
+			"titleTown": "Catalogue de maisons / appartements à {town}, Espagne - Vente / Achat, Cryptomonnaies, Prêts hypothécaires, Investissements",
+			"descriptionTown": "Achat de biens immobiliers neufs à {town}, Espagne - Cryptomonnaies, Prêts hypothécaires, Investissements"
 		}
 	}
 }

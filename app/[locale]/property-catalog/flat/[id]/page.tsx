@@ -5,9 +5,10 @@ import { MinicardLabels } from '@/src/shared/types';
 
 type Props = {
     params: { locale: string; id: string };
+    searchParams: { from?: string };
 };
 
-export default async function Page({ params: { locale, id } }: Props) {
+export default async function Page({ params: { locale, id }, searchParams }: Props) {
     // Enable static rendering
     unstable_setRequestLocale(locale);
     const t = await getTranslations({ locale });
@@ -26,5 +27,12 @@ export default async function Page({ params: { locale, id } }: Props) {
     
     const property = await getPropertyById({ locale, id });
 
-  return <FlatPage property={property} locale={locale} minicardLabels={minicardLabels}/>;
+  return (
+    <FlatPage
+      property={property}
+      locale={locale}
+      minicardLabels={minicardLabels}
+      backUrl={searchParams.from || `/${locale}/property-catalog`}
+    />
+  );
 }

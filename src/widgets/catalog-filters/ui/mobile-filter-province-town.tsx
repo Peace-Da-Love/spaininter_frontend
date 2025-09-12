@@ -38,7 +38,6 @@ type Props = Pick<
   className?: string
 }
 
-// forwardRef для корректной работы с DropdownMenuItem asChild
 export const MobileFilterProvinceTown = React.forwardRef<HTMLDivElement, Props>(
   (
     {
@@ -57,6 +56,7 @@ export const MobileFilterProvinceTown = React.forwardRef<HTMLDivElement, Props>(
     },
     ref
   ) => {
+    const [open, setOpen] = React.useState(false)
     const hasProvince = useMemo(() => !!selectedProvince, [selectedProvince])
 
     function handleProvinceChange(v: string) {
@@ -70,6 +70,7 @@ export const MobileFilterProvinceTown = React.forwardRef<HTMLDivElement, Props>(
         order: priceOrder,
         ref: refValue,
       })
+      setOpen(true)
     }
 
     function handleTownChange(v: string) {
@@ -82,14 +83,15 @@ export const MobileFilterProvinceTown = React.forwardRef<HTMLDivElement, Props>(
         order: priceOrder,
         ref: refValue,
       })
+      setOpen(false)
     }
 
     return (
       <div ref={ref} className={className}>
-        <Popover>
+        <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
             <Button variant="menu">
-              <MapPin size={20} />
+              <MapPin size={25} />
             </Button>
           </PopoverTrigger>
 
@@ -104,7 +106,10 @@ export const MobileFilterProvinceTown = React.forwardRef<HTMLDivElement, Props>(
                 {labels.province}
               </label>
 
-              <Select value={selectedProvince || EMPTY_VALUE} onValueChange={handleProvinceChange}>
+              <Select
+                value={selectedProvince || EMPTY_VALUE}
+                onValueChange={handleProvinceChange}
+              >
                 <SelectTrigger className="w-full inline-flex justify-between items-center px-3 py-2 rounded-md border bg-white text-sm">
                   <SelectValue placeholder={labels.allProvinces} />
                 </SelectTrigger>
@@ -134,8 +139,8 @@ export const MobileFilterProvinceTown = React.forwardRef<HTMLDivElement, Props>(
                     <SelectValue placeholder={labels.allTowns} />
                   </SelectTrigger>
 
-                  <SelectContent
-                    position="popper"
+                  <SelectContent 
+                    position="popper" 
                     className="w-56 max-h-60 rounded-md shadow-lg bg-white border overflow-hidden"
                   >
                     <SelectGroup className="flex flex-col">

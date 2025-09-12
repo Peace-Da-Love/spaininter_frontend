@@ -73,8 +73,12 @@
 			"description": "Telegram-Kanäle in Spanien: Madrid, Barcelona, Valencia, Sevilla, Zaragoza, Málaga, Murcia. Finden Sie die besten Chats und Kanäle für Kommunikation und Nachrichten."
 		},
 		"PropertyCatalogPage": {
-			"title": "Katalog mit Häusern und Wohnungen in Spanien für den Urlaub.",
-			"description": "Häuser, Wohnungen und Villen in Spanien. Mit Filtern, ID-Suche und Preissortierung."
+			"titleDefault": "Katalog mit Häusern und Wohnungen in Spanien - Kauf/Verkauf, Kryptowährung, Hypothek, Investitionen",
+			"descriptionDefault": "Neubauimmobilien in Spanien kaufen - Kryptowährung, Hypothek, Investitionen",
+			"titleProvince": "Katalog mit Häusern und Wohnungen in {province}, Spanien - Kauf/Verkauf, Kryptowährung, Hypothek, Investitionen",
+			"descriptionProvince": "Neubauimmobilien in {province}, Spanien - Kryptowährung, Hypothek, Investitionen",
+			"titleTown": "Katalog mit Häusern und Wohnungen in {town}, Spanien - Kauf/Verkauf, Kryptowährung, Hypothek, Investitionen",
+			"descriptionTown": "Neubauimmobilien in {town}, Spanien - Kryptowährung, Hypothek, Investitionen"
 		}
 	}
 }

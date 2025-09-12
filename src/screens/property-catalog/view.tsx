@@ -1,6 +1,6 @@
 'use client';
 
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { FlatCard } from '@/src/entities/flat-card';
 import { Property } from '@/src/shared/types';
@@ -17,6 +17,9 @@ type Props = {
   filterLabels: PropertyCatalogFilterLabels;
   loadMore: string;
   loading: string;
+  townFromParams?: string;
+  provinceFromParams?: string; 
+  searchParams?: { type?: string; order?: 'asc' | 'desc'; ref?: string };
 };
 
 export const PropertyCatalogPage: FC<Props> = ({
@@ -26,14 +29,29 @@ export const PropertyCatalogPage: FC<Props> = ({
   filterLabels,
   loadMore,
   loading,
+  townFromParams,
+  provinceFromParams,
+  searchParams,
 }) => {
-  const [selectedProvince, setSelectedProvince] = useState('');
-  const [selectedTown, setSelectedTown] = useState('');
-  const [selectedType, setSelectedType] = useState('');
-  const [priceOrder, setPriceOrder] = useState<'asc' | 'desc'>('asc');
-  const [refValue, setRefValue] = useState('');
+  const [selectedTown, setSelectedTown] = useState(townFromParams || '');
+  const [selectedProvince, setSelectedProvince] = useState(provinceFromParams || '');
+  const [selectedType, setSelectedType] = useState(searchParams?.type || '');
+  const [priceOrder, setPriceOrder] = useState<'asc' | 'desc'>(searchParams?.order || 'asc');
+  const [refValue, setRefValue] = useState(searchParams?.ref || '');
   const [data, setData] = useState<Property[]>(initialData || []);
   const [error, setError] = useState<string | null>(null);
+  const [currentUrl, setCurrentUrl] = useState('');
+
+
+  // refresh data, if initialData changed (from server)
+  useEffect(() => {
+    setData(initialData || []);
+  }, [initialData]);
+
+  
+  useEffect(() => {
+    setCurrentUrl(window.location.pathname + window.location.search);
+  }, []);
 
   const fetchProperties = async (filtersOverride?: {
     province?: string;
@@ -82,7 +100,6 @@ export const PropertyCatalogPage: FC<Props> = ({
     setSelectedType('');
     setPriceOrder('asc');
     setRefValue('');
-    setData(initialData || []);
     setError(null);
   };
 
@@ -115,7 +132,7 @@ export const PropertyCatalogPage: FC<Props> = ({
         {data.map((item) => (
           <Link
             key={item._id}
-            href={`/${locale}/property-catalog/flat/${item._id}`}
+            href={`/${locale}/property-catalog/flat/${item._id}?from=${encodeURIComponent(currentUrl)}`}
             className="block"
           >
             <FlatCard

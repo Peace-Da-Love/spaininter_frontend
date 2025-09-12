@@ -46,7 +46,10 @@ export const DesktopFilter: FC<DesktopFilterProps> = ({
         labels={labels}
         provinceList={provinceList}
         selectedProvince={selectedProvince}
-        setSelectedProvince={setSelectedProvince}
+        setSelectedProvince={(province) => {
+          setSelectedProvince(province);
+          setSelectedTown('');
+        }}
         setSelectedTown={setSelectedTown}
         loading={loading}
       />
@@ -68,7 +71,6 @@ export const DesktopFilter: FC<DesktopFilterProps> = ({
         labels={labels}
         priceOrder={priceOrder}
         setPriceOrder={setPriceOrder}
-        onApply={onApply}
         selectedProvince={selectedProvince}
         selectedTown={selectedTown}
         selectedType={selectedType}
@@ -78,7 +80,6 @@ export const DesktopFilter: FC<DesktopFilterProps> = ({
         labels={labels}
         refValue={refValue}
         setRefValue={setRefValue}
-        onApply={onApply}
         loading={loading}
       />
       <FilterActions

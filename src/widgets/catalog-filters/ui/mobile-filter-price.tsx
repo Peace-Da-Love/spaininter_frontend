@@ -48,8 +48,8 @@ export const MobileFilterPrice = React.forwardRef<HTMLDivElement, Props>(
           className="flex items-center gap-1"
           onClick={togglePriceOrder}
         >
-          <DollarSign size={20} />
-          {priceOrder === 'asc' ? <ArrowUp size={16} /> : <ArrowDown size={16} />}
+          <DollarSign size={22} />
+          {priceOrder === 'asc' ? <ArrowUp size={20} /> : <ArrowDown size={16} />}
         </Button>
       </div>
     )
