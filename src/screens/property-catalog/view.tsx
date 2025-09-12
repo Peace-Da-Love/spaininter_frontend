@@ -40,11 +40,18 @@ export const PropertyCatalogPage: FC<Props> = ({
   const [refValue, setRefValue] = useState(searchParams?.ref || '');
   const [data, setData] = useState<Property[]>(initialData || []);
   const [error, setError] = useState<string | null>(null);
+  const [currentUrl, setCurrentUrl] = useState('');
+
 
   // refresh data, if initialData changed (from server)
   useEffect(() => {
     setData(initialData || []);
   }, [initialData]);
+
+  
+  useEffect(() => {
+    setCurrentUrl(window.location.pathname + window.location.search);
+  }, []);
 
   const fetchProperties = async (filtersOverride?: {
     province?: string;
@@ -93,7 +100,6 @@ export const PropertyCatalogPage: FC<Props> = ({
     setSelectedType('');
     setPriceOrder('asc');
     setRefValue('');
-    setData(initialData || []);
     setError(null);
   };
 
@@ -126,7 +132,7 @@ export const PropertyCatalogPage: FC<Props> = ({
         {data.map((item) => (
           <Link
             key={item._id}
-            href={`/${locale}/property-catalog/flat/${item._id}`}
+            href={`/${locale}/property-catalog/flat/${item._id}?from=${encodeURIComponent(currentUrl)}`}
             className="block"
           >
             <FlatCard

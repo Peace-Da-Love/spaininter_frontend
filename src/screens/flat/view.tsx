@@ -20,12 +20,14 @@ interface PropertyDetailsPageProps {
   property: Property;
   locale: string;
   minicardLabels: MinicardLabels;
+  backUrl: string;
 }
 
 export const FlatPage: FC<PropertyDetailsPageProps> = ({
   property,
   locale,
   minicardLabels,
+  backUrl,
 }) => {
   const { title, description, price, currency, town, features, images, beds, baths } =
     property;
@@ -50,7 +52,7 @@ export const FlatPage: FC<PropertyDetailsPageProps> = ({
   return (
     <>
       {/* Back button */}
-      <Link href={`/${locale}/property-catalog`}>
+      <Link href={backUrl}>
         <Button
           variant="menu"
           className="absolute top-5 right-2.5 z-20"
@@ -59,7 +61,7 @@ export const FlatPage: FC<PropertyDetailsPageProps> = ({
           <X />
         </Button>
       </Link>
-
+      
       {/* Full-screen carousel */}
       <div className="fixed inset-0 z-0 overflow-hidden">
         {photoUrls.length > 0 && (
