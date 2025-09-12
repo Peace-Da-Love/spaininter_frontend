@@ -73,8 +73,12 @@
 			"description": "Telegram-kanaler i Spania: Madrid, Barcelona, Valencia, Sevilla, Zaragoza, Málaga, Murcia. Finn de beste chattene og kanalene for kommunikasjon og nyheter."
 		},
 		"PropertyCatalogPage": {
-			"title": "Katalog over hus og leiligheter i Spania for ferie.",
-			"description": "Hus, leiligheter og villaer i Spania. Inkluderer filtre, ID-søk og prissortering."
+			"titleDefault": "Katalog over hus/leiligheter i Spania - Salg/kjøp, kryptovaluta, boliglån, investeringer",
+			"descriptionDefault": "Kjøp nybygg/eiendom i Spania - kryptovaluta, boliglån, investeringer",
+			"titleProvince": "Katalog over hus/leiligheter i {province}, Spania - Salg/kjøp, kryptovaluta, boliglån, investeringer",
+			"descriptionProvince": "Kjøp nybygg/eiendom i {province}, Spania - kryptovaluta, boliglån, investeringer",
+			"titleTown": "Katalog over hus/leiligheter i {town}, Spania - Salg/kjøp, kryptovaluta, boliglån, investeringer",
+			"descriptionTown": "Kjøp nybygg/eiendom i {town}, Spania - kryptovaluta, boliglån, investeringer"
 		}
 	}
 }

@@ -2,10 +2,13 @@ import { create } from 'zustand';
 
 interface SiteMenuState {
 	isOpen: boolean;
-	toggle: () => void;
+	toggle: (force?: boolean) => void;
 }
 
 export const useSiteMenuStore = create<SiteMenuState>(set => ({
 	isOpen: false,
-	toggle: () => set(state => ({ isOpen: !state.isOpen }))
+	toggle: (force) =>
+		set((state) => ({
+		isOpen: typeof force === 'boolean' ? force : !state.isOpen,
+		})),
 }));

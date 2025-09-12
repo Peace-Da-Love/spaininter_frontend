@@ -6,7 +6,6 @@ interface Props {
   labels: PropertyCatalogFiltersProps['labels'];
   priceOrder: 'asc' | 'desc';
   setPriceOrder: (v: 'asc' | 'desc') => void;
-  onApply: (filters?: any) => void;
   selectedProvince: string;
   selectedTown: string;
   selectedType: string;
@@ -17,11 +16,6 @@ export const FilterPrice: FC<Props> = ({
   labels,
   priceOrder,
   setPriceOrder,
-  onApply,
-  selectedProvince,
-  selectedTown,
-  selectedType,
-  refValue,
 }) => (
   <div className="min-w-[120px]">
     <label className="block text-sm font-medium mb-2">{labels.price}</label>
@@ -29,13 +23,7 @@ export const FilterPrice: FC<Props> = ({
       onClick={() => {
         const newOrder = priceOrder === 'asc' ? 'desc' : 'asc';
         setPriceOrder(newOrder);
-        onApply({
-          province: selectedProvince,
-          town: selectedTown,
-          type: selectedType,
-          order: newOrder,
-          ref: refValue,
-        });
+        ;
       }}
       className="px-3 py-2 rounded-md border flex items-center gap-2 bg-white hover:bg-gray-50"
     >

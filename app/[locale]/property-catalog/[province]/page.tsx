@@ -5,32 +5,34 @@ import { getCatalog } from '@/src/app/server-actions';
 import { PropertyCatalogFilterLabels } from '@/src/shared/types';
 
 type Props = {
-  params: { locale: string };
+  params: { locale: string; province: string };
   searchParams: { type?: string; order?: 'asc' | 'desc'; ref?: string };
 };
 
 export async function generateMetadata({
-  params: { locale }
+  params: { locale, province },
 }: Omit<Props, 'children'>): Promise<Metadata> {
   const t = await getTranslations({ locale });
+  const provinceName = decodeURIComponent(province);
 
   return {
-    title: t('MetaData.PropertyCatalogPage.titleDefault'),
-    description: t('MetaData.PropertyCatalogPage.descriptionDefault'),
+    title: t('MetaData.PropertyCatalogPage.titleProvince', { province: provinceName }),
+    description: t('MetaData.PropertyCatalogPage.descriptionProvince', { province: provinceName }),
     openGraph: {
-      title: t('MetaData.PropertyCatalogPage.titleDefault'),
-      description: t('MetaData.PropertyCatalogPage.descriptionDefault'),
+      title: t('MetaData.PropertyCatalogPage.titleProvince', { province: provinceName }),
+      description: t('MetaData.PropertyCatalogPage.descriptionProvince', { province: provinceName }),
     },
   };
 }
 
-export default async function Page({ params: { locale }, searchParams }: Props) {
+export default async function Page({ params: { locale, province }, searchParams }: Props) {
   unstable_setRequestLocale(locale);
   const t = await getTranslations({ locale });
 
   const initialData = await getCatalog({
     locale,
     page: 1,
+    province: decodeURIComponent(province),
     type: searchParams.type,
     order: searchParams.order,
     ref: searchParams.ref,
@@ -58,12 +60,12 @@ export default async function Page({ params: { locale }, searchParams }: Props) 
   return (
     <PropertyCatalogPage
       title={t('Pages.PropertyCatalog.title')}
-      loadMore={t('Pages.PropertyCatalog.loadMore')}
-      loading={t('Pages.PropertyCatalog.loading')}
-      filterLabels={filterLabels}
-      locale={locale}
-      data={initialData}
-      searchParams={searchParams}
+        loadMore={t('Pages.PropertyCatalog.loadMore')}
+        loading={t('Pages.PropertyCatalog.loading')}
+        filterLabels={filterLabels}
+        locale={locale}
+        data={initialData}
+        searchParams={searchParams}
     />
   );
 }

@@ -5,7 +5,6 @@ interface Props {
   labels: PropertyCatalogFiltersProps['labels'];
   refValue: string;
   setRefValue: (v: string) => void;
-  onApply: () => void;
   loading: boolean;
 }
 
@@ -13,7 +12,6 @@ export const FilterRef: FC<Props> = ({
   labels,
   refValue,
   setRefValue,
-  onApply,
   loading,
 }) => (
   <div className="min-w-[160px]">
@@ -22,7 +20,6 @@ export const FilterRef: FC<Props> = ({
       value={refValue}
       onChange={(e) => {
         setRefValue(e.target.value);
-        onApply();
       }}
       className="w-full border rounded-md p-2"
       placeholder="NXXXX"

@@ -73,8 +73,12 @@
 			"description": "Canales de Telegram en España: Madrid, Barcelona, Valencia, Sevilla, Zaragoza, Málaga, Murcia. Encuentra los mejores chats y canales para comunicación y noticias."
 		},
 		"PropertyCatalogPage": {
-			"title": "Catálogo de Casas y Apartamentos en España para Vacaciones.",
-			"description": "Casas, apartamentos y chalets en España. Incluye filtros, búsqueda por ID y clasificación por precio."
+			"titleDefault": "Catálogo de casas/pisos en España - Compra/Venta, Criptomonedas, Hipotecas, Inversiones",
+			"descriptionDefault": "Compra de obra nueva/inmuebles en España - Criptomonedas, Hipotecas, Inversiones",
+			"titleProvince": "Catálogo de casas/pisos en {province}, España - Compra/Venta, Criptomonedas, Hipotecas, Inversiones",
+			"descriptionProvince": "Compra de obra nueva/inmuebles en {province}, España - Criptomonedas, Hipotecas, Inversiones",
+			"titleTown": "Catálogo de casas/pisos en {town}, España - Compra/Venta, Criptomonedas, Hipotecas, Inversiones",
+			"descriptionTown": "Compra de obra nueva/inmuebles en {town}, España - Criptomonedas, Hipotecas, Inversiones"
 		}
 	}
 }

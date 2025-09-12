@@ -73,8 +73,12 @@
 			"description": "Telegram-kanalen in Spanje: Madrid, Barcelona, Valencia, Sevilla, Zaragoza, Málaga, Murcia. Vind de beste chats en kanalen voor communicatie en nieuws."
 		},
 		"PropertyCatalogPage": {
-			"title": "Catalogus van huizen en appartementen in Spanje voor vakantie.",
-			"description": "Huizen, appartementen en villa's in Spanje. Inclusief filters, ID-zoekfunctie en prijssortering."
+			"titleDefault": "Catalogus van huizen/appartementen in Spanje - Verkoop/aankoop, cryptocurrency, hypotheek, investeringen",
+			"descriptionDefault": "Nieuwbouw/onroerend goed kopen in Spanje - Cryptocurrency, hypotheek, investeringen",
+			"titleProvince": "Catalogus van huizen/appartementen in {province}, Spanje - Verkoop/aankoop, cryptocurrency, hypotheek, investeringen",
+			"descriptionProvince": "Nieuwbouw/onroerend goed kopen in {province}, Spanje - Cryptocurrency, hypotheek, investeringen",
+			"titleTown": "Catalogus van huizen/appartementen in {town}, Spanje - Verkoop/aankoop, cryptocurrency, hypotheek, investeringen",
+			"descriptionTown": "Nieuwbouw/onroerend goed kopen in {town}, Spanje - Cryptocurrency, hypotheek, investeringen"
 		}
 	}
 }
