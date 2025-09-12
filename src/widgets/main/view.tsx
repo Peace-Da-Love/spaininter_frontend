@@ -14,7 +14,7 @@ export const Main: FC<Props> = ({ className, children }) => {
   const pathname = usePathname();
 
   const isFlatPage = pathname?.includes('/property-catalog/flat/')
-  const isPropertyCatalogPage = pathname.endsWith('/property-catalog'); 
+  const isPropertyCatalogPage = pathname?.includes('/property-catalog'); 
 
   return (
     <main className={'w-full flex-grow py-5'}>

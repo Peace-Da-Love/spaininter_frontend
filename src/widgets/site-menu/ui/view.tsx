@@ -25,7 +25,7 @@ type Props = {
 export const SiteMenu: FC<Props> = ({ className }) => {
 	const { toggle, isOpen } = useSiteMenuStore();
   const pathname = usePathname();
-  const isPropertyCatalogPage = pathname.endsWith('/property-catalog');
+  const isPropertyCatalogPage = pathname.includes('/property-catalog');
 
 	return (
 	<DropdownMenu>
@@ -54,10 +54,10 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 			{/* Vertical */}
 			<DropdownMenuGroup className="flex flex-col gap-2.5 translate-x-[calc(100%+0.625rem)] md:translate-x-0 md:flex-row order-1 md:contents">
 				{!isPropertyCatalogPage && (
-            <DropdownMenuItem asChild>
-              <FlatCatalogButton />
-            </DropdownMenuItem>
-          )}
+					<DropdownMenuItem asChild>
+					<FlatCatalogButton />
+					</DropdownMenuItem>
+				)}
 				<DropdownMenuItem asChild>
 					<CitiesButton />
 				</DropdownMenuItem>
