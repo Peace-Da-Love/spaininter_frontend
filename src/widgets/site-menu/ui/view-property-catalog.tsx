@@ -51,7 +51,6 @@ export const SiteMenuPropertyCatalog: FC<Props> = ({
   setPriceOrder,
   refValue,
   setRefValue,
-  onReset,
   setError,
 }) => {
   const { toggle, isOpen } = useSiteMenuStore();
@@ -61,6 +60,11 @@ export const SiteMenuPropertyCatalog: FC<Props> = ({
   const router = useRouter();
   const pathname = usePathname();
   const locale = pathname.split('/')[1];
+  
+  // close menu on route change
+  useEffect(() => {
+      toggle(false);
+  }, [pathname, toggle]);
 
   useEffect(() => {
     async function loadFilters() {
@@ -117,14 +121,14 @@ export const SiteMenuPropertyCatalog: FC<Props> = ({
   };
 
   const handleReset = () => {
-    router.push(`/${locale}/property-catalog`);
+    router.push(`/${locale}`);
   };
 
   return (
-    <DropdownMenu open={isOpen} onOpenChange={toggle}>
+    <DropdownMenu>
       <DropdownMenuTrigger className={cn(className)} asChild>
         <Button variant={'menu'}>
-          {isOpen ? <X size={32} /> : <AlignJustify size={32} />}
+          <AlignJustify size={32} />
         </Button>
       </DropdownMenuTrigger>
 

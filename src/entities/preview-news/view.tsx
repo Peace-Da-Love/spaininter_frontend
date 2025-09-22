@@ -33,7 +33,7 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 				className={
 					'background-image bg-cover bg-no-repeat bg-center w-full h-full bg-slate-200'
 				}
-			>
+							>
 				<Link
 					href={{
 						pathname: '/news/[link]',
@@ -69,23 +69,31 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 							{city}
 						</span>
 					</div>
-					{isTopNews ? (
-						<h1
+					<Link
+						href={{
+							pathname: '/news/[link]',
+							params: { link }
+						}}
+						className="block"
+					>
+						{isTopNews ? (
+							<h1
 							className={
 								'text-xl md:text-4xl font-bold text-white mb-1.5 backdrop-blur-xl bg-gray-300/40 rounded-2xl p-2.5 relative'
 							}
 						>
-							{title}
-						</h1>
-					) : (
-						<span
+								{title}
+							</h1>
+						) : (
+							<span
 							className={
 								'block text-xl md:text-4xl font-bold text-white mb-1.5 backdrop-blur-xl bg-gray-300/40 rounded-2xl p-2.5'
 							}
 						>
-							{title}
-						</span>
-					)}
+								{title}
+							</span>
+						)}
+					</Link>
 					<span
 						className={
 							'inline-block text-white text-[10px] md:text-sm font-medium backdrop-blur-xl bg-gray-300/40 rounded-2xl p-1.5'

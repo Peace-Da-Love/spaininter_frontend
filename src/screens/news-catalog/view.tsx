@@ -8,7 +8,7 @@ type Props = {
 	title: string;
 };
 
-export const HomePage: FC<Props> = async ({ data, title }) => {
+export const NewsPage: FC<Props> = async ({ data, title }) => {
 	return (
 		<Fragment>
 			<section className={'pb-2.5 md:pb-10'}>

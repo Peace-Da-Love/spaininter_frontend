@@ -17,7 +17,7 @@ export const CitiesButton = forwardRef<HTMLButtonElement, {}>((props, ref) => {
 		<Button variant={'menu'} asChild>
 			<Link
 				href={
-					thisPageIsCatalogTelegram !== undefined ? '/' : '/catalog-telegram'
+					thisPageIsCatalogTelegram !== undefined ? '/news' : '/catalog-telegram'
 				}
 			>
 				{thisPageIsCatalogTelegram !== undefined ? (
