@@ -1,50 +1,85 @@
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import { Metadata } from 'next';
-import { HomePage } from '@/src/screens/home';
-import { getLatestNewsAction } from '@/src/app/server-actions';
-import { notFound } from 'next/navigation';
+import { PropertyCatalogPage } from '@/src/screens/property-catalog';
+import { getCatalog } from '@/src/app/server-actions';
+import { PropertyCatalogFilterLabels } from '@/src/shared/types';
 import { locales } from '@/src/shared/configs';
 
 type Props = {
-	params: { locale: string };
+  params: { locale: string };
+  searchParams: { type?: string; order?: 'asc' | 'desc'; ref?: string };
 };
 
 const SITE_URL = process.env.SITE_URL;
 
 export async function generateMetadata({
-	params: { locale }
+  params: { locale },
 }: Omit<Props, 'children'>): Promise<Metadata> {
-	const t = await getTranslations({ locale, namespace: 'MetaData.IndexPage' });
+  const t = await getTranslations({ locale, namespace: 'MetaData.PropertyCatalogPage' });
 
-	const hrefLangs: Record<string, string> = locales.reduce((acc, locale) => {
-		acc[locale] = `${SITE_URL}/${locale}`;
-		return acc;
-	}, {} as Record<string, string>);
+  const hrefLangs: Record<string, string> = locales.reduce((acc, locale) => {
+    acc[locale] = `${SITE_URL}/${locale}`;
+    return acc;
+  }, {} as Record<string, string>);
 
-	return {
-		title: t('title'),
-		description: t('description'),
-		alternates: {
-			languages: {
-				'x-default': hrefLangs['en'],
-				...hrefLangs
-			},
-			canonical: `${SITE_URL}/en`
-		}
-	};
+  return {
+    title: t('titleDefault'),
+    description: t('descriptionDefault'),
+    alternates: {
+      languages: {
+        'x-default': hrefLangs['en'],
+        ...hrefLangs,
+      },
+      canonical: `${SITE_URL}/en`,
+    },
+    openGraph: {
+      title: t('titleDefault'),
+      description: t('descriptionDefault'),
+    },
+  };
 }
 
-export default async function IndexPage({ params: { locale } }: Props) {
-	// Enable static rendering
-	unstable_setRequestLocale(locale);
+export default async function IndexPage({
+  params: { locale },
+  searchParams,
+}: Props) {
+  unstable_setRequestLocale(locale);
+  const t = await getTranslations({ locale });
 
-	const initialData = await getLatestNewsAction({ locale });
+  const initialData = await getCatalog({
+    locale,
+    page: 1,
+    type: searchParams.type,
+    order: searchParams.order,
+    ref: searchParams.ref,
+  });
 
-	if (!initialData) {
-		notFound();
-	}
+  if (!initialData) return null;
 
-	const t = await getTranslations({ locale, namespace: 'MetaData.IndexPage' });
+  const filterLabels: PropertyCatalogFilterLabels = {
+    province: t('Pages.PropertyCatalog.filters.province'),
+    allProvinces: t('Pages.PropertyCatalog.filters.allProvinces'),
+    town: t('Pages.PropertyCatalog.filters.town'),
+    allTowns: t('Pages.PropertyCatalog.filters.allTowns'),
+    type: t('Pages.PropertyCatalog.filters.type'),
+    allTypes: t('Pages.PropertyCatalog.filters.allTypes'),
+    price: t('Pages.PropertyCatalog.filters.price'),
+    priceAsc: t('Pages.PropertyCatalog.filters.priceAsc'),
+    priceDesc: t('Pages.PropertyCatalog.filters.priceDesc'),
+    ref: t('Pages.PropertyCatalog.filters.ref'),
+    apply: t('Pages.PropertyCatalog.filters.apply'),
+    reset: t('Pages.PropertyCatalog.filters.reset'),
+  };
 
-	return <HomePage title={t('title')} data={initialData} />;
+  return (
+    <PropertyCatalogPage
+      title={t('Pages.PropertyCatalog.title')}
+      loadMore={t('Pages.PropertyCatalog.loadMore')}
+      loading={t('Pages.PropertyCatalog.loading')}
+      filterLabels={filterLabels}
+      locale={locale}
+      data={initialData}
+      searchParams={searchParams}
+    />
+  );
 }

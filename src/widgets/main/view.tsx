@@ -11,10 +11,10 @@ type Props = {
 };
 
 export const Main: FC<Props> = ({ className, children }) => {
-  const pathname = usePathname();
+  const pathname = usePathname()
 
   const isFlatPage = pathname?.includes('/property-catalog/flat/')
-  const isPropertyCatalogPage = pathname?.includes('/property-catalog'); 
+  const isPropertyCatalogPage = /^\/[a-z]{2}(\/property-catalog(\b|\/.*))?$/.test(pathname)
 
   return (
     <main className={'w-full flex-grow py-5'}>

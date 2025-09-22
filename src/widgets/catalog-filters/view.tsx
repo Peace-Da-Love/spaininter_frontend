@@ -102,7 +102,7 @@ export const PropertyCatalogFilters: FC<PropertyCatalogFiltersProps> = (props) =
 
   const handleReset = () => {
     const locale = params.locale as string;
-    router.push(`/${locale}/property-catalog`);
+    router.push(`/${locale}`);
     onReset?.();
   };
 

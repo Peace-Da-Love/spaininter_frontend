@@ -12,9 +12,9 @@ export const FlatCatalogButton = forwardRef<HTMLButtonElement, {}>((props, ref) 
   const pathname = usePathname();
   const { isOpen, setIsOpen } = useMobileFilterStore();
 
-  const isCatalogPage = pathname?.endsWith('/property-catalog');
+  const isPropertyCatalogPage = /^\/[a-z]{2}(\/property-catalog(\b|\/.*))?$/.test(pathname)
 
-  if (isCatalogPage) {
+  if (isPropertyCatalogPage) {
 
     return (
       <Button
@@ -29,7 +29,7 @@ export const FlatCatalogButton = forwardRef<HTMLButtonElement, {}>((props, ref) 
 
   return (
     <Button variant="menu" asChild>
-      <Link href={{ pathname: "/property-catalog" }}><HouseSearch className="w-9 h-9"/></Link>
+      <Link href={{ pathname: "/" }}><HouseSearch className="w-9 h-9"/></Link>
     </Button>
   );
 });

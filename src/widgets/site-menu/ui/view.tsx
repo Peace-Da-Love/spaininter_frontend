@@ -1,6 +1,6 @@
 'use client';
 
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { cn } from '@/src/shared/utils';
 import {
 	DropdownMenu,
@@ -24,14 +24,20 @@ type Props = {
 
 export const SiteMenu: FC<Props> = ({ className }) => {
 	const { toggle, isOpen } = useSiteMenuStore();
-  const pathname = usePathname();
-  const isPropertyCatalogPage = pathname.includes('/property-catalog');
+  	const pathname = usePathname();
+  	
+	const isPropertyCatalogPage = /^\/[a-z]{2}(\/property-catalog(\b|\/.*))?$/.test(pathname)
+
+	// close menu on route change
+	useEffect(() => {
+		if (isOpen) toggle(false);
+	}, [pathname, toggle]);
 
 	return (
 	<DropdownMenu>
 		<DropdownMenuTrigger className={cn(className)} asChild>
 			<Button variant={'menu'}>
-				{isOpen ? <X size={32} /> : <AlignJustify size={32} />}
+				<AlignJustify size={32} />
 			</Button>
 		</DropdownMenuTrigger>
 
@@ -55,7 +61,7 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 			<DropdownMenuGroup className="flex flex-col gap-2.5 translate-x-[calc(100%+0.625rem)] md:translate-x-0 md:flex-row order-1 md:contents">
 				{!isPropertyCatalogPage && (
 					<DropdownMenuItem asChild>
-					<FlatCatalogButton />
+						<FlatCatalogButton />
 					</DropdownMenuItem>
 				)}
 				<DropdownMenuItem asChild>
@@ -63,8 +69,7 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 				</DropdownMenuItem>
 			</DropdownMenuGroup>
 
-		
-	</DropdownMenuContent>
+		</DropdownMenuContent>
 
 	</DropdownMenu>
 	);
