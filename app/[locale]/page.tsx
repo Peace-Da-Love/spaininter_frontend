@@ -1,24 +1,22 @@
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
+import { redirect } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
 import { Metadata } from 'next';
-import { PropertyCatalogPage } from '@/src/screens/property-catalog';
-import { getCatalog } from '@/src/app/server-actions';
-import { PropertyCatalogFilterLabels } from '@/src/shared/types';
 import { locales } from '@/src/shared/configs';
-
-type Props = {
-  params: { locale: string };
-  searchParams: { type?: string; order?: 'asc' | 'desc'; ref?: string };
-};
 
 const SITE_URL = process.env.SITE_URL;
 
+type Props = {
+  params: { locale: string };
+  searchParams?: Record<string, string>;
+};
+
 export async function generateMetadata({
-  params: { locale },
+  params: { locale }
 }: Omit<Props, 'children'>): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: 'MetaData.PropertyCatalogPage' });
 
-  const hrefLangs: Record<string, string> = locales.reduce((acc, locale) => {
-    acc[locale] = `${SITE_URL}/${locale}`;
+  const hrefLangs: Record<string, string> = locales.reduce((acc, loc) => {
+    acc[loc] = `${SITE_URL}/${loc}`;
     return acc;
   }, {} as Record<string, string>);
 
@@ -30,7 +28,7 @@ export async function generateMetadata({
         'x-default': hrefLangs['en'],
         ...hrefLangs,
       },
-      canonical: `${SITE_URL}/en`,
+      canonical: `${SITE_URL}/en/property-catalog`,
     },
     openGraph: {
       title: t('titleDefault'),
@@ -39,47 +37,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function IndexPage({
-  params: { locale },
-  searchParams,
-}: Props) {
-  unstable_setRequestLocale(locale);
-  const t = await getTranslations({ locale });
-
-  const initialData = await getCatalog({
-    locale,
-    page: 1,
-    type: searchParams.type,
-    order: searchParams.order,
-    ref: searchParams.ref,
-  });
-
-  if (!initialData) return null;
-
-  const filterLabels: PropertyCatalogFilterLabels = {
-    province: t('Pages.PropertyCatalog.filters.province'),
-    allProvinces: t('Pages.PropertyCatalog.filters.allProvinces'),
-    town: t('Pages.PropertyCatalog.filters.town'),
-    allTowns: t('Pages.PropertyCatalog.filters.allTowns'),
-    type: t('Pages.PropertyCatalog.filters.type'),
-    allTypes: t('Pages.PropertyCatalog.filters.allTypes'),
-    price: t('Pages.PropertyCatalog.filters.price'),
-    priceAsc: t('Pages.PropertyCatalog.filters.priceAsc'),
-    priceDesc: t('Pages.PropertyCatalog.filters.priceDesc'),
-    ref: t('Pages.PropertyCatalog.filters.ref'),
-    apply: t('Pages.PropertyCatalog.filters.apply'),
-    reset: t('Pages.PropertyCatalog.filters.reset'),
-  };
-
-  return (
-    <PropertyCatalogPage
-      title={t('Pages.PropertyCatalog.title')}
-      loadMore={t('Pages.PropertyCatalog.loadMore')}
-      loading={t('Pages.PropertyCatalog.loading')}
-      filterLabels={filterLabels}
-      locale={locale}
-      data={initialData}
-      searchParams={searchParams}
-    />
-  );
+export default async function IndexPage({ params: { locale }, searchParams }: Props) {
+  const query = new URLSearchParams(searchParams || {}).toString();
+  redirect(`/${locale}/property-catalog${query ? `?${query}` : ''}`);
 }
