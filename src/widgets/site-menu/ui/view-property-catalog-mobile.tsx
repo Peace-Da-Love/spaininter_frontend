@@ -10,12 +10,14 @@ import {
   DropdownMenuTrigger,
   DropdownMenuGroup,
 } from '@radix-ui/react-dropdown-menu';
+import Link from 'next/link';
 import { AlignJustify, X, FilterX } from 'lucide-react';
 import { useSiteMenuStore } from '../store';
 import { Button } from '@/src/shared/components/ui';
 import { EducationButton } from '@/src/features/education-button';
 import { LocaleSwitcher } from '@/src/features/locale-switcher';
 import { CitiesButton } from '@/src/features/cities-button';
+import IcNewspaper from '@/src/app/icons/ic_newspaper.svg';
 
 // filters
 import { $fetchCP } from '@/src/app/client-api/model';
@@ -38,7 +40,7 @@ type Place = {
 
 type TypeItem = { name: string; count: number };
 
-export const SiteMenuPropertyCatalog: FC<Props> = ({
+export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
   className,
   labels,
   selectedProvince,
@@ -121,7 +123,7 @@ export const SiteMenuPropertyCatalog: FC<Props> = ({
   };
 
   const handleReset = () => {
-    router.push(`/${locale}`);
+    router.push(`/${locale}/property-catalog`);
   };
 
   return (
@@ -213,6 +215,13 @@ export const SiteMenuPropertyCatalog: FC<Props> = ({
 
           <DropdownMenuItem asChild>
             <CitiesButton />
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link href={`/${locale}/news`}>
+              <Button variant="menu">
+                <IcNewspaper/>
+              </Button>
+            </Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>

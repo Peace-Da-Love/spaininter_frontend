@@ -8,7 +8,7 @@ import { LoadFlats } from '@/src/features/load-flats';
 import { PropertyCatalogFilters } from '@/src/widgets/catalog-filters';
 import { PropertyCatalogFilterLabels } from '@/src/shared/types';
 import { $fetchCP } from '@/src/app/client-api/model';
-import { SiteMenuPropertyCatalog } from '@/src/widgets/site-menu/ui/view-property-catalog';
+import { SiteMenuPropertyCatalogMobile } from '@/src/widgets/site-menu/ui/view-property-catalog-mobile';
 
 type Props = {
   data: Property[];
@@ -160,7 +160,7 @@ export const PropertyCatalogPage: FC<Props> = ({
         loading={loading}
       />
 
-      <SiteMenuPropertyCatalog
+      <SiteMenuPropertyCatalogMobile
         className="fixed bottom-2.5 right-2.5 z-50 md:hidden"
         labels={filterLabels}
         selectedProvince={selectedProvince}

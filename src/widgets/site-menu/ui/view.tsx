@@ -9,6 +9,7 @@ import {
 	DropdownMenuTrigger,
 	DropdownMenuGroup
 } from '@radix-ui/react-dropdown-menu';
+import { Link } from '@/src/shared/utils';
 import { AlignJustify, X } from 'lucide-react';
 import { useSiteMenuStore } from '../store';
 import { Button } from '@/src/shared/components/ui';
@@ -16,6 +17,7 @@ import { EducationButton } from '@/src/features/education-button';
 import { LocaleSwitcher } from '@/src/features/locale-switcher';
 import { CitiesButton } from '@/src/features/cities-button';
 import { FlatCatalogButton } from '@/src/features/flat-catalog-button';
+import IcNewspaper from '@/src/app/icons/ic_newspaper.svg';
 import { usePathname } from 'next/navigation';
 
 type Props = {
@@ -67,11 +69,17 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 				<DropdownMenuItem asChild>
 					<CitiesButton />
 				</DropdownMenuItem>
+				{isPropertyCatalogPage && (
+					<DropdownMenuItem asChild>
+						<Button variant={'menu'} asChild>
+							<Link href={'/news'}> 
+								<IcNewspaper />
+							</Link>
+						</Button>
+					</DropdownMenuItem>
+				)}
 			</DropdownMenuGroup>
-
 		</DropdownMenuContent>
-
 	</DropdownMenu>
 	);
-
 };
