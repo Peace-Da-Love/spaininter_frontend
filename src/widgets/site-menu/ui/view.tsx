@@ -1,14 +1,7 @@
 'use client';
 
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import { cn } from '@/src/shared/utils';
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuTrigger,
-	DropdownMenuGroup
-} from '@radix-ui/react-dropdown-menu';
 import { Link } from '@/src/shared/utils';
 import { AlignJustify, X } from 'lucide-react';
 import { useSiteMenuStore } from '../store';
@@ -26,8 +19,9 @@ type Props = {
 
 export const SiteMenu: FC<Props> = ({ className }) => {
 	const { toggle, isOpen } = useSiteMenuStore();
-  	const pathname = usePathname();
-  	
+	const pathname = usePathname();
+	const menuRef = useRef<HTMLDivElement>(null);
+	
 	const isPropertyCatalogPage = /^\/[a-z]{2}(\/property-catalog(\b|\/.*))?$/.test(pathname)
 
 	// close menu on route change
@@ -35,51 +29,68 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 		if (isOpen) toggle(false);
 	}, [pathname, toggle]);
 
-	return (
-	<DropdownMenu>
-		<DropdownMenuTrigger className={cn(className)} asChild>
-			<Button variant={'menu'}>
-				<AlignJustify size={32} />
-			</Button>
-		</DropdownMenuTrigger>
+	// close menu when clicking outside, but allow clicks on Radix UI elements
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			const target = event.target as Element;
+			const isMenuButton = target.closest('[data-menu-button]');
+			const isMenuElement = target.closest('[data-menu-content]');
+			const isRadixElement = target.closest('[data-radix-popper-content-wrapper], [data-radix-select-content], [data-radix-select-item], [data-radix-select-trigger]');
+			
+			// Don't close menu if clicking on menu elements or Radix UI elements
+			if (!isMenuButton && !isMenuElement && !isRadixElement) {
+				toggle(false);
+			}
+		};
 
-		<DropdownMenuContent
-		align="end"
-		side="right"
-		className="flex flex-col gap-2.5 px-2.5 md:flex-row"
-		>
-			
-			{/* Horizontal */}
-			<DropdownMenuGroup className="flex flex-row gap-2.5 order-2 md:contents">
-				<DropdownMenuItem asChild>
-					<LocaleSwitcher />
-				</DropdownMenuItem>
-				<DropdownMenuItem asChild>
-					<EducationButton />
-				</DropdownMenuItem>
-			</DropdownMenuGroup>
-			
-			{/* Vertical */}
-			<DropdownMenuGroup className="flex flex-col gap-2.5 translate-x-[calc(100%+0.625rem)] md:translate-x-0 md:flex-row order-1 md:contents">
-				{!isPropertyCatalogPage && (
-					<DropdownMenuItem asChild>
-						<FlatCatalogButton />
-					</DropdownMenuItem>
-				)}
-				<DropdownMenuItem asChild>
-					<CitiesButton />
-				</DropdownMenuItem>
-				{isPropertyCatalogPage && (
-					<DropdownMenuItem asChild>
-						<Button variant={'menu'} asChild>
-							<Link href={'/news'}> 
-								<IcNewspaper />
-							</Link>
-						</Button>
-					</DropdownMenuItem>
-				)}
-			</DropdownMenuGroup>
-		</DropdownMenuContent>
-	</DropdownMenu>
+		if (isOpen) {
+			document.addEventListener('mousedown', handleClickOutside);
+		}
+
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
+	}, [isOpen, toggle]);
+	
+	return (
+		<>
+			<Button 
+				variant={'menu'} 
+				className={cn(className)}
+				onClick={() => toggle()}
+				data-menu-button
+			>
+				{isOpen ? <X size={32} /> : <AlignJustify size={32} />}
+			</Button>
+
+			{isOpen && (
+				<div 
+					className="fixed bottom-2.5 right-2.5 z-50 flex flex-col gap-2.5 md:relative md:bottom-auto md:right-auto md:flex-row md:gap-2.5"
+					ref={menuRef}
+					data-menu-content
+					onClick={(e) => e.stopPropagation()}
+				>
+					
+					<div className="flex flex-col gap-2.5 absolute bottom-20 right-0 md:relative md:bottom-auto md:right-auto md:flex-row md:flex-row-reverse md:order-2">
+						{!isPropertyCatalogPage && (
+							<FlatCatalogButton />
+						)}
+						<CitiesButton />
+						{isPropertyCatalogPage && (
+							<Button variant={'menu'} asChild>
+								<Link href={'/news'}> 
+									<IcNewspaper />
+								</Link>
+							</Button>
+						)}
+					</div>
+					
+					<div className="flex flex-row gap-2.5 absolute right-20 bottom-0 md:relative md:bottom-auto md:right-auto md:order-1">
+						<LocaleSwitcher />
+						<EducationButton />
+					</div>
+				</div>
+			)}
+		</>
 	);
 };

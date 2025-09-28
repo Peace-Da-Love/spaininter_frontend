@@ -18,15 +18,57 @@ type Props = {
     ref?: string
   }) => void
   loading?: boolean
+  selectedProvince?: string
+  selectedTown?: string
+  selectedType?: string
+  priceOrder?: 'asc' | 'desc'
 }
 
 export const MobileFilterRef = React.forwardRef<HTMLDivElement, Props>(
-  ({ labels, refValue, setRefValue, onApply, loading }, ref) => {
+  (
+    {
+      labels,
+      refValue,
+      setRefValue,
+      onApply,
+      loading,
+      selectedProvince,
+      selectedTown,
+      selectedType,
+      priceOrder,
+    },
+    ref
+  ) => {
     const [open, setOpen] = React.useState(false)
+    const hasClearedOnOpen = React.useRef(false)
+
+    // clean ref and apply search on the first open of the popover
+    React.useEffect(() => {
+      if (open && !hasClearedOnOpen.current) {
+        hasClearedOnOpen.current = true
+        setRefValue('')
+        onApply({
+          province: selectedProvince,
+          town: selectedTown,
+          type: selectedType,
+          order: priceOrder,
+          ref: '',
+        })
+      }
+      if (!open) {
+        hasClearedOnOpen.current = false
+      }
+    }, [open, setRefValue, onApply, selectedProvince, selectedTown, selectedType, priceOrder])
 
     const handleApply = () => {
       setOpen(false)
-      onApply({ ref: refValue })
+      onApply({
+        province: selectedProvince,
+        town: selectedTown,
+        type: selectedType,
+        order: priceOrder,
+        ref: refValue,
+      })
     }
 
     return (
@@ -34,7 +76,7 @@ export const MobileFilterRef = React.forwardRef<HTMLDivElement, Props>(
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
             <Button variant="menu" disabled={loading}>
-              <span className="font-semibold text-lg">ID</span>
+              <span className="font-bold text-lg">ID</span>
             </Button>
           </PopoverTrigger>
 
@@ -54,6 +96,7 @@ export const MobileFilterRef = React.forwardRef<HTMLDivElement, Props>(
               }}
               placeholder="NXXXX"
               className="w-full"
+              autoFocus
             />
           </PopoverContent>
         </Popover>

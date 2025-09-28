@@ -1,17 +1,10 @@
 'use client';
 
-import { FC, useState, useEffect, useMemo } from 'react';
+import { FC, useState, useEffect, useMemo, useRef } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { cn } from '@/src/shared/utils';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-  DropdownMenuGroup,
-} from '@radix-ui/react-dropdown-menu';
 import Link from 'next/link';
-import { AlignJustify, X, FilterX } from 'lucide-react';
+import { AlignJustify, X } from 'lucide-react';
 import { useSiteMenuStore } from '../store';
 import { Button } from '@/src/shared/components/ui';
 import { EducationButton } from '@/src/features/education-button';
@@ -58,6 +51,7 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
   const { toggle, isOpen } = useSiteMenuStore();
   const [provinceList, setProvinceList] = useState<Place[]>([]);
   const [typesList, setTypesList] = useState<TypeItem[]>([]);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const router = useRouter();
   const pathname = usePathname();
@@ -127,31 +121,25 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
   };
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger className={cn(className)} asChild>
-        <Button variant={'menu'}>
-          <AlignJustify size={32} />
-        </Button>
-      </DropdownMenuTrigger>
-
-      <DropdownMenuContent
-        align="end"
-        side="right"
-        className="flex flex-col gap-2.5 px-2.5 md:flex-row"
+    <>
+      <Button 
+        variant={'menu'} 
+        className={cn(className)}
+        onClick={() => toggle()}
+        data-menu-button
       >
-        {/* Horizontal */}
-        <DropdownMenuGroup className="flex flex-row gap-2.5 order-2 md:contents">
-          <DropdownMenuItem asChild>
-            <LocaleSwitcher />
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild>
-            <EducationButton />
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
+        {isOpen ? <X size={32} /> : <AlignJustify size={32} />}
+      </Button>
 
-        {/* Vertical */}
-        <DropdownMenuGroup className="flex flex-col gap-2.5 translate-x-[calc(100%+0.625rem)] md:translate-x-0 md:flex-row order-1 md:contents">
-          <DropdownMenuItem asChild>
+      {isOpen && (
+        <div 
+          className="fixed bottom-2.5 right-2.5 z-50 flex flex-col gap-2.5 md:relative md:bottom-auto md:right-auto md:flex-row md:gap-2.5"
+          ref={menuRef}
+          data-menu-content
+          onClick={(e) => e.stopPropagation()}
+        >
+          
+          <div className="flex flex-col gap-2.5 absolute bottom-20 right-0 md:relative md:bottom-auto md:right-auto md:flex-row md:flex-row-reverse md:order-2">
             <MobileFilterProvinceTown
               labels={labels}
               provinceList={provinceList}
@@ -165,9 +153,7 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
               refValue={refValue}
               onApply={handleApply}
             />
-          </DropdownMenuItem>
 
-          <DropdownMenuItem asChild>
             <MobileFilterType
               labels={labels}
               typesList={typesList}
@@ -179,9 +165,7 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
               refValue={refValue}
               onApply={handleApply}
             />
-          </DropdownMenuItem>
 
-          <DropdownMenuItem asChild>
             <MobileFilterPrice
               priceOrder={priceOrder}
               setPriceOrder={setPriceOrder}
@@ -191,40 +175,33 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
               refValue={refValue}
               onApply={handleApply}
             />
-          </DropdownMenuItem>
 
-          <DropdownMenuItem asChild>
             <MobileFilterRef
               labels={labels}
               refValue={refValue}
               setRefValue={setRefValue}
+              selectedProvince={selectedProvince}
+              selectedTown={selectedTown}
+              selectedType={selectedType}
+              priceOrder={priceOrder}
               onApply={handleApply}
             />
-          </DropdownMenuItem>
 
-          <DropdownMenuItem asChild onSelect={(e) => e.preventDefault()}>
-            <Button
-              variant="menu"
-              className="flex items-center gap-1"
-              onClick={handleReset}
-            >
-              <FilterX size={25}/>
-            </Button>
-
-          </DropdownMenuItem>
-
-          <DropdownMenuItem asChild>
-            <CitiesButton />
-          </DropdownMenuItem>
-          <DropdownMenuItem asChild>
             <Link href={`/${locale}/news`}>
               <Button variant="menu">
                 <IcNewspaper/>
               </Button>
             </Link>
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
-      </DropdownMenuContent>
-    </DropdownMenu>
+            
+            <CitiesButton />
+          </div>
+          
+          <div className="flex flex-row gap-2.5 absolute right-20 bottom-0 md:relative md:bottom-auto md:right-auto md:order-1">
+            <LocaleSwitcher />
+            <EducationButton />
+          </div>
+        </div>
+      )}
+    </>
   );
 };

@@ -65,3 +65,16 @@
     display: none !important;
 }
 
+/* Prevent interaction with elements under the open menu */
+body:has([data-menu-content]) {
+    pointer-events: none;
+}
+
+body:has([data-menu-content]) [data-menu-button],
+body:has([data-menu-content]) [data-menu-content],
+body:has([data-menu-content]) [data-radix-popper-content-wrapper],
+body:has([data-menu-content]) [data-radix-select-content],
+body:has([data-menu-content]) [data-radix-select-item] {
+    pointer-events: auto;
+}
+
