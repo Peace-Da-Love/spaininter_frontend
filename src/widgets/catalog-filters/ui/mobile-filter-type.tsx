@@ -65,11 +65,24 @@ export const MobileFilterType = React.forwardRef<HTMLDivElement, Props>(
       setOpen(false)
     }
 
+    function handleTriggerClick() {
+      setSelectedType('')
+      onApply({
+        province: selectedProvince,
+        town: selectedTown,
+        type: '',
+        order: priceOrder,
+        ref: refValue,
+      })
+      
+      setOpen(true)
+    }
+
     return (
       <div ref={ref}>
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
-            <Button variant="menu">
+            <Button variant="menu" onClick={handleTriggerClick}>
               <Home size={23} />
             </Button>
           </PopoverTrigger>
@@ -84,8 +97,8 @@ export const MobileFilterType = React.forwardRef<HTMLDivElement, Props>(
                 {labels.type}
               </label>
 
-              <Select 
-                value={selectedType || EMPTY_VALUE} 
+              <Select
+                value={selectedType || EMPTY_VALUE}
                 onValueChange={handleTypeChange}
               >
                 <SelectTrigger className="w-full inline-flex justify-between items-center px-3 py-2 rounded-md border bg-white text-sm">
