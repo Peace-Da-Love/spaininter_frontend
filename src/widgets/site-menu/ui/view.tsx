@@ -23,6 +23,10 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 	const menuRef = useRef<HTMLDivElement>(null);
 	
 	const isPropertyCatalogPage = /^\/[a-z]{2}(\/property-catalog(\b|\/.*))?$/.test(pathname)
+	
+	// Определяем, где должно отображаться содержимое меню
+	const isMobileMenu = className?.includes('md:hidden')
+	const isDesktopMenu = className?.includes('md:flex')
 
 	// close menu on route change
 	useEffect(() => {
@@ -65,7 +69,11 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 
 			{isOpen && (
 				<div 
-					className="fixed bottom-2.5 right-2.5 z-50 flex flex-col gap-2.5 md:relative md:bottom-auto md:right-auto md:flex-row md:gap-2.5"
+					className={cn(
+						"fixed bottom-2.5 right-2.5 z-50 flex flex-col gap-2.5 md:relative md:bottom-auto md:right-auto md:flex-row md:gap-2.5",
+						isMobileMenu && "md:hidden",
+						isDesktopMenu && "hidden md:flex"
+					)}
 					ref={menuRef}
 					data-menu-content
 					onClick={(e) => e.stopPropagation()}

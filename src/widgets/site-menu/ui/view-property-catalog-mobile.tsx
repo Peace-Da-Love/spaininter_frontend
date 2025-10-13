@@ -18,20 +18,11 @@ import { MobileFilterProvinceTown } from '@/src/widgets/catalog-filters/ui/mobil
 import { MobileFilterType } from '@/src/widgets/catalog-filters/ui/mobile-filter-type';
 import { MobileFilterPrice } from '@/src/widgets/catalog-filters/ui/mobile-filter-price';
 import { MobileFilterRef } from '@/src/widgets/catalog-filters/ui/mobile-filter-ref';
-import { PropertyCatalogFiltersProps } from '@/src/widgets/catalog-filters/model';
+import { PropertyCatalogFiltersProps, Place, TypeItem } from '@/src/widgets/catalog-filters/model';
 
 type Props = {
   className?: string;
 } & PropertyCatalogFiltersProps;
-
-type Place = {
-  _id: string | null;
-  name: string;
-  cities: { _id: string | null; name: string; count: number }[];
-  count: number;
-};
-
-type TypeItem = { name: string; count: number };
 
 export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
   className,

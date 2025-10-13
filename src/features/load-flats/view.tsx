@@ -108,7 +108,7 @@ export const LoadFlats = ({ locale, filters, currentCount, loading }: Props) => 
         {flats.map((item, index) => (
           <Link
             key={`load-${index}-${item._id}`}
-            href={`/${locale}/property-catalog/flat/${item._id}`}
+            href={`/${locale}/property-catalog/flat/${item.slug}`}
             className="block"
           >
             <FlatCard

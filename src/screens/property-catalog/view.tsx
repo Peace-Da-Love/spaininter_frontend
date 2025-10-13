@@ -132,7 +132,7 @@ export const PropertyCatalogPage: FC<Props> = ({
         {data.map((item) => (
           <Link
             key={item._id}
-            href={`/${locale}/property-catalog/flat/${item._id}?from=${encodeURIComponent(currentUrl)}`}
+            href={`/${locale}/property-catalog/flat/${item.slug}?from=${encodeURIComponent(currentUrl)}`}
             className="block"
           >
             <FlatCard
