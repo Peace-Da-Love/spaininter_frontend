@@ -2,13 +2,30 @@ import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import { getPropertyById } from '@/src/app/server-actions';
 import { FlatPage} from '@/src/screens/flat';
 import { MinicardLabels } from '@/src/shared/types';
+import { Metadata } from 'next';
 
 type Props = {
-    params: { locale: string; id: string };
+    params: { locale: string; slug: string };
     searchParams: { from?: string };
 };
 
-export default async function Page({ params: { locale, id }, searchParams }: Props) {
+export async function generateMetadata({
+    params: { locale, slug }
+}: Omit<Props, 'children'>): Promise<Metadata> {
+    const property = await getPropertyById({ locale, slug });
+    
+    return {
+        title: property.title,
+        description: property.description,
+        openGraph: {
+            title: property.title,
+            description: property.description,
+            images: property.images.map(img => `https://prop.spaininter.com${img}`),
+        },
+    };
+}
+
+export default async function Page({ params: { locale, slug }, searchParams }: Props) {
     // Enable static rendering
     unstable_setRequestLocale(locale);
     const t = await getTranslations({ locale });
@@ -25,7 +42,7 @@ export default async function Page({ params: { locale, id }, searchParams }: Pro
         hide: t('Pages.Property.hide')
       };
     
-    const property = await getPropertyById({ locale, id });
+    const property = await getPropertyById({ locale, slug });
 
   return (
     <FlatPage

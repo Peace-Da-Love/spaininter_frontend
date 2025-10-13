@@ -4,7 +4,7 @@ import { Property } from '@/src/shared/types';
 import { $fetchP } from '@/src/app/server-api/model';
 
 type Params = {
-	id: string | number;
+	slug: string;
 	locale: string;
 };
 
@@ -13,7 +13,7 @@ export async function getPropertyById(
 	params: Params
 ): Promise<Property> {
 	const response = await $fetchP(
-		`properties/${params.id}`,
+		`properties/${params.slug}`,
 		{
 			headers: {
 			'Accept-Language': params.locale,

@@ -1,4 +1,6 @@
-import { $fetchS } from '../server-api';
+import { $fetchS, $fetchP } from '../server-api';
+import { Property } from '@/src/shared/types';
+import { Place } from '@/src/widgets/catalog-filters/model';
 
 interface CategoryMetadata {
 	statusCode: number;
@@ -69,6 +71,18 @@ class Metadata {
 		const response = await $fetchS(
 			`metadata/news/?langCode=${params.langCode}&id=${params.id}`
 		);
+		if (!response.ok) return undefined;
+		return await response.json();
+	}
+
+	public async getPlacesMetadata(): Promise<Place[] | undefined> {
+		const response = await $fetchP('places');
+		if (!response.ok) return undefined;
+		return await response.json();
+	}
+
+	public async getPropertiesMetadata(): Promise<Property[] | undefined> {
+		const response = await $fetchP('properties');
 		if (!response.ok) return undefined;
 		return await response.json();
 	}
