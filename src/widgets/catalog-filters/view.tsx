@@ -2,18 +2,9 @@
 
 import { FC, useEffect, useState } from 'react';
 import { useRouter, useParams, useSearchParams } from 'next/navigation';
-import { PropertyCatalogFiltersProps } from './model';
+import { PropertyCatalogFiltersProps, Place, TypeItem } from './model';
 import { DesktopFilter } from './ui/desktop-filter';
 import { $fetchCP } from '@/src/app/client-api/model';
-
-type Place = {
-  _id: string | null;
-  name: string;
-  cities: { _id: string | null; name: string; count: number }[];
-  count: number;
-};
-
-type TypeItem = { name: string; count: number };
 
 export const PropertyCatalogFilters: FC<PropertyCatalogFiltersProps> = (props) => {
   const {
