@@ -27,7 +27,7 @@ export const RequestMenu: FC<Props> = ({ className }) => {
 			</DropdownMenuTrigger>
 			<DropdownMenuContent
 				side={'top'}
-				className={'py-2.5 flex flex-col gap-2.5'}
+				className={'py-2.5 flex flex-col gap-2.5 z-[100]'}
 			>
 				<DropdownMenuItem asChild>
 					<PhoneForm />
