@@ -11,7 +11,7 @@ import { LocaleSwitcher } from '@/src/features/locale-switcher';
 import { CitiesButton } from '@/src/features/cities-button';
 import { FlatCatalogButton } from '@/src/features/flat-catalog-button';
 import IcNewspaper from '@/src/app/icons/ic_newspaper.svg';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 type Props = {
 	className?: string;
@@ -20,18 +20,43 @@ type Props = {
 export const SiteMenu: FC<Props> = ({ className }) => {
 	const { toggle, isOpen } = useSiteMenuStore();
 	const pathname = usePathname();
+	const searchParams = useSearchParams();
 	const menuRef = useRef<HTMLDivElement>(null);
 	
 	const isPropertyCatalogPage = /^\/[a-z]{2}(\/property-catalog(\b|\/.*))?$/.test(pathname)
 	
-	// Определяем, где должно отображаться содержимое меню
+	// Determine where the menu content should be displayed
 	const isMobileMenu = className?.includes('md:hidden')
 	const isDesktopMenu = className?.includes('md:flex')
 
-	// close menu on route change
+	// control menu on route change
 	useEffect(() => {
-		if (isOpen) toggle(false);
-	}, [pathname, toggle]);
+		const parts = pathname.split('/').filter(Boolean);
+		const pcIndex = parts.indexOf('property-catalog');
+		if (pcIndex !== -1) {
+			// Don't open menu on flat pages
+			const isFlatPage = pathname.includes('/property-catalog/flat/');
+			if (isFlatPage) {
+				toggle(false);
+				return;
+			}
+			
+			// Check if there are filters in the path (province/town) or in the query parameters
+			const hasPathFilters = parts.length > pcIndex + 1;
+			const hasQueryFilters = Boolean(
+				searchParams.get('type') || searchParams.get('order') || searchParams.get('ref')
+			);
+			
+			// Open the menu only if there are filters, otherwise close it.
+			if (hasPathFilters || hasQueryFilters) {
+				toggle(true);
+			} else {
+				toggle(false);
+			}
+		} else {
+			toggle(false);
+		}
+	}, [pathname, searchParams, toggle]);
 
 	// close menu when clicking outside, but allow clicks on Radix UI elements
 	useEffect(() => {
