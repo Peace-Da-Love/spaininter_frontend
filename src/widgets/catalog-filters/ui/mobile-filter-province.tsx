@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { Building2 } from 'lucide-react'
+import { Globe  } from 'lucide-react'
 import { PropertyCatalogFiltersProps } from '../model'
 import { Button } from '@/src/shared/components/ui/button'
 import {
@@ -12,47 +12,49 @@ import {
 
 const EMPTY_VALUE = '__empty__'
 
-interface Props
-  extends Pick<
-    PropertyCatalogFiltersProps,
-    | 'labels'
-    | 'selectedType'
-    | 'setSelectedType'
-    | 'selectedProvince'
-    | 'selectedTown'
-    | 'priceOrder'
-    | 'refValue'
-    | 'onApply'
-  > {
-  typesList: { name: string; count: number }[]
+type Props = Pick<
+  PropertyCatalogFiltersProps,
+  | 'labels'
+  | 'selectedProvince'
+  | 'setSelectedProvince'
+  | 'setSelectedTown'
+  | 'selectedType'
+  | 'priceOrder'
+  | 'refValue'
+  | 'onApply'
+> & {
+  provinceList: { name: string; count: number }[]
+  className?: string
 }
 
-export const MobileFilterType = React.forwardRef<HTMLDivElement, Props>(
+export const MobileFilterProvince = React.forwardRef<HTMLDivElement, Props>(
   (
     {
       labels,
-      typesList,
-      selectedType,
-      setSelectedType,
+      provinceList,
       selectedProvince,
-      selectedTown,
+      setSelectedProvince,
+      setSelectedTown,
+      selectedType,
       priceOrder,
       refValue,
       onApply,
+      className,
     },
     ref
   ) => {
     const [open, setOpen] = React.useState(false)
     const [hasSelected, setHasSelected] = React.useState(false)
 
-    function handleTypeChange(v: string) {
-      const type = v === EMPTY_VALUE ? '' : v
-      setSelectedType(type)
+    function handleProvinceChange(v: string) {
+      const province = v === EMPTY_VALUE ? '' : v
+      setSelectedProvince(province)
+      setSelectedTown('')
       setHasSelected(true)
       onApply({
-        province: selectedProvince,
-        town: selectedTown,
-        type,
+        province,
+        town: '',
+        type: selectedType,
         order: priceOrder,
         ref: refValue,
       })
@@ -66,12 +68,13 @@ export const MobileFilterType = React.forwardRef<HTMLDivElement, Props>(
 
     function handleOpenChange(open: boolean) {
       if (!open && !hasSelected) {
-        // If we close popover with nothing selected, reset the type filter
-        setSelectedType('')
+        // Если закрываем popover и ничего не выбрали, сбрасываем фильтры
+        setSelectedProvince('')
+        setSelectedTown('')
         onApply({
-          province: selectedProvince,
-          town: selectedTown,
-          type: '',
+          province: '',
+          town: '',
+          type: selectedType,
           order: priceOrder,
           ref: refValue,
         })
@@ -80,13 +83,13 @@ export const MobileFilterType = React.forwardRef<HTMLDivElement, Props>(
     }
 
     return (
-      <div ref={ref}>
+      <div ref={ref} className={className}>
         <Popover open={open} onOpenChange={handleOpenChange}>
           <PopoverTrigger asChild>
             <Button variant="menu" onClick={handleTriggerClick} className="relative">
-              <Building2  size={25} />
-              {selectedType && (
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full border-2 border-white" />
+              <Globe  size={25} />
+              {selectedProvince && (
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-orange-400 rounded-full border-2 border-white" />
               )}
             </Button>
           </PopoverTrigger>
@@ -98,22 +101,17 @@ export const MobileFilterType = React.forwardRef<HTMLDivElement, Props>(
           >
             <div>
               <label className="block text-xs font-medium text-foreground/90 mb-2">
-                {labels.type}
+                {labels.province}
               </label>
 
               <div className="max-h-60 overflow-y-auto">
-                {typesList.map((t) => (
+                {provinceList.map((p) => (
                   <button
-                    key={t.name}
+                    key={p.name}
                     className="w-full text-left px-3 py-2 text-sm hover:bg-gray-50 rounded-md transition-colors"
-                    onClick={() => handleTypeChange(t.name)}
+                    onClick={() => handleProvinceChange(p.name)}
                   >
-                    <div className="flex justify-between items-center">
-                      <span className="truncate">{t.name}</span>
-                      <span className="ml-2 text-xs text-foreground/60">
-                        ({t.count})
-                      </span>
-                    </div>
+                    {p.name} ({p.count})
                   </button>
                 ))}
               </div>
@@ -125,4 +123,6 @@ export const MobileFilterType = React.forwardRef<HTMLDivElement, Props>(
   }
 )
 
-MobileFilterType.displayName = 'MobileFilterType'
+MobileFilterProvince.displayName = 'MobileFilterProvince'
+
+

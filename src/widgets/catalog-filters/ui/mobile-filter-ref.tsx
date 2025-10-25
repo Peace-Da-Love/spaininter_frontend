@@ -61,7 +61,6 @@ export const MobileFilterRef = React.forwardRef<HTMLDivElement, Props>(
     }, [open, setRefValue, onApply, selectedProvince, selectedTown, selectedType, priceOrder])
 
     const handleApply = () => {
-      setOpen(false)
       onApply({
         province: selectedProvince,
         town: selectedTown,
@@ -75,8 +74,11 @@ export const MobileFilterRef = React.forwardRef<HTMLDivElement, Props>(
       <div ref={ref}>
         <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
-            <Button variant="menu" disabled={loading}>
+            <Button variant="menu" disabled={loading} className="relative">
               <span className="font-bold text-lg">ID</span>
+              {refValue && (
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-white" />
+              )}
             </Button>
           </PopoverTrigger>
 
