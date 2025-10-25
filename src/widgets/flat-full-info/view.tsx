@@ -31,17 +31,17 @@ export const FullInfoOverlay: FC<Props> = ({
 
     if (!isOpen) return null;
 
-    const {
-        title,
-        town,
-        location
-    } = property;
+    // Validation and fallback
+    const safeTitle = property?.title || '';
+    const safeTown = property?.town || '';
+    const safeLocation = property?.location || { latitude: '0', longitude: '0' };
+    const safeLocale = locale || 'en';
 
-    const title_truncated = extractBeforeCR(title);
-    const description = extractAfterCR(title);
+    const title_truncated = extractBeforeCR(safeTitle);
+    const description = extractAfterCR(safeTitle);
     
     
-    const mapEmbedUrl = `https://www.google.com/maps?q=${location.latitude},${location.longitude}&hl=${locale}&z=15&output=embed`;
+    const mapEmbedUrl = `https://www.google.com/maps?q=${safeLocation.latitude},${safeLocation.longitude}&hl=${safeLocale}&z=15&output=embed`;
     return (
         <>
         {/* Dark Background */}
@@ -69,7 +69,7 @@ export const FullInfoOverlay: FC<Props> = ({
                     <div>
                         <h1 className="sm:text-3xl text-2xl font-bold mb-2 mr-14 ">{title_truncated}</h1>
                         <div className="flex items-center space-x-4">
-                            <span className="text-gray-600 text-lg">{town}</span>
+                            <span className="text-gray-600 text-lg">{safeTown}</span>
                         </div>
                     </div>
                     

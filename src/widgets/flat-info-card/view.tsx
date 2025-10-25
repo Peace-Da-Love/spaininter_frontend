@@ -33,34 +33,49 @@ export const InfoCardOverlay: FC<Props> = ({
   onCloseOverlay,
   minicardLabels
 }) => {
-  const priceNum = Number(price);
-  const safePrice = Number.isFinite(priceNum) ? priceNum : 0;
+  // Validation and fallback
+  const safeTitle = title_truncated || '';
+  const safePrice = Number(price) || 0;
+  const safeCurrency = currency || '';
+  const safeTown = town || '';
+  const safeDescription = description || '';
+  const safeFeatures = features || {};
+  const safeBeds = beds || 0;
+  const safeBaths = baths || 0;
 
-  const areaRaw = features?.['Useable Build Space'];
+  const priceNum = Number(safePrice);
+  const finalPrice = Number.isFinite(priceNum) ? priceNum : 0;
+
+  const areaRaw = safeFeatures?.['Useable Build Space'];
   const area = typeof areaRaw === 'string' ? areaRaw.split(' ')[0] : areaRaw;
 
-  const bedroomsRaw = features?.['Double Bedrooms'];
-  const bedrooms = bedroomsRaw ? (typeof bedroomsRaw === 'string' ? bedroomsRaw.split(' ')[0] : bedroomsRaw) : beds;
+  const bedroomsRaw = safeFeatures?.['Double Bedrooms'];
+  const bedrooms = bedroomsRaw ? (typeof bedroomsRaw === 'string' ? bedroomsRaw.split(' ')[0] : bedroomsRaw) : safeBeds;
 
   return (
     <section
-      className="fixed bottom-36 right-4 z-30 bg-white bg-opacity-70 rounded-xl shadow-lg p-6 w-[340px] max-w-[90vw] backdrop-blur-md transition-transform duration-200 hover:scale-105 hover:cursor-pointer"
+      className="fixed right-4 z-30 bg-white bg-opacity-70 rounded-xl shadow-lg p-6 w-[340px] max-w-[90vw] backdrop-blur-md transition-transform duration-200 hover:cursor-pointer hover:scale-[1.05]"
       onClick={onOpenModal}
-      style={{ pointerEvents: 'auto' }}
+      style={{ 
+        pointerEvents: 'auto',
+        bottom: 'max(92px, min(120px, calc(100vh - 92px - 200px)))',
+        transform: 'scale(min(1, calc((100vh - 92px - 92px) / 200px)))',
+        transformOrigin: 'bottom right'
+      }}
       role="button"
       aria-label="Open full property details"
     >
       <div className="mb-4">
-        <h1 className="text-xl font-bold mb-2 text-gray-900 line-clamp-2">{title_truncated}</h1>
+        <h1 className="text-xl font-bold mb-2 text-gray-900 line-clamp-2">{safeTitle}</h1>
         <div className="text-lg font-semibold text-gray-800">
-          {priceFormatter(safePrice)} {currency}
+          {priceFormatter(finalPrice)} {safeCurrency}
         </div>
-        {town && <div className="text-gray-700">{town}</div>}
+        {safeTown && <div className="text-gray-700">{safeTown}</div>}
       </div>
 
-      {description && (
+      {safeDescription && (
         <div className="mb-4">
-          <p className="text-sm text-gray-800 line-clamp-3" dangerouslySetInnerHTML={{ __html: description }} />
+          <p className="text-sm text-gray-800 line-clamp-3" dangerouslySetInnerHTML={{ __html: safeDescription }} />
         </div>
       )}
 
@@ -68,7 +83,7 @@ export const InfoCardOverlay: FC<Props> = ({
         {[
           { label: minicardLabels.area, value: `${area} м²`, icon: MiniCardIcons.area},
           { label: minicardLabels.bedrooms, value: `${bedrooms}`, icon: MiniCardIcons.bedrooms},
-          { label: minicardLabels.baths, value: baths, icon: MiniCardIcons.baths},
+          { label: minicardLabels.baths, value: safeBaths, icon: MiniCardIcons.baths},
           ].map(({ icon, label, value }) =>
               value ? (
                   <FeatureMiniCard
