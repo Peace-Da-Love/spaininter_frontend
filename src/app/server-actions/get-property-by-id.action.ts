@@ -13,8 +13,17 @@ export async function getPropertyById(
 	params: Params
 ): Promise<Property | undefined> {
 	try {
+		// Extract ID from slug (last part after last dash)
+		const id = params.slug.split('-').pop();
+		if (!id || isNaN(Number(id))) {
+			console.error("[getPropertyById] Invalid slug format:", params.slug);
+			return undefined;
+		}
+
+		console.log("[getPropertyById] URL:", `properties/${id}`);
+
 		const response = await $fetchP(
-			`properties/${params.slug}`,
+			`properties/${id}`,
 			{
 				headers: {
 				'Accept-Language': params.locale,
