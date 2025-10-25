@@ -11,17 +11,26 @@ type Params = {
 
 export async function getPropertyById(
 	params: Params
-): Promise<Property> {
-	const response = await $fetchP(
-		`properties/${params.slug}`,
-		{
-			headers: {
-			'Accept-Language': params.locale,
-			Accept: 'application/json'
+): Promise<Property | undefined> {
+	try {
+		const response = await $fetchP(
+			`properties/${params.slug}`,
+			{
+				headers: {
+				'Accept-Language': params.locale,
+				Accept: 'application/json'
+				}
 			}
-		}
-	);
+		);
 
-	const data = (await response.json()) as Property;
-	return data;
+		if (!response.ok) {
+			const text = await response.text();
+			return undefined;
+		}
+
+		const data = (await response.json()) as Property;
+		return data;
+	} catch (error) {
+		throw error;
+	}
 }
