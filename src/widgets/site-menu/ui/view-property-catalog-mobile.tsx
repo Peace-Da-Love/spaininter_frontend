@@ -167,13 +167,13 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
 
       {isOpen && (
         <div 
-          className="fixed bottom-2.5 right-2.5 z-50 flex flex-col gap-2.5 md:relative md:bottom-auto md:right-auto md:flex-row md:gap-2.5"
+          className="fixed bottom-2.5 right-2.5 z-50 flex flex-col gap-2.5 md:fixed md:bottom-2.5 md:right-2.5 md:z-50"
           ref={menuRef}
           data-menu-content
           onClick={(e) => e.stopPropagation()}
         >
           
-          <div className="flex flex-col gap-2.5 absolute bottom-20 right-0 md:relative md:bottom-auto md:right-auto md:flex-row md:flex-row-reverse md:order-2">
+          <div className="flex flex-col gap-2.5 absolute bottom-20 right-0 md:absolute md:bottom-20 md:right-0">
             <MobileFilterProvince
               labels={labels}
               provinceList={provinceList}
@@ -241,7 +241,7 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
             <CitiesButton />
           </div>
           
-          <div className="flex flex-row gap-2.5 absolute right-20 bottom-0 md:relative md:bottom-auto md:right-auto md:order-1">
+          <div className="flex flex-row gap-2.5 absolute right-20 bottom-0 md:absolute md:right-20 md:bottom-0">
             <LocaleSwitcher />
             <EducationButton />
           </div>

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { FlatCard } from '@/src/entities/flat-card';
 import { Property } from '@/src/shared/types';
 import { LoadFlats } from '@/src/features/load-flats';
-import { PropertyCatalogFilters, SelectedFiltersDisplay } from '@/src/widgets/catalog-filters';
+import { SelectedFiltersDisplay } from '@/src/widgets/catalog-filters';
 import { PropertyCatalogFilterLabels } from '@/src/shared/types';
 import { $fetchCP } from '@/src/app/client-api/model';
 import { SiteMenuPropertyCatalogMobile } from '@/src/widgets/site-menu/ui/view-property-catalog-mobile';
@@ -145,23 +145,6 @@ export const PropertyCatalogPage: FC<Props> = ({
         onClearFilter={onClearFilter}
       />
 
-      {/* Desktop Filters */}
-      <PropertyCatalogFilters
-        selectedProvince={selectedProvince}
-        setSelectedProvince={setSelectedProvince}
-        selectedTown={selectedTown}
-        setSelectedTown={setSelectedTown}
-        selectedType={selectedType}
-        setSelectedType={setSelectedType}
-        priceOrder={priceOrder}
-        setPriceOrder={setPriceOrder}
-        refValue={refValue}
-        setRefValue={setRefValue}
-        onApply={(override) => fetchProperties(override)}
-        onReset={onReset}
-        setError={setError}
-        labels={filterLabels}
-      />
 
       {error && <p className="text-red-500 mb-4">{error}</p>}
 
@@ -198,7 +181,7 @@ export const PropertyCatalogPage: FC<Props> = ({
       />
 
       <SiteMenuPropertyCatalogMobile
-        className="fixed bottom-2.5 right-2.5 z-50 md:hidden"
+        className="fixed bottom-2.5 right-2.5 z-50"
         labels={filterLabels}
         selectedProvince={selectedProvince}
         setSelectedProvince={setSelectedProvince}
