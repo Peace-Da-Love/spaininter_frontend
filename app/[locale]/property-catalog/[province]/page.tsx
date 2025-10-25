@@ -60,12 +60,13 @@ export default async function Page({ params: { locale, province }, searchParams 
   return (
     <PropertyCatalogPage
       title={t('Pages.PropertyCatalog.title')}
-        loadMore={t('Pages.PropertyCatalog.loadMore')}
-        loading={t('Pages.PropertyCatalog.loading')}
-        filterLabels={filterLabels}
-        locale={locale}
-        data={initialData}
-        searchParams={searchParams}
+      loadMore={t('Pages.PropertyCatalog.loadMore')}
+      loading={t('Pages.PropertyCatalog.loading')}
+      filterLabels={filterLabels}
+      locale={locale}
+      data={initialData}
+      searchParams={searchParams}
+      provinceFromParams={decodeURIComponent(province)}
     />
   );
 }

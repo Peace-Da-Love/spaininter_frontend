@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { FlatCard } from '@/src/entities/flat-card';
 import { Property } from '@/src/shared/types';
 import { LoadFlats } from '@/src/features/load-flats';
-import { PropertyCatalogFilters } from '@/src/widgets/catalog-filters';
+import { PropertyCatalogFilters, SelectedFiltersDisplay } from '@/src/widgets/catalog-filters';
 import { PropertyCatalogFilterLabels } from '@/src/shared/types';
 import { $fetchCP } from '@/src/app/client-api/model';
 import { SiteMenuPropertyCatalogMobile } from '@/src/widgets/site-menu/ui/view-property-catalog-mobile';
@@ -103,10 +103,47 @@ export const PropertyCatalogPage: FC<Props> = ({
     setError(null);
   };
 
+  const onClearFilter = (filterType: 'province' | 'town' | 'type' | 'ref') => {
+    switch (filterType) {
+      case 'province':
+        setSelectedProvince('');
+        setSelectedTown('');
+        fetchProperties({ province: '', town: '' });
+        break;
+      case 'town':
+        setSelectedTown('');
+        fetchProperties({ town: '' });
+        break;
+      case 'type':
+        setSelectedType('');
+        fetchProperties({ type: '' });
+        break;
+      case 'ref':
+        setRefValue('');
+        fetchProperties({ ref: '' });
+        break;
+    }
+  };
+
 
   return (
     <section className="mt-24">
       <h1 className="text-2xl font-bold mb-4">{title}</h1>
+
+      {/* Selected Filters Display */}
+      <SelectedFiltersDisplay
+        selectedProvince={selectedProvince}
+        selectedTown={selectedTown}
+        selectedType={selectedType}
+        refValue={refValue}
+        labels={{
+          province: filterLabels.province,
+          town: filterLabels.town,
+          type: filterLabels.type,
+          ref: filterLabels.ref,
+        }}
+        onClearFilter={onClearFilter}
+      />
 
       {/* Desktop Filters */}
       <PropertyCatalogFilters
