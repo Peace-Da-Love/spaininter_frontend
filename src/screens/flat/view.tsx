@@ -31,8 +31,20 @@ export const FlatPage: FC<PropertyDetailsPageProps> = ({
 }) => {
   const { title, description, price, currency, town, features, images, beds, baths } =
     property;
-  const title_truncated = extractBeforeCR(title);
-  const photoUrls = images.map((imgPath) => `https://prop.spaininter.com${imgPath}`);
+  
+  // Validation and fallback values
+  const safeTitle = title || '';
+  const safeDescription = description || '';
+  const safePrice = price || 0;
+  const safeCurrency = currency || '';
+  const safeTown = town || '';
+  const safeFeatures = features || {};
+  const safeImages = Array.isArray(images) ? images : [];
+  const safeBeds = beds || 0;
+  const safeBaths = baths || 0;
+  
+  const title_truncated = extractBeforeCR(safeTitle);
+  const photoUrls = safeImages.map((imgPath) => `https://prop.spaininter.com${imgPath}`);
   const [showOverlay, setShowOverlay] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -112,13 +124,13 @@ export const FlatPage: FC<PropertyDetailsPageProps> = ({
       {showOverlay && (
         <InfoCardOverlay
           title_truncated={title_truncated}
-          price={price}
-          currency={currency}
-          town={town}
-          description={description}
-          features={features}
-          beds={beds}
-          baths={baths}
+          price={safePrice}
+          currency={safeCurrency}
+          town={safeTown}
+          description={safeDescription}
+          features={safeFeatures}
+          beds={safeBeds}
+          baths={safeBaths}
           onOpenModal={() => {
             setShowOverlay(false);
             setShowModal(true);

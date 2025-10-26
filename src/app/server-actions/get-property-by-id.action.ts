@@ -11,17 +11,33 @@ type Params = {
 
 export async function getPropertyById(
 	params: Params
-): Promise<Property> {
-	const response = await $fetchP(
-		`properties/${params.slug}`,
-		{
-			headers: {
-			'Accept-Language': params.locale,
-			Accept: 'application/json'
-			}
+): Promise<Property | undefined> {
+	try {
+		// Extract ID from slug (last part after last dash)
+		const id = params.slug.split('-').pop();
+		if (!id || isNaN(Number(id))) {
+			console.error("[getPropertyById] Invalid slug format:", params.slug);
+			return undefined;
 		}
-	);
 
-	const data = (await response.json()) as Property;
-	return data;
+		const response = await $fetchP(
+			`properties/${id}`,
+			{
+				headers: {
+				'Accept-Language': params.locale,
+				Accept: 'application/json'
+				}
+			}
+		);
+
+		if (!response.ok) {
+			const text = await response.text();
+			return undefined;
+		}
+
+		const data = (await response.json()) as Property;
+		return data;
+	} catch (error) {
+		throw error;
+	}
 }

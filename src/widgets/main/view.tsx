@@ -13,14 +13,13 @@ type Props = {
 export const Main: FC<Props> = ({ className, children }) => {
   const pathname = usePathname()
 
-  const isFlatPage = pathname?.includes('/property-catalog/flat/')
   const isPropertyCatalogPage = /^\/[a-z]{2}(\/property-catalog(\b|\/.*))?$/.test(pathname)
 
   return (
     <main className={'w-full flex-grow py-5'}>
       {children}
 
-      {!isFlatPage && !isPropertyCatalogPage && (
+      {!isPropertyCatalogPage && (
         <SiteMenu
           className={'fixed bottom-2.5 right-2.5 z-50 inline-flex md:hidden'}
         />      

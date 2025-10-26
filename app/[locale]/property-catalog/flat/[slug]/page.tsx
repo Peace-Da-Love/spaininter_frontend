@@ -3,6 +3,7 @@ import { getPropertyById } from '@/src/app/server-actions';
 import { FlatPage} from '@/src/screens/flat';
 import { MinicardLabels } from '@/src/shared/types';
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 type Props = {
     params: { locale: string; slug: string };
@@ -11,19 +12,39 @@ type Props = {
 
 export async function generateMetadata({
     params: { locale, slug }
-}: Omit<Props, 'children'>): Promise<Metadata> {
-    const property = await getPropertyById({ locale, slug });
-    
-    return {
-        title: property.title,
-        description: property.description,
+  }: Omit<Props, 'children'>): Promise<Metadata> {
+    try {
+      const property = await getPropertyById({ locale, slug });
+  
+      if (!property) {
+        return {
+          title: 'Property Not Found',
+          description: 'The requested property could not be found.'
+        };
+      }
+  
+      const images = Array.isArray(property.images)
+        ? property.images.map(img => `https://prop.spaininter.com${img}`)
+        : [];
+  
+      return {
+        title: property.title || 'Property',
+        description: property.description || '',
         openGraph: {
-            title: property.title,
-            description: property.description,
-            images: property.images.map(img => `https://prop.spaininter.com${img}`),
+          title: property.title || '',
+          description: property.description || '',
+          images,
         },
-    };
-}
+      };
+    } catch (err) {
+      console.error("[generateMetadata] ERROR:", err);
+      return {
+        title: 'Error loading property',
+        description: 'An unexpected error occurred while loading this property.'
+      };
+    }
+  }
+  
 
 export default async function Page({ params: { locale, slug }, searchParams }: Props) {
     // Enable static rendering
@@ -43,6 +64,10 @@ export default async function Page({ params: { locale, slug }, searchParams }: P
       };
     
     const property = await getPropertyById({ locale, slug });
+
+    if (!property) {
+        notFound();
+    }
 
   return (
     <FlatPage

@@ -68,6 +68,8 @@ export default async function Page({ params: { locale, province, town }, searchP
         locale={locale}
         data={initialData}
         searchParams={searchParams}
+        provinceFromParams={decodeURIComponent(province)}
+        townFromParams={decodeURIComponent(town)}
     />
   );
 }
