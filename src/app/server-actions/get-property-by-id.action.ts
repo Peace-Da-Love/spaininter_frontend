@@ -20,8 +20,6 @@ export async function getPropertyById(
 			return undefined;
 		}
 
-		console.log("[getPropertyById] URL:", `properties/${id}`);
-
 		const response = await $fetchP(
 			`properties/${id}`,
 			{
