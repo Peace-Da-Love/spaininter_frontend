@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { CatalogTelegram } from '@/src/screens/catalog-telegram';
 import { locales } from '@/src/shared/configs';
 import { Metadata } from 'next';
