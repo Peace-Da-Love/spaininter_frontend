@@ -96,11 +96,59 @@ export default async function LocaleLayout({
           <PageLayout>{children}</PageLayout>
         </Provider>
 
-				<Script
-					defer
-					data-domain='spaininter.com'
-					src='https://stat.spaininter.com/js/script.js'
-				/>
+			<Script
+				async
+				defer
+				data-domain='spaininter.com'
+				src='https://stat.spaininter.com/js/script.js'
+			/>
+			<Script id="plausible-override" strategy="afterInteractive">
+				{`
+				(function() {
+					const shortenUrl = (href) => {
+						try {
+							const url = new URL(href);
+							const path = url.pathname;
+							const parts = path.split('/');
+							const slug = parts.pop() || '';
+							
+							// Extract ID from slug (last part after dash)
+							if (slug) {
+								const slugParts = slug.split('-');
+								const id = slugParts.pop();
+								
+								if (parts[1] && parts[2] && id) {
+									const locale = parts[1];
+									const category = parts[2];
+									url.pathname = \`/\${locale}/\${category}/\${id}\`;
+									return url.toString();
+								}
+							}
+							return href;
+						} catch {
+							return href;
+						}
+					};
+
+					const interval = setInterval(() => {
+						if (window.plausible) {
+							clearInterval(interval);
+							const original = window.plausible;
+							window.plausible = function(event, options) {
+								if (!options) options = {};
+								if (!options.url && event === 'pageview') {
+									options.url = shortenUrl(window.location.href);
+								} else if (options.url) {
+									options.url = shortenUrl(options.url);
+								}
+								return original.call(this, event, options);
+							};
+						}
+					}, 100);
+				})();
+				`}
+			</Script>
+
 			</body>
 		</html>
 	);
