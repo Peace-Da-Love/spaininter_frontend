@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { unstable_setRequestLocale } from 'next-intl/server';
 import { ReactNode } from 'react';
 import { locales } from '@/src/shared/configs';
