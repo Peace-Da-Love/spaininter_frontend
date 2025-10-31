@@ -2,9 +2,10 @@ import { FC } from 'react';
 import Markdown, { Components } from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import remarkGfm from 'remark-gfm';
-import rehypeSlug from 'rehype-slug';
 import remarkUnwrapImages from 'remark-unwrap-images';
 import Link from 'next/link';
+import { processMarkdownEmbeds } from '@/src/shared/utils/processMarkdownEmbeds';
+import { TikTokEmbedLoader } from './tiktok-embed-loader';
 
 type Props = {
 	markdown: string;
@@ -19,21 +20,33 @@ const components: Components = {
 		>
 			{children}
 		</Link>
-	)
-};
+	),
+	iframe: ({ node, ...props }) => (
+		<iframe
+			{...props}
+			loading='lazy'
+			className='rounded-lg'
+			allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+			allowFullScreen
+		/>
+	),
+	blockquote: ({ node, ...props }) => <blockquote {...props} />
+}
 
 export const MarkdownNews: FC<Props> = ({ markdown }) => {
-	return (
+    const processedMarkdown = processMarkdownEmbeds(markdown);
+    return (
 		<div className='news-content'>
 			<Markdown
-				rehypePlugins={[rehypeRaw, rehypeSlug]}
+				rehypePlugins={[rehypeRaw]}
 				remarkPlugins={[remarkUnwrapImages, remarkGfm]}
 				components={components}
 				skipHtml={false}
 				className={'prose max-w-max'}
 			>
-				{markdown}
+				{processedMarkdown}
 			</Markdown>
+			<TikTokEmbedLoader />
 		</div>
 	);
 };
