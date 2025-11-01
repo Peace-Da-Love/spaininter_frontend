@@ -174,6 +174,28 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
         >
           
           <div className="flex flex-col gap-2.5 absolute bottom-20 right-0 md:absolute md:bottom-20 md:right-0">
+            
+            <MobileFilterPrice
+              priceOrder={priceOrder}
+              setPriceOrder={setPriceOrder}
+              selectedProvince={selectedProvince}
+              selectedTown={selectedTown}
+              selectedType={selectedType}
+              refValue={refValue}
+              onApply={handleApply}
+            />
+
+            <MobileFilterRef
+              labels={labels}
+              refValue={refValue}
+              setRefValue={setRefValue}
+              selectedProvince={selectedProvince}
+              selectedTown={selectedTown}
+              selectedType={selectedType}
+              priceOrder={priceOrder}
+              onApply={handleApply}
+            />
+
             <MobileFilterProvince
               labels={labels}
               provinceList={provinceList}
@@ -208,27 +230,6 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
               selectedTown={selectedTown}
               priceOrder={priceOrder}
               refValue={refValue}
-              onApply={handleApply}
-            />
-
-            <MobileFilterPrice
-              priceOrder={priceOrder}
-              setPriceOrder={setPriceOrder}
-              selectedProvince={selectedProvince}
-              selectedTown={selectedTown}
-              selectedType={selectedType}
-              refValue={refValue}
-              onApply={handleApply}
-            />
-
-            <MobileFilterRef
-              labels={labels}
-              refValue={refValue}
-              setRefValue={setRefValue}
-              selectedProvince={selectedProvince}
-              selectedTown={selectedTown}
-              selectedType={selectedType}
-              priceOrder={priceOrder}
               onApply={handleApply}
             />
 
