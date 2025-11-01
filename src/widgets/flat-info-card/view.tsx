@@ -1,6 +1,6 @@
 'use client';
 
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { priceFormatter } from '@/src/shared/utils';
 import { FeatureMiniCard } from '@/src/shared/components/shared/flat-feature-minicard';
 import { MiniCardIcons } from '@/src/shared/components/shared/flat-feature-minicard';
@@ -33,6 +33,8 @@ export const InfoCardOverlay: FC<Props> = ({
   onCloseOverlay,
   minicardLabels
 }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   // Validation and fallback
   const safeTitle = title_truncated || '';
   const safePrice = Number(price) || 0;
@@ -52,15 +54,20 @@ export const InfoCardOverlay: FC<Props> = ({
   const bedroomsRaw = safeFeatures?.['Double Bedrooms'];
   const bedrooms = bedroomsRaw ? (typeof bedroomsRaw === 'string' ? bedroomsRaw.split(' ')[0] : bedroomsRaw) : safeBeds;
 
+  const hoverScale = isHovered ? 1.05 : 1;
+  const transform = `scale(calc(min(1, calc((100vh - 92px - 92px) / 200px)) * ${hoverScale}))`;
+
   return (
     <section
-      className="fixed right-4 z-30 bg-white bg-opacity-70 rounded-xl shadow-lg p-6 w-[340px] max-w-[90vw] backdrop-blur-md transition-transform duration-200 hover:cursor-pointer hover:scale-[1.05]"
+      className="fixed right-4 z-30 bg-white bg-opacity-70 rounded-xl shadow-lg p-6 w-[340px] max-w-[90vw] backdrop-blur-md transition-transform duration-200 hover:cursor-pointer"
       onClick={onOpenModal}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       style={{ 
         pointerEvents: 'auto',
         bottom: 'max(92px, min(120px, calc(100vh - 92px - 200px)))',
-        transform: 'scale(min(1, calc((100vh - 92px - 92px) / 200px)))',
-        transformOrigin: 'bottom right'
+        transform,
+        transformOrigin: 'center'
       }}
       role="button"
       aria-label="Open full property details"
