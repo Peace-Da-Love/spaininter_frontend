@@ -36,9 +36,9 @@ export const SelectedFiltersDisplay: FC<SelectedFiltersDisplayProps> = ({
   }
 
   return (
-    <div className={cn('flex flex-wrap gap-2 mb-4', className)}>
+    <div className={cn('flex flex-nowrap items-center gap-2', className)}>
       {selectedProvince && (
-        <div className="flex items-center gap-1 bg-orange-50 text-orange-700 px-3 py-1.5 rounded-full text-sm">
+        <div className="flex items-center gap-1 bg-orange-50 text-orange-700 px-3 py-1 h-7 rounded-full text-sm whitespace-nowrap">
           <span className="font-medium">{labels.province}:</span>
           <span>{selectedProvince}</span>
           <Button
@@ -53,7 +53,7 @@ export const SelectedFiltersDisplay: FC<SelectedFiltersDisplayProps> = ({
       )}
 
       {selectedTown && (
-        <div className="flex items-center gap-1 bg-cyan-50 text-cyan-700 px-3 py-1.5 rounded-full text-sm">
+        <div className="flex items-center gap-1 bg-cyan-50 text-cyan-700 px-3 py-1 h-7 rounded-full text-sm whitespace-nowrap">
           <span className="font-medium">{labels.town}:</span>
           <span>{selectedTown}</span>
           <Button
@@ -68,7 +68,7 @@ export const SelectedFiltersDisplay: FC<SelectedFiltersDisplayProps> = ({
       )}
 
       {selectedType && (
-        <div className="flex items-center gap-1 bg-yellow-50 text-yellow-700 px-3 py-1.5 rounded-full text-sm">
+        <div className="flex items-center gap-1 bg-yellow-50 text-yellow-700 px-3 py-1 h-7 rounded-full text-sm whitespace-nowrap">
           <span className="font-medium">{labels.type}:</span>
           <span>{selectedType}</span>
           <Button
@@ -83,7 +83,7 @@ export const SelectedFiltersDisplay: FC<SelectedFiltersDisplayProps> = ({
       )}
 
       {refValue && (
-        <div className="flex items-center gap-1 bg-red-50 text-red-700 px-3 py-1.5 rounded-full text-sm">
+        <div className="flex items-center gap-1 bg-red-50 text-red-700 px-3 py-1 h-7 rounded-full text-sm whitespace-nowrap">
           <span className="font-medium">{labels.ref}:</span>
           <span>{refValue}</span>
           <Button
