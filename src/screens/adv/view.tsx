@@ -62,7 +62,7 @@ const SlideInfoCard: FC<{
   const bedrooms = bedroomsRaw ? (typeof bedroomsRaw === 'string' ? bedroomsRaw.split(' ')[0] : bedroomsRaw) : safeBeds;
 
   const hoverScale = isHovered ? 1.05 : 1;
-  const transform = `scale(calc(min(1, calc((100vh - 92px - 92px) / 200px)) * ${hoverScale}))`;
+  const transform = `scale(${hoverScale})`;
 
   return (
     <section
@@ -120,6 +120,7 @@ export const AdvPage: FC<AdvPageProps> = ({ properties, locale, minicardLabels }
   const [isAutoPlayPaused, setIsAutoPlayPaused] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const autoPlayTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const autoPlayIntervalRef = useRef<NodeJS.Timeout | null>(null);
   
   // All properties state - starts with server-loaded properties, expands as more pages load
   const [allProperties, setAllProperties] = useState<Property[]>(properties);
@@ -133,9 +134,24 @@ export const AdvPage: FC<AdvPageProps> = ({ properties, locale, minicardLabels }
     [allProperties]
   );
 
+  // Keep ref updated for autoplay (using ref to avoid recreating intervals on length change)
+  const propertiesWithImagesRef = useRef(propertiesWithImages);
+  const hasProperties = propertiesWithImages.length > 0;
+  useEffect(() => {
+    propertiesWithImagesRef.current = propertiesWithImages;
+  }, [propertiesWithImages]);
+
+  // Optimize rendering: only render visible slide and adjacent ones for better performance
+  const renderWindow = 5;
+  const visibleIndices = useMemo(() => {
+    const indices = new Set<number>();
+    for (let i = Math.max(0, currentIndex - renderWindow); i <= Math.min(propertiesWithImages.length - 1, currentIndex + renderWindow); i++) {
+      indices.add(i);
+    }
+    return indices;
+  }, [currentIndex, propertiesWithImages.length, renderWindow]);
+
   // No need to reset index - it's already initialized to 0
-  // Server props don't change after initial load, and we don't want to reset
-  // when adding client-side properties to avoid jumping back to start
 
   // Gradually load more pages in the background
   const loadNextPage = useCallback(async () => {
@@ -284,20 +300,51 @@ export const AdvPage: FC<AdvPageProps> = ({ properties, locale, minicardLabels }
 
   // Auto-scroll every 5 seconds (infinite loop) - paused when user interacts
   useEffect(() => {
-    if (propertiesWithImages.length === 0 || isAutoPlayPaused) return;
+    // Clear any existing intervals/timeouts when paused or no properties
+    if (!hasProperties || isAutoPlayPaused) {
+      if (autoPlayIntervalRef.current) {
+        clearInterval(autoPlayIntervalRef.current);
+        autoPlayIntervalRef.current = null;
+      }
+      return;
+    }
 
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % propertiesWithImages.length);
+    // If interval already exists and we're not paused, keep it running
+    // (This prevents restarting when propertiesWithImages.length changes due to page loading)
+    if (autoPlayIntervalRef.current) return;
+
+    // Start first scroll after 5 seconds delay
+    const initialTimeout = setTimeout(() => {
+      if (propertiesWithImagesRef.current.length === 0 || isAutoPlayPaused) return;
+
+      setCurrentIndex((prev) => (prev + 1) % propertiesWithImagesRef.current.length);
+      
+      // Then continue every 5 seconds
+      autoPlayIntervalRef.current = setInterval(() => {
+        if (propertiesWithImagesRef.current.length === 0 || isAutoPlayPaused) {
+          if (autoPlayIntervalRef.current) {
+            clearInterval(autoPlayIntervalRef.current);
+            autoPlayIntervalRef.current = null;
+          }
+          return;
+        }
+        setCurrentIndex((prev) => (prev + 1) % propertiesWithImagesRef.current.length);
+      }, 5000);
     }, 5000);
 
-    return () => clearInterval(interval);
-  }, [propertiesWithImages.length, isAutoPlayPaused]);
+    return () => {
+      clearTimeout(initialTimeout);
+    };
+  }, [hasProperties, isAutoPlayPaused]); // Use boolean to avoid restart on every length change
 
   // Cleanup on unmount
   useEffect(() => {
     return () => {
       if (autoPlayTimeoutRef.current) {
         clearTimeout(autoPlayTimeoutRef.current);
+      }
+      if (autoPlayIntervalRef.current) {
+        clearInterval(autoPlayIntervalRef.current);
       }
     };
   }, []);
@@ -416,14 +463,6 @@ export const AdvPage: FC<AdvPageProps> = ({ properties, locale, minicardLabels }
     }
   };
 
-  if (propertiesWithImages.length === 0) {
-    return (
-      <div className="fixed inset-0 flex items-center justify-center bg-black">
-        <div className="text-white">No properties available</div>
-      </div>
-    );
-  }
-
   const handleOpenModal = (property: Property) => {
     // Navigate to property detail page with return URL
     const slug = property.slug || property._id;
@@ -432,25 +471,18 @@ export const AdvPage: FC<AdvPageProps> = ({ properties, locale, minicardLabels }
     window.location.href = `/${locale}/property-catalog/flat/${slug}?from=${encodedFrom}`;
   };
 
-  const handleCloseOverlay = () => {
-    // Just close overlay - nothing to do
-  };
-
   // Calculate transform for horizontal slide
-  // Invert the direction: when dragging left (startX > currentX), we want to show next slide (more negative)
   const dragOffset = isDragging ? ((currentX - startX) / (containerRef.current?.offsetWidth || 1)) * 100 : 0;
   const translateX = `calc(-${currentIndex * 100}% + ${dragOffset}%)`;
 
-  // Optimize rendering: only render visible slide and adjacent ones for better performance
-  // Increased window to preload images before they're shown
-  const renderWindow = 5; // Render current ± 5 slides for better preloading
-  const visibleIndices = useMemo(() => {
-    const indices = new Set<number>();
-    for (let i = Math.max(0, currentIndex - renderWindow); i <= Math.min(propertiesWithImages.length - 1, currentIndex + renderWindow); i++) {
-      indices.add(i);
-    }
-    return indices;
-  }, [currentIndex, propertiesWithImages.length, renderWindow]);
+  // Early return должен быть после всех хуков
+  if (propertiesWithImages.length === 0) {
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-black">
+        <div className="text-white">No properties available</div>
+      </div>
+    );
+  }
 
   return (
     <div 
@@ -462,7 +494,7 @@ export const AdvPage: FC<AdvPageProps> = ({ properties, locale, minicardLabels }
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
-      style={{ userSelect: 'none', cursor: isDragging ? 'grabbing' : 'grab' }}
+      style={{ userSelect: 'none', cursor: 'default' }}
     >
       {/* Logo in upper left corner */}
       <div className="absolute top-5 left-5 z-30">
@@ -509,7 +541,7 @@ export const AdvPage: FC<AdvPageProps> = ({ properties, locale, minicardLabels }
                     alt={title_truncated || 'Property'}
                     fill
                     className="object-cover"
-                    {...(index === 0 || index === currentIndex || Math.abs(index - currentIndex) <= 2
+                    {...(Math.abs(index - currentIndex) <= 2
                       ? { priority: true }
                       : { loading: 'lazy' }
                     )}
@@ -537,4 +569,3 @@ export const AdvPage: FC<AdvPageProps> = ({ properties, locale, minicardLabels }
     </div>
   );
 };
-
