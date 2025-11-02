@@ -9,6 +9,8 @@ import { SelectedFiltersDisplay } from '@/src/widgets/catalog-filters';
 import { PropertyCatalogFilterLabels } from '@/src/shared/types';
 import { $fetchCP } from '@/src/app/client-api/model';
 import { SiteMenuPropertyCatalogMobile } from '@/src/widgets/site-menu/ui/view-property-catalog-mobile';
+import { Logo } from '@/src/shared/components/shared/logo';
+import { cn } from '@/src/shared/utils';
 
 type Props = {
   data: Property[];
@@ -127,24 +129,23 @@ export const PropertyCatalogPage: FC<Props> = ({
 
 
   return (
-    <section className="mt-24">
-      <h1 className="text-2xl font-bold mb-4">{title}</h1>
-
-      {/* Selected Filters Display */}
-      <SelectedFiltersDisplay
-        selectedProvince={selectedProvince}
-        selectedTown={selectedTown}
-        selectedType={selectedType}
-        refValue={refValue}
-        labels={{
-          province: filterLabels.province,
-          town: filterLabels.town,
-          type: filterLabels.type,
-          ref: filterLabels.ref,
-        }}
-        onClearFilter={onClearFilter}
-      />
-
+    <section>
+      <header className={cn('fixed top-5 z-50 flex gap-2.5')}>
+        <Logo />
+        <SelectedFiltersDisplay
+          selectedProvince={selectedProvince}
+          selectedTown={selectedTown}
+          selectedType={selectedType}
+          refValue={refValue}
+          labels={{
+            province: filterLabels.province,
+            town: filterLabels.town,
+            type: filterLabels.type,
+            ref: filterLabels.ref,
+          }}
+          onClearFilter={onClearFilter}
+        />
+      </header>
 
       {error && <p className="text-red-500 mb-4">{error}</p>}
 

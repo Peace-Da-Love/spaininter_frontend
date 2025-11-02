@@ -14,6 +14,7 @@ export const Main: FC<Props> = ({ className, children }) => {
   const pathname = usePathname()
 
   const isPropertyCatalogPage = /^\/[a-z]{2}(\/property-catalog(\b|\/.*))?$/.test(pathname)
+  const isAdvPage = /^\/[a-z]{2}\/adv(\b|$)/.test(pathname)
 
   return (
     <main className={'w-full flex-grow py-5'}>
@@ -24,7 +25,7 @@ export const Main: FC<Props> = ({ className, children }) => {
           className={'fixed bottom-2.5 right-2.5 z-50 inline-flex md:hidden'}
         />      
         )}
-    <RequestMenu className={'fixed bottom-2.5 z-50'} />
+    {!isAdvPage && <RequestMenu className={'fixed bottom-2.5 z-50'} />}
     </main>
   );
 };

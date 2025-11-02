@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { CoursesPage } from '@/src/screens/courses';
 import { Metadata } from 'next';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';

@@ -1,0 +1,2 @@
+export { AdvPage } from './view';
+
