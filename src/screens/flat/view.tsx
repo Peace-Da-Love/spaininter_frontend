@@ -101,7 +101,7 @@ export const FlatPage: FC<PropertyDetailsPageProps> = ({
       </div>
 
       {/* Overlay controls row */}
-      <div className="absolute bottom-2.5 right-2.5 justify-end z-20 flex items-center gap-2 w-[calc(100%-110px)] max-w-[calc(100%-110px)]">
+      <div className={`absolute bottom-2.5 right-2.5 justify-end z-20 flex items-center gap-2 w-[calc(100%-110px)] max-w-[calc(100%-110px)] ${showModal ? 'hidden' : ''}`}>
         {/* Prev/Next */}
         <Button ref={prevRef} variant="menu" asChild={false}>
           <ChevronLeft />
