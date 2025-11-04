@@ -162,7 +162,7 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
         onClick={() => toggle()}
         data-menu-button
       >
-        {isOpen ? <X size={32} /> : <Circle size={32} />}
+        {isOpen ? <X size={42} /> : <Circle size={42} fill="currentColor" stroke="none" />}
       </Button>
 
       {isOpen && (

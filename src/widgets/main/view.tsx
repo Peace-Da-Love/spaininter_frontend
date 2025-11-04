@@ -20,9 +20,9 @@ export const Main: FC<Props> = ({ className, children }) => {
     <main className={'w-full flex-grow py-5'}>
       {children}
 
-      {!isPropertyCatalogPage && (
+      {!isPropertyCatalogPage && !isAdvPage && (
         <SiteMenu
-          className={'fixed bottom-2.5 right-2.5 z-50 inline-flex md:hidden'}
+          className={'fixed bottom-2.5 right-2.5 z-50 inline-flex'}
         />      
         )}
     {!isAdvPage && <RequestMenu className={'fixed bottom-2.5 z-50'} />}

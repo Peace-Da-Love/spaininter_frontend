@@ -3,7 +3,7 @@
 import { FC, useEffect, useRef } from 'react';
 import { cn } from '@/src/shared/utils';
 import { Link } from '@/src/shared/utils';
-import { AlignJustify, X } from 'lucide-react';
+import { Circle, X } from 'lucide-react';
 import { useSiteMenuStore } from '../store';
 import { Button } from '@/src/shared/components/ui';
 import { EducationButton } from '@/src/features/education-button';
@@ -25,9 +25,7 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 	
 	const isPropertyCatalogPage = /^\/[a-z]{2}(\/property-catalog(\b|\/.*))?$/.test(pathname)
 	
-	// Determine where the menu content should be displayed
-	const isMobileMenu = className?.includes('md:hidden')
-	const isDesktopMenu = className?.includes('md:flex')
+    // Mobile menu should be shown the same on all breakpoints
 
 	// control menu on route change
 	useEffect(() => {
@@ -89,22 +87,20 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 				onClick={() => toggle()}
 				data-menu-button
 			>
-				{isOpen ? <X size={32} /> : <AlignJustify size={32} />}
+				{isOpen ? <X size={42} /> : <Circle size={42} fill="currentColor" stroke="none" />}
 			</Button>
 
-			{isOpen && (
-				<div 
-					className={cn(
-						"fixed bottom-2.5 right-2.5 z-50 flex flex-col gap-2.5 md:relative md:bottom-auto md:right-auto md:flex-row md:gap-2.5",
-						isMobileMenu && "md:hidden",
-						isDesktopMenu && "hidden md:flex"
-					)}
-					ref={menuRef}
-					data-menu-content
-					onClick={(e) => e.stopPropagation()}
-				>
+            {isOpen && (
+                <div 
+                    className={cn(
+                        "fixed bottom-2.5 right-2.5 z-50 flex flex-col gap-2.5"
+                    )}
+                    ref={menuRef}
+                    data-menu-content
+                    onClick={(e) => e.stopPropagation()}
+                >
 					
-					<div className="flex flex-col gap-2.5 absolute bottom-20 right-0 md:relative md:bottom-auto md:right-auto md:flex-row md:flex-row-reverse md:order-2">
+                    <div className="flex flex-col gap-2.5 absolute bottom-20 right-0">
 						{!isPropertyCatalogPage && (
 							<FlatCatalogButton />
 						)}
@@ -118,7 +114,7 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 						)}
 					</div>
 					
-					<div className="flex flex-row gap-2.5 absolute right-20 bottom-0 md:relative md:bottom-auto md:right-auto md:order-1">
+                    <div className="flex flex-row gap-2.5 absolute right-20 bottom-0">
 						<LocaleSwitcher />
 						<EducationButton />
 					</div>
