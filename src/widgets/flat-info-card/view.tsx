@@ -18,6 +18,7 @@ type Props = {
   onOpenModal: () => void;
   onCloseOverlay: () => void;
   minicardLabels: MinicardLabels
+  refCode?: string;
 };
 
 export const InfoCardOverlay: FC<Props> = ({
@@ -31,7 +32,8 @@ export const InfoCardOverlay: FC<Props> = ({
   baths,
   onOpenModal,
   onCloseOverlay,
-  minicardLabels
+  minicardLabels,
+  refCode
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -40,6 +42,7 @@ export const InfoCardOverlay: FC<Props> = ({
   const safePrice = Number(price) || 0;
   const safeCurrency = currency || '';
   const safeTown = town || '';
+  const safeRef = refCode || '';
   const safeDescription = description || '';
   const safeFeatures = features || {};
   const safeBeds = beds || 0;
@@ -74,10 +77,19 @@ export const InfoCardOverlay: FC<Props> = ({
     >
       <div className="mb-4">
         <h1 className="text-xl font-bold mb-2 text-gray-900 line-clamp-2">{safeTitle}</h1>
-        <div className="text-lg font-semibold text-gray-800">
-          {priceFormatter(finalPrice)} {safeCurrency}
+        <div className="flex items-start justify-between gap-4">
+          <div className="min-w-0">
+            <div className="text-lg font-semibold text-gray-800 truncate">
+              {priceFormatter(finalPrice)} {safeCurrency}
+            </div>
+            {safeTown && 
+              <div className="text-m md:text-l text-gray-900 font-semibold truncate mt-0.5">{safeTown}</div>
+            }
+          </div>
+          {safeRef && (
+            <div className="text-xs md:text-sm text-gray-600 truncate mt-0.5">{safeRef}</div>
+          )}
         </div>
-        {safeTown && <div className="text-gray-700">{safeTown}</div>}
       </div>
 
       {safeDescription && (

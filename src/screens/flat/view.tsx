@@ -131,6 +131,7 @@ export const FlatPage: FC<PropertyDetailsPageProps> = ({
           features={safeFeatures}
           beds={safeBeds}
           baths={safeBaths}
+          refCode={property.ref}
           onOpenModal={() => {
             setShowOverlay(false);
             setShowModal(true);

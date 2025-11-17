@@ -28,6 +28,8 @@ const SlideInfoCard: FC<{
   baths?: number | string;
   onOpenModal: () => void;
   minicardLabels: MinicardLabels;
+  qrSrc?: string;
+  refCode?: string;
 }> = ({
   title_truncated,
   price,
@@ -38,7 +40,9 @@ const SlideInfoCard: FC<{
   beds,
   baths,
   onOpenModal,
-  minicardLabels
+  minicardLabels,
+  qrSrc,
+  refCode
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -47,6 +51,7 @@ const SlideInfoCard: FC<{
   const safePrice = Number(price) || 0;
   const safeCurrency = currency || '';
   const safeTown = town || '';
+  const safeRef = refCode || '';
   const safeDescription = description || '';
   const safeFeatures = features || {};
   const safeBeds = beds || 0;
@@ -72,19 +77,40 @@ const SlideInfoCard: FC<{
       onMouseLeave={() => setIsHovered(false)}
       style={{ 
         pointerEvents: 'auto',
-        bottom: '20px',
+        bottom: 'max(92px, min(120px, calc(100vh - 92px - 200px)))',
         transform,
         transformOrigin: 'center'
       }}
       role="button"
       aria-label="Open full property details"
     >
-      <div className="mb-4">
-        <h1 className="text-xl font-bold mb-2 text-gray-900 line-clamp-2">{safeTitle}</h1>
-        <div className="text-lg font-semibold text-gray-800">
-          {priceFormatter(finalPrice)} {safeCurrency}
+      <div className="mb-2">
+        <h1 className="text-xl font-bold text-gray-900 line-clamp-2">{safeTitle}</h1>
+      </div>
+      <div className="mb-4 flex items-stretch justify-between gap-4">
+        <div className="min-w-0 flex-1 flex flex-col justify-between">
+          <div className="min-w-0">
+            <div className="text-l md:text-xl font-semibold text-gray-800 truncate">
+              {priceFormatter(finalPrice)} {safeCurrency}
+            </div>
+            {safeTown && (
+              <div className="text-m md:text-l text-gray-900 font-semibold truncate mt-0.5">{safeTown}</div>
+            )}
+          </div>
+          {safeRef && (
+            <div className="text-xs md:text-sm text-gray-600 truncate mt-1">{safeRef}</div>
+          )}
         </div>
-        {safeTown && <div className="text-gray-700">{safeTown}</div>}
+        {qrSrc ? (
+          <div className="shrink-0">
+            <img
+              src={qrSrc}
+              alt="QR code to property page"
+              className="w-20 h-20 md:w-24 md:h-24 rounded bg-white/80"
+              loading="lazy"
+            />
+          </div>
+        ) : null}
       </div>
 
       {safeDescription && (
@@ -527,6 +553,11 @@ export const AdvPage: FC<AdvPageProps> = ({ properties, locale, minicardLabels }
             ? `https://prop.spaininter.com${relativePath}`
             : '';
           const title_truncated = extractBeforeCR(property.title || '');
+          const id = property._id;
+          const propertyPath = `/${locale}/property-catalog/flat/${id}`;
+          const baseUrl = 'https://spaininter.com';
+          const qrTarget = `${baseUrl}${propertyPath}`;
+          const qrSrc = `https://quickchart.io/qr?size=128&ecLevel=L&text=${encodeURIComponent(qrTarget)}`;
 
           return (
             <div
@@ -561,6 +592,8 @@ export const AdvPage: FC<AdvPageProps> = ({ properties, locale, minicardLabels }
                 baths={property.baths}
                 onOpenModal={() => handleOpenModal(property)}
                 minicardLabels={minicardLabels}
+                qrSrc={qrSrc}
+                refCode={property.ref}
               />
             </div>
           );
