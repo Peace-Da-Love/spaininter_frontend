@@ -8,8 +8,6 @@ export type News = {
 	}[];
 	category: {
 		category_id: number;
-		categoryTranslations: {
-			category_name: string;
-		}[];
+		category_name: string;
 	};
 };
