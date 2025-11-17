@@ -28,10 +28,9 @@ export async function generateMetadata({
 		? categoryName.split('-').join('/')
 		: categoryName;
 	const trCategory = await getCategoryByName({
-		langCode: locale,
 		name: refactoredCategoryName
 	});
-	category = capitalize(trCategory?.data.categoryName || 'Category');
+	category = capitalize(trCategory?.data.category_name || 'Category');
 
 	const hrefLangs: Record<string, string> = locales.reduce((acc, locale) => {
 		acc[locale] = `${SITE_URL}/${locale}/category/${categoryName}/${page}`;
