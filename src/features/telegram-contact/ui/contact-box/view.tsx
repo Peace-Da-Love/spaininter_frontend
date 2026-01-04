@@ -31,7 +31,7 @@ export const ContactBox = forwardRef<HTMLDivElement, Props>((props, ref) => {
 				className={'bg-cornflower-blue h-12 text-white w-full rounded-xl'}
 				asChild
 			>
-				<Link href='https://t.me/SpainDios' target='_blank'>
+				<Link href='https://t.me/spaininter?direct' target='_blank'>
 					Написать
 				</Link>
 			</Button>
