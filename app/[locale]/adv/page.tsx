@@ -20,21 +20,8 @@ export async function generateMetadata({
 }
 
 async function getFirstPageProperties(locale: string): Promise<Property[]> {
-  // Load only first page on server for faster initial load
   try {
-    const qs = new URLSearchParams();
-    qs.set('page', '1');
-
-    const url = `properties?${qs.toString()}`;
-    const response = await $fetchP(url, {
-      headers: {
-        'Accept-Language': locale,
-      },
-    });
-
-    if (!response.ok) return [];
-
-    const data = (await response.json()) as Property[];
+    const data = await getCatalog({ locale, page: '1' });
     return data || [];
   } catch (error) {
     console.error('Error fetching first page properties:', error);

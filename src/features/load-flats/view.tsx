@@ -6,6 +6,7 @@ import { FlatCard } from '@/src/entities/flat-card';
 import { Property } from '@/src/shared/types';
 import { $fetchCP } from '@/src/app/client-api/model';
 
+
 type Filters = {
   province?: string;
   town?: string;
@@ -20,11 +21,12 @@ type Props = {
   currentCount: number;
   loadMore: string;
   loading: string;
+  tonRate: number;
 };
 
 const LIMIT = 12;
 
-export const LoadFlats = ({ locale, filters, currentCount, loading }: Props) => {
+export const LoadFlats = ({ locale, filters, currentCount, loading, tonRate }: Props) => {
   const [page, setPage] = useState<number>(Math.floor(currentCount / LIMIT) + 1);
   const [isFetching, setIsFetching] = useState<boolean>(false);
   const [flats, setFlats] = useState<Property[]>([]);
@@ -62,7 +64,17 @@ export const LoadFlats = ({ locale, filters, currentCount, loading }: Props) => 
       if (!res.ok) {
         throw new Error(`HTTP ${res.status}`);
       }
-      const data = (await res.json()) as Property[];
+      let data = (await res.json()) as Property[];
+      try {
+        data = await Promise.all(data.map(async (p) => {
+          if (p.price && p.currency === 'EUR' && !p.price_ton) {
+            p.price_ton = p.price / tonRate;
+          }
+          return p;
+        }));
+      } catch (e) {
+        console.warn('[LoadFlats] Failed to enrich prices with TON', e);
+      }
       setFlats(prev => [...prev, ...(data || [])]);
       setPage(prev => prev + 1);
       // if less than limit - this is the last chunk
@@ -76,7 +88,7 @@ export const LoadFlats = ({ locale, filters, currentCount, loading }: Props) => 
     } finally {
       setIsFetching(false);
     }
-  }, [filters, hasMore, isFetching, page, locale]);
+  }, [filters, hasMore, isFetching, page, locale, tonRate]);
 
   // IntersectionObserver for infinite scroll
   useEffect(() => {
@@ -115,6 +127,7 @@ export const LoadFlats = ({ locale, filters, currentCount, loading }: Props) => 
               images={item.images}
               title={item.title}
               price={item.price}
+              price_ton={item.price_ton}
               beds={item.beds}
               features={item.features}
             />

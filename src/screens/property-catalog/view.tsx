@@ -22,6 +22,7 @@ type Props = {
   townFromParams?: string;
   provinceFromParams?: string; 
   searchParams?: { type?: string; order?: 'asc' | 'desc'; ref?: string };
+  tonRate: number;
 };
 
 export const PropertyCatalogPage: FC<Props> = ({
@@ -34,6 +35,7 @@ export const PropertyCatalogPage: FC<Props> = ({
   townFromParams,
   provinceFromParams,
   searchParams,
+  tonRate,
 }) => {
   const [selectedTown, setSelectedTown] = useState(townFromParams || '');
   const [selectedProvince, setSelectedProvince] = useState(provinceFromParams || '');
@@ -87,7 +89,18 @@ export const PropertyCatalogPage: FC<Props> = ({
         },
       });
       if (!res.ok) throw new Error(`Request error (${res.status})`);
-      const json = (await res.json()) as Property[];
+      let json = (await res.json()) as Property[];
+      // Enrich properties with TON price on client-side using server-provided tonRate
+      try {
+        json = await Promise.all(json.map(async (p) => {
+          if (p.price && p.currency === 'EUR' && !p.price_ton) {
+            p.price_ton = p.price / tonRate;
+          }
+          return p;
+        }));
+      } catch (e) {
+        console.warn('[PropertyCatalog] Failed to enrich prices with TON', e);
+      }
       setData(json || []);
     } catch (err) {
       console.error(err);
@@ -160,6 +173,7 @@ export const PropertyCatalogPage: FC<Props> = ({
               images={item.images}
               title={item.title}
               price={item.price}
+              price_ton={item.price_ton}
               beds={item.beds}
               features={item.features}
             />
@@ -179,6 +193,7 @@ export const PropertyCatalogPage: FC<Props> = ({
         currentCount={data.length}
         loadMore={loadMore}
         loading={loading}
+        tonRate={tonRate}
       />
 
       <SiteMenuPropertyCatalogMobile

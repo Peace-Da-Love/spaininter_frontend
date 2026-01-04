@@ -6,3 +6,4 @@ export * from './extract-title';
 export * from './extract-description';
 export * from './price-formatter';
 export * from './format-category';
+export * from './ton-converter';

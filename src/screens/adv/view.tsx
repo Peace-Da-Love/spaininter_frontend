@@ -4,7 +4,7 @@ import { FC, useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import Image from 'next/image';
 import { Property } from '@/src/shared/types';
 import { Logo } from '@/src/shared/components/shared/logo';
-import { extractBeforeCR, priceFormatter } from '@/src/shared/utils';
+import { extractBeforeCR, priceFormatter, tonPriceFormatter, convertEurToTon } from '@/src/shared/utils';
 import { MinicardLabels } from '@/src/shared/types';
 import { FeatureMiniCard } from '@/src/shared/components/shared/flat-feature-minicard';
 import { MiniCardIcons } from '@/src/shared/components/shared/flat-feature-minicard';
@@ -30,6 +30,7 @@ const SlideInfoCard: FC<{
   minicardLabels: MinicardLabels;
   qrSrc?: string;
   refCode?: string;
+  price_ton?: number;
 }> = ({
   title_truncated,
   price,
@@ -42,7 +43,8 @@ const SlideInfoCard: FC<{
   onOpenModal,
   minicardLabels,
   qrSrc,
-  refCode
+  refCode,
+  price_ton
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -59,7 +61,8 @@ const SlideInfoCard: FC<{
 
   const priceNum = Number(safePrice);
   const finalPrice = Number.isFinite(priceNum) ? priceNum : 0;
-
+  const safePriceTon =
+    typeof price_ton === 'number' && Number.isFinite(price_ton) ? price_ton : undefined;
   const areaRaw = safeFeatures?.['Useable Build Space'];
   const area = typeof areaRaw === 'string' ? areaRaw.split(' ')[0] : areaRaw;
 
@@ -91,7 +94,7 @@ const SlideInfoCard: FC<{
         <div className="min-w-0 flex-1 flex flex-col justify-between">
           <div className="min-w-0">
             <div className="text-l md:text-xl font-semibold text-gray-800 truncate">
-              {priceFormatter(finalPrice)} {safeCurrency}
+              {safePriceTon ? `${tonPriceFormatter(safePriceTon)} TON` : `${priceFormatter(finalPrice)} ${safeCurrency}`}
             </div>
             {safeTown && (
               <div className="text-m md:text-l text-gray-900 font-semibold truncate mt-0.5">{safeTown}</div>
@@ -200,7 +203,20 @@ export const AdvPage: FC<AdvPageProps> = ({ properties, locale, minicardLabels }
         return;
       }
 
-      const data = (await response.json()) as Property[];
+      let data = (await response.json()) as Property[];
+      
+      try {
+        data = await Promise.all(
+          data.map(async (p) => {
+            if (p.price && p.currency === 'EUR') {
+              try {
+                p.price_ton = await convertEurToTon(p.price);
+              } catch {}
+            }
+            return p;
+          })
+        );
+      } catch {}
       
       if (!data || data.length === 0) {
         setHasMorePages(false);
@@ -255,7 +271,20 @@ export const AdvPage: FC<AdvPageProps> = ({ properties, locale, minicardLabels }
             break;
           }
 
-          const data = (await response.json()) as Property[];
+          let data = (await response.json()) as Property[];
+          
+          try {
+            data = await Promise.all(
+              data.map(async (p) => {
+                if (p.price && p.currency === 'EUR') {
+                  try {
+                    p.price_ton = await convertEurToTon(p.price);
+                  } catch {}
+                }
+                return p;
+              })
+            );
+          } catch {}
           
           if (!data || data.length === 0) {
             setHasMorePages(false);
@@ -590,6 +619,7 @@ export const AdvPage: FC<AdvPageProps> = ({ properties, locale, minicardLabels }
                 features={property.features}
                 beds={property.beds}
                 baths={property.baths}
+                price_ton={property.price_ton}
                 onOpenModal={() => handleOpenModal(property)}
                 minicardLabels={minicardLabels}
                 qrSrc={qrSrc}

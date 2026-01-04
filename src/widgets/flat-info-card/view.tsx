@@ -1,7 +1,7 @@
 'use client';
 
 import { FC, useState } from 'react';
-import { priceFormatter } from '@/src/shared/utils';
+import { priceFormatter, tonPriceFormatter } from '@/src/shared/utils';
 import { FeatureMiniCard } from '@/src/shared/components/shared/flat-feature-minicard';
 import { MiniCardIcons } from '@/src/shared/components/shared/flat-feature-minicard';
 import { MinicardLabels } from '@/src/shared/types';
@@ -19,6 +19,7 @@ type Props = {
   onCloseOverlay: () => void;
   minicardLabels: MinicardLabels
   refCode?: string;
+  price_ton?: number;
 };
 
 export const InfoCardOverlay: FC<Props> = ({
@@ -33,7 +34,8 @@ export const InfoCardOverlay: FC<Props> = ({
   onOpenModal,
   onCloseOverlay,
   minicardLabels,
-  refCode
+  refCode,
+  price_ton
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -50,6 +52,7 @@ export const InfoCardOverlay: FC<Props> = ({
 
   const priceNum = Number(safePrice);
   const finalPrice = Number.isFinite(priceNum) ? priceNum : 0;
+  const safePriceTon = typeof price_ton === 'number' && Number.isFinite(price_ton) ? price_ton : undefined;
 
   const areaRaw = safeFeatures?.['Useable Build Space'];
   const area = typeof areaRaw === 'string' ? areaRaw.split(' ')[0] : areaRaw;
@@ -80,7 +83,7 @@ export const InfoCardOverlay: FC<Props> = ({
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0">
             <div className="text-lg font-semibold text-gray-800 truncate">
-              {priceFormatter(finalPrice)} {safeCurrency}
+              {safePriceTon ? `${tonPriceFormatter(safePriceTon)} TON` : `${priceFormatter(finalPrice)} ${safeCurrency}`}
             </div>
             {safeTown && 
               <div className="text-m md:text-l text-gray-900 font-semibold truncate mt-0.5">{safeTown}</div>

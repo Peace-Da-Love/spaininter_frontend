@@ -4,6 +4,7 @@ import { PropertyCatalogPage } from '@/src/screens/property-catalog';
 import { getCatalog } from '@/src/app/server-actions';
 import { PropertyCatalogFilterLabels } from '@/src/shared/types';
 import { locales } from '@/src/shared/configs';
+import { preloadTonRate, getCachedTonRate } from '@/src/shared/utils/ton-converter';
 
 const SITE_URL = process.env.SITE_URL;
 
@@ -43,6 +44,9 @@ export default async function Page({ params: { locale }, searchParams }: Props) 
   unstable_setRequestLocale(locale);
   const t = await getTranslations({ locale });
 
+  await preloadTonRate();
+  const tonRate = getCachedTonRate();
+
   const initialData = await getCatalog({
     locale,
     page: 1,
@@ -79,6 +83,7 @@ export default async function Page({ params: { locale }, searchParams }: Props) 
       locale={locale}
       data={initialData}
       searchParams={searchParams}
+      tonRate={tonRate}
     />
   );
 }

@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import { PropertyCatalogPage } from '@/src/screens/property-catalog';
 import { getCatalog } from '@/src/app/server-actions';
 import { PropertyCatalogFilterLabels } from '@/src/shared/types';
+import { preloadTonRate, getCachedTonRate } from '@/src/shared/utils/ton-converter';
 
 type Props = {
   params: { locale: string; province: string; town: string };
@@ -28,6 +29,9 @@ export async function generateMetadata({
 export default async function Page({ params: { locale, province, town }, searchParams }: Props) {
   unstable_setRequestLocale(locale);
   const t = await getTranslations({ locale });
+
+  await preloadTonRate();
+  const tonRate = getCachedTonRate();
 
   const initialData = await getCatalog({
     locale,
@@ -61,15 +65,16 @@ export default async function Page({ params: { locale, province, town }, searchP
 
   return (
     <PropertyCatalogPage
-        title={t('Pages.PropertyCatalog.title')}
-        loadMore={t('Pages.PropertyCatalog.loadMore')}
-        loading={t('Pages.PropertyCatalog.loading')}
-        filterLabels={filterLabels}
-        locale={locale}
-        data={initialData}
-        searchParams={searchParams}
-        provinceFromParams={decodeURIComponent(province)}
-        townFromParams={decodeURIComponent(town)}
+      title={t('Pages.PropertyCatalog.title')}
+      loadMore={t('Pages.PropertyCatalog.loadMore')}
+      loading={t('Pages.PropertyCatalog.loading')}
+      filterLabels={filterLabels}
+      locale={locale}
+      data={initialData}
+      searchParams={searchParams}
+      provinceFromParams={decodeURIComponent(province)}
+      townFromParams={decodeURIComponent(town)}
+      tonRate={tonRate}
     />
   );
 }
