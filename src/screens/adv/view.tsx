@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Property } from '@/src/shared/types';
 import { Logo } from '@/src/shared/components/shared/logo';
 import { extractBeforeCR, priceFormatter, tonPriceFormatter, convertEurToTon } from '@/src/shared/utils';
+import IcTon from '@/src/app/icons/ic-ton.svg';
 import { MinicardLabels } from '@/src/shared/types';
 import { FeatureMiniCard } from '@/src/shared/components/shared/flat-feature-minicard';
 import { MiniCardIcons } from '@/src/shared/components/shared/flat-feature-minicard';
@@ -93,8 +94,15 @@ const SlideInfoCard: FC<{
       <div className="mb-4 flex items-stretch justify-between gap-4">
         <div className="min-w-0 flex-1 flex flex-col justify-between">
           <div className="min-w-0">
-            <div className="text-l md:text-xl font-semibold text-gray-800 truncate">
-              {safePriceTon ? `${tonPriceFormatter(safePriceTon)} TON` : `${priceFormatter(finalPrice)} ${safeCurrency}`}
+            <div className="text-xl md:text-xl font-semibold text-gray-800 truncate">
+              {safePriceTon ? (
+                <span className="inline-flex items-center gap-2">
+                  <span>{tonPriceFormatter(safePriceTon)}</span>
+                  <IcTon className="w-4 h-4" aria-label="TON" role="img" />
+                </span>
+              ) : (
+                `${priceFormatter(finalPrice)} ${safeCurrency}`
+              )}
             </div>
             {safeTown && (
               <div className="text-m md:text-l text-gray-900 font-semibold truncate mt-0.5">{safeTown}</div>

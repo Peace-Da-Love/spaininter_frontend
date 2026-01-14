@@ -2,6 +2,7 @@
 
 import { FC, useState } from 'react';
 import { priceFormatter, tonPriceFormatter } from '@/src/shared/utils';
+import IcTon from '@/src/app/icons/ic-ton.svg';
 import { FeatureMiniCard } from '@/src/shared/components/shared/flat-feature-minicard';
 import { MiniCardIcons } from '@/src/shared/components/shared/flat-feature-minicard';
 import { MinicardLabels } from '@/src/shared/types';
@@ -83,7 +84,14 @@ export const InfoCardOverlay: FC<Props> = ({
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0">
             <div className="text-lg font-semibold text-gray-800 truncate">
-              {safePriceTon ? `${tonPriceFormatter(safePriceTon)} TON` : `${priceFormatter(finalPrice)} ${safeCurrency}`}
+              {safePriceTon ? (
+                <span className="inline-flex items-center gap-2">
+                  <span>{tonPriceFormatter(safePriceTon)}</span>
+                  <IcTon className="w-4 h-4" aria-label="TON" role="img" />
+                </span>
+              ) : (
+                `${priceFormatter(finalPrice)} ${safeCurrency}`
+              )}
             </div>
             {safeTown && 
               <div className="text-m md:text-l text-gray-900 font-semibold truncate mt-0.5">{safeTown}</div>
