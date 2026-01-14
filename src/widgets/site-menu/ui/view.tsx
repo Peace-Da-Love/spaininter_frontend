@@ -24,6 +24,7 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 	const menuRef = useRef<HTMLDivElement>(null);
 	
 	const isPropertyCatalogPage = /^\/[a-z]{2}(\/property-catalog(\b|\/.*))?$/.test(pathname)
+	const isNewsPage = /^\/[a-z]{2}\/news\/[^/]+$/.test(pathname)
 	
     // Mobile menu should be shown the same on all breakpoints
 
@@ -114,9 +115,22 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 						)}
 					</div>
 					
-                    <div className="flex flex-row gap-2.5 absolute right-20 bottom-0">
+					
+                    <div className="flex flex-row items-end gap-2.5 absolute right-20 bottom-0">
+						
 						<LocaleSwitcher />
-						<EducationButton />
+						
+						<div className="flex flex-col gap-2.5">
+							{isNewsPage && (
+								<Button variant="menu" asChild>
+									<Link href="/news">
+										<IcNewspaper />
+									</Link>
+								</Button>
+							)}
+
+							<EducationButton />
+						</div>
 					</div>
 				</div>
 			)}
