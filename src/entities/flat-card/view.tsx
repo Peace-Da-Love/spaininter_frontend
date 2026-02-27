@@ -2,13 +2,14 @@
 
 import { FC } from 'react';
 import { ImageLoader } from './ui/image-loader';
-import { priceFormatter } from '@/src/shared/utils';
+import { priceFormatter, tonPriceFormatter } from '@/src/shared/utils';
 import IcBed from '@/src/app/icons/ic_bed.svg';
+import IcTon from '@/src/app/icons/ic-ton.svg';
 import { Property } from '@/src/shared/types';
 
 type FlatCardProps = Pick<
   Property,
-  'title' | 'price' | 'beds' | 'features' | 'images'
+  'title' | 'price' | 'beds' | 'features' | 'images' | 'price_ton'
 >;
 
 export const FlatCard: FC<FlatCardProps> = (props) => {
@@ -40,9 +41,16 @@ export const FlatCard: FC<FlatCardProps> = (props) => {
             {title}
           </div>
           <div className="flex justify-between items-center mt-2">
-            <span className="text-lg font-bold text-[#EA5E20] capitalize">
-              {priceFormatter(props.price)}
-            </span>
+              <span className="text-lg font-bold text-[#EA5E20] capitalize">
+                {props.price_ton ? (
+                  <span className="inline-flex items-center gap-2">
+                    <span>{tonPriceFormatter(props.price_ton)}</span>
+                    <IcTon className="w-4 h-4" aria-label="TON" role="img" />
+                  </span>
+                ) : (
+                  priceFormatter(props.price)
+                )}
+              </span>
             <div className="flex gap-3 items-center text-secondary text-sm">
               <span className="inline-flex items-center gap-1">
                 <IcBed />
@@ -76,7 +84,14 @@ export const FlatCard: FC<FlatCardProps> = (props) => {
           <div className="w-full border border-[#607698] my-2.5 opacity-30"></div>
           <div className="flex justify-between items-center">
             <span className="text-xl font-bold text-[#EA5E20] capitalize">
-              {priceFormatter(props.price)}
+              {props.price_ton ? (
+                <span className="inline-flex items-center gap-2">
+                  <span>{tonPriceFormatter(props.price_ton)}</span>
+                  <IcTon className="w-4 h-4" aria-label="TON" role="img" />
+                </span>
+              ) : (
+                priceFormatter(props.price)
+              )}
             </span>
             <div className="flex gap-4 items-center text-secondary">
               <span className="inline-flex items-center gap-1 text-base">

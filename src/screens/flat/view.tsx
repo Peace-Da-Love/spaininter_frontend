@@ -29,7 +29,7 @@ export const FlatPage: FC<PropertyDetailsPageProps> = ({
   minicardLabels,
   backUrl,
 }) => {
-  const { title, description, price, currency, town, features, images, beds, baths } =
+  const { title, description, price, currency, town, features, images, beds, baths, price_ton } =
     property;
   
   // Validation and fallback values
@@ -63,98 +63,101 @@ export const FlatPage: FC<PropertyDetailsPageProps> = ({
 
   return (
     <>
-      {/* Back button */}
-      <Link href={backUrl}>
-        <Button
-          variant="menu"
-          className="absolute top-5 right-2.5 z-20"
-          aria-label="Back to catalog"
-        >
-          <X />
-        </Button>
-      </Link>
-      
-      {/* Full-screen carousel */}
-      <div className="fixed inset-0 z-0 overflow-hidden">
-        {photoUrls.length > 0 && (
-          <Swiper
-            modules={[Navigation]}
-            spaceBetween={0}
-            slidesPerView={1}
-            onBeforeInit={(swiper) => {
-              swiperRef.current = swiper;
-            }}
-            className="w-full h-full"
+      <div className="fixed inset-0 h-[100dvh] w-full overflow-hidden bg-black">
+
+        {/* Back button */}
+        <Link href={backUrl}>
+          <Button
+            variant="menu"
+            className="fixed top-5 right-2.5 z-20"
+            aria-label="Back to catalog"
           >
-            {photoUrls.map((src, idx) => (
-              <SwiperSlide key={idx} className="relative w-full h-full">
-                <Image
-                  src={src}
-                  alt={`${title_truncated} image ${idx + 1}`}
-                  fill
-                  className="object-cover"
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+            <X />
+          </Button>
+        </Link>
+        
+        {/* Full-screen carousel */}
+          {photoUrls.length > 0 && (
+            <Swiper
+              modules={[Navigation]}
+              spaceBetween={0}
+              slidesPerView={1}
+              onBeforeInit={(swiper) => {
+                swiperRef.current = swiper;
+              }}
+              className="w-full h-full"
+            >
+              {photoUrls.map((src, idx) => (
+                <SwiperSlide key={idx} className="relative w-full h-full">
+                  <Image
+                    src={src}
+                    alt={`${title_truncated} image ${idx + 1}`}
+                    fill
+                    className="object-cover"
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          )}
+
+        {/* Overlay controls row */}
+        <div className={`fixed bottom-2.5 right-2.5 justify-end z-20 flex items-center gap-2 w-[calc(100%-110px)] max-w-[calc(100%-110px)] ${showModal ? 'hidden' : ''}`}>
+          {/* Prev/Next */}
+          <Button ref={prevRef} variant="menu" asChild={false}>
+            <ChevronLeft />
+          </Button>
+          <Button ref={nextRef} variant="menu" asChild={false}>
+            <ChevronRight />
+          </Button>
+
+          {/* Info control */}
+          <Button
+            variant="menu"
+            onClick={() => setShowOverlay((prev) => !prev)}
+            aria-label="Show property info"
+          >
+            <IcInfo className="size-[32px]" />
+          </Button>
+        </div>
+
+        {/* Info Card Overlay */}
+            {showOverlay && (
+          <InfoCardOverlay
+            title_truncated={title_truncated}
+            price={safePrice}
+            currency={safeCurrency}
+            town={safeTown}
+            description={safeDescription}
+            features={safeFeatures}
+            beds={safeBeds}
+            baths={safeBaths}
+            refCode={property.ref}
+            price_ton={price_ton}
+            onOpenModal={() => {
+              setShowOverlay(false);
+              setShowModal(true);
+            }}
+            onCloseOverlay={() => {
+              setShowOverlay(false);
+            }}
+            minicardLabels={minicardLabels}
+          />
+        )}
+
+        {/* Property Details */}
+        {showModal && (
+          <FullInfoOverlay
+            property={property}
+            locale={locale}
+            isOpen={showModal}
+            onClose={() => {
+              setShowModal(false);
+              setShowOverlay(true);
+            }}
+            minicardLabels={minicardLabels}
+          />
         )}
       </div>
-
-      {/* Overlay controls row */}
-      <div className="absolute bottom-2.5 right-2.5 justify-end z-20 flex items-center gap-2 w-[calc(100%-110px)] max-w-[calc(100%-110px)]">
-        {/* Prev/Next */}
-        <Button ref={prevRef} variant="menu" asChild={false}>
-          <ChevronLeft />
-        </Button>
-        <Button ref={nextRef} variant="menu" asChild={false}>
-          <ChevronRight />
-        </Button>
-
-        {/* Info control */}
-        <Button
-          variant="menu"
-          onClick={() => setShowOverlay((prev) => !prev)}
-          aria-label="Show property info"
-        >
-          <IcInfo className="size-[32px]" />
-        </Button>
-      </div>
-
-      {/* Info Card Overlay */}
-      {showOverlay && (
-        <InfoCardOverlay
-          title_truncated={title_truncated}
-          price={safePrice}
-          currency={safeCurrency}
-          town={safeTown}
-          description={safeDescription}
-          features={safeFeatures}
-          beds={safeBeds}
-          baths={safeBaths}
-          onOpenModal={() => {
-            setShowOverlay(false);
-            setShowModal(true);
-          }}
-          onCloseOverlay={() => {
-            setShowOverlay(false);
-          }}
-          minicardLabels={minicardLabels}
-        />
-      )}
-
-      {/* Property Details */}
-      {showModal && (
-        <FullInfoOverlay
-          property={property}
-          locale={locale}
-          isOpen={showModal}
-          onClose={() => {
-            setShowModal(false);
-            setShowOverlay(true);
-          }}
-          minicardLabels={minicardLabels}
-        />
-      )}
     </>
   );
 };

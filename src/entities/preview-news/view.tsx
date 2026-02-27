@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { NewsProps } from '@/src/shared/types';
-import { cn, Link } from '@/src/shared/utils';
+import { cn, Link, formatCategory } from '@/src/shared/utils';
 import { formatDateTime } from '@/src/shared/utils';
 import { useLocale } from 'next-intl';
 
@@ -56,10 +56,10 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 								params: { categoryName: categoryLink, page: 1 }
 							}}
 							className={
-								'capitalize inline-block backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-[10px] md:text-sm font-medium rounded-[20px] mb-1.5  relative z-0'
+								'inline-block backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-[10px] md:text-sm font-medium rounded-[20px] mb-1.5  relative z-0'
 							}
 						>
-							{category}
+							{formatCategory(category)}
 						</Link>
 						<span
 							className={

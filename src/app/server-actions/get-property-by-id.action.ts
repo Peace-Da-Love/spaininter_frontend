@@ -2,6 +2,7 @@
 
 import { Property } from '@/src/shared/types';
 import { $fetchP } from '@/src/app/server-api/model';
+import { convertEurToTon } from '@/src/shared/utils/ton-converter';
 
 type Params = {
 	slug: string;
@@ -36,6 +37,16 @@ export async function getPropertyById(
 		}
 
 		const data = (await response.json()) as Property;
+        
+		// Convert EUR price to TON
+		if (data.price && data.currency === 'EUR') {
+			try {
+				data.price_ton = await convertEurToTon(data.price);
+			} catch (error) {
+				console.warn('[getPropertyById] Failed to convert price to TON:', error);
+			}
+		}
+        
 		return data;
 	} catch (error) {
 		throw error;

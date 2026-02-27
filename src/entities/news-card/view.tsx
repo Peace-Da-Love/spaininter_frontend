@@ -1,4 +1,4 @@
-import { cn, formatDateTime } from '@/src/shared/utils';
+import { cn, formatDateTime, formatCategory } from '@/src/shared/utils';
 import { ImageLoader } from './ui/image-loader';
 import { FC } from 'react';
 import { NewsProps } from '@/src/shared/types';
@@ -53,10 +53,10 @@ export const NewsCard: FC<NewsCardProps> = ({
 							params: { categoryName: categoryLink, page: 1 }
 						}}
 						className={
-							'capitalize block text-secondary font-medium text-[10px] leading-3'
+							'block text-secondary font-medium text-[10px] leading-3'
 						}
 					>
-						{category}
+						{formatCategory(category)}
 					</Link>
 					<span
 						className={
@@ -120,10 +120,10 @@ export const NewsCard: FC<NewsCardProps> = ({
 							params: { categoryName: categoryLink, page: 1 }
 						}}
 						className={
-							'hidden sm:inline-block capitalize backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px] '
+							'hidden sm:inline-block backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px] '
 						}
 					>
-						{category}
+						{formatCategory(category)}
 					</Link>
 					<span
 						className={
@@ -146,10 +146,10 @@ export const NewsCard: FC<NewsCardProps> = ({
 							params: { categoryName: categoryLink, page: 1 }
 						}}
 						className={
-							'capitalize block sm:hidden text-secondary font-medium text-[10px] leading-3'
+							'block sm:hidden text-secondary font-medium text-[10px] leading-3'
 						}
 					>
-						{category}
+						{formatCategory(category)}
 					</Link>
 					<span
 						className={

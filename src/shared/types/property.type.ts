@@ -10,6 +10,7 @@ export interface Property {
 	date: string | null;
 	price: number;
 	currency: string;
+	price_ton?: number;
 	price_freq: string;
 	part_ownership: boolean;
 	leasehold: boolean;
