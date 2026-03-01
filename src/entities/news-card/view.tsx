@@ -2,7 +2,7 @@ import { cn, formatDateTime, formatCategory } from '@/src/shared/utils';
 import { ImageLoader } from './ui/image-loader';
 import { FC } from 'react';
 import { NewsProps } from '@/src/shared/types';
-import { Link } from '@/src/shared/utils';
+import { ChannelLink } from '@/src/shared/utils';
 import { useLocale } from 'next-intl';
 
 interface NewsCardProps extends NewsProps {
@@ -35,29 +35,25 @@ export const NewsCard: FC<NewsCardProps> = ({
 					'relative min-h-20 min-w-20 max-w-20 sm:max-w-full sm:max-h-full sm:min-h-min'
 				}
 			>
-				<Link
+				<ChannelLink
+					locale={locale}
 					className={'block pt-[55%] '}
-					href={{
-						pathname: '/news/[link]',
-						params: { link }
-					}}
+					href={`/news/${encodeURIComponent(link)}`}
 				>
 					<ImageLoader className={'rounded-2xl'} imageUrl={imageUrl} />
-				</Link>
+				</ChannelLink>
 			</div>
 			<div className={'w-full flex flex-col justify-between'}>
 				<div className={'flex items-center gap-2'}>
-					<Link
-						href={{
-							pathname: '/category/[categoryName]/[page]',
-							params: { categoryName: categoryLink, page: 1 }
-						}}
+					<ChannelLink
+						locale={locale}
+						href={`/category/${encodeURIComponent(categoryLink)}/1`}
 						className={
 							'block text-secondary font-medium text-[10px] leading-3'
 						}
 					>
 						{formatCategory(category)}
-					</Link>
+					</ChannelLink>
 					<span
 						className={
 							'capitalize block text-secondary font-medium text-[10px] leading-3'
@@ -66,16 +62,14 @@ export const NewsCard: FC<NewsCardProps> = ({
 						{city}
 					</span>
 				</div>
-				<Link
+				<ChannelLink
+					locale={locale}
 					className={'text-sm font-bold line-clamp-2'}
-					href={{
-						pathname: '/news/[link]',
-						params: { link }
-					}}
+					href={`/news/${encodeURIComponent(link)}`}
 					title={title}
 				>
 					{title}
-				</Link>
+				</ChannelLink>
 				<span
 					className={'block text-secondary font-medium text-[10px] leading-3'}
 				>
@@ -97,34 +91,30 @@ export const NewsCard: FC<NewsCardProps> = ({
 					'relative min-h-20 min-w-20 max-w-20 sm:max-w-full sm:max-h-full sm:min-h-min'
 				}
 			>
-				<Link
+				<ChannelLink
+					locale={locale}
 					className={'block pt-[55%] sm:relative sm:inset-0 sm:top-0 sm:left-0'}
-					href={{
-						pathname: '/news/[link]',
-						params: { link }
-					}}
+					href={`/news/${encodeURIComponent(link)}`}
 				>
 					<ImageLoader
 						imageUrl={imageUrl}
 						className={'rounded-2xl sm:rounded-t-3xl sm:rounded-b-none'}
 					/>
-				</Link>
+				</ChannelLink>
 				<div
 					className={
 						'flex items-center gap-3 absolute bottom-[15px] left-[20px]'
 					}
 				>
-					<Link
-						href={{
-							pathname: '/category/[categoryName]/[page]',
-							params: { categoryName: categoryLink, page: 1 }
-						}}
+					<ChannelLink
+						locale={locale}
+						href={`/category/${encodeURIComponent(categoryLink)}/1`}
 						className={
 							'hidden sm:inline-block backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px] '
 						}
 					>
 						{formatCategory(category)}
-					</Link>
+					</ChannelLink>
 					<span
 						className={
 							'hidden sm:inline-block capitalize backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px] '
@@ -140,17 +130,15 @@ export const NewsCard: FC<NewsCardProps> = ({
 				}
 			>
 				<div className={'flex items-center gap-2'}>
-					<Link
-						href={{
-							pathname: '/category/[categoryName]/[page]',
-							params: { categoryName: categoryLink, page: 1 }
-						}}
+					<ChannelLink
+						locale={locale}
+						href={`/category/${encodeURIComponent(categoryLink)}/1`}
 						className={
 							'block sm:hidden text-secondary font-medium text-[10px] leading-3'
 						}
 					>
 						{formatCategory(category)}
-					</Link>
+					</ChannelLink>
 					<span
 						className={
 							'capitalize block sm:hidden text-secondary font-medium text-[10px] leading-3'
@@ -159,18 +147,16 @@ export const NewsCard: FC<NewsCardProps> = ({
 						{city}
 					</span>
 				</div>
-				<Link
+				<ChannelLink
+					locale={locale}
 					className={
 						'inline-block text-sm font-bold sm:font-normal sm:text-base text-primary sm:text-[#222222] sm:mb-2.5 line-clamp-2 sm:h-[48px]'
 					}
-					href={{
-						pathname: '/news/[link]',
-						params: { link }
-					}}
+					href={`/news/${encodeURIComponent(link)}`}
 					title={title}
 				>
 					{title}
-				</Link>
+				</ChannelLink>
 				<div
 					className={
 						'hidden sm:block w-full border border-[#607698] mb-2.5 opacity-30'

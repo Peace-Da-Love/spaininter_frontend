@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef, useCallback } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { FlatCard } from '@/src/entities/flat-card';
 import { Property } from '@/src/shared/types';
 import { $fetchCP } from '@/src/app/client-api/model';
@@ -27,10 +28,13 @@ type Props = {
 const LIMIT = 12;
 
 export const LoadFlats = ({ locale, filters, currentCount, loading, tonRate }: Props) => {
+  const pathname = usePathname();
+  const isTma = /\/tma(\/|$)/.test(pathname);
+  const channelBase = isTma ? `/${locale}/tma` : `/${locale}`;
   const [page, setPage] = useState<number>(Math.floor(currentCount / LIMIT) + 1);
   const [isFetching, setIsFetching] = useState<boolean>(false);
   const [flats, setFlats] = useState<Property[]>([]);
-  const [hasMore, setHasMore] = useState<boolean>(currentCount >= LIMIT);
+  const [hasMore, setHasMore] = useState<boolean>(currentCount > 0);
 
   const sentinelRef = useRef<HTMLDivElement | null>(null);
 
@@ -38,7 +42,7 @@ export const LoadFlats = ({ locale, filters, currentCount, loading, tonRate }: P
   useEffect(() => {
     setPage(Math.floor(currentCount / LIMIT) + 1);
     setFlats([]);
-    setHasMore(currentCount >= LIMIT);
+    setHasMore(currentCount > 0);
   }, [filters.province, filters.town, filters.type, filters.order, filters.ref, currentCount]);
 
   const loadFlats = useCallback(async () => {
@@ -93,6 +97,7 @@ export const LoadFlats = ({ locale, filters, currentCount, loading, tonRate }: P
   // IntersectionObserver for infinite scroll
   useEffect(() => {
     if (!sentinelRef.current || !hasMore) return;
+    const sentinel = sentinelRef.current;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -100,15 +105,17 @@ export const LoadFlats = ({ locale, filters, currentCount, loading, tonRate }: P
           loadFlats();
         }
       },
-      { threshold: 1.0 }
+      {
+        threshold: 0,
+        rootMargin: '300px 0px'
+      }
     );
 
-    observer.observe(sentinelRef.current);
+    observer.observe(sentinel);
 
     return () => {
-      if (sentinelRef.current) {
-        observer.unobserve(sentinelRef.current);
-      }
+      observer.unobserve(sentinel);
+      observer.disconnect();
     };
   }, [loadFlats, hasMore]);
 
@@ -120,7 +127,7 @@ export const LoadFlats = ({ locale, filters, currentCount, loading, tonRate }: P
         {flats.map((item, index) => (
           <Link
             key={`load-${index}-${item._id}`}
-            href={`/${locale}/property-catalog/flat/${item.slug}`}
+            href={`${channelBase}/property-catalog/flat/${item.slug}`}
             className="block"
           >
             <FlatCard

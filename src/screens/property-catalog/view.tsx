@@ -2,6 +2,7 @@
 
 import { FC, useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { FlatCard } from '@/src/entities/flat-card';
 import { Property } from '@/src/shared/types';
 import { LoadFlats } from '@/src/features/load-flats';
@@ -37,6 +38,9 @@ export const PropertyCatalogPage: FC<Props> = ({
   searchParams,
   tonRate,
 }) => {
+  const pathname = usePathname();
+  const isTma = /\/tma(\/|$)/.test(pathname);
+  const channelBase = isTma ? `/${locale}/tma` : `/${locale}`;
   const [selectedTown, setSelectedTown] = useState(townFromParams || '');
   const [selectedProvince, setSelectedProvince] = useState(provinceFromParams || '');
   const [selectedType, setSelectedType] = useState(searchParams?.type || '');
@@ -166,7 +170,7 @@ export const PropertyCatalogPage: FC<Props> = ({
         {data.map((item) => (
           <Link
             key={item._id}
-            href={`/${locale}/property-catalog/flat/${item.slug}?from=${encodeURIComponent(currentUrl)}`}
+            href={`${channelBase}/property-catalog/flat/${item.slug}?from=${encodeURIComponent(currentUrl)}`}
             className="block"
           >
             <FlatCard

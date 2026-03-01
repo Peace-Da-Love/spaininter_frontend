@@ -3,6 +3,8 @@
 import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin();
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.spaininter.com';
+const PROP_URL = process.env.NEXT_PUBLIC_PROP_URL || 'https://prop.spaininter.com';
 
 /** @type {import('next').NextConfig} */
 const config = {
@@ -22,28 +24,52 @@ const config = {
 			}
 		]
 	},
+	async rewrites() {
+		return [
+			{
+				source: '/site-api/:path*',
+				destination: `${API_URL}/api/:path*`,
+				locale: false
+			},
+			{
+				source: '/:locale/site-api/:path*',
+				destination: `${API_URL}/api/:path*`,
+				locale: false
+			},
+			{
+				source: '/prop-api/:path*',
+				destination: `${PROP_URL}/api/:path*`,
+				locale: false
+			},
+			{
+				source: '/:locale/prop-api/:path*',
+				destination: `${PROP_URL}/api/:path*`,
+				locale: false
+			}
+		];
+	},
+
 	webpack(config) {
-		const fileLoaderRule = config.module.rules.find(rule =>
+		const fileLoaderRule = config.module.rules.find(
+			/** @param {{ test?: { test?: (value: string) => boolean } }} rule */
+			rule =>
 			rule.test?.test?.('.svg')
 		);
 
 		config.module.rules.push(
-			// Reapply the existing rule, but only for svg imports ending in ?url
 			{
 				...fileLoaderRule,
 				test: /\.svg$/i,
-				resourceQuery: /url/ // *.svg?url
+				resourceQuery: /url/
 			},
-			// Convert all other *.svg imports to React components
 			{
 				test: /\.svg$/i,
 				issuer: fileLoaderRule.issuer,
-				resourceQuery: { not: [...fileLoaderRule.resourceQuery.not, /url/] }, // exclude if *.svg?url
+				resourceQuery: { not: [...fileLoaderRule.resourceQuery.not, /url/] },
 				use: ['@svgr/webpack']
 			}
 		);
 
-		// Modify the file loader rule to ignore *.svg, since we have it handled now.
 		fileLoaderRule.exclude = /\.svg$/i;
 
 		return config;

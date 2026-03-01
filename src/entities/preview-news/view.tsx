@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { NewsProps } from '@/src/shared/types';
-import { cn, Link, formatCategory } from '@/src/shared/utils';
+import { ChannelLink, cn, formatCategory } from '@/src/shared/utils';
 import { formatDateTime } from '@/src/shared/utils';
 import { useLocale } from 'next-intl';
 
@@ -34,15 +34,13 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 					'background-image bg-cover bg-no-repeat bg-center w-full h-full bg-slate-200'
 				}
 							>
-				<Link
-					href={{
-						pathname: '/news/[link]',
-						params: { link }
-					}}
+				<ChannelLink
+					locale={locale}
+					href={`/news/${encodeURIComponent(link)}`}
 					className={'absolute inset-0 left-0 top-0'}
 				>
 					<span className={'sr-only'}>{title}</span>
-				</Link>
+				</ChannelLink>
 
 				<div
 					className={
@@ -50,17 +48,15 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 					}
 				>
 					<div className={'flex items-center gap-4'}>
-						<Link
-							href={{
-								pathname: '/category/[categoryName]/[page]',
-								params: { categoryName: categoryLink, page: 1 }
-							}}
+						<ChannelLink
+							locale={locale}
+							href={`/category/${encodeURIComponent(categoryLink)}/1`}
 							className={
 								'inline-block backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-[10px] md:text-sm font-medium rounded-[20px] mb-1.5  relative z-0'
 							}
 						>
 							{formatCategory(category)}
-						</Link>
+						</ChannelLink>
 						<span
 							className={
 								'capitalize inline-block backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-[10px] md:text-sm font-medium rounded-[20px] mb-1.5'
@@ -69,11 +65,9 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 							{city}
 						</span>
 					</div>
-					<Link
-						href={{
-							pathname: '/news/[link]',
-							params: { link }
-						}}
+					<ChannelLink
+						locale={locale}
+						href={`/news/${encodeURIComponent(link)}`}
 						className="block"
 					>
 						{isTopNews ? (
@@ -93,7 +87,7 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 								{title}
 							</span>
 						)}
-					</Link>
+					</ChannelLink>
 					<span
 						className={
 							'inline-block text-white text-[10px] md:text-sm font-medium backdrop-blur-xl bg-gray-300/40 rounded-2xl p-1.5'

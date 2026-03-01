@@ -2,8 +2,8 @@
 
 import { FC, useEffect, useRef } from 'react';
 import { cn } from '@/src/shared/utils';
-import { Link } from '@/src/shared/utils';
-import { Circle, X } from 'lucide-react';
+import { ChannelLink } from '@/src/shared/utils';
+import { openTwitrisWebApp } from '@/src/shared/utils';
 import { useSiteMenuStore } from '../store';
 import { Button } from '@/src/shared/components/ui';
 import { EducationButton } from '@/src/features/education-button';
@@ -11,6 +11,7 @@ import { LocaleSwitcher } from '@/src/features/locale-switcher';
 import { CitiesButton } from '@/src/features/cities-button';
 import { FlatCatalogButton } from '@/src/features/flat-catalog-button';
 import IcNewspaper from '@/src/app/icons/ic_newspaper.svg';
+import IcTwitris from '@/src/app/icons/ic_twitris.svg';
 import { usePathname, useSearchParams } from 'next/navigation';
 
 type Props = {
@@ -22,9 +23,10 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
 	const menuRef = useRef<HTMLDivElement>(null);
+	const locale = pathname.split('/').filter(Boolean)[0] || 'en';
 	
-	const isPropertyCatalogPage = /^\/[a-z]{2}(\/property-catalog(\b|\/.*))?$/.test(pathname)
-	const isNewsPage = /^\/[a-z]{2}\/news\/[^/]+$/.test(pathname)
+	const isPropertyCatalogPage = /\/property-catalog(\b|\/.*)$/.test(pathname)
+	const isNewsPage = /\/news\/[^/]+$/.test(pathname)
 	
     // Mobile menu should be shown the same on all breakpoints
 
@@ -88,7 +90,26 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 				onClick={() => toggle()}
 				data-menu-button
 			>
-				{isOpen ? <X size={42} /> : <Circle size={42} fill="currentColor" stroke="none" />}
+				<span className="relative size-10">
+					<span
+						className={cn(
+							'absolute inset-0 m-auto size-10 rounded-full bg-current transition-transform duration-300 ease-out',
+							isOpen ? 'scale-0' : 'scale-100'
+						)}
+					/>
+					<span
+						className={cn(
+							'absolute left-1/2 top-1/2 h-1 w-10 -translate-x-1/2 -translate-y-1/2 rounded bg-current transition-transform duration-300 ease-out',
+							isOpen ? 'rotate-45 scale-100' : 'rotate-45 scale-0'
+						)}
+					/>
+					<span
+						className={cn(
+							'absolute left-1/2 top-1/2 h-1 w-10 -translate-x-1/2 -translate-y-1/2 rounded bg-current transition-transform duration-300 ease-out',
+							isOpen ? '-rotate-45 scale-100' : '-rotate-45 scale-0'
+						)}
+					/>
+				</span>
 			</Button>
 
             {isOpen && (
@@ -108,9 +129,9 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 						<CitiesButton />
 						{isPropertyCatalogPage && (
 							<Button variant={'menu'} asChild>
-								<Link href={'/news'}> 
+								<ChannelLink locale={locale} href='/news'> 
 									<IcNewspaper />
-								</Link>
+								</ChannelLink>
 							</Button>
 						)}
 					</div>
@@ -123,9 +144,19 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 						<div className="flex flex-col gap-2.5">
 							{isNewsPage && (
 								<Button variant="menu" asChild>
-									<Link href="/news">
+									<ChannelLink locale={locale} href='/news'>
 										<IcNewspaper />
-									</Link>
+									</ChannelLink>
+								</Button>
+							)}
+							{!isNewsPage && (
+								<Button
+									variant="menu"
+									onClick={() => openTwitrisWebApp(locale)}
+								>
+									<span className="flex size-full items-center justify-center">
+										<IcTwitris className="block h-8 w-8 shrink-0" />
+									</span>
 								</Button>
 							)}
 

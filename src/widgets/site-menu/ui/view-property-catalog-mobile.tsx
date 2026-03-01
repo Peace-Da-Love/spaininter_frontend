@@ -3,14 +3,16 @@
 import { FC, useState, useEffect, useMemo, useRef } from 'react';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { cn } from '@/src/shared/utils';
-import Link from 'next/link';
-import { Circle, X } from 'lucide-react';
+import { ChannelLink } from '@/src/shared/utils';
+import { isTmaPath } from '@/src/shared/utils';
+import { openTwitrisWebApp } from '@/src/shared/utils';
 import { useCatalogMenuStore } from '../catalog-store';
 import { Button } from '@/src/shared/components/ui';
 import { EducationButton } from '@/src/features/education-button';
 import { LocaleSwitcher } from '@/src/features/locale-switcher';
 import { CitiesButton } from '@/src/features/cities-button';
 import IcNewspaper from '@/src/app/icons/ic_newspaper.svg';
+import IcTwitris from '@/src/app/icons/ic_twitris.svg';
 
 // filters
 import { $fetchCP } from '@/src/app/client-api/model';
@@ -49,7 +51,8 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const locale = pathname.split('/')[1];
+  const locale = pathname.split('/')[1] || 'en';
+  const channelBase = isTmaPath(pathname) ? `/${locale}/tma` : `/${locale}`;
   
   // Extract province and town from URL for immediate rendering
   const parts = pathname.split('/').filter(Boolean);
@@ -106,7 +109,7 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
     const order = filters?.order ?? priceOrder;
     const ref = filters?.ref ?? refValue;
 
-    let targetUrl = `/${locale}/property-catalog`;
+    let targetUrl = `${channelBase}/property-catalog`;
     if (province && town) {
       targetUrl += `/${encodeURIComponent(province)}/${encodeURIComponent(town)}`;
     } else if (province) {
@@ -124,7 +127,7 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
   };
 
   const handleReset = () => {
-    router.push(`/${locale}/property-catalog`);
+    router.push(`${channelBase}/property-catalog`);
   };
 
   // close the menu when clicking outside its area
@@ -162,7 +165,26 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
         onClick={() => toggle()}
         data-menu-button
       >
-        {isOpen ? <X size={42} /> : <Circle size={42} fill="currentColor" stroke="none" />}
+        <span className="relative size-10">
+          <span
+            className={cn(
+              'absolute inset-0 m-auto size-10 rounded-full bg-current transition-transform duration-300 ease-out',
+              isOpen ? 'scale-0' : 'scale-100'
+            )}
+          />
+          <span
+            className={cn(
+              'absolute left-1/2 top-1/2 h-1 w-10 -translate-x-1/2 -translate-y-1/2 rounded bg-current transition-transform duration-300 ease-out',
+              isOpen ? 'rotate-45 scale-100' : 'rotate-45 scale-0'
+            )}
+          />
+          <span
+            className={cn(
+              'absolute left-1/2 top-1/2 h-1 w-10 -translate-x-1/2 -translate-y-1/2 rounded bg-current transition-transform duration-300 ease-out',
+              isOpen ? '-rotate-45 scale-100' : '-rotate-45 scale-0'
+            )}
+          />
+        </span>
       </Button>
 
       {isOpen && (
@@ -233,18 +255,28 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
               onApply={handleApply}
             />
 
-            <Link href={`/${locale}/news`}>
+            <ChannelLink locale={locale} href='/news'>
               <Button variant="menu">
                 <IcNewspaper/>
               </Button>
-            </Link>
+            </ChannelLink>
             
             <CitiesButton />
           </div>
           
-          <div className="flex flex-row gap-2.5 absolute right-20 bottom-0 md:absolute md:right-20 md:bottom-0">
+          <div className="flex flex-row items-end gap-2.5 absolute right-20 bottom-0 md:absolute md:right-20 md:bottom-0">
             <LocaleSwitcher />
-            <EducationButton />
+            <div className="flex flex-col gap-2.5">
+              <Button
+                variant="menu"
+                onClick={() => openTwitrisWebApp(locale)}
+              >
+                <span className="flex size-full items-center justify-center">
+                  <IcTwitris className="block h-8 w-8 shrink-0" />
+                </span>
+              </Button>
+              <EducationButton />
+            </div>
           </div>
         </div>
       )}

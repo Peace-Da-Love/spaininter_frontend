@@ -5,6 +5,7 @@ import { useRouter, useParams, useSearchParams } from 'next/navigation';
 import { PropertyCatalogFiltersProps, Place, TypeItem } from './model';
 import { DesktopFilter } from './ui/desktop-filter';
 import { $fetchCP } from '@/src/app/client-api/model';
+import { buildChannelPath, isTmaPath } from '@/src/shared/utils';
 
 export const PropertyCatalogFilters: FC<PropertyCatalogFiltersProps> = (props) => {
   const {
@@ -74,7 +75,11 @@ export const PropertyCatalogFilters: FC<PropertyCatalogFiltersProps> = (props) =
     }) => {
     const locale = params.locale as string;
 
-    let targetUrl = `/${locale}/property-catalog`;
+    const basePath = isTmaPath(window.location.pathname)
+      ? `/${locale}/tma/property-catalog`
+      : `/${locale}/property-catalog`;
+
+    let targetUrl = basePath;
     if (filters?.province) {
       targetUrl += `/${encodeURIComponent(filters.province)}`;
       if (filters?.town) {
@@ -93,7 +98,7 @@ export const PropertyCatalogFilters: FC<PropertyCatalogFiltersProps> = (props) =
 
   const handleReset = () => {
     const locale = params.locale as string;
-    router.push(`/${locale}`);
+    router.push(buildChannelPath(window.location.pathname, locale, '/property-catalog'));
     onReset?.();
   };
 

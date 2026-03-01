@@ -13,8 +13,8 @@ type Props = {
 export const Main: FC<Props> = ({ className, children }) => {
   const pathname = usePathname()
 
-  const isPropertyCatalogPage = /^\/[a-z]{2}(\/property-catalog(\b|\/.*))?$/.test(pathname)
-  const isAdvPage = /^\/[a-z]{2}\/adv(\b|$)/.test(pathname)
+  const isPropertyCatalogPage = /^\/[a-z]{2}(\/tma)?\/property-catalog(\b|\/.*)?$/.test(pathname)
+  const isAdvPage = /^\/[a-z]{2}(\/tma)?\/adv(\b|$)/.test(pathname)
 
   return (
     <main className={'w-full flex-grow py-5'}>

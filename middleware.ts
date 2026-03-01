@@ -10,6 +10,25 @@ const intlMiddleware = createMiddleware({
 	localePrefix
   })
 
+function parseLocalePath(pathname: string): {
+  locale: string;
+  segmentsAfterLocale: string[];
+} | null {
+  const segments = pathname.split('/').filter(Boolean);
+  if (!segments.length) {
+    return null;
+  }
+
+  const [locale, ...segmentsAfterLocale] = segments;
+  if (!locales.includes(locale as (typeof locales)[number])) {
+    return null;
+  }
+
+  return {
+    locale,
+    segmentsAfterLocale
+  };
+}
 
   export default function middleware(request: NextRequest) {
 	const { pathname } = request.nextUrl
@@ -24,9 +43,22 @@ const intlMiddleware = createMiddleware({
 	) {
 	  return NextResponse.next()
 	}
-  
+
+  const localePath = parseLocalePath(pathname);
+  const isChannelAgnosticApiPath =
+    pathname.startsWith('/prop-api/') ||
+    pathname.startsWith('/site-api/') ||
+    (localePath &&
+      (localePath.segmentsAfterLocale[0] === 'prop-api' ||
+        localePath.segmentsAfterLocale[0] === 'site-api'));
+
+  if (isChannelAgnosticApiPath) {
+    return NextResponse.next();
+  }
+
 	// All other routes are handled by next-intl
-	return intlMiddleware(request)
+	const response = intlMiddleware(request);
+  return response;
   }
 
 

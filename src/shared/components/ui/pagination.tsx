@@ -1,6 +1,9 @@
+'use client';
+
 import * as React from 'react';
 import { ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react';
-import { Link } from '@/src/shared/utils';
+import { ChannelLink } from '@/src/shared/utils';
+import { useLocale } from 'next-intl';
 
 import { cn } from '@/src/shared/utils';
 import { ButtonProps, buttonVariants } from '@/src/shared/components/ui/button';
@@ -49,24 +52,25 @@ const PaginationLink = ({
 	categoryLink,
 	page,
 	...props
-}: PaginationLinkProps) => (
-	<Link
-		// @ts-ignore
-		href={{
-			pathname: '/category/[categoryName]/[page]',
-			params: { categoryName: categoryLink, page }
-		}}
-		aria-current={isActive ? 'page' : undefined}
-		className={cn(
-			buttonVariants({
-				variant: isActive ? 'primary' : 'default',
-				size
-			}),
-			className
-		)}
-		{...props}
-	/>
-);
+}: PaginationLinkProps) => {
+	const locale = useLocale();
+
+	return (
+		<ChannelLink
+			locale={locale}
+			href={`/category/${encodeURIComponent(categoryLink)}/${page}`}
+			aria-current={isActive ? 'page' : undefined}
+			className={cn(
+				buttonVariants({
+					variant: isActive ? 'primary' : 'default',
+					size
+				}),
+				className
+			)}
+			{...props}
+		/>
+	);
+};
 PaginationLink.displayName = 'PaginationLink';
 
 const PaginationPrevious = ({

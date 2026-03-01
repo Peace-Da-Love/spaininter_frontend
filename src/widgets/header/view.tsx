@@ -6,9 +6,9 @@ import { usePathname } from 'next/navigation';
 
 export const Header = () => {
 	const pathname = usePathname();
-	const isPropertyCatalogPage = /^\/[a-z]{2}\/property-catalog(\b|$)/.test(pathname);
+	const isPropertyCatalogPage = /^\/[a-z]{2}(\/tma)?\/property-catalog(\b|$)/.test(pathname);
 	const isFlatPage = pathname.includes('/property-catalog/flat/');
-	const isAdvPage = /^\/[a-z]{2}\/adv(\b|$)/.test(pathname);
+	const isAdvPage = /^\/[a-z]{2}(\/tma)?\/adv(\b|$)/.test(pathname);
 	
 	if ((!isPropertyCatalogPage || isFlatPage) && !isAdvPage) {
 		return (

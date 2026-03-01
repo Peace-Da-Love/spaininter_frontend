@@ -1,3 +1,5 @@
+import { $fetchC } from '@/src/app/client-api/model';
+
 export interface City {
   id: number;
   name: string;
@@ -16,15 +18,7 @@ export interface CitiesResponse {
 
 export const citiesModel = {
   getCities: async (): Promise<CitiesResponse> => {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/cities?hasPhoto=true`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await $fetchC('cities?hasPhoto=true', { method: 'GET' });
     if (!response.ok) {
       throw new Error("Failed to fetch cities");
     }
