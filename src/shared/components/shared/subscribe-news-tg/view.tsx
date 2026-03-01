@@ -18,7 +18,7 @@ export const SubscribeNewsTg: FC<Props> = ({ className }) => {
 				'inline-flex w-full sm:w-auto items-center justify-center gap-2.5 text-xl font-medium text-white bg-light-blue rounded-3xl py-8 px-5',
 				className
 			)}
-			href='https://t.me/SpainInter'
+			href='https://t.me/addlist/zixZWkXQiKY2MmVi'
 			target='_blank'
 		>
 			<IcTelegram />
