@@ -1,15 +1,30 @@
-const TWITRIS_WEBAPP_URL = process.env.NEXT_PUBLIC_TWITRIS_WEBAPP_URL?.trim() || '';
+const TWITRIS_WEBAPP_URL_WEB =
+	process.env.NEXT_PUBLIC_TWITRIS_WEBAPP_URL_WEB?.trim() || '';
+const TWITRIS_WEBAPP_URL_TMA =
+	process.env.NEXT_PUBLIC_TWITRIS_WEBAPP_URL_TMA?.trim() || '';
+
+function resolveTwitrisUrlTemplate(): string {
+	const hasTelegramInitData = Boolean(window.Telegram?.WebApp?.initData);
+
+	if (hasTelegramInitData) {
+		return TWITRIS_WEBAPP_URL_TMA;
+	}
+
+	return TWITRIS_WEBAPP_URL_WEB;
+}
 
 export function openTwitrisWebApp(locale: string): boolean {
-	if (!TWITRIS_WEBAPP_URL) {
+	const template = resolveTwitrisUrlTemplate();
+
+	if (!template) {
 		console.error(
-			'NEXT_PUBLIC_TWITRIS_WEBAPP_URL is not set. Use a direct frontend URL.'
+			'Set NEXT_PUBLIC_TWITRIS_WEBAPP_URL_WEB and NEXT_PUBLIC_TWITRIS_WEBAPP_URL_TMA.'
 		);
 		return false;
 	}
 
-	const url = TWITRIS_WEBAPP_URL.replace('{locale}', locale);
-	
+	const url = template.replace('{locale}', locale);
+
 	window.location.assign(url);
 	return true;
 }
