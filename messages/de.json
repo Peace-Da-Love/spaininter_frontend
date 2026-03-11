@@ -11,34 +11,34 @@
 			}
 		},
 		"PropertyCatalog": {
-		"title": "Katalog mit Häusern und Wohnungen in Spanien für den Urlaub.",
-		"loadMore": "Mehr laden",
-		"loading": "Laden...",
-		"filters": {
-			"province": "Provinz",
-			"allProvinces": "Alle Provinzen",
-			"town": "Stadt",
-			"allTowns": "Alle Städte",
-			"type": "Immobilientyp",
-			"allTypes": "Alle Typen",
-			"price": "Preis",
-			"priceAsc": "Aufsteigend",
-			"priceDesc": "Absteigend",
-			"ref": "ID (ref)",
-			"apply": "Anwenden",
-			"reset": "Zurücksetzen"
-		}
+			"title": "Katalog mit Häusern und Wohnungen in Spanien für den Urlaub.",
+			"loadMore": "Mehr laden",
+			"loading": "Laden...",
+			"filters": {
+				"province": "Provinz",
+				"allProvinces": "Alle Provinzen",
+				"town": "Stadt",
+				"allTowns": "Alle Städte",
+				"type": "Immobilientyp",
+				"allTypes": "Alle Typen",
+				"price": "Preis",
+				"priceAsc": "Aufsteigend",
+				"priceDesc": "Absteigend",
+				"ref": "ID (ref)",
+				"apply": "Anwenden",
+				"reset": "Zurücksetzen"
+			}
 		},
 		"Property": {
-		"area": "Bereich",
-		"bedrooms": "Schlafzimmer",
-		"baths": "Bäder",
-		"beach": "Strand",
-		"pool": "Pool",
-		"gym": "Fitnessraum",
-		"parking": "Parkplatz",
-		"showMore": "Mehr anzeigen",
-		"hide": "Ausblenden"
+			"area": "Bereich",
+			"bedrooms": "Schlafzimmer",
+			"baths": "Bäder",
+			"beach": "Strand",
+			"pool": "Pool",
+			"gym": "Fitnessraum",
+			"parking": "Parkplatz",
+			"showMore": "Mehr anzeigen",
+			"hide": "Ausblenden"
 		}
 	},
 	"Components": {
@@ -54,6 +54,16 @@
 	},
 	"Alarms": {
 		"empty": "Keine Nachrichten hier bisher"
+	},
+	"Profile": {
+		"userDefault": "Benutzer",
+		"id": "ID",
+		"nftGift": "NFT-Geschenk",
+		"model": "Modell",
+		"background": "Hintergrund",
+		"pattern": "Muster",
+		"rarity": "Seltenheit",
+		"signOut": "Abmelden"
 	},
 	"MetaData": {
 		"NewsPage": {

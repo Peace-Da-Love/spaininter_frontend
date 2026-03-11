@@ -11,34 +11,34 @@
 			}
 		},
 		"PropertyCatalog": {
-		"title": "Katalog over hus og leiligheter i Spania for ferie",
-		"loadMore": "Last inn mer",
-		"loading": "Laster inn...",
-		"filters": {
-			"province": "Provins",
-			"allProvinces": "Alle provinser",
-			"town": "By",
-			"allTowns": "Alle byer",
-			"type": "Eiendomstype",
-			"allTypes": "Alle typer",
-			"price": "Pris",
-			"priceAsc": "Stigende",
-			"priceDesc": "Synkende",
-			"ref": "ID (ref)",
-			"apply": "Bruk",
-			"reset": "Tilbakestill"
-		}
+			"title": "Katalog over hus og leiligheter i Spania for ferie",
+			"loadMore": "Last inn mer",
+			"loading": "Laster inn...",
+			"filters": {
+				"province": "Provins",
+				"allProvinces": "Alle provinser",
+				"town": "By",
+				"allTowns": "Alle byer",
+				"type": "Eiendomstype",
+				"allTypes": "Alle typer",
+				"price": "Pris",
+				"priceAsc": "Stigende",
+				"priceDesc": "Synkende",
+				"ref": "ID (ref)",
+				"apply": "Bruk",
+				"reset": "Tilbakestill"
+			}
 		},
 		"Property": {
-		"area": "Område",
-		"bedrooms": "Soverom",
-		"baths": "Bad",
-		"beach": "Strand",
-		"pool": "Basseng",
-		"gym": "Treningsstudio",
-		"parking": "Parkering",
-		"showMore": "Vis mer",
-		"hide": "Skjul"
+			"area": "Område",
+			"bedrooms": "Soverom",
+			"baths": "Bad",
+			"beach": "Strand",
+			"pool": "Basseng",
+			"gym": "Treningsstudio",
+			"parking": "Parkering",
+			"showMore": "Vis mer",
+			"hide": "Skjul"
 		}
 	},
 	"Components": {
@@ -54,6 +54,16 @@
 	},
 	"Alarms": {
 		"empty": "Ingen nyheter her ennå"
+	},
+	"Profile": {
+		"userDefault": "Bruker",
+		"id": "ID",
+		"nftGift": "NFT-gave",
+		"model": "Modell",
+		"background": "Bakgrunn",
+		"pattern": "Mønster",
+		"rarity": "Sjeldenhet",
+		"signOut": "Logg ut"
 	},
 	"MetaData": {
 		"NewsPage": {

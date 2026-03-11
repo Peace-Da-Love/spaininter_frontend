@@ -11,34 +11,34 @@
 			}
 		},
 		"PropertyCatalog": {
-		"title": "Catalogue de maisons et appartements en Espagne pour les vacances",
-		"loadMore": "Charger plus",
-		"loading": "Chargement...",
-		"filters": {
-			"province": "Province",
-			"allProvinces": "Toutes les provinces",
-			"town": "Ville",
-			"allTowns": "Toutes les villes",
-			"type": "Type de propriété",
-			"allTypes": "Tous les types",
-			"price": "Prix",
-			"priceAsc": "Croissant",
-			"priceDesc": "Décroissant",
-			"ref": "ID (réf.)",
-			"apply": "Appliquer",
-			"reset": "Réinitialiser"
-		}
+			"title": "Catalogue de maisons et appartements en Espagne pour les vacances",
+			"loadMore": "Charger plus",
+			"loading": "Chargement...",
+			"filters": {
+				"province": "Province",
+				"allProvinces": "Toutes les provinces",
+				"town": "Ville",
+				"allTowns": "Toutes les villes",
+				"type": "Type de propriété",
+				"allTypes": "Tous les types",
+				"price": "Prix",
+				"priceAsc": "Croissant",
+				"priceDesc": "Décroissant",
+				"ref": "ID (réf.)",
+				"apply": "Appliquer",
+				"reset": "Réinitialiser"
+			}
 		},
 		"Property": {
-		"area": "Superficie",
-		"bedrooms": "Chambres",
-		"baths": "Salle de bain",
-		"beach": "Plage",
-		"pool": "Piscine",
-		"gym": "Salle de sport",
-		"parking": "Parking",
-		"showMore": "Afficher plus",
-		"hide": "Masquer"
+			"area": "Superficie",
+			"bedrooms": "Chambres",
+			"baths": "Salle de bain",
+			"beach": "Plage",
+			"pool": "Piscine",
+			"gym": "Salle de sport",
+			"parking": "Parking",
+			"showMore": "Afficher plus",
+			"hide": "Masquer"
 		}
 	},
 	"Components": {
@@ -54,6 +54,16 @@
 	},
 	"Alarms": {
 		"empty": "Pas de nouvelles ici pour le moment"
+	},
+	"Profile": {
+		"userDefault": "Utilisateur",
+		"id": "ID",
+		"nftGift": "Cadeau NFT",
+		"model": "Modèle",
+		"background": "Arrière-plan",
+		"pattern": "Motif",
+		"rarity": "Rareté",
+		"signOut": "Se déconnecter"
 	},
 	"MetaData": {
 		"NewsPage": {

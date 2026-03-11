@@ -11,34 +11,34 @@
 			}
 		},
 		"PropertyCatalog": {
-		"title": "Каталог домов и апартаментов в Испании для отдыха",
-		"loadMore": "Загрузить больше",
-		"loading": "Загрузка...",
-		"filters": {
-			"province": "Провинция",
-			"allProvinces": "Все провинции",
-			"town": "Город",
-			"allTowns": "Все города",
-			"type": "Тип жилья",
-			"allTypes": "Все типы",
-			"price": "Цена",
-			"priceAsc": "Возр.",
-			"priceDesc": "Убыв.",
-			"ref": "ID (ref)",
-			"apply": "Применить",
-			"reset": "Сбросить"
-		}
+			"title": "Каталог домов и апартаментов в Испании для отдыха",
+			"loadMore": "Загрузить больше",
+			"loading": "Загрузка...",
+			"filters": {
+				"province": "Провинция",
+				"allProvinces": "Все провинции",
+				"town": "Город",
+				"allTowns": "Все города",
+				"type": "Тип жилья",
+				"allTypes": "Все типы",
+				"price": "Цена",
+				"priceAsc": "Возр.",
+				"priceDesc": "Убыв.",
+				"ref": "ID (ref)",
+				"apply": "Применить",
+				"reset": "Сбросить"
+			}
 		},
 		"Property": {
-		"area": "Площадь",
-		"bedrooms": "Спальни",
-		"baths": "Ванные",
-		"beach": "Пляж",
-		"pool": "Бассейн",
-		"gym": "Фитнес Зал",
-		"parking": "Парковка",
-		"showMore": "Раскрыть",
-		"hide": "Спрятать"
+			"area": "Площадь",
+			"bedrooms": "Спальни",
+			"baths": "Ванные",
+			"beach": "Пляж",
+			"pool": "Бассейн",
+			"gym": "Фитнес Зал",
+			"parking": "Парковка",
+			"showMore": "Раскрыть",
+			"hide": "Спрятать"
 		}
 	},
 	"Components": {
@@ -54,6 +54,16 @@
 	},
 	"Alarms": {
 		"empty": "Здесь пока нет новостей"
+	},
+	"Profile": {
+		"userDefault": "Пользователь по умолчанию",
+		"id": "ID",
+		"nftGift": "NFT-Подарок",
+		"model": "Модель",
+		"background": "Фон",
+		"pattern": "Узор",
+		"rarity": "Редкость",
+		"signOut": "Выйти"
 	},
 	"MetaData": {
 		"NewsPage": {

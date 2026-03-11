@@ -11,34 +11,34 @@
 			}
 		},
 		"PropertyCatalog": {
-		"title": "Catalog of Houses and Apartments in Spain for Vacation",
-		"loadMore": "Load More",
-		"loading": "Loading...",
-		"filters": {
-			"province": "Province",
-			"allProvinces": "All provinces",
-			"town": "Town",
-			"allTowns": "All towns",
-			"type": "Property type",
-			"allTypes": "All types",
-			"price": "Price",
-			"priceAsc": "Asc.",
-			"priceDesc": "Desc.",
-			"ref": "ID (ref)",
-			"apply": "Apply",
-			"reset": "Reset"
-		}
+			"title": "Catalog of Houses and Apartments in Spain for Vacation",
+			"loadMore": "Load More",
+			"loading": "Loading...",
+			"filters": {
+				"province": "Province",
+				"allProvinces": "All provinces",
+				"town": "Town",
+				"allTowns": "All towns",
+				"type": "Property type",
+				"allTypes": "All types",
+				"price": "Price",
+				"priceAsc": "Asc.",
+				"priceDesc": "Desc.",
+				"ref": "ID (ref)",
+				"apply": "Apply",
+				"reset": "Reset"
+			}
 		},
 		"Property": {
-		"area": "Area",
-		"bedrooms": "Bedrooms",
-		"baths": "Baths",
-		"beach": "Beach",
-		"pool": "Pool",
-		"gym": "Gym",
-		"parking": "Parking",
-		"showMore": "Show More",
-		"hide": "Hide"
+			"area": "Area",
+			"bedrooms": "Bedrooms",
+			"baths": "Baths",
+			"beach": "Beach",
+			"pool": "Pool",
+			"gym": "Gym",
+			"parking": "Parking",
+			"showMore": "Show More",
+			"hide": "Hide"
 		}
 	},
 	"Components": {
@@ -55,6 +55,16 @@
 	"Alarms": {
 		"empty": "No news here yet"
 	},
+	"Profile": {
+		"userDefault": "User",
+		"id": "ID",
+		"nftGift": "NFT Gift",
+		"model": "Model",
+		"background": "Background",
+		"pattern": "Pattern",
+		"rarity": "Rarity",
+		"signOut": "Sign out"
+	},
 	"MetaData": {
 		"NewsPage": {
 			"title": "All news of Spain. Fresh news from Spain. Spain today.",
@@ -67,7 +77,7 @@
 		"CoursesPage": {
 			"title": "Telegram courses, Telegram courses from scratch and Telegram for Business Spain",
 			"description": "Training to earn/invest in Cryptocurrency, work from home. Courses to create and promote short videos (TikTok, Shorts, Reels, Telegram). Telegram for Business Spain"
-		}, 
+		},
 		"CatalogTelegramPage": {
 			"title": "Telegram channels Spain. Catalog of Telegram channels Spain",
 			"description": "Telegram channels in Spain: Madrid, Barcelona, Valencia, Seville, Zaragoza, Malaga, Murcia. Find the best chats and channels for communication and news."

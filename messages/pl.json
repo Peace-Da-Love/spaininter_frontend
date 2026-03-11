@@ -11,34 +11,34 @@
 			}
 		},
 		"PropertyCatalog": {
-		"title": "Katalog domów i apartamentów na wakacje w Hiszpanii",
-		"loadMore": "Załaduj więcej",
-		"loading": "Załadunek...",
-		"filters": {
-			"province": "Prowincja",
-			"allProvinces": "Wszystkie prowincje",
-			"town": "Miasto",
-			"allTowns": "Wszystkie miasta",
-			"type": "Typ nieruchomości",
-			"allTypes": "Wszystkie typy",
-			"price": "Cena",
-			"priceAsc": "Rosnąco",
-			"priceDesc": "Malejąco",
-			"ref": "ID (ref)",
-			"apply": "Zastosuj",
-			"reset": "Resetuj"
-		}
+			"title": "Katalog domów i apartamentów na wakacje w Hiszpanii",
+			"loadMore": "Załaduj więcej",
+			"loading": "Załadunek...",
+			"filters": {
+				"province": "Prowincja",
+				"allProvinces": "Wszystkie prowincje",
+				"town": "Miasto",
+				"allTowns": "Wszystkie miasta",
+				"type": "Typ nieruchomości",
+				"allTypes": "Wszystkie typy",
+				"price": "Cena",
+				"priceAsc": "Rosnąco",
+				"priceDesc": "Malejąco",
+				"ref": "ID (ref)",
+				"apply": "Zastosuj",
+				"reset": "Resetuj"
+			}
 		},
 		"Property": {
-		"area": "Obszar",
-		"bedrooms": "Sypialnie",
-		"baths": "Łazienki",
-		"beach": "Plaża",
-		"pool": "Basen",
-		"gym": "Siłownia",
-		"parking": "Parking",
-		"showMore": "Rozwiń",
-		"hide": "Ukryj"
+			"area": "Obszar",
+			"bedrooms": "Sypialnie",
+			"baths": "Łazienki",
+			"beach": "Plaża",
+			"pool": "Basen",
+			"gym": "Siłownia",
+			"parking": "Parking",
+			"showMore": "Rozwiń",
+			"hide": "Ukryj"
 		}
 	},
 	"Components": {
@@ -54,6 +54,16 @@
 	},
 	"Alarms": {
 		"empty": "Brak wiadomości tutaj jeszcze"
+	},
+	"Profile": {
+		"userDefault": "Użytkownik",
+		"id": "ID",
+		"nftGift": "Prezent NFT",
+		"model": "Model",
+		"background": "Tło",
+		"pattern": "Wzór",
+		"rarity": "Rzadkość",
+		"signOut": "Wyloguj się"
 	},
 	"MetaData": {
 		"NewsPage": {
@@ -78,7 +88,7 @@
 			"titleProvince": "katalog domów / mieszkań w {province}, Hiszpania-Sprzedaż / Kupno, kryptowaluta, kredyt hipoteczny, inwestycje",
 			"descriptionProvince": "Kup nowe budynki / nieruchomości w {province}, Hiszpania-kryptowaluta, kredyt hipoteczny, inwestycje",
 			"titleTown": "katalog domów / mieszkań w {town}, Hiszpania-Sprzedaż / Kupno, kryptowaluta, kredyt hipoteczny, inwestycje",
-			"descriptionTown":"Kup nowe budynki / nieruchomości w {town}, Hiszpania - kryptowaluta, kredyt hipoteczny, inwestycje"
+			"descriptionTown": "Kup nowe budynki / nieruchomości w {town}, Hiszpania - kryptowaluta, kredyt hipoteczny, inwestycje"
 		}
 	}
 }

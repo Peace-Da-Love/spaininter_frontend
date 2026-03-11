@@ -11,34 +11,34 @@
 			}
 		},
 		"PropertyCatalog": {
-		"title": "Katalog över hus och lägenheter i Spanien för semester",
-		"loadMore": "Ladda mer",
-		"loading": "Belastning...",
-		"filters": {
-			"province": "Provins",
-			"allProvinces": "Alla provinser",
-			"town": "Stad",
-			"allTowns": "Alla städer",
-			"type": "Fastighetstyp",
-			"allTypes": "Alla typer",
-			"price": "Pris",
-			"priceAsc": "Stigande",
-			"priceDesc": "Fallande",
-			"ref": "ID (ref)",
-			"apply": "Tillämpa",
-			"reset": "Återställ"
-		}
+			"title": "Katalog över hus och lägenheter i Spanien för semester",
+			"loadMore": "Ladda mer",
+			"loading": "Belastning...",
+			"filters": {
+				"province": "Provins",
+				"allProvinces": "Alla provinser",
+				"town": "Stad",
+				"allTowns": "Alla städer",
+				"type": "Fastighetstyp",
+				"allTypes": "Alla typer",
+				"price": "Pris",
+				"priceAsc": "Stigande",
+				"priceDesc": "Fallande",
+				"ref": "ID (ref)",
+				"apply": "Tillämpa",
+				"reset": "Återställ"
+			}
 		},
 		"Property": {
-		"area": "Område",
-		"bedrooms": "Sovrum",
-		"baths": "Badrum",
-		"beach": "Strand",
-		"pool": "Pool",
-		"gym": "Gym",
-		"parking": "Parkering",
-		"showMore": "Visa mer",
-		"hide": "Dölj"
+			"area": "Område",
+			"bedrooms": "Sovrum",
+			"baths": "Badrum",
+			"beach": "Strand",
+			"pool": "Pool",
+			"gym": "Gym",
+			"parking": "Parkering",
+			"showMore": "Visa mer",
+			"hide": "Dölj"
 		}
 	},
 	"Components": {
@@ -54,6 +54,16 @@
 	},
 	"Alarms": {
 		"empty": "Inga nyheter här ännu"
+	},
+	"Profile": {
+		"userDefault": "Användare",
+		"id": "ID",
+		"nftGift": "NFT-gåva",
+		"model": "Modell",
+		"background": "Bakgrund",
+		"pattern": "Mönster",
+		"rarity": "Sällsynthet",
+		"signOut": "Logga ut"
 	},
 	"MetaData": {
 		"NewsPage": {

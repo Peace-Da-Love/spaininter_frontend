@@ -1,6 +1,7 @@
 export const dynamic = 'force-dynamic';
 
-import { unstable_setRequestLocale } from 'next-intl/server';
+import { unstable_setRequestLocale, getMessages } from 'next-intl/server';
+import { NextIntlClientProvider } from 'next-intl';
 import { ReactNode } from 'react';
 import { locales } from '@/src/shared/configs';
 import { clsx } from 'clsx';
@@ -60,6 +61,7 @@ export default async function LocaleLayout({
 }: Props) {
 	// Enable static rendering
 	unstable_setRequestLocale(locale);
+	const messages = await getMessages();
 
 	return (
 		<html lang={locale}>
@@ -94,9 +96,11 @@ export default async function LocaleLayout({
 				</noscript>
 			</head>
 			<body  className={clsx(getFonts(), 'relative min-h-screen')}>
-			  <Provider>
-          <PageLayout>{children}</PageLayout>
-        </Provider>
+			  <NextIntlClientProvider locale={locale} messages={messages}>
+				  <Provider>
+            <PageLayout>{children}</PageLayout>
+          </Provider>
+        </NextIntlClientProvider>
 
 			<Script
 				async

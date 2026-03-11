@@ -11,34 +11,34 @@
 			}
 		},
 		"PropertyCatalog": {
-		"title": "Catalogus van huizen en appartementen in Spanje voor vakantie",
-		"loadMore": "Meer laden",
-		"loading": "Bezig met laden...",
-		"filters": {
-			"province": "Provincie",
-			"allProvinces": "Alle provincies",
-			"town": "Plaats",
-			"allTowns": "Alle plaatsen",
-			"type": "Type woning",
-			"allTypes": "Alle typen",
-			"price": "Prijs",
-			"priceAsc": "Oplopend",
-			"priceDesc": "Aflopend",
-			"ref": "ID (ref)",
-			"apply": "Toepassen",
-			"reset": "Resetten"
-		}
+			"title": "Catalogus van huizen en appartementen in Spanje voor vakantie",
+			"loadMore": "Meer laden",
+			"loading": "Bezig met laden...",
+			"filters": {
+				"province": "Provincie",
+				"allProvinces": "Alle provincies",
+				"town": "Plaats",
+				"allTowns": "Alle plaatsen",
+				"type": "Type woning",
+				"allTypes": "Alle typen",
+				"price": "Prijs",
+				"priceAsc": "Oplopend",
+				"priceDesc": "Aflopend",
+				"ref": "ID (ref)",
+				"apply": "Toepassen",
+				"reset": "Resetten"
+			}
 		},
 		"Property": {
-		"area": "Oppervlakte",
-		"bedrooms": "Slaapkamers",
-		"baths": "Badkamers",
-		"beach": "Strand",
-		"pool": "Zwembad",
-		"gym": "Sportschool",
-		"parking": "Parkeren",
-		"showMore": "Meer weergeven",
-		"hide": "Verbergen"
+			"area": "Oppervlakte",
+			"bedrooms": "Slaapkamers",
+			"baths": "Badkamers",
+			"beach": "Strand",
+			"pool": "Zwembad",
+			"gym": "Sportschool",
+			"parking": "Parkeren",
+			"showMore": "Meer weergeven",
+			"hide": "Verbergen"
 		}
 	},
 	"Components": {
@@ -54,6 +54,16 @@
 	},
 	"Alarms": {
 		"empty": "Geen nieuws hier nog"
+	},
+	"Profile": {
+		"userDefault": "Gebruiker",
+		"id": "ID",
+		"nftGift": "NFT-cadeau",
+		"model": "Model",
+		"background": "Achtergrond",
+		"pattern": "Patroon",
+		"rarity": "Zeldzaamheid",
+		"signOut": "Afmelden"
 	},
 	"MetaData": {
 		"NewsPage": {
