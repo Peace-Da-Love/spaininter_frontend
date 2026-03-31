@@ -1,4 +1,4 @@
-{
+﻿{
 	"Pages": {
 		"Courses": {
 			"title": "Trabajar con el teléfono",
@@ -39,6 +39,85 @@
 			"parking": "Aparcamiento",
 			"showMore": "Mostrar más",
 			"hide": "Ocultar"
+		},
+		"News": {
+			"addArticle": "Agregar artículo"
+		},
+		"NewsCreate": {
+			"title": "Crear artículo",
+			"subtitle": "Complete los campos y envíe el artículo para verificación.",
+			"hashtagLabel": "Hashtag",
+			"hashtagPlaceholder": "news_category",
+			"cityLabel": "Ciudad",
+			"cityPlaceholder": "Ciudad",
+			"provinceLabel": "Provincia",
+			"provincePlaceholder": "Provincia",
+			"posterLabel": "Póster",
+			"titleLabel": "Título",
+			"titlePlaceholder": "Título",
+			"descriptionLabel": "Descripción",
+			"descriptionPlaceholder": "Descripción breve",
+			"markdownLabel": "Markdown",
+			"markdownPlaceholder": "Escriba el artículo en Markdown",
+			"submit": "Enviar",
+			"loadingLanguage": "Cargando idioma…",
+			"languageLabel": "Idioma",
+			"languagePlaceholder": "Selecciona un idioma",
+			"toast": {
+				"successTitle": "¡Éxito!",
+				"successDesc": "Tu artículo ha sido enviado para revisión.",
+				"errorTitle": "¡Error!",
+				"errorDesc": "No se pudo enviar el artículo. Inténtalo de nuevo.",
+				"languageErrorDesc": "No se pudo determinar el idioma del artículo."
+			},
+			"validation": {
+				"categoryRequired": "La categoría es obligatoria",
+				"categoryInvalid": "Categoría inválida",
+				"cityRequired": "La ciudad es obligatoria",
+				"cityMin": "Mínimo 2 caracteres para la ciudad",
+				"cityMax": "Máximo 30 caracteres para la ciudad",
+				"provinceRequired": "La provincia es obligatoria",
+				"provinceMin": "Mínimo 2 caracteres para la provincia",
+				"provinceMax": "Máximo 30 caracteres para la provincia",
+				"posterRequired": "La imagen del póster es obligatoria",
+				"titleRequired": "El título es obligatorio",
+				"titleMin": "Mínimo 5 caracteres para el título",
+				"titleMax": "Máximo 100 caracteres para el título",
+				"descriptionRequired": "La descripción es obligatoria",
+				"descriptionMin": "Mínimo 5 caracteres para la descripción",
+				"descriptionMax": "Máximo 255 caracteres para la descripción",
+				"contentRequired": "El contenido es obligatorio",
+				"contentMin": "Mínimo 5 caracteres para el contenido",
+				"contentMax": "Máximo 50000 caracteres para el contenido"
+			},
+			"categoryCreateOption": "Crear nueva categoría",
+			"categoryLoading": "Cargando categorías...",
+			"categoryLoadError": "No se pudieron cargar las categorías",
+			"categoryInvalidHint": "Solo letras minúsculas, números y guiones bajos (2-50 caracteres)",
+			"categoryHelper": "Escriba la categoría o seleccione de la lista",
+			"categoryNoOptions": "No se encontraron categorías",
+			"cityCreateOption": "Usar esta ciudad",
+			"cityLoading": "Cargando ciudades...",
+			"cityLoadError": "No se pudieron cargar las ciudades",
+			"cityHelper": "Escriba al menos 3 caracteres para buscar o agregue su ciudad",
+			"cityNoOptions": "No se encontraron ciudades",
+			"posterDropTitle": "Seleccione o arrastre una imagen aquí",
+			"posterPreviewTitle": "Vista previa de la imagen",
+			"posterSelected": "Seleccionado: {name} ({size} MB)",
+			"posterRemove": "Eliminar",
+			"posterTooLarge": "El archivo es demasiado grande (máx. 5 MB)",
+			"posterInvalidType": "Solo se permiten imágenes PNG, JPEG o WEBP",
+			"markdownYouTubeButton": "YouTube",
+			"markdownTikTokButton": "TikTok",
+			"markdownInsertYouTube": "Insertar video de YouTube",
+			"markdownInsertTikTok": "Insertar video de TikTok",
+			"markdownYouTubePlaceholder": "https://www.youtube.com/watch?v=dQw4w9WgXcQ o dQw4w9WgXcQ",
+			"markdownTikTokPlaceholder": "https://www.tiktok.com/@username/video/1234567890",
+			"markdownYouTubeHelper": "Ingrese la URL completa de YouTube o solo el ID.",
+			"markdownTikTokHelper": "Ingrese la URL completa del video de TikTok.",
+			"markdownCancel": "Cancelar",
+			"markdownInsert": "Insertar",
+			"markdownRemove": "Eliminar"
 		}
 	},
 	"Components": {
@@ -92,3 +171,6 @@
 		}
 	}
 }
+
+
+

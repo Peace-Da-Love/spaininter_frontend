@@ -1,4 +1,4 @@
-{
+﻿{
 	"Pages": {
 		"Courses": {
 			"title": "Werken met de telefoon",
@@ -39,6 +39,85 @@
 			"parking": "Parkeren",
 			"showMore": "Meer weergeven",
 			"hide": "Verbergen"
+		},
+		"News": {
+			"addArticle": "Artikel toevoegen"
+		},
+		"NewsCreate": {
+			"title": "Artikel maken",
+			"subtitle": "Vul de velden in en verstuur het artikel ter controle.",
+			"hashtagLabel": "Hashtag",
+			"hashtagPlaceholder": "news_category",
+			"cityLabel": "Stad",
+			"cityPlaceholder": "Stad",
+			"provinceLabel": "Provincie",
+			"provincePlaceholder": "Provincie",
+			"posterLabel": "Poster",
+			"titleLabel": "Titel",
+			"titlePlaceholder": "Titel",
+			"descriptionLabel": "Beschrijving",
+			"descriptionPlaceholder": "Korte beschrijving",
+			"markdownLabel": "Markdown",
+			"markdownPlaceholder": "Schrijf het artikel in Markdown",
+			"submit": "Versturen",
+			"loadingLanguage": "Taal laden…",
+			"languageLabel": "Taal",
+			"languagePlaceholder": "Selecteer taal",
+			"toast": {
+				"successTitle": "Succes!",
+				"successDesc": "Je artikel is ter beoordeling verzonden.",
+				"errorTitle": "Fout!",
+				"errorDesc": "Artikel verzenden mislukt. Probeer het opnieuw.",
+				"languageErrorDesc": "Kan de taal van dit artikel niet bepalen."
+			},
+			"validation": {
+				"categoryRequired": "Categorie is verplicht",
+				"categoryInvalid": "Ongeldige categorie",
+				"cityRequired": "Stad is verplicht",
+				"cityMin": "Minimaal 2 tekens voor stad",
+				"cityMax": "Maximaal 30 tekens voor stad",
+				"provinceRequired": "Provincie is verplicht",
+				"provinceMin": "Minimaal 2 tekens voor provincie",
+				"provinceMax": "Maximaal 30 tekens voor provincie",
+				"posterRequired": "Posterafbeelding is verplicht",
+				"titleRequired": "Titel is verplicht",
+				"titleMin": "Minstens 5 tekens voor de titel",
+				"titleMax": "Maximaal 100 tekens voor de titel",
+				"descriptionRequired": "Beschrijving is verplicht",
+				"descriptionMin": "Minstens 5 tekens voor de beschrijving",
+				"descriptionMax": "Maximaal 255 tekens voor de beschrijving",
+				"contentRequired": "Inhoud is verplicht",
+				"contentMin": "Minstens 5 tekens voor de inhoud",
+				"contentMax": "Maximaal 50000 tekens voor de inhoud"
+			},
+			"categoryCreateOption": "Nieuwe categorie maken",
+			"categoryLoading": "Categorieën laden...",
+			"categoryLoadError": "Categorieën laden mislukt",
+			"categoryInvalidHint": "Alleen kleine letters, cijfers en underscores (2-50 tekens)",
+			"categoryHelper": "Typ een categorie of kies uit de lijst",
+			"categoryNoOptions": "Geen categorieën gevonden",
+			"cityCreateOption": "Gebruik deze stad",
+			"cityLoading": "Steden laden...",
+			"cityLoadError": "Steden laden mislukt",
+			"cityHelper": "Typ minstens 3 tekens om te zoeken of voeg je eigen stad toe",
+			"cityNoOptions": "Geen steden gevonden",
+			"posterDropTitle": "Selecteer of sleep hier een afbeelding",
+			"posterPreviewTitle": "Afbeeldingsvoorbeeld",
+			"posterSelected": "Geselecteerd: {name} ({size} MB)",
+			"posterRemove": "Verwijderen",
+			"posterTooLarge": "Bestand is te groot (max. 5 MB)",
+			"posterInvalidType": "Alleen PNG-, JPEG- of WEBP-afbeeldingen zijn toegestaan",
+			"markdownYouTubeButton": "YouTube",
+			"markdownTikTokButton": "TikTok",
+			"markdownInsertYouTube": "YouTube-video invoegen",
+			"markdownInsertTikTok": "TikTok-video invoegen",
+			"markdownYouTubePlaceholder": "https://www.youtube.com/watch?v=dQw4w9WgXcQ of dQw4w9WgXcQ",
+			"markdownTikTokPlaceholder": "https://www.tiktok.com/@username/video/1234567890",
+			"markdownYouTubeHelper": "Voer de volledige YouTube-URL of alleen de ID in.",
+			"markdownTikTokHelper": "Voer de volledige TikTok-video-URL in.",
+			"markdownCancel": "Annuleren",
+			"markdownInsert": "Invoegen",
+			"markdownRemove": "Verwijderen"
 		}
 	},
 	"Components": {
@@ -92,3 +171,7 @@
 		}
 	}
 }
+
+
+
+

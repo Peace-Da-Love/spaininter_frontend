@@ -1,4 +1,4 @@
-{
+﻿{
 	"Pages": {
 		"Courses": {
 			"title": "Работа с Телефоном",
@@ -39,6 +39,85 @@
 			"parking": "Парковка",
 			"showMore": "Раскрыть",
 			"hide": "Спрятать"
+		},
+		"News": {
+			"addArticle": "Добавить статью"
+		},
+		"NewsCreate": {
+			"title": "Создать статью",
+			"subtitle": "Заполните поля ниже и отправьте статью на проверку.",
+			"hashtagLabel": "Хэштег",
+			"hashtagPlaceholder": "news_category",
+			"cityLabel": "Город",
+			"cityPlaceholder": "Город",
+			"provinceLabel": "Провинция",
+			"provincePlaceholder": "Провинция",
+			"posterLabel": "Постер",
+			"titleLabel": "Заголовок",
+			"titlePlaceholder": "Заголовок",
+			"descriptionLabel": "Описание",
+			"descriptionPlaceholder": "Короткое описание",
+			"markdownLabel": "Markdown",
+			"markdownPlaceholder": "Напишите статью в Markdown",
+			"submit": "Отправить",
+			"loadingLanguage": "Загружаем язык…",
+			"languageLabel": "Язык",
+			"languagePlaceholder": "Выберите язык",
+			"toast": {
+				"successTitle": "Успех!",
+				"successDesc": "Ваша статья отправлена на модерацию.",
+				"errorTitle": "Ошибка!",
+				"errorDesc": "Не удалось отправить статью. Попробуйте ещё раз.",
+				"languageErrorDesc": "Не удалось определить язык статьи."
+			},
+			"validation": {
+				"categoryRequired": "Категория обязательна",
+				"categoryInvalid": "Некорректная категория",
+				"cityRequired": "Город обязателен",
+				"cityMin": "Минимум 2 символа для города",
+				"cityMax": "Максимум 30 символов для города",
+				"provinceRequired": "Провинция обязательна",
+				"provinceMin": "Минимум 2 символа для провинции",
+				"provinceMax": "Максимум 30 символов для провинции",
+				"posterRequired": "Постер обязателен",
+				"titleRequired": "Заголовок обязателен",
+				"titleMin": "Минимум 5 символов для заголовка",
+				"titleMax": "Максимум 100 символов для заголовка",
+				"descriptionRequired": "Описание обязательно",
+				"descriptionMin": "Минимум 5 символов для описания",
+				"descriptionMax": "Максимум 255 символов для описания",
+				"contentRequired": "Текст обязателен",
+				"contentMin": "Минимум 5 символов для текста",
+				"contentMax": "Максимум 50000 символов для текста"
+			},
+			"categoryCreateOption": "Создать новую категорию",
+			"categoryLoading": "Загрузка категорий...",
+			"categoryLoadError": "Не удалось загрузить категории",
+			"categoryInvalidHint": "Только строчные буквы, цифры и подчёркивание (2-50 символов)",
+			"categoryHelper": "Введите категорию или выберите из списка",
+			"categoryNoOptions": "Категории не найдены",
+			"cityCreateOption": "Использовать этот город",
+			"cityLoading": "Загрузка городов...",
+			"cityLoadError": "Не удалось загрузить города",
+			"cityHelper": "Введите минимум 3 символа для поиска или укажите другой город",
+			"cityNoOptions": "Города не найдены",
+			"posterDropTitle": "Выберите или перетащите изображение сюда",
+			"posterPreviewTitle": "Предпросмотр изображения",
+			"posterSelected": "Выбрано: {name} ({size} МБ)",
+			"posterRemove": "Удалить",
+			"posterTooLarge": "Файл слишком большой (макс. 5 МБ)",
+			"posterInvalidType": "Разрешены только PNG, JPEG или WEBP",
+			"markdownYouTubeButton": "YouTube",
+			"markdownTikTokButton": "TikTok",
+			"markdownInsertYouTube": "Вставить видео YouTube",
+			"markdownInsertTikTok": "Вставить видео TikTok",
+			"markdownYouTubePlaceholder": "https://www.youtube.com/watch?v=dQw4w9WgXcQ или dQw4w9WgXcQ",
+			"markdownTikTokPlaceholder": "https://www.tiktok.com/@username/video/1234567890",
+			"markdownYouTubeHelper": "Введите полный URL YouTube или только ID.",
+			"markdownTikTokHelper": "Введите полный URL видео TikTok.",
+			"markdownCancel": "Отмена",
+			"markdownInsert": "Вставить",
+			"markdownRemove": "Удалить"
 		}
 	},
 	"Components": {
@@ -92,3 +171,7 @@
 		}
 	}
 }
+
+
+
+

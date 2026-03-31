@@ -1,4 +1,4 @@
-{
+﻿{
 	"Pages": {
 		"Courses": {
 			"title": "Práca s telefónom",
@@ -39,6 +39,85 @@
 			"parking": "Parkering",
 			"showMore": "Visa mer",
 			"hide": "Dölj"
+		},
+		"News": {
+			"addArticle": "Lägg till artikel"
+		},
+		"NewsCreate": {
+			"title": "Skapa artikel",
+			"subtitle": "Fyll i fälten och skicka artikeln för granskning.",
+			"hashtagLabel": "Hashtag",
+			"hashtagPlaceholder": "news_category",
+			"cityLabel": "Stad",
+			"cityPlaceholder": "Stad",
+			"provinceLabel": "Provins",
+			"provincePlaceholder": "Provins",
+			"posterLabel": "Affisch",
+			"titleLabel": "Titel",
+			"titlePlaceholder": "Titel",
+			"descriptionLabel": "Beskrivning",
+			"descriptionPlaceholder": "Kort beskrivning",
+			"markdownLabel": "Markdown",
+			"markdownPlaceholder": "Skriv artikeln i Markdown",
+			"submit": "Skicka",
+			"loadingLanguage": "Laddar språk…",
+			"languageLabel": "Sprak",
+			"languagePlaceholder": "Valj sprak",
+			"toast": {
+				"successTitle": "Lyckades!",
+				"successDesc": "Din artikel har skickats för granskning.",
+				"errorTitle": "Fel!",
+				"errorDesc": "Det gick inte att skicka artikeln. Försök igen.",
+				"languageErrorDesc": "Kunde inte avgöra artikelns språk."
+			},
+			"validation": {
+				"categoryRequired": "Kategori krävs",
+				"categoryInvalid": "Ogiltig kategori",
+				"cityRequired": "Stad krävs",
+				"cityMin": "Minst 2 tecken för stad",
+				"cityMax": "Högst 30 tecken för stad",
+				"provinceRequired": "Provins krävs",
+				"provinceMin": "Minst 2 tecken för provins",
+				"provinceMax": "Högst 30 tecken för provins",
+				"posterRequired": "Affischbild krävs",
+				"titleRequired": "Titel krävs",
+				"titleMin": "Minst 5 tecken för titel",
+				"titleMax": "Max 100 tecken för titel",
+				"descriptionRequired": "Beskrivning krävs",
+				"descriptionMin": "Minst 5 tecken för beskrivning",
+				"descriptionMax": "Max 255 tecken för beskrivning",
+				"contentRequired": "Innehåll krävs",
+				"contentMin": "Minst 5 tecken för innehåll",
+				"contentMax": "Max 50000 tecken för innehåll"
+			},
+			"categoryCreateOption": "Skapa ny kategori",
+			"categoryLoading": "Laddar kategorier...",
+			"categoryLoadError": "Kunde inte ladda kategorier",
+			"categoryInvalidHint": "Endast små bokstäver, siffror och understreck (2-50 tecken)",
+			"categoryHelper": "Skriv kategori eller välj från listan",
+			"categoryNoOptions": "Inga kategorier hittades",
+			"cityCreateOption": "Använd denna stad",
+			"cityLoading": "Laddar städer...",
+			"cityLoadError": "Kunde inte ladda städer",
+			"cityHelper": "Skriv minst 3 tecken för att söka eller ange en egen stad",
+			"cityNoOptions": "Inga städer hittades",
+			"posterDropTitle": "Välj eller dra en bild hit",
+			"posterPreviewTitle": "Förhandsvisning av bild",
+			"posterSelected": "Vald: {name} ({size} MB)",
+			"posterRemove": "Ta bort",
+			"posterTooLarge": "Filen är för stor (max 5 MB)",
+			"posterInvalidType": "Endast PNG-, JPEG- eller WEBP-bilder är tillåtna",
+			"markdownYouTubeButton": "YouTube",
+			"markdownTikTokButton": "TikTok",
+			"markdownInsertYouTube": "Infoga YouTube-video",
+			"markdownInsertTikTok": "Infoga TikTok-video",
+			"markdownYouTubePlaceholder": "https://www.youtube.com/watch?v=dQw4w9WgXcQ eller dQw4w9WgXcQ",
+			"markdownTikTokPlaceholder": "https://www.tiktok.com/@username/video/1234567890",
+			"markdownYouTubeHelper": "Ange fullständig YouTube-URL eller bara ID.",
+			"markdownTikTokHelper": "Ange fullständig URL till TikTok-videon.",
+			"markdownCancel": "Avbryt",
+			"markdownInsert": "Infoga",
+			"markdownRemove": "Ta bort"
 		}
 	},
 	"Components": {
@@ -92,3 +171,6 @@
 		}
 	}
 }
+
+
+

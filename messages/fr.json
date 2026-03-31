@@ -1,4 +1,4 @@
-{
+﻿{
 	"Pages": {
 		"Courses": {
 			"title": "Travailler avec le téléphone",
@@ -39,6 +39,85 @@
 			"parking": "Parking",
 			"showMore": "Afficher plus",
 			"hide": "Masquer"
+		},
+		"News": {
+			"addArticle": "Ajouter un article"
+		},
+		"NewsCreate": {
+			"title": "Créer un article",
+			"subtitle": "Remplissez les champs ci-dessous et soumettez l’article pour vérification.",
+			"hashtagLabel": "Hashtag",
+			"hashtagPlaceholder": "news_category",
+			"cityLabel": "Ville",
+			"cityPlaceholder": "Ville",
+			"provinceLabel": "Province",
+			"provincePlaceholder": "Province",
+			"posterLabel": "Affiche",
+			"titleLabel": "Titre",
+			"titlePlaceholder": "Titre",
+			"descriptionLabel": "Description",
+			"descriptionPlaceholder": "Description courte",
+			"markdownLabel": "Markdown",
+			"markdownPlaceholder": "Rédigez l’article en Markdown",
+			"submit": "Envoyer",
+			"loadingLanguage": "Chargement de la langue…",
+			"languageLabel": "Langue",
+			"languagePlaceholder": "Choisir la langue",
+			"toast": {
+				"successTitle": "Succès !",
+				"successDesc": "Votre article a été envoyé pour vérification.",
+				"errorTitle": "Erreur !",
+				"errorDesc": "Échec de l’envoi de l’article. Réessayez.",
+				"languageErrorDesc": "Impossible de déterminer la langue de cet article."
+			},
+			"validation": {
+				"categoryRequired": "La catégorie est requise",
+				"categoryInvalid": "Catégorie invalide",
+				"cityRequired": "La ville est requise",
+				"cityMin": "Minimum 2 caractères pour la ville",
+				"cityMax": "Maximum 30 caractères pour la ville",
+				"provinceRequired": "La province est requise",
+				"provinceMin": "Minimum 2 caractères pour la province",
+				"provinceMax": "Maximum 30 caractères pour la province",
+				"posterRequired": "L’image d’affiche est requise",
+				"titleRequired": "Le titre est requis",
+				"titleMin": "Minimum 5 caractères pour le titre",
+				"titleMax": "Maximum 100 caractères pour le titre",
+				"descriptionRequired": "La description est requise",
+				"descriptionMin": "Minimum 5 caractères pour la description",
+				"descriptionMax": "Maximum 255 caractères pour la description",
+				"contentRequired": "Le contenu est requis",
+				"contentMin": "Minimum 5 caractères pour le contenu",
+				"contentMax": "Maximum 50000 caractères pour le contenu"
+			},
+			"categoryCreateOption": "Créer une nouvelle catégorie",
+			"categoryLoading": "Chargement des catégories...",
+			"categoryLoadError": "Impossible de charger les catégories",
+			"categoryInvalidHint": "Uniquement des minuscules, chiffres et underscores (2-50 caractères)",
+			"categoryHelper": "Saisissez une catégorie ou sélectionnez dans la liste",
+			"categoryNoOptions": "Aucune catégorie trouvée",
+			"cityCreateOption": "Utiliser cette ville",
+			"cityLoading": "Chargement des villes...",
+			"cityLoadError": "Impossible de charger les villes",
+			"cityHelper": "Saisissez au moins 3 caractères pour rechercher ou ajoutez votre ville",
+			"cityNoOptions": "Aucune ville trouvée",
+			"posterDropTitle": "Sélectionnez ou déposez une image ici",
+			"posterPreviewTitle": "Aperçu de l'image",
+			"posterSelected": "Sélectionné : {name} ({size} Mo)",
+			"posterRemove": "Supprimer",
+			"posterTooLarge": "Le fichier est trop volumineux (max. 5 Mo)",
+			"posterInvalidType": "Seules les images PNG, JPEG ou WEBP sont autorisées",
+			"markdownYouTubeButton": "YouTube",
+			"markdownTikTokButton": "TikTok",
+			"markdownInsertYouTube": "Insérer une vidéo YouTube",
+			"markdownInsertTikTok": "Insérer une vidéo TikTok",
+			"markdownYouTubePlaceholder": "https://www.youtube.com/watch?v=dQw4w9WgXcQ ou dQw4w9WgXcQ",
+			"markdownTikTokPlaceholder": "https://www.tiktok.com/@username/video/1234567890",
+			"markdownYouTubeHelper": "Saisissez l’URL YouTube complète ou seulement l’ID.",
+			"markdownTikTokHelper": "Saisissez l’URL complète de la vidéo TikTok.",
+			"markdownCancel": "Annuler",
+			"markdownInsert": "Insérer",
+			"markdownRemove": "Supprimer"
 		}
 	},
 	"Components": {
@@ -92,3 +171,6 @@
 		}
 	}
 }
+
+
+

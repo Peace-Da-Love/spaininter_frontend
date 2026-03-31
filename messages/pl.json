@@ -1,4 +1,4 @@
-{
+﻿{
 	"Pages": {
 		"Courses": {
 			"title": "Praca z telefonem",
@@ -39,6 +39,85 @@
 			"parking": "Parking",
 			"showMore": "Rozwiń",
 			"hide": "Ukryj"
+		},
+		"News": {
+			"addArticle": "Dodaj artykuł"
+		},
+		"NewsCreate": {
+			"title": "Utwórz artykuł",
+			"subtitle": "Wypełnij pola i wyślij artykuł do weryfikacji.",
+			"hashtagLabel": "Hashtag",
+			"hashtagPlaceholder": "news_category",
+			"cityLabel": "Miasto",
+			"cityPlaceholder": "Miasto",
+			"provinceLabel": "Prowincja",
+			"provincePlaceholder": "Prowincja",
+			"posterLabel": "Plakat",
+			"titleLabel": "Tytuł",
+			"titlePlaceholder": "Tytuł",
+			"descriptionLabel": "Opis",
+			"descriptionPlaceholder": "Krótki opis",
+			"markdownLabel": "Markdown",
+			"markdownPlaceholder": "Napisz artykuł w Markdown",
+			"submit": "Wyślij",
+			"loadingLanguage": "Ładowanie języka…",
+			"languageLabel": "Jezyk",
+			"languagePlaceholder": "Wybierz jezyk",
+			"toast": {
+				"successTitle": "Sukces!",
+				"successDesc": "Twój artykuł został wysłany do weryfikacji.",
+				"errorTitle": "Błąd!",
+				"errorDesc": "Nie udało się wysłać artykułu. Spróbuj ponownie.",
+				"languageErrorDesc": "Nie udało się ustalić języka artykułu."
+			},
+			"validation": {
+				"categoryRequired": "Kategoria jest wymagana",
+				"categoryInvalid": "Nieprawidłowa kategoria",
+				"cityRequired": "Miasto jest wymagane",
+				"cityMin": "Minimum 2 znaki dla miasta",
+				"cityMax": "Maksimum 30 znaków dla miasta",
+				"provinceRequired": "Prowincja jest wymagana",
+				"provinceMin": "Minimum 2 znaki dla prowincji",
+				"provinceMax": "Maksimum 30 znaków dla prowincji",
+				"posterRequired": "Obraz plakatu jest wymagany",
+				"titleRequired": "Tytuł jest wymagany",
+				"titleMin": "Minimum 5 znaków dla tytułu",
+				"titleMax": "Maksimum 100 znaków dla tytułu",
+				"descriptionRequired": "Opis jest wymagany",
+				"descriptionMin": "Minimum 5 znaków dla opisu",
+				"descriptionMax": "Maksimum 255 znaków dla opisu",
+				"contentRequired": "Treść jest wymagana",
+				"contentMin": "Minimum 5 znaków dla treści",
+				"contentMax": "Maksimum 50000 znaków dla treści"
+			},
+			"categoryCreateOption": "Utwórz nową kategorię",
+			"categoryLoading": "Ładowanie kategorii...",
+			"categoryLoadError": "Nie udało się załadować kategorii",
+			"categoryInvalidHint": "Tylko małe litery, cyfry i podkreślenia (2-50 znaków)",
+			"categoryHelper": "Wpisz kategorię lub wybierz z listy",
+			"categoryNoOptions": "Nie znaleziono kategorii",
+			"cityCreateOption": "Użyj tego miasta",
+			"cityLoading": "Ładowanie miast...",
+			"cityLoadError": "Nie udało się załadować miast",
+			"cityHelper": "Wpisz co najmniej 3 znaki, aby wyszukać, lub dodaj własne miasto",
+			"cityNoOptions": "Nie znaleziono miast",
+			"posterDropTitle": "Wybierz lub upuść obraz tutaj",
+			"posterPreviewTitle": "Podgląd obrazu",
+			"posterSelected": "Wybrano: {name} ({size} MB)",
+			"posterRemove": "Usuń",
+			"posterTooLarge": "Plik jest za duży (maks. 5 MB)",
+			"posterInvalidType": "Dozwolone są tylko obrazy PNG, JPEG lub WEBP",
+			"markdownYouTubeButton": "YouTube",
+			"markdownTikTokButton": "TikTok",
+			"markdownInsertYouTube": "Wstaw wideo YouTube",
+			"markdownInsertTikTok": "Wstaw wideo TikTok",
+			"markdownYouTubePlaceholder": "https://www.youtube.com/watch?v=dQw4w9WgXcQ lub dQw4w9WgXcQ",
+			"markdownTikTokPlaceholder": "https://www.tiktok.com/@username/video/1234567890",
+			"markdownYouTubeHelper": "Wpisz pełny adres URL YouTube lub samo ID.",
+			"markdownTikTokHelper": "Wpisz pełny adres URL wideo TikTok.",
+			"markdownCancel": "Anuluj",
+			"markdownInsert": "Wstaw",
+			"markdownRemove": "Usuń"
 		}
 	},
 	"Components": {
@@ -92,3 +171,7 @@
 		}
 	}
 }
+
+
+
+

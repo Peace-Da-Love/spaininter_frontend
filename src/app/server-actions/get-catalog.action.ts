@@ -17,25 +17,19 @@ type Params = {
 export async function getCatalog(
   params: Params
 ): Promise<Property[] | undefined> {
+
   const qs = new URLSearchParams();
 
   qs.set('page', String(params.page));
-  
+
   if (params.order) {
     qs.set('order', params.order === 'desc' ? '-price' : 'price');
   }
-  if (params.province) {
-    qs.set('province', params.province);
-  }
-  if (params.town) {
-    qs.set('town', params.town);
-  }
-  if (params.type) {
-    qs.set('type', params.type);
-  }
-  if (params.ref) {
-    qs.set('ref', params.ref);
-  }
+
+  if (params.province) qs.set('province', params.province);
+  if (params.town) qs.set('town', params.town);
+  if (params.type) qs.set('type', params.type);
+  if (params.ref) qs.set('ref', params.ref);
 
   const url = `properties?${qs.toString()}`;
 
@@ -44,25 +38,24 @@ export async function getCatalog(
       'Accept-Language': params.locale,
     },
   });
-  
+
   if (!response.ok) return undefined;
-  
+
   const data = (await response.json()) as Property[];
 
-  // Convert EUR prices to TON for all properties
+  // Convert EUR prices to TON
   try {
     const propertiesWithTon = await Promise.all(
       data.map(async (property) => {
         if (property.price && property.currency === 'EUR') {
           try {
             property.price_ton = await convertEurToTon(property.price);
-          } catch (e) {
-            // failed to convert - leave undefined
-          }
+          } catch {}
         }
         return property;
       })
     );
+
     return propertiesWithTon;
   } catch (error) {
     console.warn('[getCatalog] Failed to convert prices to TON:', error);

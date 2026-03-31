@@ -1,4 +1,4 @@
-{
+﻿{
 	"Pages": {
 		"Courses": {
 			"title": "Arbeiten mit dem Telefon",
@@ -39,6 +39,85 @@
 			"parking": "Parkplatz",
 			"showMore": "Mehr anzeigen",
 			"hide": "Ausblenden"
+		},
+		"News": {
+			"addArticle": "Artikel hinzufügen"
+		},
+		"NewsCreate": {
+			"title": "Artikel erstellen",
+			"subtitle": "Füllen Sie die Felder aus und senden Sie den Artikel zur Prüfung.",
+			"hashtagLabel": "Hashtag",
+			"hashtagPlaceholder": "news_category",
+			"cityLabel": "Stadt",
+			"cityPlaceholder": "Stadt",
+			"provinceLabel": "Provinz",
+			"provincePlaceholder": "Provinz",
+			"posterLabel": "Poster",
+			"titleLabel": "Titel",
+			"titlePlaceholder": "Titel",
+			"descriptionLabel": "Beschreibung",
+			"descriptionPlaceholder": "Kurze Beschreibung",
+			"markdownLabel": "Markdown",
+			"markdownPlaceholder": "Schreiben Sie den Artikel in Markdown",
+			"submit": "Absenden",
+			"loadingLanguage": "Sprache wird geladen…",
+			"languageLabel": "Sprache",
+			"languagePlaceholder": "Sprache auswahlen",
+			"toast": {
+				"successTitle": "Erfolg!",
+				"successDesc": "Ihr Artikel wurde zur Prüfung gesendet.",
+				"errorTitle": "Fehler!",
+				"errorDesc": "Artikel konnte nicht gesendet werden. Bitte erneut versuchen.",
+				"languageErrorDesc": "Sprache für diesen Artikel konnte nicht ermittelt werden."
+			},
+			"validation": {
+				"categoryRequired": "Kategorie ist erforderlich",
+				"categoryInvalid": "Ungültige Kategorie",
+				"cityRequired": "Stadt ist erforderlich",
+				"cityMin": "Mindestens 2 Zeichen für die Stadt",
+				"cityMax": "Maximal 30 Zeichen für die Stadt",
+				"provinceRequired": "Provinz ist erforderlich",
+				"provinceMin": "Mindestens 2 Zeichen für die Provinz",
+				"provinceMax": "Maximal 30 Zeichen für die Provinz",
+				"posterRequired": "Posterbild ist erforderlich",
+				"titleRequired": "Titel ist erforderlich",
+				"titleMin": "Mindestens 5 Zeichen für den Titel",
+				"titleMax": "Maximal 100 Zeichen für den Titel",
+				"descriptionRequired": "Beschreibung ist erforderlich",
+				"descriptionMin": "Mindestens 5 Zeichen für die Beschreibung",
+				"descriptionMax": "Maximal 255 Zeichen für die Beschreibung",
+				"contentRequired": "Inhalt ist erforderlich",
+				"contentMin": "Mindestens 5 Zeichen für den Inhalt",
+				"contentMax": "Maximal 50000 Zeichen für den Inhalt"
+			},
+			"categoryCreateOption": "Neue Kategorie erstellen",
+			"categoryLoading": "Kategorien werden geladen...",
+			"categoryLoadError": "Kategorien konnten nicht geladen werden",
+			"categoryInvalidHint": "Nur Kleinbuchstaben, Zahlen und Unterstriche (2-50 Zeichen)",
+			"categoryHelper": "Kategorie eingeben oder aus der Liste wählen",
+			"categoryNoOptions": "Keine Kategorien gefunden",
+			"cityCreateOption": "Diese Stadt verwenden",
+			"cityLoading": "Städte werden geladen...",
+			"cityLoadError": "Städte konnten nicht geladen werden",
+			"cityHelper": "Mindestens 3 Zeichen zum Suchen eingeben oder eigene Stadt hinzufügen",
+			"cityNoOptions": "Keine Städte gefunden",
+			"posterDropTitle": "Bild auswählen oder hierher ziehen",
+			"posterPreviewTitle": "Bildvorschau",
+			"posterSelected": "Ausgewählt: {name} ({size} MB)",
+			"posterRemove": "Entfernen",
+			"posterTooLarge": "Datei ist zu groß (max. 5 MB)",
+			"posterInvalidType": "Nur PNG-, JPEG- oder WEBP-Bilder sind erlaubt",
+			"markdownYouTubeButton": "YouTube",
+			"markdownTikTokButton": "TikTok",
+			"markdownInsertYouTube": "YouTube-Video einfügen",
+			"markdownInsertTikTok": "TikTok-Video einfügen",
+			"markdownYouTubePlaceholder": "https://www.youtube.com/watch?v=dQw4w9WgXcQ oder dQw4w9WgXcQ",
+			"markdownTikTokPlaceholder": "https://www.tiktok.com/@username/video/1234567890",
+			"markdownYouTubeHelper": "Geben Sie die vollständige YouTube-URL oder nur die ID ein.",
+			"markdownTikTokHelper": "Geben Sie die vollständige TikTok-Video-URL ein.",
+			"markdownCancel": "Abbrechen",
+			"markdownInsert": "Einfügen",
+			"markdownRemove": "Entfernen"
 		}
 	},
 	"Components": {
@@ -92,3 +171,6 @@
 		}
 	}
 }
+
+
+

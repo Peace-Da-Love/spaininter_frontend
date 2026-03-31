@@ -1,4 +1,4 @@
-{
+﻿{
 	"Pages": {
 		"Courses": {
 			"title": "Arbeide med telefonen",
@@ -39,6 +39,85 @@
 			"parking": "Parkering",
 			"showMore": "Vis mer",
 			"hide": "Skjul"
+		},
+		"News": {
+			"addArticle": "Legg til artikkel"
+		},
+		"NewsCreate": {
+			"title": "Opprett artikkel",
+			"subtitle": "Fyll ut feltene og send inn artikkelen for verifisering.",
+			"hashtagLabel": "Hashtag",
+			"hashtagPlaceholder": "news_category",
+			"cityLabel": "By",
+			"cityPlaceholder": "By",
+			"provinceLabel": "Provins",
+			"provincePlaceholder": "Provins",
+			"posterLabel": "Poster",
+			"titleLabel": "Tittel",
+			"titlePlaceholder": "Tittel",
+			"descriptionLabel": "Beskrivelse",
+			"descriptionPlaceholder": "Kort beskrivelse",
+			"markdownLabel": "Markdown",
+			"markdownPlaceholder": "Skriv artikkelen i Markdown",
+			"submit": "Send inn",
+			"loadingLanguage": "Laster språk…",
+			"languageLabel": "Sprak",
+			"languagePlaceholder": "Velg sprak",
+			"toast": {
+				"successTitle": "Suksess!",
+				"successDesc": "Artikkelen din er sendt til gjennomgang.",
+				"errorTitle": "Feil!",
+				"errorDesc": "Kunne ikke sende artikkelen. Prøv igjen.",
+				"languageErrorDesc": "Kunne ikke bestemme språket for denne artikkelen."
+			},
+			"validation": {
+				"categoryRequired": "Kategori er påkrevd",
+				"categoryInvalid": "Ugyldig kategori",
+				"cityRequired": "By er påkrevd",
+				"cityMin": "Minst 2 tegn for by",
+				"cityMax": "Maks 30 tegn for by",
+				"provinceRequired": "Provins er påkrevd",
+				"provinceMin": "Minst 2 tegn for provins",
+				"provinceMax": "Maks 30 tegn for provins",
+				"posterRequired": "Posterbilde er påkrevd",
+				"titleRequired": "Tittel er påkrevd",
+				"titleMin": "Minst 5 tegn for tittel",
+				"titleMax": "Maks 100 tegn for tittel",
+				"descriptionRequired": "Beskrivelse er påkrevd",
+				"descriptionMin": "Minst 5 tegn for beskrivelse",
+				"descriptionMax": "Maks 255 tegn for beskrivelse",
+				"contentRequired": "Innhold er påkrevd",
+				"contentMin": "Minst 5 tegn for innhold",
+				"contentMax": "Maks 50000 tegn for innhold"
+			},
+			"categoryCreateOption": "Opprett ny kategori",
+			"categoryLoading": "Laster kategorier...",
+			"categoryLoadError": "Kunne ikke laste kategorier",
+			"categoryInvalidHint": "Kun små bokstaver, tall og understreker (2-50 tegn)",
+			"categoryHelper": "Skriv inn kategori eller velg fra listen",
+			"categoryNoOptions": "Ingen kategorier funnet",
+			"cityCreateOption": "Bruk denne byen",
+			"cityLoading": "Laster byer...",
+			"cityLoadError": "Kunne ikke laste byer",
+			"cityHelper": "Skriv minst 3 tegn for å søke eller legg til din egen by",
+			"cityNoOptions": "Ingen byer funnet",
+			"posterDropTitle": "Velg eller dra et bilde hit",
+			"posterPreviewTitle": "Forhåndsvisning",
+			"posterSelected": "Valgt: {name} ({size} MB)",
+			"posterRemove": "Fjern",
+			"posterTooLarge": "Filen er for stor (maks 5 MB)",
+			"posterInvalidType": "Kun PNG-, JPEG- eller WEBP-bilder er tillatt",
+			"markdownYouTubeButton": "YouTube",
+			"markdownTikTokButton": "TikTok",
+			"markdownInsertYouTube": "Sett inn YouTube-video",
+			"markdownInsertTikTok": "Sett inn TikTok-video",
+			"markdownYouTubePlaceholder": "https://www.youtube.com/watch?v=dQw4w9WgXcQ eller dQw4w9WgXcQ",
+			"markdownTikTokPlaceholder": "https://www.tiktok.com/@username/video/1234567890",
+			"markdownYouTubeHelper": "Skriv inn full YouTube-URL eller bare ID.",
+			"markdownTikTokHelper": "Skriv inn full TikTok-video-URL.",
+			"markdownCancel": "Avbryt",
+			"markdownInsert": "Sett inn",
+			"markdownRemove": "Fjern"
 		}
 	},
 	"Components": {
@@ -92,3 +171,7 @@
 		}
 	}
 }
+
+
+
+

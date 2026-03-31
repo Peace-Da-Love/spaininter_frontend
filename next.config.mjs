@@ -8,6 +8,7 @@ const PROP_URL = process.env.NEXT_PUBLIC_PROP_URL || 'https://prop.spaininter.co
 
 /** @type {import('next').NextConfig} */
 const config = {
+	transpilePackages: ['@mdxeditor/editor'],
 	images: {
 		remotePatterns: [
 			{

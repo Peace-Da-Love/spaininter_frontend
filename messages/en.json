@@ -1,4 +1,4 @@
-{
+﻿{
 	"Pages": {
 		"Courses": {
 			"title": "Working with the Phone",
@@ -39,6 +39,85 @@
 			"parking": "Parking",
 			"showMore": "Show More",
 			"hide": "Hide"
+		},
+		"News": {
+			"addArticle": "Add article"
+		},
+		"NewsCreate": {
+			"title": "Create Article",
+			"subtitle": "Fill in the fields below and submit your article for verification.",
+			"hashtagLabel": "Hashtag",
+			"hashtagPlaceholder": "news_category",
+			"cityLabel": "City",
+			"cityPlaceholder": "City",
+			"provinceLabel": "Province",
+			"provincePlaceholder": "Province",
+			"posterLabel": "Poster",
+			"titleLabel": "Title",
+			"titlePlaceholder": "Title",
+			"descriptionLabel": "Description",
+			"descriptionPlaceholder": "Short description",
+			"markdownLabel": "Markdown",
+			"markdownPlaceholder": "Write the article in Markdown",
+			"submit": "Submit",
+			"loadingLanguage": "Loading language…",
+			"languageLabel": "Language",
+			"languagePlaceholder": "Select language",
+			"toast": {
+				"successTitle": "Success!",
+				"successDesc": "Your article has been sent for review.",
+				"errorTitle": "Error!",
+				"errorDesc": "Failed to send article. Please try again.",
+				"languageErrorDesc": "Unable to determine language for this article."
+			},
+			"validation": {
+				"categoryRequired": "Category is required",
+				"categoryInvalid": "Invalid category",
+				"cityRequired": "City is required",
+				"cityMin": "Min 2 characters for city",
+				"cityMax": "Max 30 characters for city",
+				"provinceRequired": "Province is required",
+				"provinceMin": "Min 2 characters for province",
+				"provinceMax": "Max 30 characters for province",
+				"posterRequired": "Poster image is required",
+				"titleRequired": "Title is required",
+				"titleMin": "Min 5 characters for title",
+				"titleMax": "Max 100 characters for title",
+				"descriptionRequired": "Description is required",
+				"descriptionMin": "Min 5 characters for description",
+				"descriptionMax": "Max 255 characters for description",
+				"contentRequired": "Content is required",
+				"contentMin": "Min 5 characters for content",
+				"contentMax": "Max 50000 characters for content"
+			},
+			"categoryCreateOption": "Create new category",
+			"categoryLoading": "Loading categories...",
+			"categoryLoadError": "Failed to load categories",
+			"categoryInvalidHint": "Only lowercase letters, numbers, and underscores (2-50 chars)",
+			"categoryHelper": "Type category name or select from list",
+			"categoryNoOptions": "No categories found",
+			"cityCreateOption": "Use this city",
+			"cityLoading": "Loading cities...",
+			"cityLoadError": "Failed to load cities",
+			"cityHelper": "Type at least 3 characters to search or enter your own city",
+			"cityNoOptions": "No cities found",
+			"posterDropTitle": "Select or drop an image here",
+			"posterPreviewTitle": "Image preview",
+			"posterSelected": "Selected: {name} ({size} MB)",
+			"posterRemove": "Remove",
+			"posterTooLarge": "File size is too large (max 5MB)",
+			"posterInvalidType": "Only PNG, JPEG or WEBP images are allowed",
+			"markdownYouTubeButton": "YouTube",
+			"markdownTikTokButton": "TikTok",
+			"markdownInsertYouTube": "Insert YouTube video",
+			"markdownInsertTikTok": "Insert TikTok video",
+			"markdownYouTubePlaceholder": "https://www.youtube.com/watch?v=dQw4w9WgXcQ or dQw4w9WgXcQ",
+			"markdownTikTokPlaceholder": "https://www.tiktok.com/@username/video/1234567890",
+			"markdownYouTubeHelper": "Enter full YouTube URL or just the ID.",
+			"markdownTikTokHelper": "Enter full TikTok video URL.",
+			"markdownCancel": "Cancel",
+			"markdownInsert": "Insert",
+			"markdownRemove": "Remove"
 		}
 	},
 	"Components": {
@@ -92,3 +171,5 @@
 		}
 	}
 }
+
+

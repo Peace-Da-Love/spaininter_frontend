@@ -13,9 +13,36 @@ import { FlatCatalogButton } from '@/src/features/flat-catalog-button';
 import IcNewspaper from '@/src/app/icons/ic_newspaper.svg';
 import IcTwitris from '@/src/app/icons/ic_twitris.svg';
 import { usePathname, useSearchParams } from 'next/navigation';
+import useAuth from '@/src/shared/stores/auth';
+import { useTranslations } from 'next-intl';
+import { Plus } from 'lucide-react';
 
 type Props = {
 	className?: string;
+};
+
+const CreateNews: FC<{ locale: string; isVisible: boolean }> = ({
+	locale,
+	isVisible
+}) => {
+	const accessToken = useAuth(state => state.accessToken);
+	const hasHydrated = useAuth(state => state.hasHydrated);
+	const t = useTranslations('Pages.News');
+
+	if (!isVisible || !hasHydrated || !accessToken) return null;
+
+	return (
+		<Button variant="menu" asChild>
+			<ChannelLink
+				locale={locale}
+				href="/news/create"
+				aria-label={t('addArticle')}
+				title={t('addArticle')}
+			>
+				<Plus className="h-8 w-8" />
+			</ChannelLink>
+		</Button>
+	);
 };
 
 export const SiteMenu: FC<Props> = ({ className }) => {
@@ -27,6 +54,7 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 	
 	const isPropertyCatalogPage = /\/property-catalog(\b|\/.*)$/.test(pathname)
 	const isNewsPage = /\/news\/[^/]+$/.test(pathname)
+	const isNewsCatalogPage = /^\/[^/]+\/news\/?$/.test(pathname)
 	
     // Mobile menu should be shown the same on all breakpoints
 
@@ -123,6 +151,7 @@ export const SiteMenu: FC<Props> = ({ className }) => {
                 >
 					
                     <div className="flex flex-col gap-2.5 absolute bottom-20 right-0">
+						<CreateNews locale={locale} isVisible={isNewsCatalogPage} />
 						{!isPropertyCatalogPage && (
 							<FlatCatalogButton />
 						)}

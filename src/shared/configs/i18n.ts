@@ -17,6 +17,7 @@ export const pathnames = {
   '/': '/',
   '/category/[categoryName]/[page]': '/category/[categoryName]/[page]',
   '/news': '/news',
+  '/news/create': '/news/create',
   '/news/[link]': '/news/[link]',
   '/catalog-telegram': '/catalog-telegram',
   '/courses': {
