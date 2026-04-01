@@ -199,7 +199,7 @@ export default function NewsCreateView({ locale }: Props) {
   if (!hasHydrated || !accessToken) return null;
 
   return (
-    <section className="mx-auto w-full max-w-3xl px-4 pb-12 pt-6 md:px-6">
+    <section className="mx-auto w-full max-w-3xl px-4 pb-12 pt-20 md:px-6 md:pt-8">
       <h1 className="text-2xl font-semibold">{t('title')}</h1>
       <p className="mt-1 text-sm text-slate-500">
         {t('subtitle')}
