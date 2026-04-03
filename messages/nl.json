@@ -47,7 +47,7 @@
 			"title": "Artikel maken",
 			"subtitle": "Vul de velden in en verstuur het artikel ter controle.",
 			"hashtagLabel": "Hashtag",
-			"hashtagPlaceholder": "news_category",
+			"hashtagPlaceholder": "news_hashtag",
 			"cityLabel": "Stad",
 			"cityPlaceholder": "Stad",
 			"provinceLabel": "Provincie",
@@ -71,8 +71,8 @@
 				"languageErrorDesc": "Kan de taal van dit artikel niet bepalen."
 			},
 			"validation": {
-				"categoryRequired": "Categorie is verplicht",
-				"categoryInvalid": "Ongeldige categorie",
+				"hashtagRequired": "Hashtag is verplicht",
+				"hashtagInvalid": "Ongeldige hashtag",
 				"cityRequired": "Stad is verplicht",
 				"cityMin": "Minimaal 2 tekens voor stad",
 				"cityMax": "Maximaal 30 tekens voor stad",
@@ -90,12 +90,12 @@
 				"contentMin": "Minstens 5 tekens voor de inhoud",
 				"contentMax": "Maximaal 50000 tekens voor de inhoud"
 			},
-			"categoryCreateOption": "Nieuwe categorie maken",
-			"categoryLoading": "Categorieën laden...",
-			"categoryLoadError": "Categorieën laden mislukt",
-			"categoryInvalidHint": "Alleen kleine letters, cijfers en underscores (2-50 tekens)",
-			"categoryHelper": "Typ een categorie of kies uit de lijst",
-			"categoryNoOptions": "Geen categorieën gevonden",
+			"hashtagCreateOption": "Nieuwe hashtag maken",
+			"hashtagLoading": "Hashtags laden...",
+			"hashtagLoadError": "Hashtags laden mislukt",
+			"hashtagInvalidHint": "Alleen kleine letters, cijfers en underscores (2-50 tekens)",
+			"hashtagHelper": "Typ een hashtag of kies uit de lijst",
+			"hashtagNoOptions": "Geen hashtags gevonden",
 			"cityCreateOption": "Gebruik deze stad",
 			"cityLoading": "Steden laden...",
 			"cityLoadError": "Steden laden mislukt",
@@ -149,9 +149,9 @@
 			"title": "Alle nieuws uit Spanje. Vers nieuws uit Spanje. Spanje vandaag.",
 			"description": "Laatste nieuws uit Spanje. Spanje vandaag: de belangrijkste gebeurtenissen, incidenten, politiek en economisch nieuws. Rapporten, analyses, voorspellingen, expertadvies."
 		},
-		"CategoryPage": {
-			"title": "Alle nieuws uit Spanje. {category}. Vers nieuws uit Spanje. Spanje vandaag.",
-			"description": "Laatste nieuws uit Spanje. Spanje vandaag: de belangrijkste gebeurtenissen, incidenten, politiek en economisch nieuws. Rapporten, analyses, voorspellingen, expertadvies. {category}."
+		"HashtagPage": {
+			"title": "Alle nieuws uit Spanje. {hashtag}. Vers nieuws uit Spanje. Spanje vandaag.",
+			"description": "Laatste nieuws uit Spanje. Spanje vandaag: de belangrijkste gebeurtenissen, incidenten, politiek en economisch nieuws. Rapporten, analyses, voorspellingen, expertadvies. {hashtag}."
 		},
 		"CoursesPage": {
 			"title": "Werken vanuit je telefoon cursussen, Telegram cursussen vanuit het niets en Telegram voor bedrijven Spanje  \n",
@@ -171,6 +171,9 @@
 		}
 	}
 }
+
+
+
 
 
 

@@ -12,11 +12,11 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 	imageUrl,
 	link,
 	date,
-	category,
+	hashtagName,
 	title,
 	className,
 	isTopNews,
-	categoryLink,
+	hashtagLink,
 	city
 }) => {
 	const locale = useLocale();
@@ -50,12 +50,12 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 					<div className={'flex items-center gap-4'}>
 						<ChannelLink
 							locale={locale}
-							href={`/category/${encodeURIComponent(categoryLink)}/1`}
+							href={`/hashtag/${encodeURIComponent(hashtagLink)}/1`}
 							className={
 								'inline-block backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-[10px] md:text-sm font-medium rounded-[20px] mb-1.5  relative z-0'
 							}
 						>
-							{formatCategory(category)}
+							{formatCategory(hashtagName)}
 						</ChannelLink>
 						<span
 							className={

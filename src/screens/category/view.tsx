@@ -6,10 +6,10 @@ import { PaginationCards } from '@/src/widgets/pagination-cards';
 type Props = {
 	data: IFilterNewsResponse;
 	title: string;
-	categoryLink: string;
+	hashtagLink: string;
 };
 
-export const CategoryPage: FC<Props> = ({ title, data, categoryLink }) => {
+export const CategoryPage: FC<Props> = ({ title, data, hashtagLink }) => {
 	return (
 		<Fragment>
 			<section className={'scroll-pt-40'} id='news'>
@@ -20,7 +20,7 @@ export const CategoryPage: FC<Props> = ({ title, data, categoryLink }) => {
 					hasNextPage={data.data.hasNextPage}
 					hasPreviousPage={data.data.hasPreviousPage}
 					news={data.data.news}
-					categoryLink={categoryLink}
+					hashtagLink={hashtagLink}
 				/>
 			</section>
 		</Fragment>

@@ -47,7 +47,7 @@
 			"title": "Utwórz artykuł",
 			"subtitle": "Wypełnij pola i wyślij artykuł do weryfikacji.",
 			"hashtagLabel": "Hashtag",
-			"hashtagPlaceholder": "news_category",
+			"hashtagPlaceholder": "news_hashtag",
 			"cityLabel": "Miasto",
 			"cityPlaceholder": "Miasto",
 			"provinceLabel": "Prowincja",
@@ -71,8 +71,8 @@
 				"languageErrorDesc": "Nie udało się ustalić języka artykułu."
 			},
 			"validation": {
-				"categoryRequired": "Kategoria jest wymagana",
-				"categoryInvalid": "Nieprawidłowa kategoria",
+				"hashtagRequired": "Hashtag jest wymagany",
+				"hashtagInvalid": "Nieprawidłowy hashtag",
 				"cityRequired": "Miasto jest wymagane",
 				"cityMin": "Minimum 2 znaki dla miasta",
 				"cityMax": "Maksimum 30 znaków dla miasta",
@@ -90,12 +90,12 @@
 				"contentMin": "Minimum 5 znaków dla treści",
 				"contentMax": "Maksimum 50000 znaków dla treści"
 			},
-			"categoryCreateOption": "Utwórz nową kategorię",
-			"categoryLoading": "Ładowanie kategorii...",
-			"categoryLoadError": "Nie udało się załadować kategorii",
-			"categoryInvalidHint": "Tylko małe litery, cyfry i podkreślenia (2-50 znaków)",
-			"categoryHelper": "Wpisz kategorię lub wybierz z listy",
-			"categoryNoOptions": "Nie znaleziono kategorii",
+			"hashtagCreateOption": "Utwórz nowy hashtag",
+			"hashtagLoading": "Ładowanie hashtagów...",
+			"hashtagLoadError": "Nie udało się załadować hashtagów",
+			"hashtagInvalidHint": "Tylko małe litery, cyfry i podkreślenia (2-50 znaków)",
+			"hashtagHelper": "Wpisz hashtag lub wybierz z listy",
+			"hashtagNoOptions": "Nie znaleziono hashtagów",
 			"cityCreateOption": "Użyj tego miasta",
 			"cityLoading": "Ładowanie miast...",
 			"cityLoadError": "Nie udało się załadować miast",
@@ -149,9 +149,9 @@
 			"title": "Wszystkie wiadomości ze Hiszpanii. Świeże wiadomości ze Hiszpanii. Hiszpania dzisiaj.",
 			"description": "Najnowsze wiadomości ze Hiszpanii. Hiszpania dzisiaj: najważniejsze wydarzenia, incydenty, wiadomości polityczne i ekonomiczne. Raporty, analizy, prognozy, opinie ekspertów."
 		},
-		"CategoryPage": {
-			"title": "Wszystkie wiadomości ze Hiszpanii. {category}. Świeże wiadomości ze Hiszpanii. Hiszpania dzisiaj.",
-			"description": "Najnowsze wiadomości ze Hiszpanii. Hiszpania dzisiaj: najważniejsze wydarzenia, incydenty, wiadomości polityczne i ekonomiczne. Raporty, analizy, prognozy, opinie ekspertów. {category}."
+		"HashtagPage": {
+			"title": "Wszystkie wiadomości ze Hiszpanii. {hashtag}. Świeże wiadomości ze Hiszpanii. Hiszpania dzisiaj.",
+			"description": "Najnowsze wiadomości ze Hiszpanii. Hiszpania dzisiaj: najważniejsze wydarzenia, incydenty, wiadomości polityczne i ekonomiczne. Raporty, analizy, prognozy, opinie ekspertów. {hashtag}."
 		},
 		"CoursesPage": {
 			"title": "Kursy pracy z telefonu, kursy Telegram od podstaw i Telegram dla biznesu Hiszpania  ",
@@ -171,6 +171,9 @@
 		}
 	}
 }
+
+
+
 
 
 

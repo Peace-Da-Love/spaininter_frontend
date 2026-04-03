@@ -47,7 +47,7 @@
 			"title": "Artikel erstellen",
 			"subtitle": "Füllen Sie die Felder aus und senden Sie den Artikel zur Prüfung.",
 			"hashtagLabel": "Hashtag",
-			"hashtagPlaceholder": "news_category",
+			"hashtagPlaceholder": "news_hashtag",
 			"cityLabel": "Stadt",
 			"cityPlaceholder": "Stadt",
 			"provinceLabel": "Provinz",
@@ -71,8 +71,8 @@
 				"languageErrorDesc": "Sprache für diesen Artikel konnte nicht ermittelt werden."
 			},
 			"validation": {
-				"categoryRequired": "Kategorie ist erforderlich",
-				"categoryInvalid": "Ungültige Kategorie",
+				"hashtagRequired": "Hashtag ist erforderlich",
+				"hashtagInvalid": "Ungültiger Hashtag",
 				"cityRequired": "Stadt ist erforderlich",
 				"cityMin": "Mindestens 2 Zeichen für die Stadt",
 				"cityMax": "Maximal 30 Zeichen für die Stadt",
@@ -90,12 +90,12 @@
 				"contentMin": "Mindestens 5 Zeichen für den Inhalt",
 				"contentMax": "Maximal 50000 Zeichen für den Inhalt"
 			},
-			"categoryCreateOption": "Neue Kategorie erstellen",
-			"categoryLoading": "Kategorien werden geladen...",
-			"categoryLoadError": "Kategorien konnten nicht geladen werden",
-			"categoryInvalidHint": "Nur Kleinbuchstaben, Zahlen und Unterstriche (2-50 Zeichen)",
-			"categoryHelper": "Kategorie eingeben oder aus der Liste wählen",
-			"categoryNoOptions": "Keine Kategorien gefunden",
+			"hashtagCreateOption": "Neuen Hashtag erstellen",
+			"hashtagLoading": "Hashtags werden geladen...",
+			"hashtagLoadError": "Hashtags konnten nicht geladen werden",
+			"hashtagInvalidHint": "Nur Kleinbuchstaben, Zahlen und Unterstriche (2-50 Zeichen)",
+			"hashtagHelper": "Hashtag eingeben oder aus der Liste wählen",
+			"hashtagNoOptions": "Keine Hashtags gefunden",
 			"cityCreateOption": "Diese Stadt verwenden",
 			"cityLoading": "Städte werden geladen...",
 			"cityLoadError": "Städte konnten nicht geladen werden",
@@ -149,9 +149,9 @@
 			"title": "Alle Nachrichten aus Spanien. Aktuelle Nachrichten aus Spanien. Spanien heute.",
 			"description": "Aktuelle Nachrichten aus Spanien. Spanien heute: die wichtigsten Ereignisse, Vorfälle, politischen und wirtschaftlichen Nachrichten. Berichte, Analysen, Prognosen, Expertenmeinungen."
 		},
-		"CategoryPage": {
-			"title": "Alle Nachrichten aus Spanien. {category}. Aktuelle Nachrichten aus Spanien. Spanien heute.",
-			"description": "Aktuelle Nachrichten aus Spanien. Spanien heute: die wichtigsten Ereignisse, Vorfälle, politischen und wirtschaftlichen Nachrichten. Berichte, Analysen, Prognosen, Expertenmeinungen. {category}."
+		"HashtagPage": {
+			"title": "Alle Nachrichten aus Spanien. {hashtag}. Aktuelle Nachrichten aus Spanien. Spanien heute.",
+			"description": "Aktuelle Nachrichten aus Spanien. Spanien heute: die wichtigsten Ereignisse, Vorfälle, politischen und wirtschaftlichen Nachrichten. Berichte, Analysen, Prognosen, Expertenmeinungen. {hashtag}."
 		},
 		"CoursesPage": {
 			"title": "Arbeit von Telefonkursen, Telegrammkurse von Grund auf und Telegramm für Business Spanien  ",
@@ -171,6 +171,9 @@
 		}
 	}
 }
+
+
+
 
 
 

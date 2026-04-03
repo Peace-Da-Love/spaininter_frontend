@@ -1,6 +1,5 @@
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import {
-	getCategoryByName,
 	getFilterNews
 } from '../../../../../src/app/server-actions';
 import { notFound } from 'next/navigation';
@@ -10,36 +9,31 @@ import { locales } from '@/src/shared/configs';
 import { CategoryPage } from '@/src/screens/category';
 
 type Props = {
-	params: { locale: string; page: string; categoryName: string };
+	params: { locale: string; page: string; hashtagName: string };
 };
 
 const SITE_URL = process.env.SITE_URL;
 
 export async function generateMetadata({
-	params: { locale, categoryName, page }
+	params: { locale, hashtagName, page }
 }: Omit<Props, 'children'>): Promise<Metadata> {
 	const t = await getTranslations({
 		locale
 	});
 
-	let category: string;
-
-	const refactoredCategoryName = categoryName.includes('-')
-		? categoryName.split('-').join('/')
-		: categoryName;
-	const trCategory = await getCategoryByName({
-		name: refactoredCategoryName
-	});
-	category = capitalize(trCategory?.data.category_name || 'Category');
+	const refactoredHashtagName = hashtagName.includes('-')
+		? hashtagName.split('-').join('/')
+		: hashtagName;
+	const hashtag = capitalize(refactoredHashtagName || 'Hashtag');
 
 	const hrefLangs: Record<string, string> = locales.reduce((acc, locale) => {
-		acc[locale] = `${SITE_URL}/${locale}/category/${categoryName}/${page}`;
+		acc[locale] = `${SITE_URL}/${locale}/hashtag/${hashtagName}/${page}`;
 		return acc;
 	}, {} as Record<string, string>);
 
 	return {
-		title: t('MetaData.CategoryPage.title', { category }),
-		description: t('MetaData.CategoryPage.description', { category }),
+		title: t('MetaData.HashtagPage.title', { hashtag }),
+		description: t('MetaData.HashtagPage.description', { hashtag }),
 		alternates: {
 			languages: {
 				'x-default': hrefLangs['en'],
@@ -51,14 +45,14 @@ export async function generateMetadata({
 }
 
 export default async function Page({
-	params: { locale, page, categoryName }
+	params: { locale, page, hashtagName }
 }: Props) {
 	// Enable static rendering
 	unstable_setRequestLocale(locale);
 
 	const initialData = await getFilterNews({
 		page: parseInt(page),
-		category: categoryName,
+		hashtag: hashtagName,
 		locale
 	});
 
@@ -73,10 +67,11 @@ export default async function Page({
 	return (
 		<CategoryPage
 			data={initialData}
-			categoryLink={categoryName}
-			title={t('MetaData.CategoryPage.title', {
-				category: capitalize(categoryName.replace(/-/g, '/'))
+			hashtagLink={hashtagName}
+			title={t('MetaData.HashtagPage.title', {
+				hashtag: capitalize(hashtagName.replace(/-/g, '/'))
 			})}
 		/>
 	);
 }
+

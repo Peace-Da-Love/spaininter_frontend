@@ -47,7 +47,7 @@
 			"title": "Crear artículo",
 			"subtitle": "Complete los campos y envíe el artículo para verificación.",
 			"hashtagLabel": "Hashtag",
-			"hashtagPlaceholder": "news_category",
+			"hashtagPlaceholder": "news_hashtag",
 			"cityLabel": "Ciudad",
 			"cityPlaceholder": "Ciudad",
 			"provinceLabel": "Provincia",
@@ -71,8 +71,8 @@
 				"languageErrorDesc": "No se pudo determinar el idioma del artículo."
 			},
 			"validation": {
-				"categoryRequired": "La categoría es obligatoria",
-				"categoryInvalid": "Categoría inválida",
+				"hashtagRequired": "El hashtag es obligatorio",
+				"hashtagInvalid": "Hashtag inválido",
 				"cityRequired": "La ciudad es obligatoria",
 				"cityMin": "Mínimo 2 caracteres para la ciudad",
 				"cityMax": "Máximo 30 caracteres para la ciudad",
@@ -90,12 +90,12 @@
 				"contentMin": "Mínimo 5 caracteres para el contenido",
 				"contentMax": "Máximo 50000 caracteres para el contenido"
 			},
-			"categoryCreateOption": "Crear nueva categoría",
-			"categoryLoading": "Cargando categorías...",
-			"categoryLoadError": "No se pudieron cargar las categorías",
-			"categoryInvalidHint": "Solo letras minúsculas, números y guiones bajos (2-50 caracteres)",
-			"categoryHelper": "Escriba la categoría o seleccione de la lista",
-			"categoryNoOptions": "No se encontraron categorías",
+			"hashtagCreateOption": "Crear nuevo hashtag",
+			"hashtagLoading": "Cargando hashtags...",
+			"hashtagLoadError": "No se pudieron cargar los hashtags",
+			"hashtagInvalidHint": "Solo letras minúsculas, números y guiones bajos (2-50 caracteres)",
+			"hashtagHelper": "Escriba el hashtag o seleccione de la lista",
+			"hashtagNoOptions": "No se encontraron hashtags",
 			"cityCreateOption": "Usar esta ciudad",
 			"cityLoading": "Cargando ciudades...",
 			"cityLoadError": "No se pudieron cargar las ciudades",
@@ -149,9 +149,9 @@
 			"title": "Todas las noticias de España. Noticias frescas de España. España hoy.",
 			"description": "Últimas noticias de España. España hoy: los eventos más importantes, incidentes, noticias políticas y económicas. Informes, análisis, previsiones, opinión de expertos."
 		},
-		"CategoryPage": {
-			"title": "Todas las noticias de España. {category}. Noticias frescas de España. España hoy.",
-			"description": "Últimas noticias de España. España hoy: los eventos más importantes, incidentes, noticias políticas y económicas. Informes, análisis, previsiones, opinión de expertos. {category}."
+		"HashtagPage": {
+			"title": "Todas las noticias de España. {hashtag}. Noticias frescas de España. España hoy.",
+			"description": "Últimas noticias de España. España hoy: los eventos más importantes, incidentes, noticias políticas y económicas. Informes, análisis, previsiones, opinión de expertos. {hashtag}."
 		},
 		"CoursesPage": {
 			"title": "Cursos para trabajar desde el teléfono, cursos de Telegram desde cero y Telegram para negocios España.  ",
@@ -171,6 +171,9 @@
 		}
 	}
 }
+
+
+
 
 
 

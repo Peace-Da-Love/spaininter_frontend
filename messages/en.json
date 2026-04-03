@@ -47,7 +47,7 @@
 			"title": "Create Article",
 			"subtitle": "Fill in the fields below and submit your article for verification.",
 			"hashtagLabel": "Hashtag",
-			"hashtagPlaceholder": "news_category",
+			"hashtagPlaceholder": "news_hashtag",
 			"cityLabel": "City",
 			"cityPlaceholder": "City",
 			"provinceLabel": "Province",
@@ -71,8 +71,8 @@
 				"languageErrorDesc": "Unable to determine language for this article."
 			},
 			"validation": {
-				"categoryRequired": "Category is required",
-				"categoryInvalid": "Invalid category",
+				"hashtagRequired": "Hashtag is required",
+				"hashtagInvalid": "Invalid hashtag",
 				"cityRequired": "City is required",
 				"cityMin": "Min 2 characters for city",
 				"cityMax": "Max 30 characters for city",
@@ -90,12 +90,12 @@
 				"contentMin": "Min 5 characters for content",
 				"contentMax": "Max 50000 characters for content"
 			},
-			"categoryCreateOption": "Create new category",
-			"categoryLoading": "Loading categories...",
-			"categoryLoadError": "Failed to load categories",
-			"categoryInvalidHint": "Only lowercase letters, numbers, and underscores (2-50 chars)",
-			"categoryHelper": "Type category name or select from list",
-			"categoryNoOptions": "No categories found",
+			"hashtagCreateOption": "Create new hashtag",
+			"hashtagLoading": "Loading hashtags...",
+			"hashtagLoadError": "Failed to load hashtags",
+			"hashtagInvalidHint": "Only lowercase letters, numbers, and underscores (2-50 chars)",
+			"hashtagHelper": "Type hashtag or select from list",
+			"hashtagNoOptions": "No hashtags found",
 			"cityCreateOption": "Use this city",
 			"cityLoading": "Loading cities...",
 			"cityLoadError": "Failed to load cities",
@@ -149,9 +149,9 @@
 			"title": "All news of Spain. Fresh news from Spain. Spain today.",
 			"description": "Latest news from Spain. Spain today: the most important events, incidents, political and economic news. Reports, analytics, forecasts, expert opinion."
 		},
-		"CategoryPage": {
-			"title": "All news of Spain. {category}. Fresh news from Spain. Spain today.",
-			"description": "Latest news from Spain. Spain today: the most important events, incidents, political and economic news. Reports, analytics, forecasts, expert opinion. {category}."
+		"HashtagPage": {
+			"title": "All news of Spain. {hashtag}. Fresh news from Spain. Spain today.",
+			"description": "Latest news from Spain. Spain today: the most important events, incidents, political and economic news. Reports, analytics, forecasts, expert opinion. {hashtag}."
 		},
 		"CoursesPage": {
 			"title": "Telegram courses, Telegram courses from scratch and Telegram for Business Spain",
@@ -171,5 +171,8 @@
 		}
 	}
 }
+
+
+
 
 

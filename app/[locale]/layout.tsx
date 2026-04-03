@@ -125,8 +125,8 @@ export default async function LocaleLayout({
 								
 								if (parts[1] && parts[2] && id) {
 									const locale = parts[1];
-									const category = parts[2];
-									url.pathname = \`/\${locale}/\${category}/\${id}\`;
+									const hashtag = parts[2];
+									url.pathname = \`/\${locale}/\${hashtag}/\${id}\`;
 									return url.toString();
 								}
 							}
@@ -159,3 +159,5 @@ export default async function LocaleLayout({
 		</html>
 	);
 }
+
+

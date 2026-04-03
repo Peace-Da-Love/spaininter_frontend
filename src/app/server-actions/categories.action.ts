@@ -1,22 +1,21 @@
 import { $fetchS } from '../server-api';
 
-export interface ICategoriesResponse {
+export interface IHashtagsResponse {
 	statusCode: number;
 	message: string;
-	data: TCategory[];
+	data: {
+		hashtags: THashtag[];
+	};
 }
 
-export type TCategory = {
-	category_id: number;
-	category_name: string;
+export type THashtag = {
+	hashtag_id: number;
+	hashtag_name: string;
+	createdAt: string;
 };
 
-export async function getCategoriesByLangCode(
-	langCode: string
-): Promise<ICategoriesResponse | undefined> {
-	const response = await $fetchS(
-		`categories/site`
-	);
+export async function getHashtags(): Promise<IHashtagsResponse | undefined> {
+	const response = await $fetchS('hashtags');
 	if (!response.ok) return undefined;
 	return await response.json();
 }

@@ -47,7 +47,7 @@
 			"title": "Créer un article",
 			"subtitle": "Remplissez les champs ci-dessous et soumettez l’article pour vérification.",
 			"hashtagLabel": "Hashtag",
-			"hashtagPlaceholder": "news_category",
+			"hashtagPlaceholder": "news_hashtag",
 			"cityLabel": "Ville",
 			"cityPlaceholder": "Ville",
 			"provinceLabel": "Province",
@@ -71,8 +71,8 @@
 				"languageErrorDesc": "Impossible de déterminer la langue de cet article."
 			},
 			"validation": {
-				"categoryRequired": "La catégorie est requise",
-				"categoryInvalid": "Catégorie invalide",
+				"hashtagRequired": "Le hashtag est requis",
+				"hashtagInvalid": "Hashtag invalide",
 				"cityRequired": "La ville est requise",
 				"cityMin": "Minimum 2 caractères pour la ville",
 				"cityMax": "Maximum 30 caractères pour la ville",
@@ -90,12 +90,12 @@
 				"contentMin": "Minimum 5 caractères pour le contenu",
 				"contentMax": "Maximum 50000 caractères pour le contenu"
 			},
-			"categoryCreateOption": "Créer une nouvelle catégorie",
-			"categoryLoading": "Chargement des catégories...",
-			"categoryLoadError": "Impossible de charger les catégories",
-			"categoryInvalidHint": "Uniquement des minuscules, chiffres et underscores (2-50 caractères)",
-			"categoryHelper": "Saisissez une catégorie ou sélectionnez dans la liste",
-			"categoryNoOptions": "Aucune catégorie trouvée",
+			"hashtagCreateOption": "Créer un nouveau hashtag",
+			"hashtagLoading": "Chargement des hashtags...",
+			"hashtagLoadError": "Impossible de charger les hashtags",
+			"hashtagInvalidHint": "Uniquement des minuscules, chiffres et underscores (2-50 caractères)",
+			"hashtagHelper": "Saisissez un hashtag ou sélectionnez dans la liste",
+			"hashtagNoOptions": "Aucun hashtag trouvé",
 			"cityCreateOption": "Utiliser cette ville",
 			"cityLoading": "Chargement des villes...",
 			"cityLoadError": "Impossible de charger les villes",
@@ -149,9 +149,9 @@
 			"title": "Toutes les nouvelles d'Espagne. Nouvelles fraîches d'Espagne. Espagne aujourd'hui.",
 			"description": "Dernières nouvelles d'Espagne. Espagne aujourd'hui : les événements les plus importants, les incidents, les nouvelles politiques et économiques. Rapports, analyses, prévisions, opinion d'experts."
 		},
-		"CategoryPage": {
-			"title": "Toutes les nouvelles d'Espagne. {category}. Nouvelles fraîches d'Espagne. Espagne aujourd'hui.",
-			"description": "Dernières nouvelles d'Espagne. Espagne aujourd'hui : les événements les plus importants, les incidents, les nouvelles politiques et économiques. Rapports, analyses, prévisions, opinion d'experts. {category}."
+		"HashtagPage": {
+			"title": "Toutes les nouvelles d'Espagne. {hashtag}. Nouvelles fraîches d'Espagne. Espagne aujourd'hui.",
+			"description": "Dernières nouvelles d'Espagne. Espagne aujourd'hui : les événements les plus importants, les incidents, les nouvelles politiques et économiques. Rapports, analyses, prévisions, opinion d'experts. {hashtag}."
 		},
 		"CoursesPage": {
 			"title": "Work from Phone Courses, Telegram Courses from scratch and Telegram for Business Spain (Cours de travail par téléphone, cours de télégramme à partir de zéro et télégramme pour les entreprises).  ",
@@ -171,6 +171,9 @@
 		}
 	}
 }
+
+
+
 
 
 

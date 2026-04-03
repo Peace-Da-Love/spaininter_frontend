@@ -17,7 +17,7 @@ export interface ILatestNewsResponse {
 
 type Params = {
 	page: number;
-	category: string;
+	hashtag: string;
 	locale: string;
 };
 
@@ -27,7 +27,7 @@ export async function getFilterNews(
 	const limit = 8;
 
 	const response = await $fetchS(
-		`news/filter?limit=${limit}&page=${params.page}&category=${params.category}`,
+		`news/filter?limit=${limit}&page=${params.page}&hashtag=${params.hashtag}`,
 		{
 			headers: {
 				'Accept-Language': params.locale

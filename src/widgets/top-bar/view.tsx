@@ -18,10 +18,10 @@ export const TopBar: FC<Props> = ({ news }) => {
 			<PreviewNews
 				imageUrl={previewNews.posterLink}
 				title={previewNews.title}
-				category={previewNews.categoryName}
+				hashtagName={previewNews.hashtagName}
 				date={previewNews.createdAt}
 				link={previewNews.link}
-				categoryLink={previewNews.categoryLink}
+				hashtagLink={previewNews.hashtagLink}
 				city={previewNews.city}
 				className={'lg:col-span-3'}
 			/>
@@ -34,10 +34,10 @@ export const TopBar: FC<Props> = ({ news }) => {
 							key={`Top bar news item - ${item.newsId}`}
 							imageUrl={item.posterLink}
 							title={item.title}
-							category={item.categoryName}
+							hashtagName={item.hashtagName}
 							date={item.createdAt}
 							link={item.link}
-							categoryLink={item.categoryLink}
+							hashtagLink={item.hashtagLink}
 							variant='horizontal'
 							city={item.city}
 							className={'flex-none'}

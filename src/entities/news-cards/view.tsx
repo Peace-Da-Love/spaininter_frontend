@@ -19,10 +19,10 @@ export const NewsCards: FC<Props> = ({ news }) => {
 						key={`News item - ${item.newsId}`}
 						imageUrl={item.posterLink}
 						title={item.title}
-						category={item.categoryName}
+						hashtagName={item.hashtagName}
 						date={item.createdAt}
 						link={item.link}
-						categoryLink={item.categoryLink}
+						hashtagLink={item.hashtagLink}
 						city={item.city}
 						className={'col-span-1'}
 					/>

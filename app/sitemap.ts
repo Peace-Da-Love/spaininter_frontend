@@ -59,14 +59,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	});
 
 	// Get categories metadata for category pages
-	const categoryMetadata = await metadataAction.getCategoryMetadata();
+	const categoryMetadata = await metadataAction.getHashtagMetadata();
 	let categoryPages: MetadataRoute.Sitemap = [];
 
 	if (categoryMetadata && categoryMetadata.data) {
 		// Only add category main pages (first page) to avoid duplicates
 		categoryPages = categoryMetadata.data.flatMap(category =>
 			locales.map(locale => ({
-				url: `${SITE_URL}/${locale}/category/${encodeURIComponent(category.category_name)}`,
+				url: `${SITE_URL}/${locale}/hashtag/${encodeURIComponent(category.hashtag_name)}`,
 				changeFrequency: 'daily' as const,
 				priority: 0.6,
 				lastModified: getLastModified(category.last_modified)

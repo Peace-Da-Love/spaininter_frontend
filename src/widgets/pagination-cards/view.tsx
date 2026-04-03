@@ -17,7 +17,7 @@ type Props = {
 	hasNextPage: boolean;
 	hasPreviousPage: boolean;
 	news: NewsItem[];
-	categoryLink: string;
+	hashtagLink: string;
 };
 
 export const PaginationCards: FC<Props> = ({
@@ -26,7 +26,7 @@ export const PaginationCards: FC<Props> = ({
 	currentPage,
 	hasPreviousPage,
 	hasNextPage,
-	categoryLink
+	hashtagLink
 }) => {
 	return (
 		<div>
@@ -35,7 +35,7 @@ export const PaginationCards: FC<Props> = ({
 			<Pagination className={'mt-5'}>
 				<PaginationPrevious
 					page={hasPreviousPage ? currentPage - 1 : currentPage}
-					categoryLink={categoryLink}
+					hashtagLink={hashtagLink}
 				/>
 				<PaginationContent>
 					{(() => {
@@ -48,7 +48,7 @@ export const PaginationCards: FC<Props> = ({
 										<PaginationItem key={`Pagination item -${page}`}>
 											<PaginationLink
 												page={page}
-												categoryLink={categoryLink}
+												hashtagLink={hashtagLink}
 												isActive={page === currentPage}
 											>
 												{page}
@@ -84,7 +84,7 @@ export const PaginationCards: FC<Props> = ({
 				</PaginationContent>
 				<PaginationNext
 					page={hasNextPage ? currentPage + 1 : currentPage}
-					categoryLink={categoryLink}
+					hashtagLink={hashtagLink}
 				/>
 			</Pagination>
 		</div>

@@ -6,8 +6,8 @@ export type News = {
 		title: string;
 		link: string;
 	}[];
-	category: {
-		category_id: number;
-		category_name: string;
+	hashtag: {
+		hashtag_id: number;
+		hashtag_name: string;
 	};
 };

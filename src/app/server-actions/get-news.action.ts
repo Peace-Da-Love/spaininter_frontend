@@ -23,9 +23,9 @@ interface INews {
 	title: string;
 	content: string;
 	link: string;
-	categoryId: number;
-	categoryName: string;
-	categoryLink: string;
+	hashtagId: number;
+	hashtagName: string;
+	hashtagLink: string;
 	views: number;
 	createdAt: string;
 	updatedAt: string;

@@ -154,12 +154,12 @@ export default function NewsCreateView({ locale }: Props) {
         throw new Error('upload_failed');
       }
 
-      const categoryPayload = /^\d+$/.test(values.category_name)
-        ? { category_id: Number(values.category_name) }
-        : { category_name: values.category_name.toLowerCase() };
+      const hashtagPayload = /^\d+$/.test(values.category_name)
+        ? { hashtag_id: Number(values.category_name) }
+        : { hashtag_name: values.category_name.toLowerCase() };
 
       const payload = {
-        ...categoryPayload,
+        ...hashtagPayload,
         city: values.city,
         province: values.province,
         poster_link: posterLink,

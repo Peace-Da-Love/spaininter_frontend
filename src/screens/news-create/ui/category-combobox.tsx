@@ -35,18 +35,16 @@ export const CategoryCombobox = forwardRef<HTMLInputElement, Props>(
       try {
         setIsLoading(true);
         setLoadError(false);
-        const res = await fetch('/site-api/categories');
+        const res = await fetch('/site-api/hashtags');
         if (!res.ok) throw new Error('load_failed');
         const data = await res.json();
-        const raw = Array.isArray(data?.data)
-          ? data.data
-          : Array.isArray(data?.data?.categories)
-            ? data.data.categories
-            : Array.isArray(data?.categories)
-              ? data.categories
-              : [];
+        const raw = Array.isArray(data?.data?.hashtags)
+          ? data.data.hashtags
+          : Array.isArray(data?.hashtags)
+            ? data.hashtags
+            : [];
         const names = raw
-          .map((item: { category_name?: string }) => item?.category_name)
+          .map((item: { hashtag_name?: string }) => item?.hashtag_name)
           .filter(Boolean) as string[];
         if (active) setOptions(names);
       } catch {
@@ -127,7 +125,7 @@ export const CategoryCombobox = forwardRef<HTMLInputElement, Props>(
               onMouseDown={() => handleSelect(inputValue)}
               className="w-full px-3 py-2 text-left text-sm text-slate-600 hover:bg-slate-100"
             >
-              {t('categoryCreateOption')}
+              {t('hashtagCreateOption')}
             </button>
           )}
         </div>
@@ -135,28 +133,28 @@ export const CategoryCombobox = forwardRef<HTMLInputElement, Props>(
 
       {isOpen && filteredOptions.length === 0 && !canCreate && !showInvalidHint && (
         <div className="absolute z-20 mt-1 w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm text-slate-500 shadow-md">
-          {t('categoryNoOptions')}
+          {t('hashtagNoOptions')}
         </div>
       )}
 
       {isLoading && (
         <div className="mt-1 text-xs text-slate-500">
-          {t('categoryLoading')}
+          {t('hashtagLoading')}
         </div>
       )}
       {loadError && (
         <div className="mt-1 text-xs text-red-500">
-          {t('categoryLoadError')}
+          {t('hashtagLoadError')}
         </div>
       )}
       {showInvalidHint && (
         <div className="mt-1 text-xs text-red-500">
-          {t('categoryInvalidHint')}
+          {t('hashtagInvalidHint')}
         </div>
       )}
       {!error && !loadError && !isLoading && !showInvalidHint && (
         <div className="mt-1 text-xs text-slate-500">
-          {t('categoryHelper')}
+          {t('hashtagHelper')}
         </div>
       )}
     </div>

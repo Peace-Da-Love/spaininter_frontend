@@ -1,8 +1,8 @@
 export type NewsProps = {
 	imageUrl: string;
 	title: string;
-	category: string;
-	categoryLink: string;
+	hashtagName: string;
+	hashtagLink: string;
 	date: string;
 	link: string;
 	city: string;

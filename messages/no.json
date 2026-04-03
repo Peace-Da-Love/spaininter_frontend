@@ -47,7 +47,7 @@
 			"title": "Opprett artikkel",
 			"subtitle": "Fyll ut feltene og send inn artikkelen for verifisering.",
 			"hashtagLabel": "Hashtag",
-			"hashtagPlaceholder": "news_category",
+			"hashtagPlaceholder": "news_hashtag",
 			"cityLabel": "By",
 			"cityPlaceholder": "By",
 			"provinceLabel": "Provins",
@@ -71,8 +71,8 @@
 				"languageErrorDesc": "Kunne ikke bestemme språket for denne artikkelen."
 			},
 			"validation": {
-				"categoryRequired": "Kategori er påkrevd",
-				"categoryInvalid": "Ugyldig kategori",
+				"hashtagRequired": "Hashtag er påkrevd",
+				"hashtagInvalid": "Ugyldig hashtag",
 				"cityRequired": "By er påkrevd",
 				"cityMin": "Minst 2 tegn for by",
 				"cityMax": "Maks 30 tegn for by",
@@ -90,12 +90,12 @@
 				"contentMin": "Minst 5 tegn for innhold",
 				"contentMax": "Maks 50000 tegn for innhold"
 			},
-			"categoryCreateOption": "Opprett ny kategori",
-			"categoryLoading": "Laster kategorier...",
-			"categoryLoadError": "Kunne ikke laste kategorier",
-			"categoryInvalidHint": "Kun små bokstaver, tall og understreker (2-50 tegn)",
-			"categoryHelper": "Skriv inn kategori eller velg fra listen",
-			"categoryNoOptions": "Ingen kategorier funnet",
+			"hashtagCreateOption": "Opprett ny hashtag",
+			"hashtagLoading": "Laster hashtags...",
+			"hashtagLoadError": "Kunne ikke laste hashtags",
+			"hashtagInvalidHint": "Kun små bokstaver, tall og understreker (2-50 tegn)",
+			"hashtagHelper": "Skriv inn hashtag eller velg fra listen",
+			"hashtagNoOptions": "Ingen hashtags funnet",
 			"cityCreateOption": "Bruk denne byen",
 			"cityLoading": "Laster byer...",
 			"cityLoadError": "Kunne ikke laste byer",
@@ -149,9 +149,9 @@
 			"title": "Alle nyheter fra Spania. Ferske nyheter fra Spania. Spania i dag.",
 			"description": "Siste nytt fra Spania. Spania i dag: de viktigste hendelsene, hendelsene, politiske og økonomiske nyhetene. Rapporter, analyser, prognoser, ekspertuttalelser."
 		},
-		"CategoryPage": {
-			"title": "Alle nyheter fra Spania. {category}. Ferske nyheter fra Spania. Spania i dag.",
-			"description": "Siste nytt fra Spania. Spania i dag: de viktigste hendelsene, hendelsene, politiske og økonomiske nyhetene. Rapporter, analyser, prognoser, ekspertuttalelser. {category}."
+		"HashtagPage": {
+			"title": "Alle nyheter fra Spania. {hashtag}. Ferske nyheter fra Spania. Spania i dag.",
+			"description": "Siste nytt fra Spania. Spania i dag: de viktigste hendelsene, hendelsene, politiske og økonomiske nyhetene. Rapporter, analyser, prognoser, ekspertuttalelser. {hashtag}."
 		},
 		"CoursesPage": {
 			"title": "Arbeid fra telefonkurs, Telegram-kurs fra bunnen av og Telegram for Business Spain  ",
@@ -171,6 +171,9 @@
 		}
 	}
 }
+
+
+
 
 
 

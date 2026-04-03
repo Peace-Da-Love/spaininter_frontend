@@ -47,7 +47,7 @@
 			"title": "Skapa artikel",
 			"subtitle": "Fyll i fälten och skicka artikeln för granskning.",
 			"hashtagLabel": "Hashtag",
-			"hashtagPlaceholder": "news_category",
+			"hashtagPlaceholder": "news_hashtag",
 			"cityLabel": "Stad",
 			"cityPlaceholder": "Stad",
 			"provinceLabel": "Provins",
@@ -71,8 +71,8 @@
 				"languageErrorDesc": "Kunde inte avgöra artikelns språk."
 			},
 			"validation": {
-				"categoryRequired": "Kategori krävs",
-				"categoryInvalid": "Ogiltig kategori",
+				"hashtagRequired": "Hashtag krävs",
+				"hashtagInvalid": "Ogiltig hashtag",
 				"cityRequired": "Stad krävs",
 				"cityMin": "Minst 2 tecken för stad",
 				"cityMax": "Högst 30 tecken för stad",
@@ -90,12 +90,12 @@
 				"contentMin": "Minst 5 tecken för innehåll",
 				"contentMax": "Max 50000 tecken för innehåll"
 			},
-			"categoryCreateOption": "Skapa ny kategori",
-			"categoryLoading": "Laddar kategorier...",
-			"categoryLoadError": "Kunde inte ladda kategorier",
-			"categoryInvalidHint": "Endast små bokstäver, siffror och understreck (2-50 tecken)",
-			"categoryHelper": "Skriv kategori eller välj från listan",
-			"categoryNoOptions": "Inga kategorier hittades",
+			"hashtagCreateOption": "Skapa ny hashtag",
+			"hashtagLoading": "Laddar hashtags...",
+			"hashtagLoadError": "Kunde inte ladda hashtags",
+			"hashtagInvalidHint": "Endast små bokstäver, siffror och understreck (2-50 tecken)",
+			"hashtagHelper": "Skriv hashtag eller välj från listan",
+			"hashtagNoOptions": "Inga hashtags hittades",
 			"cityCreateOption": "Använd denna stad",
 			"cityLoading": "Laddar städer...",
 			"cityLoadError": "Kunde inte ladda städer",
@@ -149,9 +149,9 @@
 			"title": "Alla nyheter från Spanien. Färska nyheter från Spanien. Spanien idag.",
 			"description": "Senaste nyheterna från Spanien. Spanien idag: de viktigaste händelserna, händelserna, politiska och ekonomiska nyheterna. Rapporter, analyser, prognoser, expertutlåtanden."
 		},
-		"CategoryPage": {
-			"title": "Alla nyheter från Spanien. {category}. Färska nyheter från Spanien. Spanien idag.",
-			"description": "Senaste nyheterna från Spanien. Spanien idag: de viktigaste händelserna, händelserna, politiska och ekonomiska nyheterna. Rapporter, analyser, prognoser, expertutlåtanden. {category}."
+		"HashtagPage": {
+			"title": "Alla nyheter från Spanien. {hashtag}. Färska nyheter från Spanien. Spanien idag.",
+			"description": "Senaste nyheterna från Spanien. Spanien idag: de viktigaste händelserna, händelserna, politiska och ekonomiska nyheterna. Rapporter, analyser, prognoser, expertutlåtanden. {hashtag}."
 		},
 		"CoursesPage": {
 			"title": "Kurzy práce z telefónu, kurzy Telegramu od nuly a Telegram pre firmy Španielsko  ",
@@ -171,6 +171,9 @@
 		}
 	}
 }
+
+
+
 
 
 

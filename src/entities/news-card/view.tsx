@@ -13,11 +13,11 @@ export const NewsCard: FC<NewsCardProps> = ({
 	imageUrl,
 	link,
 	date,
-	category,
+	hashtagName,
 	title,
 	variant = 'vertical',
 	className,
-	categoryLink,
+	hashtagLink,
 	city
 }) => {
 	const locale = useLocale();
@@ -47,12 +47,12 @@ export const NewsCard: FC<NewsCardProps> = ({
 				<div className={'flex items-center gap-2'}>
 					<ChannelLink
 						locale={locale}
-						href={`/category/${encodeURIComponent(categoryLink)}/1`}
+						href={`/hashtag/${encodeURIComponent(hashtagLink)}/1`}
 						className={
 							'block text-secondary font-medium text-[10px] leading-3'
 						}
 					>
-						{formatCategory(category)}
+						{formatCategory(hashtagName)}
 					</ChannelLink>
 					<span
 						className={
@@ -108,12 +108,12 @@ export const NewsCard: FC<NewsCardProps> = ({
 				>
 					<ChannelLink
 						locale={locale}
-						href={`/category/${encodeURIComponent(categoryLink)}/1`}
+						href={`/hashtag/${encodeURIComponent(hashtagLink)}/1`}
 						className={
 							'hidden sm:inline-block backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px] '
 						}
 					>
-						{formatCategory(category)}
+						{formatCategory(hashtagName)}
 					</ChannelLink>
 					<span
 						className={
@@ -132,12 +132,12 @@ export const NewsCard: FC<NewsCardProps> = ({
 				<div className={'flex items-center gap-2'}>
 					<ChannelLink
 						locale={locale}
-						href={`/category/${encodeURIComponent(categoryLink)}/1`}
+						href={`/hashtag/${encodeURIComponent(hashtagLink)}/1`}
 						className={
 							'block sm:hidden text-secondary font-medium text-[10px] leading-3'
 						}
 					>
-						{formatCategory(category)}
+						{formatCategory(hashtagName)}
 					</ChannelLink>
 					<span
 						className={

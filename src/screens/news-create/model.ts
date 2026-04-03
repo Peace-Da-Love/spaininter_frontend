@@ -4,10 +4,10 @@ export const createNewsCreateSchema = (t: (key: string) => string) =>
   z.object({
     category_name: z
       .string()
-      .nonempty(t('validation.categoryRequired'))
+      .nonempty(t('validation.hashtagRequired'))
       .refine(
         value => /^\d+$/.test(value) || /^[a-z0-9_]{2,50}$/.test(value),
-        t('validation.categoryInvalid')
+        t('validation.hashtagInvalid')
       ),
     city: z
       .string()
