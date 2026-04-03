@@ -26,10 +26,11 @@ const CreateNews: FC<{ locale: string; isVisible: boolean }> = ({
 	isVisible
 }) => {
 	const accessToken = useAuth(state => state.accessToken);
+	const user = useAuth(state => state.user);
 	const hasHydrated = useAuth(state => state.hasHydrated);
 	const t = useTranslations('Pages.News');
 
-	if (!isVisible || !hasHydrated || !accessToken) return null;
+	if (!isVisible || !hasHydrated || !accessToken || !user?.id) return null;
 
 	return (
 		<Button variant="menu" asChild>
