@@ -1,7 +1,7 @@
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import { Metadata } from 'next';
 import { NewsPage } from '@/src/screens/news-catalog';
-import { getLatestNewsAction } from '@/src/app/server-actions';
+import { getLatestNewsAction, metadataAction } from '@/src/app/server-actions';
 import { notFound } from 'next/navigation';
 import { locales } from '@/src/shared/configs';
 
@@ -44,7 +44,31 @@ export default async function Page({ params: { locale } }: Props) {
         notFound();
     }
 
+    const metadata = await metadataAction.getNewsMetadata();
+    const localeLinks = new Set(
+        metadata?.data?.flatMap(item =>
+            item.newsTranslations
+                .filter(
+                    translation => translation.language?.language_code === locale
+                )
+                .map(translation => translation.link)
+        ) ?? []
+    );
+
+    const filteredData =
+        localeLinks.size > 0
+            ? {
+                    ...initialData,
+                    data: {
+                        ...initialData.data,
+                        news: initialData.data.news.filter(item =>
+                            localeLinks.has(item.link)
+                        )
+                    }
+                }
+            : initialData;
+
     const t = await getTranslations({ locale, namespace: 'MetaData.NewsPage' });
 
-    return <NewsPage title={t('title')} data={initialData} />;
+    return <NewsPage title={t('title')} data={filteredData} />;
 }
