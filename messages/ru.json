@@ -142,7 +142,14 @@
 		"background": "Фон",
 		"pattern": "Узор",
 		"rarity": "Редкость",
-		"signOut": "Выйти"
+		"signOut": "Выйти",
+		"myNews": "Мои новости",
+		"newsTitle": "Заголовок",
+		"newsViews": "Просмотры",
+		"newsCreatedAt": "Создано",
+		"newsStatus": "Статус",
+		"newsLoading": "Загрузка...",
+		"newsEmpty": "Вы ещё не добавили ни одной новости"
 	},
 	"MetaData": {
 		"NewsPage": {

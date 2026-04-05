@@ -142,7 +142,14 @@
 		"background": "Achtergrond",
 		"pattern": "Patroon",
 		"rarity": "Zeldzaamheid",
-		"signOut": "Afmelden"
+		"signOut": "Afmelden",
+		"myNews": "Mijn nieuws",
+		"newsTitle": "Titel",
+		"newsViews": "Weergaven",
+		"newsCreatedAt": "Gemaakt",
+		"newsStatus": "Status",
+		"newsLoading": "Laden...",
+		"newsEmpty": "Je hebt nog geen nieuws toegevoegd"
 	},
 	"MetaData": {
 		"NewsPage": {

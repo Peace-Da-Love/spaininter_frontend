@@ -142,7 +142,14 @@
 		"background": "Bakgrund",
 		"pattern": "Mönster",
 		"rarity": "Sällsynthet",
-		"signOut": "Logga ut"
+		"signOut": "Logga ut",
+		"myNews": "Mina nyheter",
+		"newsTitle": "Rubrik",
+		"newsViews": "Visningar",
+		"newsCreatedAt": "Skapad",
+		"newsStatus": "Status",
+		"newsLoading": "Laddar...",
+		"newsEmpty": "Du har inte lagt till några nyheter än"
 	},
 	"MetaData": {
 		"NewsPage": {

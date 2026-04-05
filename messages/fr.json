@@ -142,7 +142,14 @@
 		"background": "Arrière-plan",
 		"pattern": "Motif",
 		"rarity": "Rareté",
-		"signOut": "Se déconnecter"
+		"signOut": "Se déconnecter",
+		"myNews": "Mes actualités",
+		"newsTitle": "Titre",
+		"newsViews": "Vues",
+		"newsCreatedAt": "Créé",
+		"newsStatus": "Statut",
+		"newsLoading": "Chargement...",
+		"newsEmpty": "Vous n'avez pas encore ajouté d'actualités"
 	},
 	"MetaData": {
 		"NewsPage": {

@@ -142,7 +142,14 @@
 		"background": "Fondo",
 		"pattern": "Patrón",
 		"rarity": "Rareza",
-		"signOut": "Salir"
+		"signOut": "Salir",
+		"myNews": "Mis noticias",
+		"newsTitle": "Título",
+		"newsViews": "Vistas",
+		"newsCreatedAt": "Creado",
+		"newsStatus": "Estado",
+		"newsLoading": "Cargando...",
+		"newsEmpty": "Aún no has añadido noticias"
 	},
 	"MetaData": {
 		"NewsPage": {

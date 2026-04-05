@@ -142,7 +142,14 @@
 		"background": "Tło",
 		"pattern": "Wzór",
 		"rarity": "Rzadkość",
-		"signOut": "Wyloguj się"
+		"signOut": "Wyloguj się",
+		"myNews": "Moje wiadomości",
+		"newsTitle": "Tytuł",
+		"newsViews": "Wyświetlenia",
+		"newsCreatedAt": "Utworzono",
+		"newsStatus": "Status",
+		"newsLoading": "Ładowanie...",
+		"newsEmpty": "Nie dodałeś jeszcze żadnych wiadomości"
 	},
 	"MetaData": {
 		"NewsPage": {
