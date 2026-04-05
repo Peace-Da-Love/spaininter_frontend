@@ -29,7 +29,6 @@ import { LoadingSpinner } from '@/src/shared/components/ui/loading-spinner';
 import { cn } from '@/src/shared/utils';
 import { createNewsCreateSchema } from './model';
 import { CategoryCombobox } from './ui/category-combobox';
-import { CityCombobox } from './ui/city-combobox';
 import { PosterDropzone } from './ui/poster-dropzone';
 import { MarkdownEditor } from './ui/markdown-editor/view';
 
@@ -71,8 +70,6 @@ export default function NewsCreateView({ locale }: Props) {
     resolver: zodResolver(schema),
     defaultValues: {
       category_name: '',
-      city: '',
-      province: '',
       poster_link: '',
       title: '',
       description: '',
@@ -160,8 +157,6 @@ export default function NewsCreateView({ locale }: Props) {
 
       const payload = {
         ...hashtagPayload,
-        city: values.city,
-        province: values.province,
         poster_link: posterLink,
         translations: [
           {
@@ -228,45 +223,6 @@ export default function NewsCreateView({ locale }: Props) {
               </FormItem>
             )}
           />
-
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <FormField
-              control={form.control}
-              name="city"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t('cityLabel')}</FormLabel>
-                  <FormControl>
-                    <CityCombobox
-                      value={field.value}
-                      onChange={field.onChange}
-                      error={!!form.formState.errors.city}
-                      maxLength={30}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="province"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t('provinceLabel')}</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder={t('provincePlaceholder')}
-                      maxLength={30}
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
 
           <FormField
             control={form.control}
