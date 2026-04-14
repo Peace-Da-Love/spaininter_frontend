@@ -9,7 +9,7 @@ export function openTwitrisWebApp(locale: string): boolean {
 	}
 
 	const url = TWITRIS_WEBAPP_URL.replace('{locale}', locale);
-	
-	window.location.assign(url);
-	return true;
+
+	const newTab = window.open(url, '_blank', 'noopener,noreferrer');
+	return Boolean(newTab);
 }
