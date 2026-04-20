@@ -11,6 +11,7 @@ import { Metadata } from 'next';
 import Script from 'next/script';
 import type { Viewport } from 'next'
 import {Provider} from "@/src/app/provider";
+import AuthInit from '@/src/app/provider/auth-init';
 
 type Props = {
 	children: ReactNode;
@@ -98,6 +99,7 @@ export default async function LocaleLayout({
 			<body  className={clsx(getFonts(), 'relative min-h-screen')}>
 			  <NextIntlClientProvider locale={locale} messages={messages}>
 				  <Provider>
+            <AuthInit />
             <PageLayout>{children}</PageLayout>
           </Provider>
         </NextIntlClientProvider>

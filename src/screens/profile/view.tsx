@@ -42,6 +42,7 @@ export default function ProfileView({ locale }: Props) {
   const fetchWithAuth = useAuth(state => state.fetchWithAuth);
   const [myNews, setMyNews] = useState<UserNewsItem[]>([]);
   const [isLoadingNews, setIsLoadingNews] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   useEffect(() => {
     if (!hasHydrated) return;
@@ -149,6 +150,28 @@ export default function ProfileView({ locale }: Props) {
 
   if (!hasHydrated || !accessToken) return null;
 
+  const handleLogout = async () => {
+    if (isLoggingOut) return;
+    setIsLoggingOut(true);
+    try {
+      const apiBase = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, '') ?? '';
+      const logoutUrl = apiBase
+        ? `${apiBase}/api/auth/user/logout`
+        : '/api/auth/user/logout';
+
+      await fetch(logoutUrl, {
+        method: 'DELETE',
+        credentials: 'include',
+      });
+    } catch {
+      // ignore logout network issues and clear local state anyway
+    } finally {
+      clearAuth();
+      router.push(`/${locale}`);
+      setIsLoggingOut(false);
+    }
+  };
+
   const formatCreatedAt = (value?: string) => {
     if (!value) return '—';
     const date = new Date(value);
@@ -191,10 +214,7 @@ export default function ProfileView({ locale }: Props) {
 
         <button
           className="px-4 py-2 bg-red-600 text-white rounded"
-          onClick={() => {
-            clearAuth();
-            router.push(`/${locale}`);
-          }}
+          onClick={handleLogout}
         >
           {t('signOut')}
         </button>

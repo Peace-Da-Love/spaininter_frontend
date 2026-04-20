@@ -1,6 +1,5 @@
 import {ReactNode} from 'react';
 import './globals.css';
-import AuthInit from '@/src/app/provider/auth-init';
 
 type Props = {
   children: ReactNode;
@@ -11,7 +10,6 @@ type Props = {
 export default function RootLayout({children}: Props) {
   return (
     <>
-      <AuthInit />
       {children}
     </>
   );
