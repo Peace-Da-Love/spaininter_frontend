@@ -11,6 +11,7 @@ export interface IHashtagsResponse {
 export type THashtag = {
 	hashtag_id: number;
 	hashtag_name: string;
+	news_count: number;
 	createdAt: string;
 };
 

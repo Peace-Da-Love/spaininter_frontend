@@ -5,6 +5,12 @@ import { Input } from '@/src/shared/components/ui/input';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/src/shared/utils';
 
+type HashtagOption = {
+  hashtag_id: number;
+  hashtag_name: string;
+  news_count: number;
+};
+
 type Props = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
   'value' | 'onChange'
@@ -20,14 +26,23 @@ export const CategoryCombobox = forwardRef<HTMLInputElement, Props>(
   ({ value, onChange, error, ...inputProps }, ref) => {
   const t = useTranslations('Pages.NewsCreate');
   const [inputValue, setInputValue] = useState(value ?? '');
-  const [options, setOptions] = useState<string[]>([]);
+  const [options, setOptions] = useState<HashtagOption[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
-    setInputValue(value ?? '');
-  }, [value]);
+    if (!value) {
+      setInputValue('');
+      return;
+    }
+
+    const matchedOption = /^\d+$/.test(value)
+      ? options.find(option => String(option.hashtag_id) === value)
+      : options.find(option => option.hashtag_name === value);
+
+    setInputValue(matchedOption?.hashtag_name ?? value);
+  }, [options, value]);
 
   useEffect(() => {
     let active = true;
@@ -43,10 +58,18 @@ export const CategoryCombobox = forwardRef<HTMLInputElement, Props>(
           : Array.isArray(data?.hashtags)
             ? data.hashtags
             : [];
-        const names = raw
-          .map((item: { hashtag_name?: string }) => item?.hashtag_name)
-          .filter(Boolean) as string[];
-        if (active) setOptions(names);
+        const normalized = raw
+          .map((item: Partial<HashtagOption>) => {
+            if (!item?.hashtag_name) return null;
+
+            return {
+              hashtag_id: Number(item.hashtag_id ?? 0),
+              hashtag_name: item.hashtag_name,
+              news_count: Number(item.news_count ?? 0),
+            };
+          })
+          .filter(Boolean) as HashtagOption[];
+        if (active) setOptions(normalized);
       } catch {
         if (active) setLoadError(true);
       } finally {
@@ -63,19 +86,24 @@ export const CategoryCombobox = forwardRef<HTMLInputElement, Props>(
   const filteredOptions = useMemo(() => {
     if (!inputValue) return options;
     const lowerInput = inputValue.toLowerCase();
-    return options.filter(opt => opt.toLowerCase().startsWith(lowerInput));
+    return options.filter(opt => opt.hashtag_name.toLowerCase().startsWith(lowerInput));
   }, [inputValue, options]);
 
   const canCreate =
     inputValue &&
     CATEGORY_REGEX.test(inputValue) &&
-    !options.some(opt => opt.toLowerCase() === inputValue.toLowerCase()) &&
+    !options.some(opt => opt.hashtag_name.toLowerCase() === inputValue.toLowerCase()) &&
     filteredOptions.length === 0;
 
   const showInvalidHint = inputValue.length > 0 && !CATEGORY_REGEX.test(inputValue);
 
-  const handleSelect = (nextValue: string) => {
-    setInputValue(nextValue);
+  const handleSelect = (option: HashtagOption | string) => {
+    const nextValue =
+      typeof option === 'string' ? option : String(option.hashtag_id);
+    const nextLabel =
+      typeof option === 'string' ? option : option.hashtag_name;
+
+    setInputValue(nextLabel);
     onChange?.(nextValue);
     setIsOpen(false);
   };
@@ -111,12 +139,13 @@ export const CategoryCombobox = forwardRef<HTMLInputElement, Props>(
         <div className="absolute z-20 mt-1 w-full rounded-md border border-slate-200 bg-white shadow-md">
           {filteredOptions.map(option => (
             <button
-              key={option}
+              key={option.hashtag_id}
               type="button"
               onMouseDown={() => handleSelect(option)}
-              className="w-full px-3 py-2 text-left text-sm hover:bg-slate-100"
+              className="flex w-full items-center justify-between gap-3 px-3 py-2 text-left text-sm hover:bg-slate-100"
             >
-              {option}
+              <span>{option.hashtag_name}</span>
+              <span className="text-xs text-slate-500">{option.news_count}</span>
             </button>
           ))}
           {canCreate && (
