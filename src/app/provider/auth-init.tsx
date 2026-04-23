@@ -104,7 +104,7 @@ export const AuthInit = () => {
           const res = await fetch(
             `${apiBase}/api/user/auth/status?sessionId=${encodeURIComponent(
               pending.sessionId,
-            )}&_ts=${Date.now()}`,
+            )}`,
             {
               method: 'GET',
               credentials: 'include',
