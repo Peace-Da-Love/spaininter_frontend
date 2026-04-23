@@ -12,7 +12,6 @@ import {
 
 const AUTH_SESSION_POLL_INTERVAL_MS = 1000;
 const AUTH_SESSION_POLL_TIMEOUT_MS = 2 * 60 * 1000;
-const AUTH_SESSION_WATCHER_INTERVAL_MS = 1000;
 
 type PendingTwitrisSession = {
   sessionId: string;
@@ -34,6 +33,8 @@ export const AuthInit = () => {
   const didRun = useRef(false);
   const sessionPollingInProgressRef = useRef(false);
   const [isWaitingTwitrisAuth, setIsWaitingTwitrisAuth] = useState(false);
+
+  const getApiBase = () => process.env.NEXT_PUBLIC_API_URL?.trim().replace(/\/$/, '') || '';
 
   const detectLocale = () => {
     try {
@@ -87,8 +88,13 @@ export const AuthInit = () => {
       setIsWaitingTwitrisAuth(false);
       return false;
     }
-    setIsWaitingTwitrisAuth(true);
 
+    const apiBase = getApiBase();
+    if (!apiBase) {
+      return false;
+    }
+
+    setIsWaitingTwitrisAuth(true);
     sessionPollingInProgressRef.current = true;
     const startedAt = Date.now();
 
@@ -96,12 +102,17 @@ export const AuthInit = () => {
       while (Date.now() - startedAt < AUTH_SESSION_POLL_TIMEOUT_MS) {
         try {
           const res = await fetch(
-            `${process.env.NEXT_PUBLIC_API_URL}/api/user/auth/status?sessionId=${encodeURIComponent(
+            `${apiBase}/api/user/auth/status?sessionId=${encodeURIComponent(
               pending.sessionId,
-            )}`,
+            )}&_ts=${Date.now()}`,
             {
               method: 'GET',
               credentials: 'include',
+              cache: 'no-store',
+              headers: {
+                'Cache-Control': 'no-cache, no-store, max-age=0',
+                Pragma: 'no-cache',
+              },
             },
           );
 
@@ -130,9 +141,6 @@ export const AuthInit = () => {
   };
 
   useEffect(() => {
-    // React StrictMode runs effects twice in dev; prevent double handoff
-    if (didRun.current) return;
-    didRun.current = true;
     const run = async () => {
       try {
         const pathParts = window.location.pathname.split('/').filter(Boolean);
@@ -175,24 +183,27 @@ export const AuthInit = () => {
               }
             }
 
-            // remove authToken from URL
             params.delete('authToken');
             const newSearch = params.toString();
-            const newUrl = window.location.pathname + (newSearch ? `?${newSearch}` : '') + window.location.hash;
+            const newUrl =
+              window.location.pathname +
+              (newSearch ? `?${newSearch}` : '') +
+              window.location.hash;
             window.history.replaceState({}, '', newUrl);
 
             router.push(`/${detectLocale()}/profile`);
             return;
-          } else {
-            // failed to exchange token, just remove param
-            params.delete('authToken');
-            const newSearch = params.toString();
-            const newUrl = window.location.pathname + (newSearch ? `?${newSearch}` : '') + window.location.hash;
-            window.history.replaceState({}, '', newUrl);
           }
+
+          params.delete('authToken');
+          const newSearch = params.toString();
+          const newUrl =
+            window.location.pathname +
+            (newSearch ? `?${newSearch}` : '') +
+            window.location.hash;
+          window.history.replaceState({}, '', newUrl);
         }
 
-        // No authToken: try refresh if accessToken missing, then validate
         try {
           const currentToken = useAuth.getState().accessToken;
           if (!currentToken) {
@@ -202,32 +213,31 @@ export const AuthInit = () => {
         } catch {
           // ignore
         }
-      } catch (e) {
+      } catch {
         // ignore errors client-side
       }
     };
 
-    run();
+    if (!didRun.current) {
+      didRun.current = true;
+      void run();
+    }
 
     const handleSessionCreated = () => {
       setIsWaitingTwitrisAuth(true);
       void tryFinalizeTwitrisSession();
     };
+
     window.addEventListener(
       TWITRIS_AUTH_SESSION_CREATED_EVENT,
       handleSessionCreated,
     );
-
-    const watcherId = window.setInterval(() => {
-      void tryFinalizeTwitrisSession();
-    }, AUTH_SESSION_WATCHER_INTERVAL_MS);
 
     return () => {
       window.removeEventListener(
         TWITRIS_AUTH_SESSION_CREATED_EVENT,
         handleSessionCreated,
       );
-      window.clearInterval(watcherId);
     };
     // run only once on mount
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -250,4 +260,3 @@ export const AuthInit = () => {
 };
 
 export default AuthInit;
-
