@@ -119,6 +119,7 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 		<>
 			<Button 
 				variant={'menu'} 
+				type="button"
 				className={cn(className)}
 				onClick={() => toggle()}
 				data-menu-button
@@ -190,6 +191,7 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 							
 							<Button
 								variant="menu"
+								type="button"
 								onClick={() => openTwitrisWebApp(locale)}
 							>
 								<span className="flex size-full items-center justify-center">

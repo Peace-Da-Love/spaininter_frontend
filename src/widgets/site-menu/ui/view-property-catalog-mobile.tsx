@@ -166,6 +166,7 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
     <>
       <Button 
         variant={'menu'} 
+        type="button"
         className={cn(className)}
         onClick={() => toggle()}
         data-menu-button
@@ -277,6 +278,7 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
             <div className="flex flex-col gap-2.5">
               <Button
                 variant="menu"
+                type="button"
                 onClick={() => openTwitrisWebApp(locale)}
               >
                 <span className="flex size-full items-center justify-center">
