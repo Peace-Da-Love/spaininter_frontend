@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
@@ -57,10 +57,15 @@ export default function NewsCreateView({ locale }: Props) {
   const [languages, setLanguages] = useState<Language[]>([]);
   const [selectedLanguageCode, setSelectedLanguageCode] = useState<string>('');
   const [isLanguageLoading, setIsLanguageLoading] = useState(false);
+  const hasManualLanguageSelection = useRef(false);
   const schema = useMemo(() => createNewsCreateSchema(t), [t]);
   const selectedLanguage = useMemo(() => {
     if (!selectedLanguageCode) return null;
-    return languages.find(lang => lang.language_code === selectedLanguageCode) ?? null;
+    return (
+      languages.find(
+        lang => normalizeLocale(lang.language_code) === normalizeLocale(selectedLanguageCode)
+      ) ?? null
+    );
   }, [languages, selectedLanguageCode]);
   const languageId = useMemo(() => {
     return selectedLanguage?.language_id ?? null;
@@ -94,11 +99,6 @@ export default function NewsCreateView({ locale }: Props) {
         const data = await res.json();
         const languages: Language[] = data?.data?.languages ?? data?.languages ?? [];
         setLanguages(languages);
-        const normalizedCurrentLocale = normalizeLocale(locale);
-        const defaultLanguage = languages.find(
-          lang => normalizeLocale(lang.language_code) === normalizedCurrentLocale
-        ) ?? languages[0];
-        setSelectedLanguageCode(defaultLanguage?.language_code ?? '');
       } catch {
         // ignore
       } finally {
@@ -108,6 +108,26 @@ export default function NewsCreateView({ locale }: Props) {
 
     loadLanguages();
   }, [hasHydrated, locale]);
+
+  useEffect(() => {
+    if (languages.length === 0) return;
+
+    const currentSelectionExists = languages.some(
+      lang => normalizeLocale(lang.language_code) === normalizeLocale(selectedLanguageCode)
+    );
+
+    if (hasManualLanguageSelection.current && currentSelectionExists) {
+      return;
+    }
+
+    const defaultLanguage =
+      languages.find(lang => normalizeLocale(lang.language_code) === normalizeLocale(locale)) ??
+      languages[0];
+
+    if (defaultLanguage?.language_code) {
+      setSelectedLanguageCode(defaultLanguage.language_code);
+    }
+  }, [languages, locale, selectedLanguageCode]);
 
 
   const onSubmit = async (
@@ -194,7 +214,7 @@ export default function NewsCreateView({ locale }: Props) {
   if (!hasHydrated || !accessToken) return null;
 
   return (
-    <section className="mx-auto w-full max-w-3xl px-4 pb-12 pt-20 md:px-6 md:pt-8">
+    <section className="mx-auto w-full max-w-4xl px-4 pb-12 pt-20 md:px-6 md:pt-8">
       <h1 className="text-2xl font-semibold">{t('title')}</h1>
       <p className="mt-1 text-sm text-slate-500">
         {t('subtitle')}
@@ -287,7 +307,10 @@ export default function NewsCreateView({ locale }: Props) {
             <FormControl>
               <Select
                 value={selectedLanguageCode}
-                onValueChange={value => setSelectedLanguageCode(value)}
+                onValueChange={value => {
+                  hasManualLanguageSelection.current = true;
+                  setSelectedLanguageCode(value);
+                }}
                 disabled={isLanguageLoading || languages.length === 0}
               >
                 <SelectTrigger className="rounded-md">
