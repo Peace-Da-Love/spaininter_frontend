@@ -6,7 +6,7 @@ import useAuth from '@/src/shared/stores/auth';
 import { cn } from '@/src/shared/utils';
 import { ChannelLink } from '@/src/shared/utils';
 import { isTmaPath } from '@/src/shared/utils';
-import { openTwitrisWebApp } from '@/src/shared/utils';
+import { openTwitrisDirect, openTwitrisWebApp } from '@/src/shared/utils';
 import { useCatalogMenuStore } from '../catalog-store';
 import { Button } from '@/src/shared/components/ui';
 import { EducationButton } from '@/src/features/education-button';
@@ -279,7 +279,11 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
               <Button
                 variant="menu"
                 type="button"
-                onClick={() => openTwitrisWebApp(locale)}
+                onClick={() =>
+                  isAuthorized
+                    ? openTwitrisDirect(locale)
+                    : openTwitrisWebApp(locale)
+                }
               >
                 <span className="flex size-full items-center justify-center">
                   <IcTwitris className="block h-8 w-8 shrink-0" />

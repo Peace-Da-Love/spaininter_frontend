@@ -3,7 +3,7 @@
 import { FC, useEffect, useRef } from 'react';
 import { cn } from '@/src/shared/utils';
 import { ChannelLink } from '@/src/shared/utils';
-import { openTwitrisWebApp } from '@/src/shared/utils';
+import { openTwitrisDirect, openTwitrisWebApp } from '@/src/shared/utils';
 import { useSiteMenuStore } from '../store';
 import { Button } from '@/src/shared/components/ui';
 import { EducationButton } from '@/src/features/education-button';
@@ -171,13 +171,6 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 						)}
 							
 						<CitiesButton />
-						{isPropertyCatalogPage && (
-							<Button variant={'menu'} asChild>
-								<ChannelLink locale={locale} href='/news'> 
-									<IcNewspaper />
-								</ChannelLink>
-							</Button>
-						)}
 					</div>
 					
 					
@@ -192,7 +185,11 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 							<Button
 								variant="menu"
 								type="button"
-								onClick={() => openTwitrisWebApp(locale)}
+								onClick={() =>
+									isAuthorized
+										? openTwitrisDirect(locale)
+										: openTwitrisWebApp(locale)
+								}
 							>
 								<span className="flex size-full items-center justify-center">
 									<IcTwitris className="block h-8 w-8 shrink-0" />
