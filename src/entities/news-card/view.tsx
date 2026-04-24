@@ -15,6 +15,7 @@ export const NewsCard: FC<NewsCardProps> = ({
 	date,
 	hashtagName,
 	title,
+	hashtags,
 	variant = 'vertical',
 	className,
 	hashtagLink,
@@ -22,6 +23,32 @@ export const NewsCard: FC<NewsCardProps> = ({
 }) => {
 	const locale = useLocale();
 	const isHorizontal = variant === 'horizontal';
+	const displayHashtags =
+		hashtags && hashtags.length > 0
+			? hashtags
+			: [{ hashtagName, hashtagLink, hashtagId: 0 }];
+
+	const hashtagLinks = displayHashtags.map(hashtag => (
+		<ChannelLink
+			key={`${hashtag.hashtagName}-${hashtag.hashtagLink}`}
+			locale={locale}
+			href={`/hashtag/${encodeURIComponent(hashtag.hashtagLink)}/1`}
+			className='block text-secondary font-medium text-[10px] leading-3'
+		>
+			{formatCategory(hashtag.hashtagName)}
+		</ChannelLink>
+	));
+
+	const overlayHashtagLinks = displayHashtags.slice(0, 3).map(hashtag => (
+		<ChannelLink
+			key={`${hashtag.hashtagName}-${hashtag.hashtagLink}`}
+			locale={locale}
+			href={`/hashtag/${encodeURIComponent(hashtag.hashtagLink)}/1`}
+			className='hidden sm:inline-block backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px]'
+		>
+			{formatCategory(hashtag.hashtagName)}
+		</ChannelLink>
+	));
 
 	const horizontal = (
 		<div
@@ -45,15 +72,9 @@ export const NewsCard: FC<NewsCardProps> = ({
 			</div>
 			<div className={'w-full flex flex-col justify-between'}>
 				<div className={'flex items-center gap-2'}>
-					<ChannelLink
-						locale={locale}
-						href={`/hashtag/${encodeURIComponent(hashtagLink)}/1`}
-						className={
-							'block text-secondary font-medium text-[10px] leading-3'
-						}
-					>
-						{formatCategory(hashtagName)}
-					</ChannelLink>
+					<div className='flex flex-wrap items-center gap-1'>
+						{hashtagLinks}
+					</div>
 					<span
 						className={
 							'capitalize block text-secondary font-medium text-[10px] leading-3'
@@ -106,15 +127,7 @@ export const NewsCard: FC<NewsCardProps> = ({
 						'flex items-center gap-3 absolute bottom-[15px] left-[20px]'
 					}
 				>
-					<ChannelLink
-						locale={locale}
-						href={`/hashtag/${encodeURIComponent(hashtagLink)}/1`}
-						className={
-							'hidden sm:inline-block backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px] '
-						}
-					>
-						{formatCategory(hashtagName)}
-					</ChannelLink>
+					{overlayHashtagLinks}
 					<span
 						className={
 							'hidden sm:inline-block capitalize backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px] '
@@ -130,15 +143,9 @@ export const NewsCard: FC<NewsCardProps> = ({
 				}
 			>
 				<div className={'flex items-center gap-2'}>
-					<ChannelLink
-						locale={locale}
-						href={`/hashtag/${encodeURIComponent(hashtagLink)}/1`}
-						className={
-							'block sm:hidden text-secondary font-medium text-[10px] leading-3'
-						}
-					>
-						{formatCategory(hashtagName)}
-					</ChannelLink>
+					<div className='flex flex-wrap items-center gap-1 sm:hidden'>
+						{hashtagLinks}
+					</div>
 					<span
 						className={
 							'capitalize block sm:hidden text-secondary font-medium text-[10px] leading-3'

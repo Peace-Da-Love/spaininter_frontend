@@ -20,6 +20,7 @@ export const NewsCards: FC<Props> = ({ news }) => {
 						imageUrl={item.posterLink}
 						title={item.title}
 						hashtagName={item.hashtagName}
+						hashtags={item.hashtags}
 						date={item.createdAt}
 						link={item.link}
 						hashtagLink={item.hashtagLink}

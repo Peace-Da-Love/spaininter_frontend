@@ -32,6 +32,7 @@ export const NewsPage: FC<Props> = ({ data }: Props): JSX.Element => {
 					imageUrl={data.data.news.posterLink}
 					title={data.data.news.title}
 					hashtagName={data.data.news.hashtagName}
+					hashtags={data.data.news.hashtags}
 					date={data.data.news.createdAt}
 					link={data.data.news.link}
 					hashtagLink={data.data.news.hashtagLink}

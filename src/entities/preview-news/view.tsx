@@ -13,6 +13,7 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 	link,
 	date,
 	hashtagName,
+	hashtags,
 	title,
 	className,
 	isTopNews,
@@ -20,6 +21,10 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 	city
 }) => {
 	const locale = useLocale();
+	const displayHashtags =
+		hashtags && hashtags.length > 0
+			? hashtags
+			: [{ hashtagName, hashtagLink, hashtagId: 0 }];
 
 	return (
 		<div
@@ -33,7 +38,7 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 				className={
 					'background-image bg-cover bg-no-repeat bg-center w-full h-full bg-slate-200'
 				}
-							>
+			>
 				<ChannelLink
 					locale={locale}
 					href={`/news/${encodeURIComponent(link)}`}
@@ -48,15 +53,18 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 					}
 				>
 					<div className={'flex items-center gap-4'}>
-						<ChannelLink
-							locale={locale}
-							href={`/hashtag/${encodeURIComponent(hashtagLink)}/1`}
-							className={
-								'inline-block backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-[10px] md:text-sm font-medium rounded-[20px] mb-1.5  relative z-0'
-							}
-						>
-							{formatCategory(hashtagName)}
-						</ChannelLink>
+						{displayHashtags.slice(0, 4).map(hashtag => (
+							<ChannelLink
+								key={`${hashtag.hashtagName}-${hashtag.hashtagLink}`}
+								locale={locale}
+								href={`/hashtag/${encodeURIComponent(hashtag.hashtagLink)}/1`}
+								className={
+									'inline-block backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-[10px] md:text-sm font-medium rounded-[20px] mb-1.5 relative z-0'
+								}
+							>
+								{formatCategory(hashtag.hashtagName)}
+							</ChannelLink>
+						))}
 						<span
 							className={
 								'capitalize inline-block backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-[10px] md:text-sm font-medium rounded-[20px] mb-1.5'
@@ -68,22 +76,22 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 					<ChannelLink
 						locale={locale}
 						href={`/news/${encodeURIComponent(link)}`}
-						className="block"
+						className='block'
 					>
 						{isTopNews ? (
 							<h1
-							className={
-								'text-xl md:text-4xl font-bold text-white mb-1.5 backdrop-blur-xl bg-gray-300/40 rounded-2xl p-2.5 relative'
-							}
-						>
+								className={
+									'text-xl md:text-4xl font-bold text-white mb-1.5 backdrop-blur-xl bg-gray-300/40 rounded-2xl p-2.5 relative'
+								}
+							>
 								{title}
 							</h1>
 						) : (
 							<span
-							className={
-								'block text-xl md:text-4xl font-bold text-white mb-1.5 backdrop-blur-xl bg-gray-300/40 rounded-2xl p-2.5'
-							}
-						>
+								className={
+									'block text-xl md:text-4xl font-bold text-white mb-1.5 backdrop-blur-xl bg-gray-300/40 rounded-2xl p-2.5'
+								}
+							>
 								{title}
 							</span>
 						)}

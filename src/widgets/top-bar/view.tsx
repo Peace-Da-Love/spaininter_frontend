@@ -19,6 +19,7 @@ export const TopBar: FC<Props> = ({ news }) => {
 				imageUrl={previewNews.posterLink}
 				title={previewNews.title}
 				hashtagName={previewNews.hashtagName}
+				hashtags={previewNews.hashtags}
 				date={previewNews.createdAt}
 				link={previewNews.link}
 				hashtagLink={previewNews.hashtagLink}
@@ -35,6 +36,7 @@ export const TopBar: FC<Props> = ({ news }) => {
 							imageUrl={item.posterLink}
 							title={item.title}
 							hashtagName={item.hashtagName}
+							hashtags={item.hashtags}
 							date={item.createdAt}
 							link={item.link}
 							hashtagLink={item.hashtagLink}

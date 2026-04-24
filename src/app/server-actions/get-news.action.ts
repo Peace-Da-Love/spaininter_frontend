@@ -26,6 +26,11 @@ interface INews {
 	hashtagId: number;
 	hashtagName: string;
 	hashtagLink: string;
+	hashtags?: {
+		hashtagId: number;
+		hashtagName: string;
+		hashtagLink: string;
+	}[];
 	views: number;
 	createdAt: string;
 	updatedAt: string;
