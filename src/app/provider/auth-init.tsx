@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { CheckCircle2 } from 'lucide-react';
 import useAuth from '@/src/shared/stores/auth';
 import { locales } from '@/src/shared/configs';
 import { LoadingSpinner } from '@/src/shared/components/ui/loading-spinner';
@@ -12,6 +13,9 @@ import {
 
 const AUTH_SESSION_POLL_INTERVAL_MS = 1000;
 const AUTH_SESSION_POLL_TIMEOUT_MS = 2 * 60 * 1000;
+const AUTH_SUCCESS_BANNER_TIMEOUT_MS = 5000;
+
+type TwitrisAuthBannerStatus = 'idle' | 'waiting' | 'success';
 
 type PendingTwitrisSession = {
   sessionId: string;
@@ -33,7 +37,10 @@ export const AuthInit = () => {
   const refreshAccessToken = useAuth(state => state.refreshAccessToken);
   const didRun = useRef(false);
   const sessionPollingInProgressRef = useRef(false);
-  const [isWaitingTwitrisAuth, setIsWaitingTwitrisAuth] = useState(false);
+  const successBannerTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const twitrisAuthBannerStatusRef = useRef<TwitrisAuthBannerStatus>('idle');
+  const [twitrisAuthBannerStatus, setTwitrisAuthBannerStatus] =
+    useState<TwitrisAuthBannerStatus>('idle');
 
   const getApiBase = () => process.env.NEXT_PUBLIC_API_URL?.trim().replace(/\/$/, '') || '';
 
@@ -71,6 +78,34 @@ export const AuthInit = () => {
     window.history.replaceState({}, '', newUrl);
   };
 
+  const setAuthBannerStatus = (status: TwitrisAuthBannerStatus) => {
+    twitrisAuthBannerStatusRef.current = status;
+    setTwitrisAuthBannerStatus(status);
+  };
+
+  const clearSuccessBannerTimeout = () => {
+    if (successBannerTimeoutRef.current) {
+      clearTimeout(successBannerTimeoutRef.current);
+      successBannerTimeoutRef.current = null;
+    }
+  };
+
+  const startSuccessBannerTimeout = () => {
+    clearSuccessBannerTimeout();
+    successBannerTimeoutRef.current = setTimeout(() => {
+      setAuthBannerStatus('idle');
+      successBannerTimeoutRef.current = null;
+    }, AUTH_SUCCESS_BANNER_TIMEOUT_MS);
+  };
+
+  const showSuccessBanner = () => {
+    setAuthBannerStatus('success');
+
+    if (document.visibilityState === 'visible') {
+      startSuccessBannerTimeout();
+    }
+  };
+
   const readPendingSession = (): PendingTwitrisSession | null => {
     try {
       const raw = localStorage.getItem(TWITRIS_AUTH_SESSION_KEY);
@@ -96,7 +131,7 @@ export const AuthInit = () => {
 
   const clearPendingSession = () => {
     localStorage.removeItem(TWITRIS_AUTH_SESSION_KEY);
-    setIsWaitingTwitrisAuth(false);
+    setAuthBannerStatus('idle');
   };
 
   const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
@@ -108,7 +143,7 @@ export const AuthInit = () => {
 
     const pending = readPendingSession();
     if (!pending) {
-      setIsWaitingTwitrisAuth(false);
+      setAuthBannerStatus('idle');
       return false;
     }
 
@@ -117,7 +152,7 @@ export const AuthInit = () => {
       return false;
     }
 
-    setIsWaitingTwitrisAuth(true);
+    setAuthBannerStatus('waiting');
     sessionPollingInProgressRef.current = true;
     const startedAt = Date.now();
 
@@ -145,7 +180,8 @@ export const AuthInit = () => {
               setAccessToken(data.accessToken);
               await validateToken();
               const returnTo = getSafeReturnTo(pending.returnTo);
-              clearPendingSession();
+              localStorage.removeItem(TWITRIS_AUTH_SESSION_KEY);
+              showSuccessBanner();
               if (returnTo !== getCurrentUrl()) {
                 router.replace(returnTo);
               }
@@ -239,35 +275,57 @@ export const AuthInit = () => {
     }
 
     const handleSessionCreated = () => {
-      setIsWaitingTwitrisAuth(true);
+      clearSuccessBannerTimeout();
+      setAuthBannerStatus('waiting');
       void tryFinalizeTwitrisSession();
+    };
+
+    const handleVisibilityChange = () => {
+      if (
+        document.visibilityState === 'visible' &&
+        twitrisAuthBannerStatusRef.current === 'success' &&
+        !successBannerTimeoutRef.current
+      ) {
+        startSuccessBannerTimeout();
+      }
     };
 
     window.addEventListener(
       TWITRIS_AUTH_SESSION_CREATED_EVENT,
       handleSessionCreated,
     );
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     return () => {
       window.removeEventListener(
         TWITRIS_AUTH_SESSION_CREATED_EVENT,
         handleSessionCreated,
       );
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      clearSuccessBannerTimeout();
     };
     // run only once on mount
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!isWaitingTwitrisAuth) {
+  if (twitrisAuthBannerStatus === 'idle') {
     return null;
   }
+
+  const isSuccessBanner = twitrisAuthBannerStatus === 'success';
 
   return (
     <div className="fixed right-4 top-4 z-[120] pointer-events-none">
       <div className="pointer-events-auto flex items-center gap-3 rounded-xl border border-slate-200 bg-white/95 px-4 py-3 shadow-lg backdrop-blur">
-        <LoadingSpinner size={18} className="text-slate-700" />
+        {isSuccessBanner ? (
+          <CheckCircle2 size={18} className="text-emerald-600" />
+        ) : (
+          <LoadingSpinner size={18} className="text-slate-700" />
+        )}
         <div className="text-sm font-medium text-slate-800">
-          {'Ожидаем подтверждение в Telegram...'}
+          {isSuccessBanner
+            ? 'Регистрация успешно завершена'
+            : 'Ожидаем подтверждение в Telegram...'}
         </div>
       </div>
     </div>
