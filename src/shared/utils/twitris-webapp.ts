@@ -48,6 +48,11 @@ function clearTwitrisAuthSession() {
 	localStorage.removeItem(TWITRIS_AUTH_SESSION_KEY);
 }
 
+function getCurrentReturnTo(): string {
+	const { pathname, search, hash } = window.location;
+	return `${pathname}${search}${hash}`;
+}
+
 export function openTwitrisDirect(locale: string): boolean {
 	if (!TWITRIS_WEBAPP_URL) {
 		console.error(
@@ -73,6 +78,7 @@ export function openTwitrisWebApp(locale: string): boolean {
 		sessionId,
 		createdAt: Date.now(),
 		expiresAt: Date.now() + TWITRIS_AUTH_SESSION_TTL_MS,
+		returnTo: getCurrentReturnTo(),
 	});
 	localStorage.setItem(TWITRIS_AUTH_SESSION_KEY, payload);
 	window.dispatchEvent(new Event(TWITRIS_AUTH_SESSION_CREATED_EVENT));

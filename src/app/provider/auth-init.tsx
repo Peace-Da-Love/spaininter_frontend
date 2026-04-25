@@ -17,6 +17,7 @@ type PendingTwitrisSession = {
   sessionId: string;
   createdAt?: number;
   expiresAt?: number;
+  returnTo?: string;
 };
 
 const isValidUuid = (value: string) =>
@@ -46,6 +47,28 @@ export const AuthInit = () => {
       // ignore
     }
     return 'en';
+  };
+
+  const getCurrentUrl = () =>
+    `${window.location.pathname}${window.location.search}${window.location.hash}`;
+
+  const getSafeReturnTo = (value?: string) => {
+    if (!value || !value.startsWith('/') || value.startsWith('//')) {
+      return getCurrentUrl();
+    }
+
+    return value;
+  };
+
+  const removeAuthTokenFromUrl = () => {
+    const params = new URLSearchParams(window.location.search);
+    params.delete('authToken');
+    const newSearch = params.toString();
+    const newUrl =
+      window.location.pathname +
+      (newSearch ? `?${newSearch}` : '') +
+      window.location.hash;
+    window.history.replaceState({}, '', newUrl);
   };
 
   const readPendingSession = (): PendingTwitrisSession | null => {
@@ -121,8 +144,11 @@ export const AuthInit = () => {
             if (data?.success && data?.accessToken) {
               setAccessToken(data.accessToken);
               await validateToken();
+              const returnTo = getSafeReturnTo(pending.returnTo);
               clearPendingSession();
-              router.push(`/${detectLocale()}/profile`);
+              if (returnTo !== getCurrentUrl()) {
+                router.replace(returnTo);
+              }
               return true;
             }
           }
@@ -144,21 +170,17 @@ export const AuthInit = () => {
     const run = async () => {
       try {
         const pathParts = window.location.pathname.split('/').filter(Boolean);
+        const params = new URLSearchParams(window.location.search);
+        const authToken = params.get('authToken');
+
         if (
           pathParts.length >= 2 &&
           locales.includes(pathParts[0] as any) &&
-          pathParts[1] === 'tma'
+          pathParts[1] === 'tma' &&
+          !authToken
         ) {
           return;
         }
-
-        const finalized = await tryFinalizeTwitrisSession();
-        if (finalized) {
-          return;
-        }
-
-        const params = new URLSearchParams(window.location.search);
-        const authToken = params.get('authToken');
 
         if (authToken) {
           const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/auth/handoff`, {
@@ -183,25 +205,18 @@ export const AuthInit = () => {
               }
             }
 
-            params.delete('authToken');
-            const newSearch = params.toString();
-            const newUrl =
-              window.location.pathname +
-              (newSearch ? `?${newSearch}` : '') +
-              window.location.hash;
-            window.history.replaceState({}, '', newUrl);
+            removeAuthTokenFromUrl();
 
-            router.push(`/${detectLocale()}/profile`);
+            router.replace(`/${detectLocale()}`);
             return;
           }
 
-          params.delete('authToken');
-          const newSearch = params.toString();
-          const newUrl =
-            window.location.pathname +
-            (newSearch ? `?${newSearch}` : '') +
-            window.location.hash;
-          window.history.replaceState({}, '', newUrl);
+          removeAuthTokenFromUrl();
+        }
+
+        const finalized = await tryFinalizeTwitrisSession();
+        if (finalized) {
+          return;
         }
 
         try {
