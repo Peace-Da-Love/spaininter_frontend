@@ -47,7 +47,7 @@
 			"title": "Create Article",
 			"subtitle": "Fill in the fields below and submit your article for verification.",
 			"hashtagLabel": "Hashtag",
-			"hashtagPlaceholder": "news_hashtag",
+			"hashtagPlaceholder": "Hashtags",
 			"cityLabel": "City",
 			"cityPlaceholder": "City",
 			"provinceLabel": "Province",
@@ -149,7 +149,11 @@
 		"newsCreatedAt": "Created",
 		"newsStatus": "Status",
 		"newsLoading": "Loading...",
-		"newsEmpty": "You haven't added any news yet"
+		"newsEmpty": "You haven't added any news yet",
+		"allNews": "All news",
+		"newsPaginationInfo": "Page {page} of {pages}, {total} total",
+		"previousPage": "Previous",
+		"nextPage": "Next"
 	},
 	"MetaData": {
 		"NewsPage": {

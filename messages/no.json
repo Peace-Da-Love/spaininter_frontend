@@ -47,7 +47,7 @@
 			"title": "Opprett artikkel",
 			"subtitle": "Fyll ut feltene og send inn artikkelen for verifisering.",
 			"hashtagLabel": "Hashtag",
-			"hashtagPlaceholder": "news_hashtag",
+			"hashtagPlaceholder": "Emneknagger",
 			"cityLabel": "By",
 			"cityPlaceholder": "By",
 			"provinceLabel": "Provins",
@@ -149,7 +149,11 @@
 		"newsCreatedAt": "Opprettet",
 		"newsStatus": "Status",
 		"newsLoading": "Laster...",
-		"newsEmpty": "Du har ikke lagt til noen nyheter ennå"
+		"newsEmpty": "Du har ikke lagt til noen nyheter ennå",
+		"allNews": "Alle nyheter",
+		"newsPaginationInfo": "Side {page} av {pages}, {total} totalt",
+		"previousPage": "Forrige",
+		"nextPage": "Neste"
 	},
 	"MetaData": {
 		"NewsPage": {

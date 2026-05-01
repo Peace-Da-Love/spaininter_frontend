@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import useAuth from '@/src/shared/stores/auth';
@@ -29,8 +29,71 @@ type NewsTranslation = {
   };
 };
 
+const NEWS_PAGE_SIZE = 10;
+
 const normalizeLocale = (value?: string) =>
   value?.toLowerCase().replace('_', '-').split('-')[0] ?? '';
+
+const getNestedValue = (source: any, paths: string[]) => {
+  for (const path of paths) {
+    const value = path
+      .split('.')
+      .reduce((current, key) => current?.[key], source);
+    if (value !== undefined && value !== null) return value;
+  }
+  return undefined;
+};
+
+const normalizeTotal = (source: any, fallback: number) => {
+  const value = getNestedValue(source, [
+    'data.news.count',
+    'data.news.total',
+    'data.news.totalCount',
+    'data.total',
+    'data.totalCount',
+    'news.count',
+    'news.total',
+    'total',
+    'totalCount',
+    'count',
+    'meta.total',
+    'meta.totalCount',
+    'pagination.total',
+    'pagination.totalCount'
+  ]);
+  const total = Number(value);
+  return Number.isFinite(total) && total >= 0 ? total : fallback;
+};
+
+const normalizePageCount = (source: any, total: number, pageSize: number) => {
+  const value = getNestedValue(source, [
+    'data.news.pageCount',
+    'data.news.totalPages',
+    'data.pageCount',
+    'data.totalPages',
+    'pageCount',
+    'totalPages',
+    'meta.pageCount',
+    'meta.totalPages',
+    'pagination.pageCount',
+    'pagination.totalPages'
+  ]);
+  const pageCount = Number(value);
+  if (Number.isFinite(pageCount) && pageCount > 0) return pageCount;
+  return Math.max(1, Math.ceil(total / pageSize));
+};
+
+const normalizeIsAdmin = (source: any) =>
+  Boolean(
+    getNestedValue(source, [
+      'data.isAdmin',
+      'data.admin',
+      'data.user.isAdmin',
+      'isAdmin',
+      'admin',
+      'user.isAdmin'
+    ])
+  );
 
 export default function ProfileView({ locale }: Props) {
   const router = useRouter();
@@ -43,6 +106,10 @@ export default function ProfileView({ locale }: Props) {
   const [myNews, setMyNews] = useState<UserNewsItem[]>([]);
   const [isLoadingNews, setIsLoadingNews] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageCount, setPageCount] = useState(1);
+  const [totalNews, setTotalNews] = useState(0);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     if (!hasHydrated) return;
@@ -58,9 +125,17 @@ export default function ProfileView({ locale }: Props) {
     const loadMyNews = async () => {
       setIsLoadingNews(true);
       try {
-        const res = await fetchWithAuth('/api/news/my');
+        const params = new URLSearchParams({
+          page: String(currentPage),
+          limit: String(NEWS_PAGE_SIZE)
+        });
+        const res = await fetchWithAuth(`/api/news/my?${params.toString()}`);
         if (!res.ok) {
-          if (!cancelled) setMyNews([]);
+          if (!cancelled) {
+            setMyNews([]);
+            setTotalNews(0);
+            setPageCount(1);
+          }
           return;
         }
         const data = await res.json();
@@ -133,9 +208,40 @@ export default function ProfileView({ locale }: Props) {
             })
           : [];
 
-        if (!cancelled) setMyNews(normalized.filter(item => item.title));
+        const normalizedNews = normalized
+          .filter(item => item.title)
+          .sort((a, b) => {
+            const left = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+            const right = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+            return right - left;
+          });
+        const total = normalizeTotal(data, normalizedNews.length);
+        const nextPageCount = normalizePageCount(data, total, NEWS_PAGE_SIZE);
+        const shouldPaginateClientSide =
+          normalizedNews.length > NEWS_PAGE_SIZE &&
+          total === normalizedNews.length;
+        const visibleNews = shouldPaginateClientSide
+          ? normalizedNews.slice(
+              (currentPage - 1) * NEWS_PAGE_SIZE,
+              currentPage * NEWS_PAGE_SIZE
+            )
+          : normalizedNews;
+
+        if (!cancelled) {
+          setMyNews(visibleNews);
+          setTotalNews(total);
+          setPageCount(nextPageCount);
+          setIsAdmin(normalizeIsAdmin(data));
+          if (currentPage > nextPageCount) {
+            setCurrentPage(nextPageCount);
+          }
+        }
       } catch {
-        if (!cancelled) setMyNews([]);
+        if (!cancelled) {
+          setMyNews([]);
+          setTotalNews(0);
+          setPageCount(1);
+        }
       } finally {
         if (!cancelled) setIsLoadingNews(false);
       }
@@ -146,7 +252,16 @@ export default function ProfileView({ locale }: Props) {
     return () => {
       cancelled = true;
     };
-  }, [accessToken, fetchWithAuth, hasHydrated, locale]);
+  }, [accessToken, currentPage, fetchWithAuth, hasHydrated, locale]);
+
+  const paginationItems = useMemo(() => {
+    return Array.from({ length: pageCount }, (_, index) => index + 1).filter(
+      page =>
+        page === 1 ||
+        page === pageCount ||
+        Math.abs(page - currentPage) <= 1
+    );
+  }, [currentPage, pageCount]);
 
   if (!hasHydrated || !accessToken) return null;
 
@@ -221,7 +336,20 @@ export default function ProfileView({ locale }: Props) {
       </div>
 
       <div className="mt-8">
-        <h3 className="text-lg font-medium">{t('myNews')}</h3>
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h3 className="text-lg font-medium">
+            {isAdmin ? t('allNews') : t('myNews')}
+          </h3>
+          {totalNews > 0 && (
+            <div className="text-sm text-gray-500">
+              {t('newsPaginationInfo', {
+                page: currentPage,
+                pages: pageCount,
+                total: totalNews
+              })}
+            </div>
+          )}
+        </div>
         <div className="mt-3 overflow-x-auto border border-gray-200 rounded-lg">
           <table className="min-w-full text-sm">
             <thead className="bg-gray-50 text-left">
@@ -285,6 +413,53 @@ export default function ProfileView({ locale }: Props) {
             </tbody>
           </table>
         </div>
+        {pageCount > 1 && (
+          <nav
+            aria-label="Profile news pagination"
+            className="mt-4 flex flex-wrap items-center justify-end gap-2"
+          >
+            <button
+              type="button"
+              className="rounded-md border border-gray-200 px-3 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-50"
+              disabled={currentPage === 1 || isLoadingNews}
+              onClick={() => setCurrentPage(page => Math.max(1, page - 1))}
+            >
+              {t('previousPage')}
+            </button>
+            {paginationItems.map((page, index) => {
+              const previousPage = paginationItems[index - 1];
+              const showGap = previousPage && page - previousPage > 1;
+
+              return (
+                <div key={page} className="flex items-center gap-2">
+                  {showGap && <span className="text-sm text-gray-400">...</span>}
+                  <button
+                    type="button"
+                    className={`h-9 min-w-9 rounded-md border px-3 text-sm ${
+                      page === currentPage
+                        ? 'border-blue-600 bg-blue-600 text-white'
+                        : 'border-gray-200'
+                    }`}
+                    disabled={isLoadingNews}
+                    onClick={() => setCurrentPage(page)}
+                  >
+                    {page}
+                  </button>
+                </div>
+              );
+            })}
+            <button
+              type="button"
+              className="rounded-md border border-gray-200 px-3 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-50"
+              disabled={currentPage === pageCount || isLoadingNews}
+              onClick={() =>
+                setCurrentPage(page => Math.min(pageCount, page + 1))
+              }
+            >
+              {t('nextPage')}
+            </button>
+          </nav>
+        )}
       </div>
     </div>
   );

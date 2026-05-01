@@ -210,11 +210,6 @@ export const CategoryCombobox = forwardRef<HTMLInputElement, Props>(
 						{t('hashtagInvalidHint')}
 					</div>
 				)}
-				{!error && !loadError && !isLoading && !showInvalidHint && (
-					<div className='mt-1 text-xs text-slate-500'>
-						{t('hashtagHelper')}
-					</div>
-				)}
 			</div>
 		);
 	}

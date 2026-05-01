@@ -22,7 +22,6 @@ import {
 	FormControl,
 	FormField,
 	FormItem,
-	FormLabel,
 	FormMessage
 } from '@/src/shared/components/ui/form';
 import { LoadingSpinner } from '@/src/shared/components/ui/loading-spinner';
@@ -220,7 +219,6 @@ export default function NewsCreateView({ locale }: Props) {
 	return (
 		<section className='mx-auto w-full max-w-4xl px-4 pb-12 pt-20 md:px-6 md:pt-8'>
 			<h1 className='text-2xl font-semibold'>{t('title')}</h1>
-			<p className='mt-1 text-sm text-slate-500'>{t('subtitle')}</p>
 
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)} className='mt-6 space-y-6'>
@@ -229,7 +227,6 @@ export default function NewsCreateView({ locale }: Props) {
 						name='category_names'
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>{t('hashtagLabel')}</FormLabel>
 								<FormControl>
 									<CategoryCombobox
 										value={field.value}
@@ -238,7 +235,6 @@ export default function NewsCreateView({ locale }: Props) {
 										maxLength={50}
 									/>
 								</FormControl>
-								<FormMessage />
 							</FormItem>
 						)}
 					/>
@@ -270,7 +266,6 @@ export default function NewsCreateView({ locale }: Props) {
 						name='title'
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>{t('titleLabel')}</FormLabel>
 								<FormControl>
 									<Input
 										placeholder={t('titlePlaceholder')}
@@ -288,7 +283,6 @@ export default function NewsCreateView({ locale }: Props) {
 						name='description'
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>{t('descriptionLabel')}</FormLabel>
 								<FormControl>
 									<textarea
 										{...field}
@@ -306,7 +300,6 @@ export default function NewsCreateView({ locale }: Props) {
 					/>
 
 					<FormItem>
-						<FormLabel>{t('languageLabel')}</FormLabel>
 						<FormControl>
 							<Select
 								value={selectedLanguageCode}
@@ -344,7 +337,6 @@ export default function NewsCreateView({ locale }: Props) {
 						name='content'
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>{t('markdownLabel')}</FormLabel>
 								<FormControl>
 									<MarkdownEditor
 										value={field.value}

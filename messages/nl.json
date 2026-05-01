@@ -47,7 +47,7 @@
 			"title": "Artikel maken",
 			"subtitle": "Vul de velden in en verstuur het artikel ter controle.",
 			"hashtagLabel": "Hashtag",
-			"hashtagPlaceholder": "news_hashtag",
+			"hashtagPlaceholder": "Hashtags",
 			"cityLabel": "Stad",
 			"cityPlaceholder": "Stad",
 			"provinceLabel": "Provincie",
@@ -149,7 +149,11 @@
 		"newsCreatedAt": "Gemaakt",
 		"newsStatus": "Status",
 		"newsLoading": "Laden...",
-		"newsEmpty": "Je hebt nog geen nieuws toegevoegd"
+		"newsEmpty": "Je hebt nog geen nieuws toegevoegd",
+		"allNews": "Al het nieuws",
+		"newsPaginationInfo": "Pagina {page} van {pages}, {total} totaal",
+		"previousPage": "Vorige",
+		"nextPage": "Volgende"
 	},
 	"MetaData": {
 		"NewsPage": {

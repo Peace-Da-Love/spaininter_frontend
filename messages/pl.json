@@ -47,7 +47,7 @@
 			"title": "Utwórz artykuł",
 			"subtitle": "Wypełnij pola i wyślij artykuł do weryfikacji.",
 			"hashtagLabel": "Hashtag",
-			"hashtagPlaceholder": "news_hashtag",
+			"hashtagPlaceholder": "Hashtagi",
 			"cityLabel": "Miasto",
 			"cityPlaceholder": "Miasto",
 			"provinceLabel": "Prowincja",
@@ -149,7 +149,11 @@
 		"newsCreatedAt": "Utworzono",
 		"newsStatus": "Status",
 		"newsLoading": "Ładowanie...",
-		"newsEmpty": "Nie dodałeś jeszcze żadnych wiadomości"
+		"newsEmpty": "Nie dodałeś jeszcze żadnych wiadomości",
+		"allNews": "Wszystkie wiadomości",
+		"newsPaginationInfo": "Strona {page} z {pages}, łącznie {total}",
+		"previousPage": "Poprzednia",
+		"nextPage": "Następna"
 	},
 	"MetaData": {
 		"NewsPage": {

@@ -66,7 +66,6 @@ export const PosterDropzone = ({ onFileSelect, error, message }: Props) => {
     <div>
       {!selectedFile && (
         <div>
-          <p className="mb-2 text-sm font-medium">{t('posterLabel')}</p>
           <div
             className={cn(
               'flex min-h-[120px] cursor-pointer items-center justify-center rounded-md border-2 border-dashed bg-white px-4 py-6 text-center text-sm text-slate-500',

@@ -47,7 +47,7 @@
 			"title": "Artikel erstellen",
 			"subtitle": "Füllen Sie die Felder aus und senden Sie den Artikel zur Prüfung.",
 			"hashtagLabel": "Hashtag",
-			"hashtagPlaceholder": "news_hashtag",
+			"hashtagPlaceholder": "Hashtags",
 			"cityLabel": "Stadt",
 			"cityPlaceholder": "Stadt",
 			"provinceLabel": "Provinz",
@@ -149,7 +149,11 @@
 		"newsCreatedAt": "Erstellt",
 		"newsStatus": "Status",
 		"newsLoading": "Laden...",
-		"newsEmpty": "Du hast noch keine Nachrichten hinzugefügt"
+		"newsEmpty": "Du hast noch keine Nachrichten hinzugefügt",
+		"allNews": "Alle Nachrichten",
+		"newsPaginationInfo": "Seite {page} von {pages}, insgesamt {total}",
+		"previousPage": "Zurück",
+		"nextPage": "Weiter"
 	},
 	"MetaData": {
 		"NewsPage": {

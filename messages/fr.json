@@ -47,7 +47,7 @@
 			"title": "Créer un article",
 			"subtitle": "Remplissez les champs ci-dessous et soumettez l’article pour vérification.",
 			"hashtagLabel": "Hashtag",
-			"hashtagPlaceholder": "news_hashtag",
+			"hashtagPlaceholder": "Hashtags",
 			"cityLabel": "Ville",
 			"cityPlaceholder": "Ville",
 			"provinceLabel": "Province",
@@ -149,7 +149,11 @@
 		"newsCreatedAt": "Créé",
 		"newsStatus": "Statut",
 		"newsLoading": "Chargement...",
-		"newsEmpty": "Vous n'avez pas encore ajouté d'actualités"
+		"newsEmpty": "Vous n'avez pas encore ajouté d'actualités",
+		"allNews": "Toutes les actualités",
+		"newsPaginationInfo": "Page {page} sur {pages}, {total} au total",
+		"previousPage": "Précédent",
+		"nextPage": "Suivant"
 	},
 	"MetaData": {
 		"NewsPage": {

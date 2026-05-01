@@ -47,7 +47,7 @@
 			"title": "Skapa artikel",
 			"subtitle": "Fyll i fälten och skicka artikeln för granskning.",
 			"hashtagLabel": "Hashtag",
-			"hashtagPlaceholder": "news_hashtag",
+			"hashtagPlaceholder": "Hashtaggar",
 			"cityLabel": "Stad",
 			"cityPlaceholder": "Stad",
 			"provinceLabel": "Provins",
@@ -149,7 +149,11 @@
 		"newsCreatedAt": "Skapad",
 		"newsStatus": "Status",
 		"newsLoading": "Laddar...",
-		"newsEmpty": "Du har inte lagt till några nyheter än"
+		"newsEmpty": "Du har inte lagt till några nyheter än",
+		"allNews": "Alla nyheter",
+		"newsPaginationInfo": "Sida {page} av {pages}, totalt {total}",
+		"previousPage": "Föregående",
+		"nextPage": "Nästa"
 	},
 	"MetaData": {
 		"NewsPage": {

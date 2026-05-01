@@ -47,7 +47,7 @@
 			"title": "Создать статью",
 			"subtitle": "Заполните поля ниже и отправьте статью на проверку.",
 			"hashtagLabel": "Хэштег",
-			"hashtagPlaceholder": "news_hashtag",
+			"hashtagPlaceholder": "Хэштеги",
 			"cityLabel": "Город",
 			"cityPlaceholder": "Город",
 			"provinceLabel": "Провинция",
@@ -149,7 +149,11 @@
 		"newsCreatedAt": "Создано",
 		"newsStatus": "Статус",
 		"newsLoading": "Загрузка...",
-		"newsEmpty": "Вы ещё не добавили ни одной новости"
+		"newsEmpty": "Вы ещё не добавили ни одной новости",
+		"allNews": "Все новости",
+		"newsPaginationInfo": "Страница {page} из {pages}, всего {total}",
+		"previousPage": "Назад",
+		"nextPage": "Вперёд"
 	},
 	"MetaData": {
 		"NewsPage": {
