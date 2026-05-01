@@ -6,15 +6,14 @@ import useAuth from '@/src/shared/stores/auth';
 import { cn } from '@/src/shared/utils';
 import { ChannelLink } from '@/src/shared/utils';
 import { isTmaPath } from '@/src/shared/utils';
-import { openTwitrisDirect, openTwitrisWebApp } from '@/src/shared/utils';
+import { openTwitrisWebApp } from '@/src/shared/utils';
 import { useCatalogMenuStore } from '../catalog-store';
 import { Button } from '@/src/shared/components/ui';
-import { EducationButton } from '@/src/features/education-button';
 import { LocaleSwitcher } from '@/src/features/locale-switcher';
 import { CitiesButton } from '@/src/features/cities-button';
 import { ProfileButton } from '@/src/features/profile-button';
 import IcNewspaper from '@/src/app/icons/ic_newspaper.svg';
-import IcTwitris from '@/src/app/icons/ic_twitris.svg';
+import { KeyRound } from 'lucide-react';
 
 // filters
 import { $fetchCP } from '@/src/app/client-api/model';
@@ -272,24 +271,22 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
           
           <div className="flex flex-row items-end gap-2.5 absolute right-20 bottom-0 md:absolute md:right-20 md:bottom-0">
             <div className="flex flex-col gap-2.5">
-              {isAuthorized && <ProfileButton />}
               <LocaleSwitcher />
             </div>
             <div className="flex flex-col gap-2.5">
-              <Button
-                variant="menu"
-                type="button"
-                onClick={() =>
-                  isAuthorized
-                    ? openTwitrisDirect(locale)
-                    : openTwitrisWebApp(locale)
-                }
-              >
-                <span className="flex size-full items-center justify-center">
-                  <IcTwitris className="block h-8 w-8 shrink-0" />
-                </span>
-              </Button>
-              <EducationButton />
+              {isAuthorized ? (
+                <ProfileButton />
+              ) : (
+                <Button
+                  variant="menu"
+                  type="button"
+                  onClick={() => openTwitrisWebApp(locale)}
+                >
+                  <span className="flex size-full items-center justify-center">
+                    <KeyRound className="block h-8 w-8 shrink-0" />
+                  </span>
+                </Button>
+              )}
             </div>
           </div>
         </div>
