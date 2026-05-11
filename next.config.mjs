@@ -17,6 +17,10 @@ const config = {
 			},
 			{
 				protocol: 'https',
+				hostname: 'spaininter.nbg1.your-objectstorage.com'
+			},
+			{
+				protocol: 'https',
 				hostname: 'api.spaininter.com'
 			},
 			{
