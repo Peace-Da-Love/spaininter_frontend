@@ -28,7 +28,7 @@ export const NewsCard: FC<NewsCardProps> = ({
 			? hashtags
 			: [{ hashtagName, hashtagLink, hashtagId: 0 }];
 
-	const hashtagLinks = displayHashtags.map(hashtag => (
+	const hashtagLinks = displayHashtags.slice(0, 3).map(hashtag => (
 		<ChannelLink
 			key={`${hashtag.hashtagName}-${hashtag.hashtagLink}`}
 			locale={locale}
