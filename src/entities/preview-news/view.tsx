@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { NewsProps } from '@/src/shared/types';
 import { ChannelLink, cn, formatCategory } from '@/src/shared/utils';
-import { formatDateTime } from '@/src/shared/utils';
 import { useLocale } from 'next-intl';
 
 interface PreviewNewsProps extends NewsProps {
@@ -11,7 +10,6 @@ interface PreviewNewsProps extends NewsProps {
 export const PreviewNews: FC<PreviewNewsProps> = ({
 	imageUrl,
 	link,
-	date,
 	hashtagName,
 	hashtags,
 	title,
@@ -96,13 +94,6 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 							</span>
 						)}
 					</ChannelLink>
-					<span
-						className={
-							'inline-block text-white text-[10px] md:text-sm font-medium backdrop-blur-xl bg-gray-300/40 rounded-2xl p-1.5'
-						}
-					>
-						{formatDateTime(date, locale)}
-					</span>
 				</div>
 			</div>
 		</div>

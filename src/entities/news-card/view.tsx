@@ -1,4 +1,4 @@
-import { cn, formatDateTime, formatCategory } from '@/src/shared/utils';
+import { cn, formatCategory } from '@/src/shared/utils';
 import { ImageLoader } from './ui/image-loader';
 import { FC } from 'react';
 import { NewsProps } from '@/src/shared/types';
@@ -12,7 +12,6 @@ interface NewsCardProps extends NewsProps {
 export const NewsCard: FC<NewsCardProps> = ({
 	imageUrl,
 	link,
-	date,
 	hashtagName,
 	title,
 	hashtags,
@@ -91,11 +90,6 @@ export const NewsCard: FC<NewsCardProps> = ({
 				>
 					{title}
 				</ChannelLink>
-				<span
-					className={'block text-secondary font-medium text-[10px] leading-3'}
-				>
-					{formatDateTime(date, locale)}
-				</span>
 			</div>
 		</div>
 	);
@@ -169,13 +163,6 @@ export const NewsCard: FC<NewsCardProps> = ({
 						'hidden sm:block w-full border border-[#607698] mb-2.5 opacity-30'
 					}
 				></div>
-				<span
-					className={
-						'text-[10px] leading-3 sm:text-base text-secondary font-medium'
-					}
-				>
-					{formatDateTime(date, locale)}
-				</span>
 			</div>
 		</div>
 	);
