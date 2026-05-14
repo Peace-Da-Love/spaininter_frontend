@@ -104,55 +104,90 @@ export default async function LocaleLayout({
           </Provider>
         </NextIntlClientProvider>
 
-			<Script
-				async
-				defer
-				data-domain='spaininter.com'
-				src='https://stat.spaininter.com/js/script.js'
-			/>
-			<Script id="plausible-override" strategy="afterInteractive">
+			<Script id="spaininter-stat" strategy="afterInteractive">
 				{`
 				(function() {
+					const api = 'https://stat.spaininter.com/api/event';
+					const domain = 'spaininter.com';
+
 					const shortenUrl = (href) => {
 						try {
 							const url = new URL(href);
-							const path = url.pathname;
-							const parts = path.split('/');
-							const slug = parts.pop() || '';
-							
-							// Extract ID from slug (last part after dash)
-							if (slug) {
-								const slugParts = slug.split('-');
-								const id = slugParts.pop();
-								
-								if (parts[1] && parts[2] && id) {
-									const locale = parts[1];
-									const hashtag = parts[2];
-									url.pathname = \`/\${locale}/\${hashtag}/\${id}\`;
+							const parts = url.pathname.split('/').filter(Boolean);
+							const [locale, section, slug] = parts;
+
+							if (section === 'news' && slug) {
+								const id = slug.split('-')[0];
+
+								if (locale && /^\\d+$/.test(id)) {
+									url.pathname = \`/\${locale}/news/\${id}\`;
 									return url.toString();
 								}
 							}
+
 							return href;
 						} catch {
 							return href;
 						}
 					};
 
-					const interval = setInterval(() => {
-						if (window.plausible) {
-							clearInterval(interval);
-							const original = window.plausible;
-							window.plausible = function(event, options) {
-								if (!options) options = {};
-								if (!options.url && event === 'pageview') {
-									options.url = shortenUrl(window.location.href);
-								} else if (options.url) {
-									options.url = shortenUrl(options.url);
-								}
-								return original.call(this, event, options);
-							};
+					const track = (event, options) => {
+						if (/^localhost$|^127(\\.[0-9]+){0,2}\\.[0-9]+$|^\\[::1?\\]$/.test(window.location.hostname) || window.location.protocol === 'file:') {
+							options && options.callback && options.callback();
+							return;
 						}
-					}, 100);
+
+						const xhr = new XMLHttpRequest();
+						const payload = {
+							name: event,
+							url: shortenUrl(options && options.url ? options.url : window.location.href),
+							domain: domain,
+							referrer: document.referrer || null
+						};
+
+						xhr.open('POST', api, true);
+						xhr.setRequestHeader('Content-Type', 'text/plain');
+						xhr.send(JSON.stringify(payload));
+						xhr.onreadystatechange = function() {
+							if (xhr.readyState === 4 && options && options.callback) {
+								options.callback();
+							}
+						};
+					};
+
+					const queuedEvents = window.plausible && window.plausible.q || [];
+					window.plausible = track;
+					for (let i = 0; i < queuedEvents.length; i++) {
+						track.apply(this, queuedEvents[i]);
+					}
+
+					let previousPathname;
+					const trackPageview = () => {
+						if (previousPathname !== window.location.pathname) {
+							previousPathname = window.location.pathname;
+							track('pageview');
+						}
+					};
+
+					const history = window.history;
+					if (history.pushState) {
+						const originalPushState = history.pushState;
+						history.pushState = function() {
+							originalPushState.apply(this, arguments);
+							trackPageview();
+						};
+						window.addEventListener('popstate', trackPageview);
+					}
+
+					if (document.visibilityState === 'prerender') {
+						document.addEventListener('visibilitychange', function() {
+							if (!previousPathname && document.visibilityState === 'visible') {
+								trackPageview();
+							}
+						});
+					} else {
+						trackPageview();
+					}
 				})();
 				`}
 			</Script>

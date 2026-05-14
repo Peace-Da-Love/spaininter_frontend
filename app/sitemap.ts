@@ -66,7 +66,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		// Only add category main pages (first page) to avoid duplicates
 		categoryPages = categoryMetadata.data.flatMap(category =>
 			locales.map(locale => ({
-				url: `${SITE_URL}/${locale}/hashtag/${encodeURIComponent(category.hashtag_name)}`,
+				url: `${SITE_URL}/${locale}/hashtag/${encodeURIComponent(category.hashtag_name)}/1`,
 				changeFrequency: 'daily' as const,
 				priority: 0.6,
 				lastModified: getLastModified(category.last_modified)
@@ -126,7 +126,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	if (newsMetaData) {
 		newsPages = newsMetaData.data.flatMap(news =>
 			news.newsTranslations.map(translation => ({
-				url: `${SITE_URL}/${translation.language.language_code}/${translation.link}`,
+				url: `${SITE_URL}/${translation.language.language_code}/news/${translation.link}`,
 				changeFrequency: 'yearly' as const,
 				priority: 0.3,
 				lastModified: getLastModified(news.updatedAt)
