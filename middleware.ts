@@ -56,6 +56,17 @@ function parseLocalePath(pathname: string): {
     return NextResponse.next();
   }
 
+  if (localePath && localePath.segmentsAfterLocale[0] === 'category') {
+    const [, categoryName, page] = localePath.segmentsAfterLocale;
+
+    if (categoryName) {
+      const redirectUrl = request.nextUrl.clone();
+      redirectUrl.pathname = `/${localePath.locale}/hashtag/${categoryName}/${page || '1'}`;
+
+      return NextResponse.redirect(redirectUrl, 301);
+    }
+  }
+
 	// All other routes are handled by next-intl
 	const response = intlMiddleware(request);
   return response;
