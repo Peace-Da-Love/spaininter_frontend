@@ -19,6 +19,7 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 	city
 }) => {
 	const locale = useLocale();
+	const hasCity = Boolean(city?.trim());
 	const displayHashtags =
 		hashtags && hashtags.length > 0
 			? hashtags
@@ -63,13 +64,15 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 								{formatCategory(hashtag.hashtagName)}
 							</ChannelLink>
 						))}
-						<span
-							className={
-								'capitalize inline-block backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-[10px] md:text-sm font-medium rounded-[20px] mb-1.5'
-							}
-						>
-							{city}
-						</span>
+						{hasCity && (
+							<span
+								className={
+									'capitalize inline-block backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-[10px] md:text-sm font-medium rounded-[20px] mb-1.5'
+								}
+							>
+								{city}
+							</span>
+						)}
 					</div>
 					<ChannelLink
 						locale={locale}

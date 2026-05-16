@@ -22,6 +22,7 @@ export const NewsCard: FC<NewsCardProps> = ({
 }) => {
 	const locale = useLocale();
 	const isHorizontal = variant === 'horizontal';
+	const hasCity = Boolean(city?.trim());
 	const displayHashtags =
 		hashtags && hashtags.length > 0
 			? hashtags
@@ -43,7 +44,7 @@ export const NewsCard: FC<NewsCardProps> = ({
 			key={`${hashtag.hashtagName}-${hashtag.hashtagLink}`}
 			locale={locale}
 			href={`/hashtag/${encodeURIComponent(hashtag.hashtagLink)}/1`}
-			className='hidden sm:inline-block backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px]'
+			className='hidden sm:inline-block shrink-0 whitespace-nowrap backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px]'
 		>
 			{formatCategory(hashtag.hashtagName)}
 		</ChannelLink>
@@ -74,13 +75,15 @@ export const NewsCard: FC<NewsCardProps> = ({
 					<div className='flex flex-wrap items-center gap-1'>
 						{hashtagLinks}
 					</div>
-					<span
-						className={
-							'capitalize block text-secondary font-medium text-[10px] leading-3'
-						}
-					>
-						{city}
-					</span>
+					{hasCity && (
+						<span
+							className={
+								'capitalize block text-secondary font-medium text-[10px] leading-3'
+							}
+						>
+							{city}
+						</span>
+					)}
 				</div>
 				<ChannelLink
 					locale={locale}
@@ -118,17 +121,19 @@ export const NewsCard: FC<NewsCardProps> = ({
 				</ChannelLink>
 				<div
 					className={
-						'flex items-center gap-3 absolute bottom-[15px] left-[20px]'
+						'absolute bottom-[15px] left-[20px] right-[20px] flex max-h-[30px] flex-wrap items-start gap-3 overflow-hidden'
 					}
 				>
 					{overlayHashtagLinks}
-					<span
-						className={
-							'hidden sm:inline-block capitalize backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px] '
-						}
-					>
-						{city}
-					</span>
+					{hasCity && (
+						<span
+							className={
+								'hidden sm:inline-block shrink-0 whitespace-nowrap capitalize backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px] '
+							}
+						>
+							{city}
+						</span>
+					)}
 				</div>
 			</div>
 			<div
@@ -140,13 +145,15 @@ export const NewsCard: FC<NewsCardProps> = ({
 					<div className='flex flex-wrap items-center gap-1 sm:hidden'>
 						{hashtagLinks}
 					</div>
-					<span
-						className={
-							'capitalize block sm:hidden text-secondary font-medium text-[10px] leading-3'
-						}
-					>
-						{city}
-					</span>
+					{hasCity && (
+						<span
+							className={
+								'capitalize block sm:hidden text-secondary font-medium text-[10px] leading-3'
+							}
+						>
+							{city}
+						</span>
+					)}
 				</div>
 				<ChannelLink
 					locale={locale}
