@@ -7,5 +7,9 @@ export const metadata: Metadata = {
 };
 
 export default function NotFound() {
-	return <NotFoundPage />;
+	return (
+		<div data-spaininter-not-found='true'>
+			<NotFoundPage />
+		</div>
+	);
 }

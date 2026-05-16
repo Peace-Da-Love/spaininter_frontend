@@ -162,11 +162,21 @@ export default async function LocaleLayout({
 					}
 
 					let previousPathname;
+					const isNotFoundPage = () => Boolean(
+						document.querySelector('[data-spaininter-not-found="true"]')
+					);
 					const trackPageview = () => {
 						if (previousPathname !== window.location.pathname) {
 							previousPathname = window.location.pathname;
+							if (isNotFoundPage()) {
+								return;
+							}
 							track('pageview');
 						}
+					};
+
+					const schedulePageview = () => {
+						window.setTimeout(trackPageview, 0);
 					};
 
 					const history = window.history;
@@ -174,9 +184,9 @@ export default async function LocaleLayout({
 						const originalPushState = history.pushState;
 						history.pushState = function() {
 							originalPushState.apply(this, arguments);
-							trackPageview();
+							schedulePageview();
 						};
-						window.addEventListener('popstate', trackPageview);
+						window.addEventListener('popstate', schedulePageview);
 					}
 
 					if (document.visibilityState === 'prerender') {
