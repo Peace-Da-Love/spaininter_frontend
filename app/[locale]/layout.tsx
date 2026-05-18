@@ -110,27 +110,6 @@ export default async function LocaleLayout({
 					const api = 'https://stat.spaininter.com/api/event';
 					const domain = 'spaininter.com';
 
-					const shortenUrl = (href) => {
-						try {
-							const url = new URL(href);
-							const parts = url.pathname.split('/').filter(Boolean);
-							const [locale, section, slug] = parts;
-
-							if (section === 'news' && slug) {
-								const id = slug.split('-')[0];
-
-								if (locale && /^\\d+$/.test(id)) {
-									url.pathname = \`/\${locale}/news/\${id}\`;
-									return url.toString();
-								}
-							}
-
-							return href;
-						} catch {
-							return href;
-						}
-					};
-
 					const track = (event, options) => {
 						if (/^localhost$|^127(\\.[0-9]+){0,2}\\.[0-9]+$|^\\[::1?\\]$/.test(window.location.hostname) || window.location.protocol === 'file:') {
 							options && options.callback && options.callback();
@@ -140,7 +119,7 @@ export default async function LocaleLayout({
 						const xhr = new XMLHttpRequest();
 						const payload = {
 							name: event,
-							url: shortenUrl(options && options.url ? options.url : window.location.href),
+							url: options && options.url ? options.url : window.location.href,
 							domain: domain,
 							referrer: document.referrer || null
 						};
