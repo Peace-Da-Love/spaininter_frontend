@@ -114,11 +114,18 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 	}, [isOpen, toggle]);
 	
 	return (
-		<>
+		<div
+			className={cn(
+				'fixed bottom-2.5 right-2.5 z-50 flex flex-col items-end gap-2.5',
+				className
+			)}
+			data-menu-button
+		>
+			<CitiesButton />
+
 			<Button 
 				variant={'menu'} 
 				type="button"
-				className={cn(className)}
 				onClick={() => toggle()}
 				data-menu-button
 			>
@@ -147,14 +154,14 @@ export const SiteMenu: FC<Props> = ({ className }) => {
             {isOpen && (
                 <div 
                     className={cn(
-                        "fixed bottom-2.5 right-2.5 z-50 flex flex-col gap-2.5"
+                        "absolute bottom-0 right-0 z-50 flex flex-col gap-2.5"
                     )}
                     ref={menuRef}
                     data-menu-content
                     onClick={(e) => e.stopPropagation()}
                 >
 					
-                    <div className="flex flex-col gap-2.5 absolute bottom-20 right-0">
+                    <div className="flex flex-col gap-2.5 absolute bottom-[164px] right-0">
 						<CreateNews locale={locale} isVisible={isNewsCatalogPage} />
 						{!isPropertyCatalogPage && (
 							<FlatCatalogButton />
@@ -167,8 +174,6 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 								</ChannelLink>
 							</Button>
 						)}
-							
-						<CitiesButton />
 					</div>
 					
 					
@@ -195,6 +200,6 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 					</div>
 				</div>
 			)}
-		</>
+		</div>
 	);
 };

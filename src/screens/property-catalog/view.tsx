@@ -201,7 +201,6 @@ export const PropertyCatalogPage: FC<Props> = ({
       />
 
       <SiteMenuPropertyCatalogMobile
-        className="fixed bottom-2.5 right-2.5 z-50"
         labels={filterLabels}
         selectedProvince={selectedProvince}
         setSelectedProvince={setSelectedProvince}
