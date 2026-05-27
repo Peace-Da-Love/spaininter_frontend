@@ -1,8 +1,7 @@
 'use client';
 
 import { FC, useState } from 'react';
-import { priceFormatter, tonPriceFormatter } from '@/src/shared/utils';
-import IcTon from '@/src/app/icons/ic-ton.svg';
+import { priceFormatter } from '@/src/shared/utils';
 import { FeatureMiniCard } from '@/src/shared/components/shared/flat-feature-minicard';
 import { MiniCardIcons } from '@/src/shared/components/shared/flat-feature-minicard';
 import { MinicardLabels } from '@/src/shared/types';
@@ -10,7 +9,6 @@ import { MinicardLabels } from '@/src/shared/types';
 type Props = {
   title_truncated: string;
   price: string | number | undefined;
-  currency?: string;
   town?: string;
   description?: string;
   features?: Record<string, any>;
@@ -20,13 +18,11 @@ type Props = {
   onCloseOverlay: () => void;
   minicardLabels: MinicardLabels
   refCode?: string;
-  price_ton?: number;
 };
 
 export const InfoCardOverlay: FC<Props> = ({
   title_truncated,
   price,
-  currency,
   town,
   description,
   features,
@@ -35,15 +31,13 @@ export const InfoCardOverlay: FC<Props> = ({
   onOpenModal,
   onCloseOverlay,
   minicardLabels,
-  refCode,
-  price_ton
+  refCode
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   // Validation and fallback
   const safeTitle = title_truncated || '';
   const safePrice = Number(price) || 0;
-  const safeCurrency = currency || '';
   const safeTown = town || '';
   const safeRef = refCode || '';
   const safeDescription = description || '';
@@ -53,7 +47,6 @@ export const InfoCardOverlay: FC<Props> = ({
 
   const priceNum = Number(safePrice);
   const finalPrice = Number.isFinite(priceNum) ? priceNum : 0;
-  const safePriceTon = typeof price_ton === 'number' && Number.isFinite(price_ton) ? price_ton : undefined;
 
   const areaRaw = safeFeatures?.['Useable Build Space'];
   const area = typeof areaRaw === 'string' ? areaRaw.split(' ')[0] : areaRaw;
@@ -84,14 +77,7 @@ export const InfoCardOverlay: FC<Props> = ({
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0">
             <div className="text-lg font-semibold text-gray-800 truncate">
-              {safePriceTon ? (
-                <span className="inline-flex items-center gap-2">
-                  <span>{tonPriceFormatter(safePriceTon)}</span>
-                  <IcTon className="w-4 h-4" aria-label="TON" role="img" />
-                </span>
-              ) : (
-                `${priceFormatter(finalPrice)} ${safeCurrency}`
-              )}
+              {priceFormatter(finalPrice)}
             </div>
             {safeTown && 
               <div className="text-m md:text-l text-gray-900 font-semibold truncate mt-0.5">{safeTown}</div>
