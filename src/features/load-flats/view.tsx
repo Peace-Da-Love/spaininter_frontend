@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { FlatCard } from '@/src/entities/flat-card';
 import { Property } from '@/src/shared/types';
 import { $fetchCP } from '@/src/app/client-api/model';
+import { PropertyCurrencyRates, PropertyDisplayCurrency } from '@/src/shared/utils';
 
 
 type Filters = {
@@ -23,11 +24,21 @@ type Props = {
   loadMore: string;
   loading: string;
   tonRate: number;
+  displayCurrency: PropertyDisplayCurrency;
+  currencyRates: PropertyCurrencyRates;
 };
 
 const LIMIT = 12;
 
-export const LoadFlats = ({ locale, filters, currentCount, loading, tonRate }: Props) => {
+export const LoadFlats = ({
+  locale,
+  filters,
+  currentCount,
+  loading,
+  tonRate,
+  displayCurrency,
+  currencyRates,
+}: Props) => {
   const pathname = usePathname();
   const isTma = /\/tma(\/|$)/.test(pathname);
   const channelBase = isTma ? `/${locale}/tma` : `/${locale}`;
@@ -135,6 +146,8 @@ export const LoadFlats = ({ locale, filters, currentCount, loading, tonRate }: P
               title={item.title}
               price={item.price}
               price_ton={item.price_ton}
+              displayCurrency={displayCurrency}
+              currencyRates={currencyRates}
               beds={item.beds}
               features={item.features}
             />

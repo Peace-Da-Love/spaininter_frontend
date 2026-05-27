@@ -3,7 +3,12 @@
 import { FC, useState, useEffect, useMemo, useRef } from 'react';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import useAuth from '@/src/shared/stores/auth';
-import { cn } from '@/src/shared/utils';
+import {
+  cn,
+  getNextPropertyCurrency,
+  PropertyDisplayCurrency,
+  PROPERTY_CURRENCY_SYMBOLS
+} from '@/src/shared/utils';
 import { ChannelLink } from '@/src/shared/utils';
 import { isTmaPath } from '@/src/shared/utils';
 import { openTwitrisWebApp } from '@/src/shared/utils';
@@ -13,6 +18,7 @@ import { LocaleSwitcher } from '@/src/features/locale-switcher';
 import { CitiesButton } from '@/src/features/cities-button';
 import { ProfileButton } from '@/src/features/profile-button';
 import IcNewspaper from '@/src/app/icons/ic_newspaper.svg';
+import IcTon from '@/src/app/icons/ic-ton.svg';
 import { KeyRound } from 'lucide-react';
 
 // filters
@@ -27,6 +33,8 @@ import { SelectedFiltersDisplay } from '@/src/widgets/catalog-filters';
 
 type Props = {
   className?: string;
+  displayCurrency: PropertyDisplayCurrency;
+  onCurrencyChange: (currency: PropertyDisplayCurrency) => void;
 } & PropertyCatalogFiltersProps;
 
 export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
@@ -43,6 +51,8 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
   refValue,
   setRefValue,
   setError,
+  displayCurrency,
+  onCurrencyChange,
 }) => {
   const { toggle, isOpen } = useCatalogMenuStore();
   const [provinceList, setProvinceList] = useState<Place[]>([]);
@@ -208,6 +218,21 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
         >
           
           <div className="flex flex-col gap-2.5 absolute bottom-[164px] right-0">
+            <Button
+              variant="menu"
+              type="button"
+              onClick={() => onCurrencyChange(getNextPropertyCurrency(displayCurrency))}
+              aria-label="Change property currency"
+              title="Change property currency"
+            >
+              <span className="flex size-full items-center justify-center text-2xl font-bold text-primary">
+                {displayCurrency === 'TON' ? (
+                  <IcTon className="h-8 w-8" aria-label="TON" role="img" />
+                ) : (
+                  PROPERTY_CURRENCY_SYMBOLS[displayCurrency]
+                )}
+              </span>
+            </Button>
             
             <MobileFilterPrice
               priceOrder={priceOrder}

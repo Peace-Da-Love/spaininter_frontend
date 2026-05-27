@@ -5,6 +5,7 @@ import { getCatalog } from '@/src/app/server-actions';
 import { PropertyCatalogFilterLabels } from '@/src/shared/types';
 import { locales } from '@/src/shared/configs';
 import { preloadTonRate, getCachedTonRate } from '@/src/shared/utils/ton-converter';
+import { fetchPropertyCurrencyRates } from '@/src/shared/utils/property-currency';
 
 const SITE_URL = process.env.SITE_URL;
 
@@ -46,6 +47,7 @@ export default async function Page({ params: { locale }, searchParams }: Props) 
 
   await preloadTonRate();
   const tonRate = getCachedTonRate();
+  const currencyRates = await fetchPropertyCurrencyRates(tonRate);
 
   const initialData = await getCatalog({
     locale,
@@ -84,6 +86,7 @@ export default async function Page({ params: { locale }, searchParams }: Props) 
       data={initialData}
       searchParams={searchParams}
       tonRate={tonRate}
+      currencyRates={currencyRates}
     />
   );
 }

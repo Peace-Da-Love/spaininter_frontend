@@ -5,6 +5,7 @@ export * from './capitalize';
 export * from './extract-title';
 export * from './extract-description';
 export * from './price-formatter';
+export * from './property-currency';
 export * from './format-category';
 export * from './ton-converter';
 export * from './channel-route';
