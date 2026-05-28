@@ -218,21 +218,6 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
         >
           
           <div className="flex flex-col gap-2.5 absolute bottom-[164px] right-0">
-            <Button
-              variant="menu"
-              type="button"
-              onClick={() => onCurrencyChange(getNextPropertyCurrency(displayCurrency))}
-              aria-label="Change property currency"
-              title="Change property currency"
-            >
-              <span className="flex size-full items-center justify-center text-2xl font-bold text-primary">
-                {displayCurrency === 'TON' ? (
-                  <IcTon className="h-8 w-8" aria-label="TON" role="img" />
-                ) : (
-                  PROPERTY_CURRENCY_SYMBOLS[displayCurrency]
-                )}
-              </span>
-            </Button>
             
             <MobileFilterPrice
               priceOrder={priceOrder}
@@ -301,6 +286,21 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
           
           <div className="flex flex-row items-end gap-2.5 absolute right-20 bottom-0">
             <div className="flex flex-col gap-2.5">
+              <Button
+                variant="menu"
+                type="button"
+                onClick={() => onCurrencyChange(getNextPropertyCurrency(displayCurrency))}
+                aria-label="Change property currency"
+                title="Change property currency"
+              >
+                <span className="flex size-full items-center justify-center text-2xl font-bold text-primary">
+                  {displayCurrency === 'TON' ? (
+                    <IcTon className="h-8 w-8" aria-label="TON" role="img" />
+                  ) : (
+                    PROPERTY_CURRENCY_SYMBOLS[displayCurrency]
+                  )}
+                </span>
+              </Button>
               <LocaleSwitcher />
             </div>
             <div className="flex flex-col gap-2.5">
