@@ -73,6 +73,7 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
   const pcIndex = parts.indexOf('property-catalog');
   const urlProvince = pcIndex !== -1 && parts.length > pcIndex + 1 ? decodeURIComponent(parts[pcIndex + 1]) : '';
   const urlTown = pcIndex !== -1 && parts.length > pcIndex + 2 ? decodeURIComponent(parts[pcIndex + 2]) : '';
+  const nextDisplayCurrency = getNextPropertyCurrency(displayCurrency);
   
   // open/close menu based on presence of filters in URL
   useEffect(() => {
@@ -289,15 +290,15 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
               <Button
                 variant="menu"
                 type="button"
-                onClick={() => onCurrencyChange(getNextPropertyCurrency(displayCurrency))}
+                onClick={() => onCurrencyChange(nextDisplayCurrency)}
                 aria-label="Change property currency"
                 title="Change property currency"
               >
                 <span className="flex size-full items-center justify-center text-2xl font-bold text-primary">
-                  {displayCurrency === 'TON' ? (
+                  {nextDisplayCurrency === 'TON' ? (
                     <IcTon className="h-8 w-8" aria-label="TON" role="img" />
                   ) : (
-                    PROPERTY_CURRENCY_SYMBOLS[displayCurrency]
+                    PROPERTY_CURRENCY_SYMBOLS[nextDisplayCurrency]
                   )}
                 </span>
               </Button>
