@@ -35,7 +35,7 @@ export async function generateMetadata({
         'x-default': hrefLangs['en'],
         ...hrefLangs,
       },
-      canonical: `${SITE_URL}/en/property-catalog`,
+      canonical: hrefLangs[locale],
     }
   };
 }

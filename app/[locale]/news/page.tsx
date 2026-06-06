@@ -29,7 +29,7 @@ export async function generateMetadata({
                 'x-default': hrefLangs['en'],
                 ...hrefLangs
             },
-            canonical: `${SITE_URL}/en/news`
+            canonical: hrefLangs[locale]
         }
     };
 }
