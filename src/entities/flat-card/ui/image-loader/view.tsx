@@ -7,10 +7,10 @@ import Image from 'next/image';
 type Props = {
 	imageUrl: string;
 	className?: string;
-  	alt?: string;
+	alt?: string;
 };
 
-export const ImageLoader: FC<Props> = ({ imageUrl, className }) => {
+export const ImageLoader: FC<Props> = ({ imageUrl, className, alt = '' }) => {
 	const [imageLoaded, setImageLoaded] = useState<boolean>(false);
 
 	return (
@@ -25,7 +25,7 @@ export const ImageLoader: FC<Props> = ({ imageUrl, className }) => {
 			)}
 			<Image
 				src={imageUrl}
-				alt={`News image`}
+				alt={alt}
 				className={cn(
 					`object-cover w-full h-full absolute top-0 left-0`,
 					imageLoaded ? 'opacity-100' : 'opacity-0',
