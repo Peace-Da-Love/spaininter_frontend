@@ -5,6 +5,9 @@ import { getCatalog } from '@/src/app/server-actions';
 import { PropertyCatalogFilterLabels } from '@/src/shared/types';
 import { preloadTonRate, getCachedTonRate } from '@/src/shared/utils/ton-converter';
 import { fetchPropertyCurrencyRates } from '@/src/shared/utils/property-currency';
+import { locales } from '@/src/shared/configs';
+
+const SITE_URL = process.env.SITE_URL;
 
 type Props = {
   params: { locale: string; province: string; town: string };
@@ -12,14 +15,28 @@ type Props = {
 };
 
 export async function generateMetadata({
-  params: { locale, town },
+  params: { locale, province, town },
 }: Omit<Props, 'children'>): Promise<Metadata> {
   const t = await getTranslations({ locale });
+  const provinceName = decodeURIComponent(province);
   const townName = decodeURIComponent(town);
+  const provinceSlug = encodeURIComponent(provinceName);
+  const townSlug = encodeURIComponent(townName);
+  const hrefLangs: Record<string, string> = locales.reduce((acc, loc) => {
+    acc[loc] = `${SITE_URL}/${loc}/property-catalog/${provinceSlug}/${townSlug}`;
+    return acc;
+  }, {} as Record<string, string>);
 
   return {
     title: t('MetaData.PropertyCatalogPage.titleTown', { town: townName }),
     description: t('MetaData.PropertyCatalogPage.descriptionTown', { town: townName }),
+    alternates: {
+      languages: {
+        'x-default': hrefLangs['en'],
+        ...hrefLangs
+      },
+      canonical: hrefLangs[locale]
+    },
     openGraph: {
       title: t('MetaData.PropertyCatalogPage.titleTown', { town: townName }),
       description: t('MetaData.PropertyCatalogPage.descriptionTown', { town: townName }),
