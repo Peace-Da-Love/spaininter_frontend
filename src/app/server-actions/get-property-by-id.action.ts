@@ -3,41 +3,47 @@
 import { Property } from '@/src/shared/types';
 import { $fetchP } from '@/src/app/server-api/model';
 import { convertEurToTon } from '@/src/shared/utils/ton-converter';
+import { locales } from '@/src/shared/configs';
 
 type Params = {
 	slug: string;
 	locale: string;
 };
 
+type PropertyLocalizedLink = {
+	locale: (typeof locales)[number];
+	slug: string;
+};
+
+function getPropertyIdFromSlug(slug: string): string | undefined {
+	const id = slug.split('-').pop();
+	return id && !isNaN(Number(id)) ? id : undefined;
+}
 
 export async function getPropertyById(
 	params: Params
 ): Promise<Property | undefined> {
 	try {
-		// Extract ID from slug (last part after last dash)
-		const id = params.slug.split('-').pop();
-		if (!id || isNaN(Number(id))) {
-			console.error("[getPropertyById] Invalid slug format:", params.slug);
+		const id = getPropertyIdFromSlug(params.slug);
+		if (!id) {
+			console.error('[getPropertyById] Invalid slug format:', params.slug);
 			return undefined;
 		}
 
-		const response = await $fetchP(
-			`properties/${id}`,
-			{
-				headers: {
+		const response = await $fetchP(`properties/${id}`, {
+			headers: {
 				'Accept-Language': params.locale,
 				Accept: 'application/json'
-				}
 			}
-		);
+		});
 
 		if (!response.ok) {
-			const text = await response.text();
+			await response.text();
 			return undefined;
 		}
 
 		const data = (await response.json()) as Property;
-        
+
 		// Convert EUR price to TON
 		if (data.price && data.currency === 'EUR') {
 			try {
@@ -46,9 +52,47 @@ export async function getPropertyById(
 				console.warn('[getPropertyById] Failed to convert price to TON:', error);
 			}
 		}
-        
+
 		return data;
 	} catch (error) {
 		throw error;
 	}
+}
+
+export async function getPropertyLocalizedLinks(
+	slug: string
+): Promise<PropertyLocalizedLink[]> {
+	const id = getPropertyIdFromSlug(slug);
+
+	if (!id) {
+		return [];
+	}
+
+	const links = await Promise.all(
+		locales.map(async locale => {
+			const response = await $fetchP(`properties/${id}`, {
+				headers: {
+					'Accept-Language': locale,
+					Accept: 'application/json'
+				}
+			});
+
+			if (!response.ok) {
+				return undefined;
+			}
+
+			const property = (await response.json()) as Property;
+
+			if (!property.slug) {
+				return undefined;
+			}
+
+			return {
+				locale,
+				slug: property.slug
+			};
+		})
+	);
+
+	return links.filter((link): link is PropertyLocalizedLink => Boolean(link));
 }

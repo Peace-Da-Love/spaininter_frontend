@@ -13,9 +13,10 @@ const getLastModified = (value?: string | Date | null): Date => {
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	// Courses pages (with localized paths)
 	const coursesPages: MetadataRoute.Sitemap = locales.map(locale => {
-		const coursesPath = typeof pathnames['/courses'] === 'object' 
-			? pathnames['/courses'][locale as keyof typeof pathnames['/courses']]
-			: '/courses';
+		const coursesPath =
+			typeof pathnames['/courses'] === 'object'
+				? pathnames['/courses'][locale as keyof typeof pathnames['/courses']]
+				: '/courses';
 		return {
 			url: `${SITE_URL}/${locale}${coursesPath}`,
 			changeFrequency: 'monthly' as const,
@@ -68,13 +69,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
 	// Get places metadata for province and town pages
 	const placesMetadata = await metadataAction.getPlacesMetadata();
-	
+
 	let propertyProvincePages: MetadataRoute.Sitemap = [];
 	let propertyTownPages: MetadataRoute.Sitemap = [];
 
 	if (placesMetadata) {
 		// Generate province pages with high priority
-		propertyProvincePages = placesMetadata.flatMap(province => 
+		propertyProvincePages = placesMetadata.flatMap(province =>
 			locales.map(locale => ({
 				url: `${SITE_URL}/${locale}/property-catalog/${encodeURIComponent(province.name)}`,
 				changeFrequency: 'daily' as const,
@@ -84,8 +85,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		);
 
 		// Generate town pages with medium priority
-		propertyTownPages = placesMetadata.flatMap(province => 
-			province.cities.flatMap(town => 
+		propertyTownPages = placesMetadata.flatMap(province =>
+			province.cities.flatMap(town =>
 				locales.map(locale => ({
 					url: `${SITE_URL}/${locale}/property-catalog/${encodeURIComponent(province.name)}/${encodeURIComponent(town.name)}`,
 					changeFrequency: 'daily' as const,
@@ -96,20 +97,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		);
 	}
 
-	// Get properties metadata for individual property pages
-	const propertiesMetadata = await metadataAction.getPropertiesMetadata();
-	let individualPropertyPages: MetadataRoute.Sitemap = [];
-
-	if (propertiesMetadata && propertiesMetadata.length > 0) {
-		individualPropertyPages = propertiesMetadata.flatMap(property => 
-			locales.map(locale => ({
-				url: `${SITE_URL}/${locale}/property-catalog/flat/${property.slug}`,
-				changeFrequency: 'weekly' as const,
-				priority: 0.4,
-				lastModified: getLastModified(property.date)
-			}))
+	// Get localized properties metadata for individual property pages
+	const propertiesMetadataByLocale = await Promise.all(
+		locales.map(async locale => ({
+			locale,
+			properties: await metadataAction.getPropertiesMetadata(locale)
+		}))
+	);
+	const individualPropertyPages: MetadataRoute.Sitemap =
+		propertiesMetadataByLocale.flatMap(({ locale, properties }) =>
+			(properties ?? [])
+				.filter(property => property.slug)
+				.map(property => ({
+					url: `${SITE_URL}/${locale}/property-catalog/flat/${property.slug}`,
+					changeFrequency: 'weekly' as const,
+					priority: 0.4,
+					lastModified: getLastModified(property.date)
+				}))
 		);
-	}
 
 	// Get news metadata
 	const newsMetaData = await metadataAction.getNewsMetadata();
