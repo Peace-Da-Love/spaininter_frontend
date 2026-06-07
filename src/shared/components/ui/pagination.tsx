@@ -40,7 +40,7 @@ PaginationItem.displayName = 'PaginationItem';
 
 type PaginationLinkProps = {
 	isActive?: boolean;
-	categoryLink: string;
+	hashtagLink: string;
 	page: number;
 } & Pick<ButtonProps, 'size'> &
 	React.ComponentProps<'a'>;
@@ -49,7 +49,7 @@ const PaginationLink = ({
 	className,
 	isActive,
 	size = 'icon',
-	categoryLink,
+	hashtagLink,
 	page,
 	...props
 }: PaginationLinkProps) => {
@@ -58,7 +58,7 @@ const PaginationLink = ({
 	return (
 		<ChannelLink
 			locale={locale}
-			href={`/category/${encodeURIComponent(categoryLink)}/${page}`}
+			href={`/hashtag/${encodeURIComponent(hashtagLink)}/${page}`}
 			aria-current={isActive ? 'page' : undefined}
 			className={cn(
 				buttonVariants({

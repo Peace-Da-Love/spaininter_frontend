@@ -1,4 +1,4 @@
-import { cn, formatDateTime, formatCategory } from '@/src/shared/utils';
+import { cn, formatCategory } from '@/src/shared/utils';
 import { ImageLoader } from './ui/image-loader';
 import { FC } from 'react';
 import { NewsProps } from '@/src/shared/types';
@@ -12,16 +12,43 @@ interface NewsCardProps extends NewsProps {
 export const NewsCard: FC<NewsCardProps> = ({
 	imageUrl,
 	link,
-	date,
-	category,
+	hashtagName,
 	title,
+	hashtags,
 	variant = 'vertical',
 	className,
-	categoryLink,
+	hashtagLink,
 	city
 }) => {
 	const locale = useLocale();
 	const isHorizontal = variant === 'horizontal';
+	const hasCity = Boolean(city?.trim());
+	const displayHashtags =
+		hashtags && hashtags.length > 0
+			? hashtags
+			: [{ hashtagName, hashtagLink, hashtagId: 0 }];
+
+	const hashtagLinks = displayHashtags.slice(0, 3).map(hashtag => (
+		<ChannelLink
+			key={`${hashtag.hashtagName}-${hashtag.hashtagLink}`}
+			locale={locale}
+			href={`/hashtag/${encodeURIComponent(hashtag.hashtagLink)}/1`}
+			className='block text-secondary font-medium text-[10px] leading-3'
+		>
+			{formatCategory(hashtag.hashtagName)}
+		</ChannelLink>
+	));
+
+	const overlayHashtagLinks = displayHashtags.slice(0, 3).map(hashtag => (
+		<ChannelLink
+			key={`${hashtag.hashtagName}-${hashtag.hashtagLink}`}
+			locale={locale}
+			href={`/hashtag/${encodeURIComponent(hashtag.hashtagLink)}/1`}
+			className='hidden sm:inline-block shrink-0 whitespace-nowrap backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px]'
+		>
+			{formatCategory(hashtag.hashtagName)}
+		</ChannelLink>
+	));
 
 	const horizontal = (
 		<div
@@ -45,22 +72,18 @@ export const NewsCard: FC<NewsCardProps> = ({
 			</div>
 			<div className={'w-full flex flex-col justify-between'}>
 				<div className={'flex items-center gap-2'}>
-					<ChannelLink
-						locale={locale}
-						href={`/category/${encodeURIComponent(categoryLink)}/1`}
-						className={
-							'block text-secondary font-medium text-[10px] leading-3'
-						}
-					>
-						{formatCategory(category)}
-					</ChannelLink>
-					<span
-						className={
-							'capitalize block text-secondary font-medium text-[10px] leading-3'
-						}
-					>
-						{city}
-					</span>
+					<div className='flex flex-wrap items-center gap-1'>
+						{hashtagLinks}
+					</div>
+					{hasCity && (
+						<span
+							className={
+								'capitalize block text-secondary font-medium text-[10px] leading-3'
+							}
+						>
+							{city}
+						</span>
+					)}
 				</div>
 				<ChannelLink
 					locale={locale}
@@ -70,11 +93,6 @@ export const NewsCard: FC<NewsCardProps> = ({
 				>
 					{title}
 				</ChannelLink>
-				<span
-					className={'block text-secondary font-medium text-[10px] leading-3'}
-				>
-					{formatDateTime(date, locale)}
-				</span>
 			</div>
 		</div>
 	);
@@ -103,25 +121,19 @@ export const NewsCard: FC<NewsCardProps> = ({
 				</ChannelLink>
 				<div
 					className={
-						'flex items-center gap-3 absolute bottom-[15px] left-[20px]'
+						'absolute bottom-[15px] left-[20px] right-[20px] flex max-h-[30px] flex-wrap items-start gap-3 overflow-hidden'
 					}
 				>
-					<ChannelLink
-						locale={locale}
-						href={`/category/${encodeURIComponent(categoryLink)}/1`}
-						className={
-							'hidden sm:inline-block backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px] '
-						}
-					>
-						{formatCategory(category)}
-					</ChannelLink>
-					<span
-						className={
-							'hidden sm:inline-block capitalize backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px] '
-						}
-					>
-						{city}
-					</span>
+					{overlayHashtagLinks}
+					{hasCity && (
+						<span
+							className={
+								'hidden sm:inline-block shrink-0 whitespace-nowrap capitalize backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-xs font-medium rounded-[20px] '
+							}
+						>
+							{city}
+						</span>
+					)}
 				</div>
 			</div>
 			<div
@@ -130,22 +142,18 @@ export const NewsCard: FC<NewsCardProps> = ({
 				}
 			>
 				<div className={'flex items-center gap-2'}>
-					<ChannelLink
-						locale={locale}
-						href={`/category/${encodeURIComponent(categoryLink)}/1`}
-						className={
-							'block sm:hidden text-secondary font-medium text-[10px] leading-3'
-						}
-					>
-						{formatCategory(category)}
-					</ChannelLink>
-					<span
-						className={
-							'capitalize block sm:hidden text-secondary font-medium text-[10px] leading-3'
-						}
-					>
-						{city}
-					</span>
+					<div className='flex flex-wrap items-center gap-1 sm:hidden'>
+						{hashtagLinks}
+					</div>
+					{hasCity && (
+						<span
+							className={
+								'capitalize block sm:hidden text-secondary font-medium text-[10px] leading-3'
+							}
+						>
+							{city}
+						</span>
+					)}
 				</div>
 				<ChannelLink
 					locale={locale}
@@ -162,13 +170,6 @@ export const NewsCard: FC<NewsCardProps> = ({
 						'hidden sm:block w-full border border-[#607698] mb-2.5 opacity-30'
 					}
 				></div>
-				<span
-					className={
-						'text-[10px] leading-3 sm:text-base text-secondary font-medium'
-					}
-				>
-					{formatDateTime(date, locale)}
-				</span>
 			</div>
 		</div>
 	);

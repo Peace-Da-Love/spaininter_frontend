@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { NewsProps } from '@/src/shared/types';
 import { ChannelLink, cn, formatCategory } from '@/src/shared/utils';
-import { formatDateTime } from '@/src/shared/utils';
 import { useLocale } from 'next-intl';
 
 interface PreviewNewsProps extends NewsProps {
@@ -11,15 +10,20 @@ interface PreviewNewsProps extends NewsProps {
 export const PreviewNews: FC<PreviewNewsProps> = ({
 	imageUrl,
 	link,
-	date,
-	category,
+	hashtagName,
+	hashtags,
 	title,
 	className,
 	isTopNews,
-	categoryLink,
+	hashtagLink,
 	city
 }) => {
 	const locale = useLocale();
+	const hasCity = Boolean(city?.trim());
+	const displayHashtags =
+		hashtags && hashtags.length > 0
+			? hashtags
+			: [{ hashtagName, hashtagLink, hashtagId: 0 }];
 
 	return (
 		<div
@@ -33,7 +37,7 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 				className={
 					'background-image bg-cover bg-no-repeat bg-center w-full h-full bg-slate-200'
 				}
-							>
+			>
 				<ChannelLink
 					locale={locale}
 					href={`/news/${encodeURIComponent(link)}`}
@@ -48,53 +52,51 @@ export const PreviewNews: FC<PreviewNewsProps> = ({
 					}
 				>
 					<div className={'flex items-center gap-4'}>
-						<ChannelLink
-							locale={locale}
-							href={`/category/${encodeURIComponent(categoryLink)}/1`}
-							className={
-								'inline-block backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-[10px] md:text-sm font-medium rounded-[20px] mb-1.5  relative z-0'
-							}
-						>
-							{formatCategory(category)}
-						</ChannelLink>
-						<span
-							className={
-								'capitalize inline-block backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-[10px] md:text-sm font-medium rounded-[20px] mb-1.5'
-							}
-						>
-							{city}
-						</span>
+						{displayHashtags.slice(0, 4).map(hashtag => (
+							<ChannelLink
+								key={`${hashtag.hashtagName}-${hashtag.hashtagLink}`}
+								locale={locale}
+								href={`/hashtag/${encodeURIComponent(hashtag.hashtagLink)}/1`}
+								className={
+									'inline-block backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-[10px] md:text-sm font-medium rounded-[20px] mb-1.5 relative z-0'
+								}
+							>
+								{formatCategory(hashtag.hashtagName)}
+							</ChannelLink>
+						))}
+						{hasCity && (
+							<span
+								className={
+									'capitalize inline-block backdrop-blur-xl bg-gray-300/40 text-white py-1.5 px-2.5 text-[10px] md:text-sm font-medium rounded-[20px] mb-1.5'
+								}
+							>
+								{city}
+							</span>
+						)}
 					</div>
 					<ChannelLink
 						locale={locale}
 						href={`/news/${encodeURIComponent(link)}`}
-						className="block"
+						className='block'
 					>
 						{isTopNews ? (
 							<h1
-							className={
-								'text-xl md:text-4xl font-bold text-white mb-1.5 backdrop-blur-xl bg-gray-300/40 rounded-2xl p-2.5 relative'
-							}
-						>
+								className={
+									'text-xl md:text-4xl font-bold text-white mb-1.5 backdrop-blur-xl bg-gray-300/40 rounded-2xl p-2.5 relative'
+								}
+							>
 								{title}
 							</h1>
 						) : (
 							<span
-							className={
-								'block text-xl md:text-4xl font-bold text-white mb-1.5 backdrop-blur-xl bg-gray-300/40 rounded-2xl p-2.5'
-							}
-						>
+								className={
+									'block text-xl md:text-4xl font-bold text-white mb-1.5 backdrop-blur-xl bg-gray-300/40 rounded-2xl p-2.5'
+								}
+							>
 								{title}
 							</span>
 						)}
 					</ChannelLink>
-					<span
-						className={
-							'inline-block text-white text-[10px] md:text-sm font-medium backdrop-blur-xl bg-gray-300/40 rounded-2xl p-1.5'
-						}
-					>
-						{formatDateTime(date, locale)}
-					</span>
 				</div>
 			</div>
 		</div>

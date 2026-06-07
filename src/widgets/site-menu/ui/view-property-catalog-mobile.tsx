@@ -2,17 +2,24 @@
 
 import { FC, useState, useEffect, useMemo, useRef } from 'react';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
-import { cn } from '@/src/shared/utils';
+import useAuth from '@/src/shared/stores/auth';
+import {
+  cn,
+  getNextPropertyCurrency,
+  PropertyDisplayCurrency,
+  PROPERTY_CURRENCY_SYMBOLS
+} from '@/src/shared/utils';
 import { ChannelLink } from '@/src/shared/utils';
 import { isTmaPath } from '@/src/shared/utils';
 import { openTwitrisWebApp } from '@/src/shared/utils';
 import { useCatalogMenuStore } from '../catalog-store';
 import { Button } from '@/src/shared/components/ui';
-import { EducationButton } from '@/src/features/education-button';
 import { LocaleSwitcher } from '@/src/features/locale-switcher';
 import { CitiesButton } from '@/src/features/cities-button';
+import { ProfileButton } from '@/src/features/profile-button';
 import IcNewspaper from '@/src/app/icons/ic_newspaper.svg';
-import IcTwitris from '@/src/app/icons/ic_twitris.svg';
+import IcTon from '@/src/app/icons/ic-ton.svg';
+import { KeyRound } from 'lucide-react';
 
 // filters
 import { $fetchCP } from '@/src/app/client-api/model';
@@ -26,6 +33,8 @@ import { SelectedFiltersDisplay } from '@/src/widgets/catalog-filters';
 
 type Props = {
   className?: string;
+  displayCurrency: PropertyDisplayCurrency;
+  onCurrencyChange: (currency: PropertyDisplayCurrency) => void;
 } & PropertyCatalogFiltersProps;
 
 export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
@@ -42,6 +51,8 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
   refValue,
   setRefValue,
   setError,
+  displayCurrency,
+  onCurrencyChange,
 }) => {
   const { toggle, isOpen } = useCatalogMenuStore();
   const [provinceList, setProvinceList] = useState<Place[]>([]);
@@ -51,7 +62,10 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const accessToken = useAuth(state => state.accessToken);
+  const hasHydrated = useAuth(state => state.hasHydrated);
   const locale = pathname.split('/')[1] || 'en';
+  const isAuthorized = hasHydrated && Boolean(accessToken);
   const channelBase = isTmaPath(pathname) ? `/${locale}/tma` : `/${locale}`;
   
   // Extract province and town from URL for immediate rendering
@@ -59,6 +73,7 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
   const pcIndex = parts.indexOf('property-catalog');
   const urlProvince = pcIndex !== -1 && parts.length > pcIndex + 1 ? decodeURIComponent(parts[pcIndex + 1]) : '';
   const urlTown = pcIndex !== -1 && parts.length > pcIndex + 2 ? decodeURIComponent(parts[pcIndex + 2]) : '';
+  const nextDisplayCurrency = getNextPropertyCurrency(displayCurrency);
   
   // open/close menu based on presence of filters in URL
   useEffect(() => {
@@ -158,10 +173,18 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
 
 
   return (
-    <>
+    <div
+      className={cn(
+        'fixed bottom-2.5 right-2.5 z-50 flex flex-col items-end gap-2.5',
+        className
+      )}
+      data-menu-button
+    >
+      <CitiesButton />
+
       <Button 
         variant={'menu'} 
-        className={cn(className)}
+        type="button"
         onClick={() => toggle()}
         data-menu-button
       >
@@ -189,13 +212,13 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
 
       {isOpen && (
         <div 
-          className="fixed bottom-2.5 right-2.5 z-50 flex flex-col gap-2.5 md:fixed md:bottom-2.5 md:right-2.5 md:z-50"
+          className="absolute bottom-0 right-0 z-50 flex flex-col gap-2.5"
           ref={menuRef}
           data-menu-content
           onClick={(e) => e.stopPropagation()}
         >
           
-          <div className="flex flex-col gap-2.5 absolute bottom-20 right-0 md:absolute md:bottom-20 md:right-0">
+          <div className="flex flex-col gap-2.5 absolute bottom-[164px] right-0">
             
             <MobileFilterPrice
               priceOrder={priceOrder}
@@ -260,26 +283,45 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
                 <IcNewspaper/>
               </Button>
             </ChannelLink>
-            
-            <CitiesButton />
           </div>
           
-          <div className="flex flex-row items-end gap-2.5 absolute right-20 bottom-0 md:absolute md:right-20 md:bottom-0">
-            <LocaleSwitcher />
+          <div className="flex flex-row items-end gap-2.5 absolute right-20 bottom-0">
             <div className="flex flex-col gap-2.5">
               <Button
                 variant="menu"
-                onClick={() => openTwitrisWebApp(locale)}
+                type="button"
+                onClick={() => onCurrencyChange(nextDisplayCurrency)}
+                aria-label="Change property currency"
+                title="Change property currency"
               >
-                <span className="flex size-full items-center justify-center">
-                  <IcTwitris className="block h-8 w-8 shrink-0" />
+                <span className="flex size-full items-center justify-center text-2xl font-bold text-primary">
+                  {nextDisplayCurrency === 'TON' ? (
+                    <IcTon className="h-8 w-8" aria-label="TON" role="img" />
+                  ) : (
+                    PROPERTY_CURRENCY_SYMBOLS[nextDisplayCurrency]
+                  )}
                 </span>
               </Button>
-              <EducationButton />
+              <LocaleSwitcher />
+            </div>
+            <div className="flex flex-col gap-2.5">
+              {isAuthorized ? (
+                <ProfileButton />
+              ) : (
+                <Button
+                  variant="menu"
+                  type="button"
+                  onClick={() => openTwitrisWebApp(locale)}
+                >
+                  <span className="flex size-full items-center justify-center">
+                    <KeyRound className="block h-8 w-8 shrink-0" />
+                  </span>
+                </Button>
+              )}
             </div>
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };

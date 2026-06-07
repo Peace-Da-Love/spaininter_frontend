@@ -1,3 +1,5 @@
+@import "@mdxeditor/editor/style.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -76,5 +78,37 @@ body:has([data-menu-content]) [data-radix-popper-content-wrapper],
 body:has([data-menu-content]) [data-radix-select-content],
 body:has([data-menu-content]) [data-radix-select-item] {
     pointer-events: auto;
+}
+
+.news-editor {
+    width: 100%;
+    max-width: 100%;
+    background: #fff;
+}
+
+.news-editor img {
+    max-width: 100%;
+    height: auto;
+}
+
+.news-editor .editor {
+    min-height: 320px;
+}
+
+.news-editor .editor [contenteditable="true"] {
+    min-height: 280px;
+}
+
+.news-editor .toolbar-button {
+    padding: 4px 8px;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    background: #fff;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.news-editor .toolbar-button:hover {
+    background: #f8fafc;
 }
 

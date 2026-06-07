@@ -15,8 +15,9 @@ export const locales = ['en', 'ru', 'es', 'fr', 'de', 'sv', 'no', 'nl', 'pl'] as
 
 export const pathnames = {
   '/': '/',
-  '/category/[categoryName]/[page]': '/category/[categoryName]/[page]',
+  '/hashtag/[hashtagName]/[page]': '/hashtag/[hashtagName]/[page]',
   '/news': '/news',
+  '/news/create': '/news/create',
   '/news/[link]': '/news/[link]',
   '/catalog-telegram': '/catalog-telegram',
   '/courses': {

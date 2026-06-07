@@ -29,14 +29,13 @@ export const FlatPage: FC<PropertyDetailsPageProps> = ({
   minicardLabels,
   backUrl,
 }) => {
-  const { title, description, price, currency, town, features, images, beds, baths, price_ton } =
+  const { title, description, price, town, features, images, beds, baths } =
     property;
   
   // Validation and fallback values
   const safeTitle = title || '';
   const safeDescription = description || '';
   const safePrice = price || 0;
-  const safeCurrency = currency || '';
   const safeTown = town || '';
   const safeFeatures = features || {};
   const safeImages = Array.isArray(images) ? images : [];
@@ -125,14 +124,12 @@ export const FlatPage: FC<PropertyDetailsPageProps> = ({
           <InfoCardOverlay
             title_truncated={title_truncated}
             price={safePrice}
-            currency={safeCurrency}
             town={safeTown}
             description={safeDescription}
             features={safeFeatures}
             beds={safeBeds}
             baths={safeBaths}
             refCode={property.ref}
-            price_ton={price_ton}
             onOpenModal={() => {
               setShowOverlay(false);
               setShowModal(true);

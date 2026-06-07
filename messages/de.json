@@ -1,4 +1,4 @@
-{
+﻿{
 	"Pages": {
 		"Courses": {
 			"title": "Arbeiten mit dem Telefon",
@@ -11,34 +11,113 @@
 			}
 		},
 		"PropertyCatalog": {
-		"title": "Katalog mit Häusern und Wohnungen in Spanien für den Urlaub.",
-		"loadMore": "Mehr laden",
-		"loading": "Laden...",
-		"filters": {
-			"province": "Provinz",
-			"allProvinces": "Alle Provinzen",
-			"town": "Stadt",
-			"allTowns": "Alle Städte",
-			"type": "Immobilientyp",
-			"allTypes": "Alle Typen",
-			"price": "Preis",
-			"priceAsc": "Aufsteigend",
-			"priceDesc": "Absteigend",
-			"ref": "ID (ref)",
-			"apply": "Anwenden",
-			"reset": "Zurücksetzen"
-		}
+			"title": "Katalog mit Häusern und Wohnungen in Spanien für den Urlaub.",
+			"loadMore": "Mehr laden",
+			"loading": "Laden...",
+			"filters": {
+				"province": "Provinz",
+				"allProvinces": "Alle Provinzen",
+				"town": "Stadt",
+				"allTowns": "Alle Städte",
+				"type": "Immobilientyp",
+				"allTypes": "Alle Typen",
+				"price": "Preis",
+				"priceAsc": "Aufsteigend",
+				"priceDesc": "Absteigend",
+				"ref": "ID (ref)",
+				"apply": "Anwenden",
+				"reset": "Zurücksetzen"
+			}
 		},
 		"Property": {
-		"area": "Bereich",
-		"bedrooms": "Schlafzimmer",
-		"baths": "Bäder",
-		"beach": "Strand",
-		"pool": "Pool",
-		"gym": "Fitnessraum",
-		"parking": "Parkplatz",
-		"showMore": "Mehr anzeigen",
-		"hide": "Ausblenden"
+			"area": "Bereich",
+			"bedrooms": "Schlafzimmer",
+			"baths": "Bäder",
+			"beach": "Strand",
+			"pool": "Pool",
+			"gym": "Fitnessraum",
+			"parking": "Parkplatz",
+			"showMore": "Mehr anzeigen",
+			"hide": "Ausblenden"
+		},
+		"News": {
+			"addArticle": "Artikel hinzufügen"
+		},
+		"NewsCreate": {
+			"title": "Artikel erstellen",
+			"subtitle": "Füllen Sie die Felder aus und senden Sie den Artikel zur Prüfung.",
+			"hashtagLabel": "Hashtag",
+			"hashtagPlaceholder": "Hashtags",
+			"cityLabel": "Stadt",
+			"cityPlaceholder": "Stadt",
+			"provinceLabel": "Provinz",
+			"provincePlaceholder": "Provinz",
+			"posterLabel": "Poster",
+			"titleLabel": "Titel",
+			"titlePlaceholder": "Titel",
+			"descriptionLabel": "Beschreibung",
+			"descriptionPlaceholder": "Kurze Beschreibung",
+			"markdownLabel": "Markdown",
+			"markdownPlaceholder": "Schreiben Sie den Artikel in Markdown",
+			"submit": "Absenden",
+			"loadingLanguage": "Sprache wird geladen…",
+			"languageLabel": "Sprache",
+			"languagePlaceholder": "Sprache auswahlen",
+			"toast": {
+				"successTitle": "Erfolg!",
+				"successDesc": "Ihr Artikel wurde zur Prüfung gesendet.",
+				"errorTitle": "Fehler!",
+				"errorDesc": "Artikel konnte nicht gesendet werden. Bitte erneut versuchen.",
+				"languageErrorDesc": "Sprache für diesen Artikel konnte nicht ermittelt werden."
+			},
+			"validation": {
+				"hashtagRequired": "Hashtag ist erforderlich",
+				"hashtagInvalid": "Ungültiger Hashtag",
+				"cityRequired": "Stadt ist erforderlich",
+				"cityMin": "Mindestens 2 Zeichen für die Stadt",
+				"cityMax": "Maximal 30 Zeichen für die Stadt",
+				"provinceRequired": "Provinz ist erforderlich",
+				"provinceMin": "Mindestens 2 Zeichen für die Provinz",
+				"provinceMax": "Maximal 30 Zeichen für die Provinz",
+				"posterRequired": "Posterbild ist erforderlich",
+				"titleRequired": "Titel ist erforderlich",
+				"titleMin": "Mindestens 5 Zeichen für den Titel",
+				"titleMax": "Maximal 100 Zeichen für den Titel",
+				"descriptionRequired": "Beschreibung ist erforderlich",
+				"descriptionMin": "Mindestens 5 Zeichen für die Beschreibung",
+				"descriptionMax": "Maximal 255 Zeichen für die Beschreibung",
+				"contentRequired": "Inhalt ist erforderlich",
+				"contentMin": "Mindestens 5 Zeichen für den Inhalt",
+				"contentMax": "Maximal 50000 Zeichen für den Inhalt"
+			},
+			"hashtagCreateOption": "Neuen Hashtag erstellen",
+			"hashtagLoading": "Hashtags werden geladen...",
+			"hashtagLoadError": "Hashtags konnten nicht geladen werden",
+			"hashtagInvalidHint": "Nur Kleinbuchstaben, Zahlen und Unterstriche (2-50 Zeichen)",
+			"hashtagHelper": "Hashtag eingeben oder aus der Liste wählen",
+			"hashtagNoOptions": "Keine Hashtags gefunden",
+			"cityCreateOption": "Diese Stadt verwenden",
+			"cityLoading": "Städte werden geladen...",
+			"cityLoadError": "Städte konnten nicht geladen werden",
+			"cityHelper": "Mindestens 3 Zeichen zum Suchen eingeben oder eigene Stadt hinzufügen",
+			"cityNoOptions": "Keine Städte gefunden",
+			"posterDropTitle": "Bild auswählen oder hierher ziehen",
+			"posterPreviewTitle": "Bildvorschau",
+			"posterSelected": "Ausgewählt: {name} ({size} MB)",
+			"posterRemove": "Entfernen",
+			"posterTooLarge": "Datei ist zu groß (max. 5 MB)",
+			"posterInvalidType": "Nur PNG-, JPEG- oder WEBP-Bilder sind erlaubt",
+			"markdownYouTubeButton": "YouTube",
+			"markdownTikTokButton": "TikTok",
+			"markdownInsertYouTube": "YouTube-Video einfügen",
+			"markdownInsertTikTok": "TikTok-Video einfügen",
+			"markdownYouTubePlaceholder": "https://www.youtube.com/watch?v=dQw4w9WgXcQ oder dQw4w9WgXcQ",
+			"markdownTikTokPlaceholder": "https://www.tiktok.com/@username/video/1234567890",
+			"markdownYouTubeHelper": "Geben Sie die vollständige YouTube-URL oder nur die ID ein.",
+			"markdownTikTokHelper": "Geben Sie die vollständige TikTok-Video-URL ein.",
+			"markdownCancel": "Abbrechen",
+			"markdownInsert": "Einfügen",
+			"markdownRemove": "Entfernen"
 		}
 	},
 	"Components": {
@@ -55,14 +134,35 @@
 	"Alarms": {
 		"empty": "Keine Nachrichten hier bisher"
 	},
+	"Profile": {
+		"userDefault": "Benutzer",
+		"id": "ID",
+		"nftGift": "NFT-Geschenk",
+		"model": "Modell",
+		"background": "Hintergrund",
+		"pattern": "Muster",
+		"rarity": "Seltenheit",
+		"signOut": "Abmelden",
+		"myNews": "Meine Nachrichten",
+		"newsTitle": "Titel",
+		"newsViews": "Aufrufe",
+		"newsCreatedAt": "Erstellt",
+		"newsStatus": "Status",
+		"newsLoading": "Laden...",
+		"newsEmpty": "Du hast noch keine Nachrichten hinzugefügt",
+		"allNews": "Alle Nachrichten",
+		"newsPaginationInfo": "Seite {page} von {pages}, insgesamt {total}",
+		"previousPage": "Zurück",
+		"nextPage": "Weiter"
+	},
 	"MetaData": {
 		"NewsPage": {
 			"title": "Alle Nachrichten aus Spanien. Aktuelle Nachrichten aus Spanien. Spanien heute.",
 			"description": "Aktuelle Nachrichten aus Spanien. Spanien heute: die wichtigsten Ereignisse, Vorfälle, politischen und wirtschaftlichen Nachrichten. Berichte, Analysen, Prognosen, Expertenmeinungen."
 		},
-		"CategoryPage": {
-			"title": "Alle Nachrichten aus Spanien. {category}. Aktuelle Nachrichten aus Spanien. Spanien heute.",
-			"description": "Aktuelle Nachrichten aus Spanien. Spanien heute: die wichtigsten Ereignisse, Vorfälle, politischen und wirtschaftlichen Nachrichten. Berichte, Analysen, Prognosen, Expertenmeinungen. {category}."
+		"HashtagPage": {
+			"title": "Alle Nachrichten aus Spanien. {hashtag}. Aktuelle Nachrichten aus Spanien. Spanien heute.",
+			"description": "Aktuelle Nachrichten aus Spanien. Spanien heute: die wichtigsten Ereignisse, Vorfälle, politischen und wirtschaftlichen Nachrichten. Berichte, Analysen, Prognosen, Expertenmeinungen. {hashtag}."
 		},
 		"CoursesPage": {
 			"title": "Arbeit von Telefonkursen, Telegrammkurse von Grund auf und Telegramm für Business Spanien  ",
@@ -82,3 +182,9 @@
 		}
 	}
 }
+
+
+
+
+
+

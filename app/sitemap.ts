@@ -11,14 +11,6 @@ const getLastModified = (value?: string | Date | null): Date => {
 };
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-	// Home pages (main entry points)
-	const homePages: MetadataRoute.Sitemap = locales.map(locale => ({
-		url: `${SITE_URL}/${locale}`,
-		changeFrequency: 'daily' as const,
-		priority: 1.0,
-		lastModified: new Date()
-	}));
-
 	// Courses pages (with localized paths)
 	const coursesPages: MetadataRoute.Sitemap = locales.map(locale => {
 		const coursesPath = typeof pathnames['/courses'] === 'object' 
@@ -59,14 +51,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	});
 
 	// Get categories metadata for category pages
-	const categoryMetadata = await metadataAction.getCategoryMetadata();
+	const categoryMetadata = await metadataAction.getHashtagMetadata();
 	let categoryPages: MetadataRoute.Sitemap = [];
 
 	if (categoryMetadata && categoryMetadata.data) {
 		// Only add category main pages (first page) to avoid duplicates
 		categoryPages = categoryMetadata.data.flatMap(category =>
 			locales.map(locale => ({
-				url: `${SITE_URL}/${locale}/category/${encodeURIComponent(category.category_name)}`,
+				url: `${SITE_URL}/${locale}/hashtag/${encodeURIComponent(category.hashtag_name)}/1`,
 				changeFrequency: 'daily' as const,
 				priority: 0.6,
 				lastModified: getLastModified(category.last_modified)
@@ -126,7 +118,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	if (newsMetaData) {
 		newsPages = newsMetaData.data.flatMap(news =>
 			news.newsTranslations.map(translation => ({
-				url: `${SITE_URL}/${translation.language.language_code}/${translation.link}`,
+				url: `${SITE_URL}/${translation.language.language_code}/news/${translation.link}`,
 				changeFrequency: 'yearly' as const,
 				priority: 0.3,
 				lastModified: getLastModified(news.updatedAt)
@@ -136,7 +128,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
 	// Combine all sitemap entries in logical order
 	return [
-		...homePages,
 		...propertyCatalogPages,
 		...propertyProvincePages,
 		...propertyTownPages,

@@ -2,7 +2,11 @@
 
 import { FC } from 'react';
 import { ImageLoader } from './ui/image-loader';
-import { priceFormatter, tonPriceFormatter } from '@/src/shared/utils';
+import {
+  formatPropertyPrice,
+  PropertyCurrencyRates,
+  PropertyDisplayCurrency
+} from '@/src/shared/utils';
 import IcBed from '@/src/app/icons/ic_bed.svg';
 import IcTon from '@/src/app/icons/ic-ton.svg';
 import { Property } from '@/src/shared/types';
@@ -10,7 +14,10 @@ import { Property } from '@/src/shared/types';
 type FlatCardProps = Pick<
   Property,
   'title' | 'price' | 'beds' | 'features' | 'images' | 'price_ton'
->;
+> & {
+  displayCurrency?: PropertyDisplayCurrency;
+  currencyRates?: PropertyCurrencyRates;
+};
 
 export const FlatCard: FC<FlatCardProps> = (props) => {
   const relativePath = props.images?.[0] || '';
@@ -21,6 +28,22 @@ export const FlatCard: FC<FlatCardProps> = (props) => {
   const title = props.title?.includes('&#13')
     ? props.title.split('&#13')[0]
     : props.title || '';
+
+  const displayCurrency = props.displayCurrency ?? 'EUR';
+  const priceLabel = formatPropertyPrice({
+    price: props.price,
+    priceTon: props.price_ton,
+    displayCurrency,
+    rates: props.currencyRates,
+  });
+  const priceContent = displayCurrency === 'TON' ? (
+    <span className="inline-flex items-center gap-2">
+      <span>{priceLabel}</span>
+      <IcTon className="w-4 h-4" aria-label="TON" role="img" />
+    </span>
+  ) : (
+    priceLabel
+  );
 
   return (
     <div className="bg-card rounded-3xl w-full max-w-3xl">
@@ -42,14 +65,7 @@ export const FlatCard: FC<FlatCardProps> = (props) => {
           </div>
           <div className="flex justify-between items-center mt-2">
               <span className="text-lg font-bold text-[#EA5E20] capitalize">
-                {props.price_ton ? (
-                  <span className="inline-flex items-center gap-2">
-                    <span>{tonPriceFormatter(props.price_ton)}</span>
-                    <IcTon className="w-4 h-4" aria-label="TON" role="img" />
-                  </span>
-                ) : (
-                  priceFormatter(props.price)
-                )}
+                {priceContent}
               </span>
             <div className="flex gap-3 items-center text-secondary text-sm">
               <span className="inline-flex items-center gap-1">
@@ -84,14 +100,7 @@ export const FlatCard: FC<FlatCardProps> = (props) => {
           <div className="w-full border border-[#607698] my-2.5 opacity-30"></div>
           <div className="flex justify-between items-center">
             <span className="text-xl font-bold text-[#EA5E20] capitalize">
-              {props.price_ton ? (
-                <span className="inline-flex items-center gap-2">
-                  <span>{tonPriceFormatter(props.price_ton)}</span>
-                  <IcTon className="w-4 h-4" aria-label="TON" role="img" />
-                </span>
-              ) : (
-                priceFormatter(props.price)
-              )}
+              {priceContent}
             </span>
             <div className="flex gap-4 items-center text-secondary">
               <span className="inline-flex items-center gap-1 text-base">

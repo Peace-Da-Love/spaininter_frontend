@@ -21,9 +21,7 @@ export const Main: FC<Props> = ({ className, children }) => {
       {children}
 
       {!isPropertyCatalogPage && !isAdvPage && (
-        <SiteMenu
-          className={'fixed bottom-2.5 right-2.5 z-50 inline-flex'}
-        />      
+        <SiteMenu />
         )}
     {!isAdvPage && <RequestMenu className={'fixed bottom-2.5 z-50'} />}
     </main>

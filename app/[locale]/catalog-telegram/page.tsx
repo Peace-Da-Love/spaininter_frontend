@@ -33,7 +33,7 @@ export async function generateMetadata({
 				'x-default': hrefLangs['en'],
 				...hrefLangs
 			},
-			canonical: hrefLangs['en']
+			canonical: hrefLangs[locale]
 		},
 		openGraph: {
 			title: t('title'),

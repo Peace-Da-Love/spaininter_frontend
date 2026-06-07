@@ -6,27 +6,58 @@ import { ChannelLink } from '@/src/shared/utils';
 import { openTwitrisWebApp } from '@/src/shared/utils';
 import { useSiteMenuStore } from '../store';
 import { Button } from '@/src/shared/components/ui';
-import { EducationButton } from '@/src/features/education-button';
 import { LocaleSwitcher } from '@/src/features/locale-switcher';
 import { CitiesButton } from '@/src/features/cities-button';
 import { FlatCatalogButton } from '@/src/features/flat-catalog-button';
+import { ProfileButton } from '@/src/features/profile-button';
 import IcNewspaper from '@/src/app/icons/ic_newspaper.svg';
-import IcTwitris from '@/src/app/icons/ic_twitris.svg';
 import { usePathname, useSearchParams } from 'next/navigation';
+import useAuth from '@/src/shared/stores/auth';
+import { useTranslations } from 'next-intl';
+import { KeyRound, Plus } from 'lucide-react';
 
 type Props = {
 	className?: string;
+};
+
+const CreateNews: FC<{ locale: string; isVisible: boolean }> = ({
+	locale,
+	isVisible
+}) => {
+	const accessToken = useAuth(state => state.accessToken);
+	const user = useAuth(state => state.user);
+	const hasHydrated = useAuth(state => state.hasHydrated);
+	const t = useTranslations('Pages.News');
+
+	if (!isVisible || !hasHydrated || !accessToken || !user?.id) return null;
+
+	return (
+		<Button variant="menu" asChild>
+			<ChannelLink
+				locale={locale}
+				href="/news/create"
+				aria-label={t('addArticle')}
+				title={t('addArticle')}
+			>
+				<Plus className="h-8 w-8" />
+			</ChannelLink>
+		</Button>
+	);
 };
 
 export const SiteMenu: FC<Props> = ({ className }) => {
 	const { toggle, isOpen } = useSiteMenuStore();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
+	const accessToken = useAuth(state => state.accessToken);
+	const hasHydrated = useAuth(state => state.hasHydrated);
 	const menuRef = useRef<HTMLDivElement>(null);
 	const locale = pathname.split('/').filter(Boolean)[0] || 'en';
+	const isAuthorized = hasHydrated && Boolean(accessToken);
 	
 	const isPropertyCatalogPage = /\/property-catalog(\b|\/.*)$/.test(pathname)
 	const isNewsPage = /\/news\/[^/]+$/.test(pathname)
+	const isNewsCatalogPage = /^\/[^/]+\/news\/?$/.test(pathname)
 	
     // Mobile menu should be shown the same on all breakpoints
 
@@ -83,10 +114,18 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 	}, [isOpen, toggle]);
 	
 	return (
-		<>
+		<div
+			className={cn(
+				'fixed bottom-2.5 right-2.5 z-50 flex flex-col items-end gap-2.5',
+				className
+			)}
+			data-menu-button
+		>
+			<CitiesButton />
+
 			<Button 
 				variant={'menu'} 
-				className={cn(className)}
+				type="button"
 				onClick={() => toggle()}
 				data-menu-button
 			>
@@ -115,21 +154,22 @@ export const SiteMenu: FC<Props> = ({ className }) => {
             {isOpen && (
                 <div 
                     className={cn(
-                        "fixed bottom-2.5 right-2.5 z-50 flex flex-col gap-2.5"
+                        "absolute bottom-0 right-0 z-50 flex flex-col gap-2.5"
                     )}
                     ref={menuRef}
                     data-menu-content
                     onClick={(e) => e.stopPropagation()}
                 >
 					
-                    <div className="flex flex-col gap-2.5 absolute bottom-20 right-0">
+                    <div className="flex flex-col gap-2.5 absolute bottom-[164px] right-0">
+						<CreateNews locale={locale} isVisible={isNewsCatalogPage} />
 						{!isPropertyCatalogPage && (
 							<FlatCatalogButton />
 						)}
-						<CitiesButton />
-						{isPropertyCatalogPage && (
-							<Button variant={'menu'} asChild>
-								<ChannelLink locale={locale} href='/news'> 
+						
+						{!isNewsCatalogPage && (
+							<Button variant="menu" asChild>
+								<ChannelLink locale={locale} href='/news'>
 									<IcNewspaper />
 								</ChannelLink>
 							</Button>
@@ -139,32 +179,27 @@ export const SiteMenu: FC<Props> = ({ className }) => {
 					
                     <div className="flex flex-row items-end gap-2.5 absolute right-20 bottom-0">
 						
-						<LocaleSwitcher />
-						
 						<div className="flex flex-col gap-2.5">
-							{isNewsPage && (
-								<Button variant="menu" asChild>
-									<ChannelLink locale={locale} href='/news'>
-										<IcNewspaper />
-									</ChannelLink>
-								</Button>
-							)}
-							{!isNewsPage && (
+							<LocaleSwitcher />
+						</div>
+						<div className="flex flex-col gap-2.5">
+							{isAuthorized ? (
+								<ProfileButton />
+							) : (
 								<Button
 									variant="menu"
+									type="button"
 									onClick={() => openTwitrisWebApp(locale)}
 								>
 									<span className="flex size-full items-center justify-center">
-										<IcTwitris className="block h-8 w-8 shrink-0" />
+										<KeyRound className="block h-8 w-8 shrink-0" />
 									</span>
 								</Button>
 							)}
-
-							<EducationButton />
 						</div>
 					</div>
 				</div>
 			)}
-		</>
+		</div>
 	);
 };

@@ -1,4 +1,4 @@
-{
+﻿{
 	"Pages": {
 		"Courses": {
 			"title": "Trabajar con el teléfono",
@@ -11,34 +11,113 @@
 			}
 		},
 		"PropertyCatalog": {
-		"title": "Catálogo de Casas y Apartamentos en España para Vacaciones",
-		"loadMore": "Cargar más",
-		"loading": "Cargando...",
-		"filters": {
-			"province": "Provincia",
-			"allProvinces": "Todas las provincias",
-			"town": "Ciudad",
-			"allTowns": "Todas las ciudades",
-			"type": "Tipo de propiedad",
-			"allTypes": "Todos los tipos",
-			"price": "Precio",
-			"priceAsc": "Ascendente",
-			"priceDesc": "Descendente",
-			"ref": "ID (ref)",
-			"apply": "Aplicar",
-			"reset": "Restablecer"
-		}
+			"title": "Catálogo de Casas y Apartamentos en España para Vacaciones",
+			"loadMore": "Cargar más",
+			"loading": "Cargando...",
+			"filters": {
+				"province": "Provincia",
+				"allProvinces": "Todas las provincias",
+				"town": "Ciudad",
+				"allTowns": "Todas las ciudades",
+				"type": "Tipo de propiedad",
+				"allTypes": "Todos los tipos",
+				"price": "Precio",
+				"priceAsc": "Ascendente",
+				"priceDesc": "Descendente",
+				"ref": "ID (ref)",
+				"apply": "Aplicar",
+				"reset": "Restablecer"
+			}
 		},
 		"Property": {
-		"area": "Área",
-		"bedrooms": "Dormitorios",
-		"baths": "Baños",
-		"beach": "Playa",
-		"pool": "Piscina",
-		"gym": "Gimnasio",
-		"parking": "Aparcamiento",
-		"showMore": "Mostrar más",
-		"hide": "Ocultar"
+			"area": "Área",
+			"bedrooms": "Dormitorios",
+			"baths": "Baños",
+			"beach": "Playa",
+			"pool": "Piscina",
+			"gym": "Gimnasio",
+			"parking": "Aparcamiento",
+			"showMore": "Mostrar más",
+			"hide": "Ocultar"
+		},
+		"News": {
+			"addArticle": "Agregar artículo"
+		},
+		"NewsCreate": {
+			"title": "Crear artículo",
+			"subtitle": "Complete los campos y envíe el artículo para verificación.",
+			"hashtagLabel": "Hashtag",
+			"hashtagPlaceholder": "Hashtags",
+			"cityLabel": "Ciudad",
+			"cityPlaceholder": "Ciudad",
+			"provinceLabel": "Provincia",
+			"provincePlaceholder": "Provincia",
+			"posterLabel": "Póster",
+			"titleLabel": "Título",
+			"titlePlaceholder": "Título",
+			"descriptionLabel": "Descripción",
+			"descriptionPlaceholder": "Descripción breve",
+			"markdownLabel": "Markdown",
+			"markdownPlaceholder": "Escriba el artículo en Markdown",
+			"submit": "Enviar",
+			"loadingLanguage": "Cargando idioma…",
+			"languageLabel": "Idioma",
+			"languagePlaceholder": "Selecciona un idioma",
+			"toast": {
+				"successTitle": "¡Éxito!",
+				"successDesc": "Tu artículo ha sido enviado para revisión.",
+				"errorTitle": "¡Error!",
+				"errorDesc": "No se pudo enviar el artículo. Inténtalo de nuevo.",
+				"languageErrorDesc": "No se pudo determinar el idioma del artículo."
+			},
+			"validation": {
+				"hashtagRequired": "El hashtag es obligatorio",
+				"hashtagInvalid": "Hashtag inválido",
+				"cityRequired": "La ciudad es obligatoria",
+				"cityMin": "Mínimo 2 caracteres para la ciudad",
+				"cityMax": "Máximo 30 caracteres para la ciudad",
+				"provinceRequired": "La provincia es obligatoria",
+				"provinceMin": "Mínimo 2 caracteres para la provincia",
+				"provinceMax": "Máximo 30 caracteres para la provincia",
+				"posterRequired": "La imagen del póster es obligatoria",
+				"titleRequired": "El título es obligatorio",
+				"titleMin": "Mínimo 5 caracteres para el título",
+				"titleMax": "Máximo 100 caracteres para el título",
+				"descriptionRequired": "La descripción es obligatoria",
+				"descriptionMin": "Mínimo 5 caracteres para la descripción",
+				"descriptionMax": "Máximo 255 caracteres para la descripción",
+				"contentRequired": "El contenido es obligatorio",
+				"contentMin": "Mínimo 5 caracteres para el contenido",
+				"contentMax": "Máximo 50000 caracteres para el contenido"
+			},
+			"hashtagCreateOption": "Crear nuevo hashtag",
+			"hashtagLoading": "Cargando hashtags...",
+			"hashtagLoadError": "No se pudieron cargar los hashtags",
+			"hashtagInvalidHint": "Solo letras minúsculas, números y guiones bajos (2-50 caracteres)",
+			"hashtagHelper": "Escriba el hashtag o seleccione de la lista",
+			"hashtagNoOptions": "No se encontraron hashtags",
+			"cityCreateOption": "Usar esta ciudad",
+			"cityLoading": "Cargando ciudades...",
+			"cityLoadError": "No se pudieron cargar las ciudades",
+			"cityHelper": "Escriba al menos 3 caracteres para buscar o agregue su ciudad",
+			"cityNoOptions": "No se encontraron ciudades",
+			"posterDropTitle": "Seleccione o arrastre una imagen aquí",
+			"posterPreviewTitle": "Vista previa de la imagen",
+			"posterSelected": "Seleccionado: {name} ({size} MB)",
+			"posterRemove": "Eliminar",
+			"posterTooLarge": "El archivo es demasiado grande (máx. 5 MB)",
+			"posterInvalidType": "Solo se permiten imágenes PNG, JPEG o WEBP",
+			"markdownYouTubeButton": "YouTube",
+			"markdownTikTokButton": "TikTok",
+			"markdownInsertYouTube": "Insertar video de YouTube",
+			"markdownInsertTikTok": "Insertar video de TikTok",
+			"markdownYouTubePlaceholder": "https://www.youtube.com/watch?v=dQw4w9WgXcQ o dQw4w9WgXcQ",
+			"markdownTikTokPlaceholder": "https://www.tiktok.com/@username/video/1234567890",
+			"markdownYouTubeHelper": "Ingrese la URL completa de YouTube o solo el ID.",
+			"markdownTikTokHelper": "Ingrese la URL completa del video de TikTok.",
+			"markdownCancel": "Cancelar",
+			"markdownInsert": "Insertar",
+			"markdownRemove": "Eliminar"
 		}
 	},
 	"Components": {
@@ -55,14 +134,35 @@
 	"Alarms": {
 		"empty": "No hay noticias aquí aún"
 	},
+	"Profile": {
+		"userDefault": "Usuario",
+		"id": "ID",
+		"nftGift": "Regalo NFT",
+		"model": "Modelo",
+		"background": "Fondo",
+		"pattern": "Patrón",
+		"rarity": "Rareza",
+		"signOut": "Salir",
+		"myNews": "Mis noticias",
+		"newsTitle": "Título",
+		"newsViews": "Vistas",
+		"newsCreatedAt": "Creado",
+		"newsStatus": "Estado",
+		"newsLoading": "Cargando...",
+		"newsEmpty": "Aún no has añadido noticias",
+		"allNews": "Todas las noticias",
+		"newsPaginationInfo": "Página {page} de {pages}, {total} en total",
+		"previousPage": "Anterior",
+		"nextPage": "Siguiente"
+	},
 	"MetaData": {
 		"NewsPage": {
 			"title": "Todas las noticias de España. Noticias frescas de España. España hoy.",
 			"description": "Últimas noticias de España. España hoy: los eventos más importantes, incidentes, noticias políticas y económicas. Informes, análisis, previsiones, opinión de expertos."
 		},
-		"CategoryPage": {
-			"title": "Todas las noticias de España. {category}. Noticias frescas de España. España hoy.",
-			"description": "Últimas noticias de España. España hoy: los eventos más importantes, incidentes, noticias políticas y económicas. Informes, análisis, previsiones, opinión de expertos. {category}."
+		"HashtagPage": {
+			"title": "Todas las noticias de España. {hashtag}. Noticias frescas de España. España hoy.",
+			"description": "Últimas noticias de España. España hoy: los eventos más importantes, incidentes, noticias políticas y económicas. Informes, análisis, previsiones, opinión de expertos. {hashtag}."
 		},
 		"CoursesPage": {
 			"title": "Cursos para trabajar desde el teléfono, cursos de Telegram desde cero y Telegram para negocios España.  ",
@@ -82,3 +182,9 @@
 		}
 	}
 }
+
+
+
+
+
+

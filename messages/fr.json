@@ -1,4 +1,4 @@
-{
+﻿{
 	"Pages": {
 		"Courses": {
 			"title": "Travailler avec le téléphone",
@@ -11,34 +11,113 @@
 			}
 		},
 		"PropertyCatalog": {
-		"title": "Catalogue de maisons et appartements en Espagne pour les vacances",
-		"loadMore": "Charger plus",
-		"loading": "Chargement...",
-		"filters": {
-			"province": "Province",
-			"allProvinces": "Toutes les provinces",
-			"town": "Ville",
-			"allTowns": "Toutes les villes",
-			"type": "Type de propriété",
-			"allTypes": "Tous les types",
-			"price": "Prix",
-			"priceAsc": "Croissant",
-			"priceDesc": "Décroissant",
-			"ref": "ID (réf.)",
-			"apply": "Appliquer",
-			"reset": "Réinitialiser"
-		}
+			"title": "Catalogue de maisons et appartements en Espagne pour les vacances",
+			"loadMore": "Charger plus",
+			"loading": "Chargement...",
+			"filters": {
+				"province": "Province",
+				"allProvinces": "Toutes les provinces",
+				"town": "Ville",
+				"allTowns": "Toutes les villes",
+				"type": "Type de propriété",
+				"allTypes": "Tous les types",
+				"price": "Prix",
+				"priceAsc": "Croissant",
+				"priceDesc": "Décroissant",
+				"ref": "ID (réf.)",
+				"apply": "Appliquer",
+				"reset": "Réinitialiser"
+			}
 		},
 		"Property": {
-		"area": "Superficie",
-		"bedrooms": "Chambres",
-		"baths": "Salle de bain",
-		"beach": "Plage",
-		"pool": "Piscine",
-		"gym": "Salle de sport",
-		"parking": "Parking",
-		"showMore": "Afficher plus",
-		"hide": "Masquer"
+			"area": "Superficie",
+			"bedrooms": "Chambres",
+			"baths": "Salle de bain",
+			"beach": "Plage",
+			"pool": "Piscine",
+			"gym": "Salle de sport",
+			"parking": "Parking",
+			"showMore": "Afficher plus",
+			"hide": "Masquer"
+		},
+		"News": {
+			"addArticle": "Ajouter un article"
+		},
+		"NewsCreate": {
+			"title": "Créer un article",
+			"subtitle": "Remplissez les champs ci-dessous et soumettez l’article pour vérification.",
+			"hashtagLabel": "Hashtag",
+			"hashtagPlaceholder": "Hashtags",
+			"cityLabel": "Ville",
+			"cityPlaceholder": "Ville",
+			"provinceLabel": "Province",
+			"provincePlaceholder": "Province",
+			"posterLabel": "Affiche",
+			"titleLabel": "Titre",
+			"titlePlaceholder": "Titre",
+			"descriptionLabel": "Description",
+			"descriptionPlaceholder": "Description courte",
+			"markdownLabel": "Markdown",
+			"markdownPlaceholder": "Rédigez l’article en Markdown",
+			"submit": "Envoyer",
+			"loadingLanguage": "Chargement de la langue…",
+			"languageLabel": "Langue",
+			"languagePlaceholder": "Choisir la langue",
+			"toast": {
+				"successTitle": "Succès !",
+				"successDesc": "Votre article a été envoyé pour vérification.",
+				"errorTitle": "Erreur !",
+				"errorDesc": "Échec de l’envoi de l’article. Réessayez.",
+				"languageErrorDesc": "Impossible de déterminer la langue de cet article."
+			},
+			"validation": {
+				"hashtagRequired": "Le hashtag est requis",
+				"hashtagInvalid": "Hashtag invalide",
+				"cityRequired": "La ville est requise",
+				"cityMin": "Minimum 2 caractères pour la ville",
+				"cityMax": "Maximum 30 caractères pour la ville",
+				"provinceRequired": "La province est requise",
+				"provinceMin": "Minimum 2 caractères pour la province",
+				"provinceMax": "Maximum 30 caractères pour la province",
+				"posterRequired": "L’image d’affiche est requise",
+				"titleRequired": "Le titre est requis",
+				"titleMin": "Minimum 5 caractères pour le titre",
+				"titleMax": "Maximum 100 caractères pour le titre",
+				"descriptionRequired": "La description est requise",
+				"descriptionMin": "Minimum 5 caractères pour la description",
+				"descriptionMax": "Maximum 255 caractères pour la description",
+				"contentRequired": "Le contenu est requis",
+				"contentMin": "Minimum 5 caractères pour le contenu",
+				"contentMax": "Maximum 50000 caractères pour le contenu"
+			},
+			"hashtagCreateOption": "Créer un nouveau hashtag",
+			"hashtagLoading": "Chargement des hashtags...",
+			"hashtagLoadError": "Impossible de charger les hashtags",
+			"hashtagInvalidHint": "Uniquement des minuscules, chiffres et underscores (2-50 caractères)",
+			"hashtagHelper": "Saisissez un hashtag ou sélectionnez dans la liste",
+			"hashtagNoOptions": "Aucun hashtag trouvé",
+			"cityCreateOption": "Utiliser cette ville",
+			"cityLoading": "Chargement des villes...",
+			"cityLoadError": "Impossible de charger les villes",
+			"cityHelper": "Saisissez au moins 3 caractères pour rechercher ou ajoutez votre ville",
+			"cityNoOptions": "Aucune ville trouvée",
+			"posterDropTitle": "Sélectionnez ou déposez une image ici",
+			"posterPreviewTitle": "Aperçu de l'image",
+			"posterSelected": "Sélectionné : {name} ({size} Mo)",
+			"posterRemove": "Supprimer",
+			"posterTooLarge": "Le fichier est trop volumineux (max. 5 Mo)",
+			"posterInvalidType": "Seules les images PNG, JPEG ou WEBP sont autorisées",
+			"markdownYouTubeButton": "YouTube",
+			"markdownTikTokButton": "TikTok",
+			"markdownInsertYouTube": "Insérer une vidéo YouTube",
+			"markdownInsertTikTok": "Insérer une vidéo TikTok",
+			"markdownYouTubePlaceholder": "https://www.youtube.com/watch?v=dQw4w9WgXcQ ou dQw4w9WgXcQ",
+			"markdownTikTokPlaceholder": "https://www.tiktok.com/@username/video/1234567890",
+			"markdownYouTubeHelper": "Saisissez l’URL YouTube complète ou seulement l’ID.",
+			"markdownTikTokHelper": "Saisissez l’URL complète de la vidéo TikTok.",
+			"markdownCancel": "Annuler",
+			"markdownInsert": "Insérer",
+			"markdownRemove": "Supprimer"
 		}
 	},
 	"Components": {
@@ -55,14 +134,35 @@
 	"Alarms": {
 		"empty": "Pas de nouvelles ici pour le moment"
 	},
+	"Profile": {
+		"userDefault": "Utilisateur",
+		"id": "ID",
+		"nftGift": "Cadeau NFT",
+		"model": "Modèle",
+		"background": "Arrière-plan",
+		"pattern": "Motif",
+		"rarity": "Rareté",
+		"signOut": "Se déconnecter",
+		"myNews": "Mes actualités",
+		"newsTitle": "Titre",
+		"newsViews": "Vues",
+		"newsCreatedAt": "Créé",
+		"newsStatus": "Statut",
+		"newsLoading": "Chargement...",
+		"newsEmpty": "Vous n'avez pas encore ajouté d'actualités",
+		"allNews": "Toutes les actualités",
+		"newsPaginationInfo": "Page {page} sur {pages}, {total} au total",
+		"previousPage": "Précédent",
+		"nextPage": "Suivant"
+	},
 	"MetaData": {
 		"NewsPage": {
 			"title": "Toutes les nouvelles d'Espagne. Nouvelles fraîches d'Espagne. Espagne aujourd'hui.",
 			"description": "Dernières nouvelles d'Espagne. Espagne aujourd'hui : les événements les plus importants, les incidents, les nouvelles politiques et économiques. Rapports, analyses, prévisions, opinion d'experts."
 		},
-		"CategoryPage": {
-			"title": "Toutes les nouvelles d'Espagne. {category}. Nouvelles fraîches d'Espagne. Espagne aujourd'hui.",
-			"description": "Dernières nouvelles d'Espagne. Espagne aujourd'hui : les événements les plus importants, les incidents, les nouvelles politiques et économiques. Rapports, analyses, prévisions, opinion d'experts. {category}."
+		"HashtagPage": {
+			"title": "Toutes les nouvelles d'Espagne. {hashtag}. Nouvelles fraîches d'Espagne. Espagne aujourd'hui.",
+			"description": "Dernières nouvelles d'Espagne. Espagne aujourd'hui : les événements les plus importants, les incidents, les nouvelles politiques et économiques. Rapports, analyses, prévisions, opinion d'experts. {hashtag}."
 		},
 		"CoursesPage": {
 			"title": "Work from Phone Courses, Telegram Courses from scratch and Telegram for Business Spain (Cours de travail par téléphone, cours de télégramme à partir de zéro et télégramme pour les entreprises).  ",
@@ -82,3 +182,9 @@
 		}
 	}
 }
+
+
+
+
+
+

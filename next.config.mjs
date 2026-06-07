@@ -8,11 +8,16 @@ const PROP_URL = process.env.NEXT_PUBLIC_PROP_URL || 'https://prop.spaininter.co
 
 /** @type {import('next').NextConfig} */
 const config = {
+	transpilePackages: ['@mdxeditor/editor'],
 	images: {
 		remotePatterns: [
 			{
 				protocol: 'https',
 				hostname: 'storage.googleapis.com'
+			},
+			{
+				protocol: 'https',
+				hostname: 'spaininter.nbg1.your-objectstorage.com'
 			},
 			{
 				protocol: 'https',

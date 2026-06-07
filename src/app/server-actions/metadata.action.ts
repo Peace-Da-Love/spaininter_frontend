@@ -2,11 +2,11 @@ import { $fetchS, $fetchP } from '../server-api';
 import { Property } from '@/src/shared/types';
 import { Place } from '@/src/widgets/catalog-filters/model';
 
-interface CategoryMetadata {
+interface HashtagMetadata {
 	statusCode: number;
 	message: string;
 	data: {
-		category_name: string;
+		hashtag_name: string;
 		pages_count: number;
 		last_modified: string;
 	}[];
@@ -53,8 +53,8 @@ interface IGetNewsByIdMetadataResponse {
 }
 
 class Metadata {
-	public async getCategoryMetadata(): Promise<CategoryMetadata | undefined> {
-		const response = await $fetchS('metadata/categories');
+	public async getHashtagMetadata(): Promise<HashtagMetadata | undefined> {
+		const response = await $fetchS('metadata/hashtags');
 		if (!response.ok) return undefined;
 		return await response.json();
 	}

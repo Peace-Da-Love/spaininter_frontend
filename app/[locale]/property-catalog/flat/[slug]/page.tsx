@@ -4,6 +4,9 @@ import { FlatPage} from '@/src/screens/flat';
 import { MinicardLabels } from '@/src/shared/types';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { locales } from '@/src/shared/configs';
+
+const SITE_URL = process.env.SITE_URL;
 
 type Props = {
     params: { locale: string; slug: string };
@@ -26,10 +29,22 @@ export async function generateMetadata({
       const images = Array.isArray(property.images)
         ? property.images.map(img => `https://prop.spaininter.com${img}`)
         : [];
+
+      const hrefLangs: Record<string, string> = locales.reduce((acc, loc) => {
+        acc[loc] = `${SITE_URL}/${loc}/property-catalog/flat/${slug}`;
+        return acc;
+      }, {} as Record<string, string>);
   
       return {
         title: property.title || 'Property',
         description: property.description || '',
+        alternates: {
+          languages: {
+            'x-default': hrefLangs['en'],
+            ...hrefLangs
+          },
+          canonical: hrefLangs[locale]
+        },
         openGraph: {
           title: property.title || '',
           description: property.description || '',

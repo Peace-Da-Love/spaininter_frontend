@@ -1,4 +1,4 @@
-{
+﻿{
 	"Pages": {
 		"Courses": {
 			"title": "Working with the Phone",
@@ -11,34 +11,113 @@
 			}
 		},
 		"PropertyCatalog": {
-		"title": "Catalog of Houses and Apartments in Spain for Vacation",
-		"loadMore": "Load More",
-		"loading": "Loading...",
-		"filters": {
-			"province": "Province",
-			"allProvinces": "All provinces",
-			"town": "Town",
-			"allTowns": "All towns",
-			"type": "Property type",
-			"allTypes": "All types",
-			"price": "Price",
-			"priceAsc": "Asc.",
-			"priceDesc": "Desc.",
-			"ref": "ID (ref)",
-			"apply": "Apply",
-			"reset": "Reset"
-		}
+			"title": "Catalog of Houses and Apartments in Spain for Vacation",
+			"loadMore": "Load More",
+			"loading": "Loading...",
+			"filters": {
+				"province": "Province",
+				"allProvinces": "All provinces",
+				"town": "Town",
+				"allTowns": "All towns",
+				"type": "Property type",
+				"allTypes": "All types",
+				"price": "Price",
+				"priceAsc": "Asc.",
+				"priceDesc": "Desc.",
+				"ref": "ID (ref)",
+				"apply": "Apply",
+				"reset": "Reset"
+			}
 		},
 		"Property": {
-		"area": "Area",
-		"bedrooms": "Bedrooms",
-		"baths": "Baths",
-		"beach": "Beach",
-		"pool": "Pool",
-		"gym": "Gym",
-		"parking": "Parking",
-		"showMore": "Show More",
-		"hide": "Hide"
+			"area": "Area",
+			"bedrooms": "Bedrooms",
+			"baths": "Baths",
+			"beach": "Beach",
+			"pool": "Pool",
+			"gym": "Gym",
+			"parking": "Parking",
+			"showMore": "Show More",
+			"hide": "Hide"
+		},
+		"News": {
+			"addArticle": "Add article"
+		},
+		"NewsCreate": {
+			"title": "Create Article",
+			"subtitle": "Fill in the fields below and submit your article for verification.",
+			"hashtagLabel": "Hashtag",
+			"hashtagPlaceholder": "Hashtags",
+			"cityLabel": "City",
+			"cityPlaceholder": "City",
+			"provinceLabel": "Province",
+			"provincePlaceholder": "Province",
+			"posterLabel": "Poster",
+			"titleLabel": "Title",
+			"titlePlaceholder": "Title",
+			"descriptionLabel": "Description",
+			"descriptionPlaceholder": "Short description",
+			"markdownLabel": "Markdown",
+			"markdownPlaceholder": "Write the article in Markdown",
+			"submit": "Submit",
+			"loadingLanguage": "Loading language…",
+			"languageLabel": "Language",
+			"languagePlaceholder": "Select language",
+			"toast": {
+				"successTitle": "Success!",
+				"successDesc": "Your article has been sent for review.",
+				"errorTitle": "Error!",
+				"errorDesc": "Failed to send article. Please try again.",
+				"languageErrorDesc": "Unable to determine language for this article."
+			},
+			"validation": {
+				"hashtagRequired": "Hashtag is required",
+				"hashtagInvalid": "Invalid hashtag",
+				"cityRequired": "City is required",
+				"cityMin": "Min 2 characters for city",
+				"cityMax": "Max 30 characters for city",
+				"provinceRequired": "Province is required",
+				"provinceMin": "Min 2 characters for province",
+				"provinceMax": "Max 30 characters for province",
+				"posterRequired": "Poster image is required",
+				"titleRequired": "Title is required",
+				"titleMin": "Min 5 characters for title",
+				"titleMax": "Max 100 characters for title",
+				"descriptionRequired": "Description is required",
+				"descriptionMin": "Min 5 characters for description",
+				"descriptionMax": "Max 255 characters for description",
+				"contentRequired": "Content is required",
+				"contentMin": "Min 5 characters for content",
+				"contentMax": "Max 50000 characters for content"
+			},
+			"hashtagCreateOption": "Create new hashtag",
+			"hashtagLoading": "Loading hashtags...",
+			"hashtagLoadError": "Failed to load hashtags",
+			"hashtagInvalidHint": "Only lowercase letters, numbers, and underscores (2-50 chars)",
+			"hashtagHelper": "Type hashtag or select from list",
+			"hashtagNoOptions": "No hashtags found",
+			"cityCreateOption": "Use this city",
+			"cityLoading": "Loading cities...",
+			"cityLoadError": "Failed to load cities",
+			"cityHelper": "Type at least 3 characters to search or enter your own city",
+			"cityNoOptions": "No cities found",
+			"posterDropTitle": "Select or drop an image here",
+			"posterPreviewTitle": "Image preview",
+			"posterSelected": "Selected: {name} ({size} MB)",
+			"posterRemove": "Remove",
+			"posterTooLarge": "File size is too large (max 5MB)",
+			"posterInvalidType": "Only PNG, JPEG or WEBP images are allowed",
+			"markdownYouTubeButton": "YouTube",
+			"markdownTikTokButton": "TikTok",
+			"markdownInsertYouTube": "Insert YouTube video",
+			"markdownInsertTikTok": "Insert TikTok video",
+			"markdownYouTubePlaceholder": "https://www.youtube.com/watch?v=dQw4w9WgXcQ or dQw4w9WgXcQ",
+			"markdownTikTokPlaceholder": "https://www.tiktok.com/@username/video/1234567890",
+			"markdownYouTubeHelper": "Enter full YouTube URL or just the ID.",
+			"markdownTikTokHelper": "Enter full TikTok video URL.",
+			"markdownCancel": "Cancel",
+			"markdownInsert": "Insert",
+			"markdownRemove": "Remove"
 		}
 	},
 	"Components": {
@@ -55,19 +134,40 @@
 	"Alarms": {
 		"empty": "No news here yet"
 	},
+	"Profile": {
+		"userDefault": "User",
+		"id": "ID",
+		"nftGift": "NFT Gift",
+		"model": "Model",
+		"background": "Background",
+		"pattern": "Pattern",
+		"rarity": "Rarity",
+		"signOut": "Sign out",
+		"myNews": "My news",
+		"newsTitle": "Title",
+		"newsViews": "Views",
+		"newsCreatedAt": "Created",
+		"newsStatus": "Status",
+		"newsLoading": "Loading...",
+		"newsEmpty": "You haven't added any news yet",
+		"allNews": "All news",
+		"newsPaginationInfo": "Page {page} of {pages}, {total} total",
+		"previousPage": "Previous",
+		"nextPage": "Next"
+	},
 	"MetaData": {
 		"NewsPage": {
 			"title": "All news of Spain. Fresh news from Spain. Spain today.",
 			"description": "Latest news from Spain. Spain today: the most important events, incidents, political and economic news. Reports, analytics, forecasts, expert opinion."
 		},
-		"CategoryPage": {
-			"title": "All news of Spain. {category}. Fresh news from Spain. Spain today.",
-			"description": "Latest news from Spain. Spain today: the most important events, incidents, political and economic news. Reports, analytics, forecasts, expert opinion. {category}."
+		"HashtagPage": {
+			"title": "All news of Spain. {hashtag}. Fresh news from Spain. Spain today.",
+			"description": "Latest news from Spain. Spain today: the most important events, incidents, political and economic news. Reports, analytics, forecasts, expert opinion. {hashtag}."
 		},
 		"CoursesPage": {
 			"title": "Telegram courses, Telegram courses from scratch and Telegram for Business Spain",
 			"description": "Training to earn/invest in Cryptocurrency, work from home. Courses to create and promote short videos (TikTok, Shorts, Reels, Telegram). Telegram for Business Spain"
-		}, 
+		},
 		"CatalogTelegramPage": {
 			"title": "Telegram channels Spain. Catalog of Telegram channels Spain",
 			"description": "Telegram channels in Spain: Madrid, Barcelona, Valencia, Seville, Zaragoza, Malaga, Murcia. Find the best chats and channels for communication and news."
@@ -82,3 +182,8 @@
 		}
 	}
 }
+
+
+
+
+

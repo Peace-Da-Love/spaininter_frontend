@@ -1,4 +1,4 @@
-{
+﻿{
 	"Pages": {
 		"Courses": {
 			"title": "Werken met de telefoon",
@@ -11,34 +11,113 @@
 			}
 		},
 		"PropertyCatalog": {
-		"title": "Catalogus van huizen en appartementen in Spanje voor vakantie",
-		"loadMore": "Meer laden",
-		"loading": "Bezig met laden...",
-		"filters": {
-			"province": "Provincie",
-			"allProvinces": "Alle provincies",
-			"town": "Plaats",
-			"allTowns": "Alle plaatsen",
-			"type": "Type woning",
-			"allTypes": "Alle typen",
-			"price": "Prijs",
-			"priceAsc": "Oplopend",
-			"priceDesc": "Aflopend",
-			"ref": "ID (ref)",
-			"apply": "Toepassen",
-			"reset": "Resetten"
-		}
+			"title": "Catalogus van huizen en appartementen in Spanje voor vakantie",
+			"loadMore": "Meer laden",
+			"loading": "Bezig met laden...",
+			"filters": {
+				"province": "Provincie",
+				"allProvinces": "Alle provincies",
+				"town": "Plaats",
+				"allTowns": "Alle plaatsen",
+				"type": "Type woning",
+				"allTypes": "Alle typen",
+				"price": "Prijs",
+				"priceAsc": "Oplopend",
+				"priceDesc": "Aflopend",
+				"ref": "ID (ref)",
+				"apply": "Toepassen",
+				"reset": "Resetten"
+			}
 		},
 		"Property": {
-		"area": "Oppervlakte",
-		"bedrooms": "Slaapkamers",
-		"baths": "Badkamers",
-		"beach": "Strand",
-		"pool": "Zwembad",
-		"gym": "Sportschool",
-		"parking": "Parkeren",
-		"showMore": "Meer weergeven",
-		"hide": "Verbergen"
+			"area": "Oppervlakte",
+			"bedrooms": "Slaapkamers",
+			"baths": "Badkamers",
+			"beach": "Strand",
+			"pool": "Zwembad",
+			"gym": "Sportschool",
+			"parking": "Parkeren",
+			"showMore": "Meer weergeven",
+			"hide": "Verbergen"
+		},
+		"News": {
+			"addArticle": "Artikel toevoegen"
+		},
+		"NewsCreate": {
+			"title": "Artikel maken",
+			"subtitle": "Vul de velden in en verstuur het artikel ter controle.",
+			"hashtagLabel": "Hashtag",
+			"hashtagPlaceholder": "Hashtags",
+			"cityLabel": "Stad",
+			"cityPlaceholder": "Stad",
+			"provinceLabel": "Provincie",
+			"provincePlaceholder": "Provincie",
+			"posterLabel": "Poster",
+			"titleLabel": "Titel",
+			"titlePlaceholder": "Titel",
+			"descriptionLabel": "Beschrijving",
+			"descriptionPlaceholder": "Korte beschrijving",
+			"markdownLabel": "Markdown",
+			"markdownPlaceholder": "Schrijf het artikel in Markdown",
+			"submit": "Versturen",
+			"loadingLanguage": "Taal laden…",
+			"languageLabel": "Taal",
+			"languagePlaceholder": "Selecteer taal",
+			"toast": {
+				"successTitle": "Succes!",
+				"successDesc": "Je artikel is ter beoordeling verzonden.",
+				"errorTitle": "Fout!",
+				"errorDesc": "Artikel verzenden mislukt. Probeer het opnieuw.",
+				"languageErrorDesc": "Kan de taal van dit artikel niet bepalen."
+			},
+			"validation": {
+				"hashtagRequired": "Hashtag is verplicht",
+				"hashtagInvalid": "Ongeldige hashtag",
+				"cityRequired": "Stad is verplicht",
+				"cityMin": "Minimaal 2 tekens voor stad",
+				"cityMax": "Maximaal 30 tekens voor stad",
+				"provinceRequired": "Provincie is verplicht",
+				"provinceMin": "Minimaal 2 tekens voor provincie",
+				"provinceMax": "Maximaal 30 tekens voor provincie",
+				"posterRequired": "Posterafbeelding is verplicht",
+				"titleRequired": "Titel is verplicht",
+				"titleMin": "Minstens 5 tekens voor de titel",
+				"titleMax": "Maximaal 100 tekens voor de titel",
+				"descriptionRequired": "Beschrijving is verplicht",
+				"descriptionMin": "Minstens 5 tekens voor de beschrijving",
+				"descriptionMax": "Maximaal 255 tekens voor de beschrijving",
+				"contentRequired": "Inhoud is verplicht",
+				"contentMin": "Minstens 5 tekens voor de inhoud",
+				"contentMax": "Maximaal 50000 tekens voor de inhoud"
+			},
+			"hashtagCreateOption": "Nieuwe hashtag maken",
+			"hashtagLoading": "Hashtags laden...",
+			"hashtagLoadError": "Hashtags laden mislukt",
+			"hashtagInvalidHint": "Alleen kleine letters, cijfers en underscores (2-50 tekens)",
+			"hashtagHelper": "Typ een hashtag of kies uit de lijst",
+			"hashtagNoOptions": "Geen hashtags gevonden",
+			"cityCreateOption": "Gebruik deze stad",
+			"cityLoading": "Steden laden...",
+			"cityLoadError": "Steden laden mislukt",
+			"cityHelper": "Typ minstens 3 tekens om te zoeken of voeg je eigen stad toe",
+			"cityNoOptions": "Geen steden gevonden",
+			"posterDropTitle": "Selecteer of sleep hier een afbeelding",
+			"posterPreviewTitle": "Afbeeldingsvoorbeeld",
+			"posterSelected": "Geselecteerd: {name} ({size} MB)",
+			"posterRemove": "Verwijderen",
+			"posterTooLarge": "Bestand is te groot (max. 5 MB)",
+			"posterInvalidType": "Alleen PNG-, JPEG- of WEBP-afbeeldingen zijn toegestaan",
+			"markdownYouTubeButton": "YouTube",
+			"markdownTikTokButton": "TikTok",
+			"markdownInsertYouTube": "YouTube-video invoegen",
+			"markdownInsertTikTok": "TikTok-video invoegen",
+			"markdownYouTubePlaceholder": "https://www.youtube.com/watch?v=dQw4w9WgXcQ of dQw4w9WgXcQ",
+			"markdownTikTokPlaceholder": "https://www.tiktok.com/@username/video/1234567890",
+			"markdownYouTubeHelper": "Voer de volledige YouTube-URL of alleen de ID in.",
+			"markdownTikTokHelper": "Voer de volledige TikTok-video-URL in.",
+			"markdownCancel": "Annuleren",
+			"markdownInsert": "Invoegen",
+			"markdownRemove": "Verwijderen"
 		}
 	},
 	"Components": {
@@ -55,14 +134,35 @@
 	"Alarms": {
 		"empty": "Geen nieuws hier nog"
 	},
+	"Profile": {
+		"userDefault": "Gebruiker",
+		"id": "ID",
+		"nftGift": "NFT-cadeau",
+		"model": "Model",
+		"background": "Achtergrond",
+		"pattern": "Patroon",
+		"rarity": "Zeldzaamheid",
+		"signOut": "Afmelden",
+		"myNews": "Mijn nieuws",
+		"newsTitle": "Titel",
+		"newsViews": "Weergaven",
+		"newsCreatedAt": "Gemaakt",
+		"newsStatus": "Status",
+		"newsLoading": "Laden...",
+		"newsEmpty": "Je hebt nog geen nieuws toegevoegd",
+		"allNews": "Al het nieuws",
+		"newsPaginationInfo": "Pagina {page} van {pages}, {total} totaal",
+		"previousPage": "Vorige",
+		"nextPage": "Volgende"
+	},
 	"MetaData": {
 		"NewsPage": {
 			"title": "Alle nieuws uit Spanje. Vers nieuws uit Spanje. Spanje vandaag.",
 			"description": "Laatste nieuws uit Spanje. Spanje vandaag: de belangrijkste gebeurtenissen, incidenten, politiek en economisch nieuws. Rapporten, analyses, voorspellingen, expertadvies."
 		},
-		"CategoryPage": {
-			"title": "Alle nieuws uit Spanje. {category}. Vers nieuws uit Spanje. Spanje vandaag.",
-			"description": "Laatste nieuws uit Spanje. Spanje vandaag: de belangrijkste gebeurtenissen, incidenten, politiek en economisch nieuws. Rapporten, analyses, voorspellingen, expertadvies. {category}."
+		"HashtagPage": {
+			"title": "Alle nieuws uit Spanje. {hashtag}. Vers nieuws uit Spanje. Spanje vandaag.",
+			"description": "Laatste nieuws uit Spanje. Spanje vandaag: de belangrijkste gebeurtenissen, incidenten, politiek en economisch nieuws. Rapporten, analyses, voorspellingen, expertadvies. {hashtag}."
 		},
 		"CoursesPage": {
 			"title": "Werken vanuit je telefoon cursussen, Telegram cursussen vanuit het niets en Telegram voor bedrijven Spanje  \n",
@@ -82,3 +182,10 @@
 		}
 	}
 }
+
+
+
+
+
+
+

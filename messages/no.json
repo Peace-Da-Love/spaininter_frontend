@@ -1,4 +1,4 @@
-{
+﻿{
 	"Pages": {
 		"Courses": {
 			"title": "Arbeide med telefonen",
@@ -11,34 +11,113 @@
 			}
 		},
 		"PropertyCatalog": {
-		"title": "Katalog over hus og leiligheter i Spania for ferie",
-		"loadMore": "Last inn mer",
-		"loading": "Laster inn...",
-		"filters": {
-			"province": "Provins",
-			"allProvinces": "Alle provinser",
-			"town": "By",
-			"allTowns": "Alle byer",
-			"type": "Eiendomstype",
-			"allTypes": "Alle typer",
-			"price": "Pris",
-			"priceAsc": "Stigende",
-			"priceDesc": "Synkende",
-			"ref": "ID (ref)",
-			"apply": "Bruk",
-			"reset": "Tilbakestill"
-		}
+			"title": "Katalog over hus og leiligheter i Spania for ferie",
+			"loadMore": "Last inn mer",
+			"loading": "Laster inn...",
+			"filters": {
+				"province": "Provins",
+				"allProvinces": "Alle provinser",
+				"town": "By",
+				"allTowns": "Alle byer",
+				"type": "Eiendomstype",
+				"allTypes": "Alle typer",
+				"price": "Pris",
+				"priceAsc": "Stigende",
+				"priceDesc": "Synkende",
+				"ref": "ID (ref)",
+				"apply": "Bruk",
+				"reset": "Tilbakestill"
+			}
 		},
 		"Property": {
-		"area": "Område",
-		"bedrooms": "Soverom",
-		"baths": "Bad",
-		"beach": "Strand",
-		"pool": "Basseng",
-		"gym": "Treningsstudio",
-		"parking": "Parkering",
-		"showMore": "Vis mer",
-		"hide": "Skjul"
+			"area": "Område",
+			"bedrooms": "Soverom",
+			"baths": "Bad",
+			"beach": "Strand",
+			"pool": "Basseng",
+			"gym": "Treningsstudio",
+			"parking": "Parkering",
+			"showMore": "Vis mer",
+			"hide": "Skjul"
+		},
+		"News": {
+			"addArticle": "Legg til artikkel"
+		},
+		"NewsCreate": {
+			"title": "Opprett artikkel",
+			"subtitle": "Fyll ut feltene og send inn artikkelen for verifisering.",
+			"hashtagLabel": "Hashtag",
+			"hashtagPlaceholder": "Emneknagger",
+			"cityLabel": "By",
+			"cityPlaceholder": "By",
+			"provinceLabel": "Provins",
+			"provincePlaceholder": "Provins",
+			"posterLabel": "Poster",
+			"titleLabel": "Tittel",
+			"titlePlaceholder": "Tittel",
+			"descriptionLabel": "Beskrivelse",
+			"descriptionPlaceholder": "Kort beskrivelse",
+			"markdownLabel": "Markdown",
+			"markdownPlaceholder": "Skriv artikkelen i Markdown",
+			"submit": "Send inn",
+			"loadingLanguage": "Laster språk…",
+			"languageLabel": "Sprak",
+			"languagePlaceholder": "Velg sprak",
+			"toast": {
+				"successTitle": "Suksess!",
+				"successDesc": "Artikkelen din er sendt til gjennomgang.",
+				"errorTitle": "Feil!",
+				"errorDesc": "Kunne ikke sende artikkelen. Prøv igjen.",
+				"languageErrorDesc": "Kunne ikke bestemme språket for denne artikkelen."
+			},
+			"validation": {
+				"hashtagRequired": "Hashtag er påkrevd",
+				"hashtagInvalid": "Ugyldig hashtag",
+				"cityRequired": "By er påkrevd",
+				"cityMin": "Minst 2 tegn for by",
+				"cityMax": "Maks 30 tegn for by",
+				"provinceRequired": "Provins er påkrevd",
+				"provinceMin": "Minst 2 tegn for provins",
+				"provinceMax": "Maks 30 tegn for provins",
+				"posterRequired": "Posterbilde er påkrevd",
+				"titleRequired": "Tittel er påkrevd",
+				"titleMin": "Minst 5 tegn for tittel",
+				"titleMax": "Maks 100 tegn for tittel",
+				"descriptionRequired": "Beskrivelse er påkrevd",
+				"descriptionMin": "Minst 5 tegn for beskrivelse",
+				"descriptionMax": "Maks 255 tegn for beskrivelse",
+				"contentRequired": "Innhold er påkrevd",
+				"contentMin": "Minst 5 tegn for innhold",
+				"contentMax": "Maks 50000 tegn for innhold"
+			},
+			"hashtagCreateOption": "Opprett ny hashtag",
+			"hashtagLoading": "Laster hashtags...",
+			"hashtagLoadError": "Kunne ikke laste hashtags",
+			"hashtagInvalidHint": "Kun små bokstaver, tall og understreker (2-50 tegn)",
+			"hashtagHelper": "Skriv inn hashtag eller velg fra listen",
+			"hashtagNoOptions": "Ingen hashtags funnet",
+			"cityCreateOption": "Bruk denne byen",
+			"cityLoading": "Laster byer...",
+			"cityLoadError": "Kunne ikke laste byer",
+			"cityHelper": "Skriv minst 3 tegn for å søke eller legg til din egen by",
+			"cityNoOptions": "Ingen byer funnet",
+			"posterDropTitle": "Velg eller dra et bilde hit",
+			"posterPreviewTitle": "Forhåndsvisning",
+			"posterSelected": "Valgt: {name} ({size} MB)",
+			"posterRemove": "Fjern",
+			"posterTooLarge": "Filen er for stor (maks 5 MB)",
+			"posterInvalidType": "Kun PNG-, JPEG- eller WEBP-bilder er tillatt",
+			"markdownYouTubeButton": "YouTube",
+			"markdownTikTokButton": "TikTok",
+			"markdownInsertYouTube": "Sett inn YouTube-video",
+			"markdownInsertTikTok": "Sett inn TikTok-video",
+			"markdownYouTubePlaceholder": "https://www.youtube.com/watch?v=dQw4w9WgXcQ eller dQw4w9WgXcQ",
+			"markdownTikTokPlaceholder": "https://www.tiktok.com/@username/video/1234567890",
+			"markdownYouTubeHelper": "Skriv inn full YouTube-URL eller bare ID.",
+			"markdownTikTokHelper": "Skriv inn full TikTok-video-URL.",
+			"markdownCancel": "Avbryt",
+			"markdownInsert": "Sett inn",
+			"markdownRemove": "Fjern"
 		}
 	},
 	"Components": {
@@ -55,14 +134,35 @@
 	"Alarms": {
 		"empty": "Ingen nyheter her ennå"
 	},
+	"Profile": {
+		"userDefault": "Bruker",
+		"id": "ID",
+		"nftGift": "NFT-gave",
+		"model": "Modell",
+		"background": "Bakgrunn",
+		"pattern": "Mønster",
+		"rarity": "Sjeldenhet",
+		"signOut": "Logg ut",
+		"myNews": "Mine nyheter",
+		"newsTitle": "Tittel",
+		"newsViews": "Visninger",
+		"newsCreatedAt": "Opprettet",
+		"newsStatus": "Status",
+		"newsLoading": "Laster...",
+		"newsEmpty": "Du har ikke lagt til noen nyheter ennå",
+		"allNews": "Alle nyheter",
+		"newsPaginationInfo": "Side {page} av {pages}, {total} totalt",
+		"previousPage": "Forrige",
+		"nextPage": "Neste"
+	},
 	"MetaData": {
 		"NewsPage": {
 			"title": "Alle nyheter fra Spania. Ferske nyheter fra Spania. Spania i dag.",
 			"description": "Siste nytt fra Spania. Spania i dag: de viktigste hendelsene, hendelsene, politiske og økonomiske nyhetene. Rapporter, analyser, prognoser, ekspertuttalelser."
 		},
-		"CategoryPage": {
-			"title": "Alle nyheter fra Spania. {category}. Ferske nyheter fra Spania. Spania i dag.",
-			"description": "Siste nytt fra Spania. Spania i dag: de viktigste hendelsene, hendelsene, politiske og økonomiske nyhetene. Rapporter, analyser, prognoser, ekspertuttalelser. {category}."
+		"HashtagPage": {
+			"title": "Alle nyheter fra Spania. {hashtag}. Ferske nyheter fra Spania. Spania i dag.",
+			"description": "Siste nytt fra Spania. Spania i dag: de viktigste hendelsene, hendelsene, politiske og økonomiske nyhetene. Rapporter, analyser, prognoser, ekspertuttalelser. {hashtag}."
 		},
 		"CoursesPage": {
 			"title": "Arbeid fra telefonkurs, Telegram-kurs fra bunnen av og Telegram for Business Spain  ",
@@ -82,3 +182,10 @@
 		}
 	}
 }
+
+
+
+
+
+
+

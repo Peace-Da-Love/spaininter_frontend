@@ -28,7 +28,7 @@ export async function generateMetadata({
         'x-default': hrefLangs['en'],
         ...hrefLangs,
       },
-      canonical: `${SITE_URL}/en/property-catalog`,
+      canonical: `${SITE_URL}/${locale}/property-catalog`,
     },
     openGraph: {
       title: t('titleDefault'),

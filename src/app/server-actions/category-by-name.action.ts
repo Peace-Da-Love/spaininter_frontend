@@ -1,24 +1,25 @@
 import { $fetchS } from '../server-api';
 
 type Params = {
-	langCode?: string;
-	name: string;
+	id: string | number;
 };
 
-export interface ICategoryNameResponse {
+export interface IHashtagResponse {
 	statusCode: number;
 	message: string;
 	data: {
-		category_name: string;
+		hashtag: {
+			hashtag_id: number;
+			hashtag_name: string;
+			createdAt: string;
+		};
 	};
 }
 
-export async function getCategoryByName(
+export async function getHashtagById(
 	params: Params
-): Promise<ICategoryNameResponse | undefined> {
-	const response = await $fetchS(
-		`categories/get-by-name/?name=${params.name}`
-	);
+): Promise<IHashtagResponse | undefined> {
+	const response = await $fetchS(`hashtags/hashtag?id=${params.id}`);
 	if (!response.ok) return undefined;
 	return await response.json();
 }

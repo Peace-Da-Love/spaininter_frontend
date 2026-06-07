@@ -11,7 +11,12 @@ import { PropertyCatalogFilterLabels } from '@/src/shared/types';
 import { $fetchCP } from '@/src/app/client-api/model';
 import { SiteMenuPropertyCatalogMobile } from '@/src/widgets/site-menu/ui/view-property-catalog-mobile';
 import { Logo } from '@/src/shared/components/shared/logo';
-import { cn } from '@/src/shared/utils';
+import {
+  cn,
+  PROPERTY_CURRENCIES,
+  PropertyCurrencyRates,
+  PropertyDisplayCurrency
+} from '@/src/shared/utils';
 
 type Props = {
   data: Property[];
@@ -24,7 +29,10 @@ type Props = {
   provinceFromParams?: string; 
   searchParams?: { type?: string; order?: 'asc' | 'desc'; ref?: string };
   tonRate: number;
+  currencyRates: PropertyCurrencyRates;
 };
+
+const CURRENCY_STORAGE_KEY = 'spaininter-property-currency';
 
 export const PropertyCatalogPage: FC<Props> = ({
   data: initialData,
@@ -37,6 +45,7 @@ export const PropertyCatalogPage: FC<Props> = ({
   provinceFromParams,
   searchParams,
   tonRate,
+  currencyRates,
 }) => {
   const pathname = usePathname();
   const isTma = /\/tma(\/|$)/.test(pathname);
@@ -49,6 +58,7 @@ export const PropertyCatalogPage: FC<Props> = ({
   const [data, setData] = useState<Property[]>(initialData || []);
   const [error, setError] = useState<string | null>(null);
   const [currentUrl, setCurrentUrl] = useState('');
+  const [displayCurrency, setDisplayCurrency] = useState<PropertyDisplayCurrency>('EUR');
 
 
   // refresh data, if initialData changed (from server)
@@ -60,6 +70,18 @@ export const PropertyCatalogPage: FC<Props> = ({
   useEffect(() => {
     setCurrentUrl(window.location.pathname + window.location.search);
   }, []);
+
+  useEffect(() => {
+    const savedCurrency = window.localStorage.getItem(CURRENCY_STORAGE_KEY);
+    if (PROPERTY_CURRENCIES.includes(savedCurrency as PropertyDisplayCurrency)) {
+      setDisplayCurrency(savedCurrency as PropertyDisplayCurrency);
+    }
+  }, []);
+
+  const handleCurrencyChange = (currency: PropertyDisplayCurrency) => {
+    setDisplayCurrency(currency);
+    window.localStorage.setItem(CURRENCY_STORAGE_KEY, currency);
+  };
 
   const fetchProperties = async (filtersOverride?: {
     province?: string;
@@ -178,6 +200,8 @@ export const PropertyCatalogPage: FC<Props> = ({
               title={item.title}
               price={item.price}
               price_ton={item.price_ton}
+              displayCurrency={displayCurrency}
+              currencyRates={currencyRates}
               beds={item.beds}
               features={item.features}
             />
@@ -198,10 +222,11 @@ export const PropertyCatalogPage: FC<Props> = ({
         loadMore={loadMore}
         loading={loading}
         tonRate={tonRate}
+        displayCurrency={displayCurrency}
+        currencyRates={currencyRates}
       />
 
       <SiteMenuPropertyCatalogMobile
-        className="fixed bottom-2.5 right-2.5 z-50"
         labels={filterLabels}
         selectedProvince={selectedProvince}
         setSelectedProvince={setSelectedProvince}
@@ -216,6 +241,8 @@ export const PropertyCatalogPage: FC<Props> = ({
         onApply={(override) => fetchProperties(override)}
         setError={setError}
         onReset={onReset}
+        displayCurrency={displayCurrency}
+        onCurrencyChange={handleCurrencyChange}
       />
     </section>
   );

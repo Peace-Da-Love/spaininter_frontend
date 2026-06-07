@@ -1,30 +1,87 @@
-const TWITRIS_WEBAPP_URL_WEB =
-	process.env.NEXT_PUBLIC_TWITRIS_WEBAPP_URL_WEB?.trim() || '';
-const TWITRIS_WEBAPP_URL_TMA =
-	process.env.NEXT_PUBLIC_TWITRIS_WEBAPP_URL_TMA?.trim() || '';
+const TWITRIS_WEBAPP_URL = process.env.NEXT_PUBLIC_TWITRIS_WEBAPP_URL?.trim() || '';
+export const TWITRIS_AUTH_SESSION_KEY = 'spaininter_twitris_auth_session';
+export const TWITRIS_AUTH_SESSION_CREATED_EVENT = 'spaininter:twitris-auth-session-created';
+const TWITRIS_AUTH_SESSION_TTL_MS = 2 * 60 * 1000;
 
-function resolveTwitrisUrlTemplate(): string {
-	const hasTelegramInitData = Boolean(window.Telegram?.WebApp?.initData);
-
-	if (hasTelegramInitData) {
-		return TWITRIS_WEBAPP_URL_TMA;
+function createSessionId(): string {
+	if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+		return crypto.randomUUID();
 	}
 
-	return TWITRIS_WEBAPP_URL_WEB;
+	// Fallback UUID v4-like generator for old browsers.
+	return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+		const r = (Math.random() * 16) | 0;
+		const v = c === 'x' ? r : (r & 0x3) | 0x8;
+		return v.toString(16);
+	});
 }
 
-export function openTwitrisWebApp(locale: string): boolean {
-	const template = resolveTwitrisUrlTemplate();
+function buildLoginUrl(rawUrl: string, sessionId: string, locale: string): string {
+	const interpolated = rawUrl.replace('{locale}', locale);
+	const url = new URL(interpolated);
+	const startValue = `login_${sessionId}`;
 
-	if (!template) {
+	const currentStart = url.searchParams.get('startapp');
+	if (currentStart) {
+		url.searchParams.set('startapp', startValue);
+	} else {
+		url.searchParams.append('startapp', startValue);
+	}
+
+	return url.toString();
+}
+
+function buildBaseUrl(rawUrl: string, locale: string): string {
+	return rawUrl.replace('{locale}', locale);
+}
+
+function openTwitrisUrl(url: string): boolean {
+	const newTab = window.open(url, '_blank', 'noopener,noreferrer');
+	if (!newTab) {
+		// In some browsers noopener/noreferrer can return null even when a tab opens.
+	}
+
+	return true;
+}
+
+function clearTwitrisAuthSession() {
+	localStorage.removeItem(TWITRIS_AUTH_SESSION_KEY);
+}
+
+function getCurrentReturnTo(): string {
+	const { pathname, search, hash } = window.location;
+	return `${pathname}${search}${hash}`;
+}
+
+export function openTwitrisDirect(locale: string): boolean {
+	if (!TWITRIS_WEBAPP_URL) {
 		console.error(
-			'Set NEXT_PUBLIC_TWITRIS_WEBAPP_URL_WEB and NEXT_PUBLIC_TWITRIS_WEBAPP_URL_TMA.'
+			'NEXT_PUBLIC_TWITRIS_WEBAPP_URL is not set. Use a direct frontend URL.',
 		);
 		return false;
 	}
 
-	const url = template.replace('{locale}', locale);
+	clearTwitrisAuthSession();
+	return openTwitrisUrl(buildBaseUrl(TWITRIS_WEBAPP_URL, locale));
+}
 
-	window.location.assign(url);
-	return true;
+export function openTwitrisWebApp(locale: string): boolean {
+	if (!TWITRIS_WEBAPP_URL) {
+		console.error(
+			'NEXT_PUBLIC_TWITRIS_WEBAPP_URL is not set. Use a direct frontend URL.',
+		);
+		return false;
+	}
+
+	const sessionId = createSessionId();
+	const payload = JSON.stringify({
+		sessionId,
+		createdAt: Date.now(),
+		expiresAt: Date.now() + TWITRIS_AUTH_SESSION_TTL_MS,
+		returnTo: getCurrentReturnTo(),
+	});
+	localStorage.setItem(TWITRIS_AUTH_SESSION_KEY, payload);
+	window.dispatchEvent(new Event(TWITRIS_AUTH_SESSION_CREATED_EVENT));
+
+	return openTwitrisUrl(buildLoginUrl(TWITRIS_WEBAPP_URL, sessionId, locale));
 }

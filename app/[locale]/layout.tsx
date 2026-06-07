@@ -1,6 +1,7 @@
 export const dynamic = 'force-dynamic';
 
-import { unstable_setRequestLocale } from 'next-intl/server';
+import { unstable_setRequestLocale, getMessages } from 'next-intl/server';
+import { NextIntlClientProvider } from 'next-intl';
 import { ReactNode } from 'react';
 import { locales } from '@/src/shared/configs';
 import { clsx } from 'clsx';
@@ -10,6 +11,7 @@ import { Metadata } from 'next';
 import Script from 'next/script';
 import type { Viewport } from 'next'
 import {Provider} from "@/src/app/provider";
+import AuthInit from '@/src/app/provider/auth-init';
 
 type Props = {
 	children: ReactNode;
@@ -60,6 +62,7 @@ export default async function LocaleLayout({
 }: Props) {
 	// Enable static rendering
 	unstable_setRequestLocale(locale);
+	const messages = await getMessages();
 
 	return (
 		<html lang={locale}>
@@ -94,59 +97,86 @@ export default async function LocaleLayout({
 				</noscript>
 			</head>
 			<body  className={clsx(getFonts(), 'relative min-h-screen')}>
-			  <Provider>
-          <PageLayout>{children}</PageLayout>
-        </Provider>
+			  <NextIntlClientProvider locale={locale} messages={messages}>
+				  <Provider>
+            <AuthInit />
+            <PageLayout>{children}</PageLayout>
+          </Provider>
+        </NextIntlClientProvider>
 
-			<Script
-				async
-				defer
-				data-domain='spaininter.com'
-				src='https://stat.spaininter.com/js/script.js'
-			/>
-			<Script id="plausible-override" strategy="afterInteractive">
+			<Script id="spaininter-stat" strategy="afterInteractive">
 				{`
 				(function() {
-					const shortenUrl = (href) => {
-						try {
-							const url = new URL(href);
-							const path = url.pathname;
-							const parts = path.split('/');
-							const slug = parts.pop() || '';
-							
-							// Extract ID from slug (last part after dash)
-							if (slug) {
-								const slugParts = slug.split('-');
-								const id = slugParts.pop();
-								
-								if (parts[1] && parts[2] && id) {
-									const locale = parts[1];
-									const category = parts[2];
-									url.pathname = \`/\${locale}/\${category}/\${id}\`;
-									return url.toString();
-								}
+					const api = 'https://stat.spaininter.com/api/event';
+					const domain = 'spaininter.com';
+
+					const track = (event, options) => {
+						if (/^localhost$|^127(\\.[0-9]+){0,2}\\.[0-9]+$|^\\[::1?\\]$/.test(window.location.hostname) || window.location.protocol === 'file:') {
+							options && options.callback && options.callback();
+							return;
+						}
+
+						const xhr = new XMLHttpRequest();
+						const payload = {
+							name: event,
+							url: options && options.url ? options.url : window.location.href,
+							domain: domain,
+							referrer: document.referrer || null
+						};
+
+						xhr.open('POST', api, true);
+						xhr.setRequestHeader('Content-Type', 'text/plain');
+						xhr.send(JSON.stringify(payload));
+						xhr.onreadystatechange = function() {
+							if (xhr.readyState === 4 && options && options.callback) {
+								options.callback();
 							}
-							return href;
-						} catch {
-							return href;
+						};
+					};
+
+					const queuedEvents = window.plausible && window.plausible.q || [];
+					window.plausible = track;
+					for (let i = 0; i < queuedEvents.length; i++) {
+						track.apply(this, queuedEvents[i]);
+					}
+
+					let previousPathname;
+					const isNotFoundPage = () => Boolean(
+						document.querySelector('[data-spaininter-not-found="true"]')
+					);
+					const trackPageview = () => {
+						if (previousPathname !== window.location.pathname) {
+							previousPathname = window.location.pathname;
+							if (isNotFoundPage()) {
+								return;
+							}
+							track('pageview');
 						}
 					};
 
-					const interval = setInterval(() => {
-						if (window.plausible) {
-							clearInterval(interval);
-							const original = window.plausible;
-							window.plausible = function(event, options) {
-								if (!options) options = {};
-								if (!options.url && event === 'pageview') {
-									options.url = shortenUrl(window.location.href);
-								} else if (options.url) {
-									options.url = shortenUrl(options.url);
-								}
-								return original.call(this, event, options);
-							};
-						}
-					}, 100);
+					const schedulePageview = () => {
+						window.setTimeout(trackPageview, 0);
+					};
+
+					const history = window.history;
+					if (history.pushState) {
+						const originalPushState = history.pushState;
+						history.pushState = function() {
+							originalPushState.apply(this, arguments);
+							schedulePageview();
+						};
+						window.addEventListener('popstate', schedulePageview);
+					}
+
+					if (document.visibilityState === 'prerender') {
+						document.addEventListener('visibilitychange', function() {
+							if (!previousPathname && document.visibilityState === 'visible') {
+								trackPageview();
+							}
+						});
+					} else {
+						trackPageview();
+					}
 				})();
 				`}
 			</Script>
@@ -155,3 +185,5 @@ export default async function LocaleLayout({
 		</html>
 	);
 }
+
+
