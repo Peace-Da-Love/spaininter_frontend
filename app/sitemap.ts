@@ -11,14 +11,6 @@ const getLastModified = (value?: string | Date | null): Date => {
 };
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-	// Home pages (main entry points)
-	const homePages: MetadataRoute.Sitemap = locales.map(locale => ({
-		url: `${SITE_URL}/${locale}`,
-		changeFrequency: 'daily' as const,
-		priority: 1.0,
-		lastModified: new Date()
-	}));
-
 	// Courses pages (with localized paths)
 	const coursesPages: MetadataRoute.Sitemap = locales.map(locale => {
 		const coursesPath = typeof pathnames['/courses'] === 'object' 
@@ -136,7 +128,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
 	// Combine all sitemap entries in logical order
 	return [
-		...homePages,
 		...propertyCatalogPages,
 		...propertyProvincePages,
 		...propertyTownPages,
