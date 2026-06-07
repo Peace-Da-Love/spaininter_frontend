@@ -169,6 +169,8 @@ export const PropertyCatalogPage: FC<Props> = ({
 
   return (
     <section>
+      <h1 className="sr-only">{title}</h1>
+
       <header className={cn('fixed top-5 z-50 flex gap-2.5')}>
         <Logo />
         <SelectedFiltersDisplay
