@@ -5,9 +5,13 @@ import { pathnames } from '@/src/shared/configs/i18n';
 
 const SITE_URL = process.env.SITE_URL;
 
-// Helper function to get last modified date from API data or default to now
-const getLastModified = (value?: string | Date | null): Date => {
-	return value ? new Date(value) : new Date();
+const getLastModified = (value?: string | Date | null): Date | undefined => {
+	if (!value) {
+		return undefined;
+	}
+
+	const date = new Date(value);
+	return isNaN(date.getTime()) ? undefined : date;
 };
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -20,8 +24,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		return {
 			url: `${SITE_URL}/${locale}${coursesPath}`,
 			changeFrequency: 'monthly' as const,
-			priority: 0.6,
-			lastModified: new Date()
+			priority: 0.6
 		};
 	});
 
@@ -29,16 +32,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const catalogTelegramPages: MetadataRoute.Sitemap = locales.map(locale => ({
 		url: `${SITE_URL}/${locale}/catalog-telegram`,
 		changeFrequency: 'monthly' as const,
-		priority: 0.5,
-		lastModified: new Date()
+		priority: 0.5
 	}));
 
 	// News catalog pages
 	const newsCatalogPages: MetadataRoute.Sitemap = locales.map(locale => ({
 		url: `${SITE_URL}/${locale}/news`,
 		changeFrequency: 'daily' as const,
-		priority: 0.7,
-		lastModified: new Date()
+		priority: 0.7
 	}));
 
 	// Property Catalog pages
@@ -46,8 +47,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		return {
 			url: `${SITE_URL}/${locale}/property-catalog`,
 			changeFrequency: 'daily' as const,
-			priority: 1.0,
-			lastModified: new Date()
+			priority: 1.0
 		};
 	});
 
@@ -79,8 +79,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			locales.map(locale => ({
 				url: `${SITE_URL}/${locale}/property-catalog/${encodeURIComponent(province.name)}`,
 				changeFrequency: 'daily' as const,
-				priority: 0.8,
-				lastModified: new Date()
+				priority: 0.8
 			}))
 		);
 
@@ -90,8 +89,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 				locales.map(locale => ({
 					url: `${SITE_URL}/${locale}/property-catalog/${encodeURIComponent(province.name)}/${encodeURIComponent(town.name)}`,
 					changeFrequency: 'daily' as const,
-					priority: 0.6,
-					lastModified: new Date()
+					priority: 0.6
 				}))
 			)
 		);
