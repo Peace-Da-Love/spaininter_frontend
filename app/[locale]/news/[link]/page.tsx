@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { redirect } from '@/src/shared/utils';
 import { NewsPage } from '@/src/screens/news';
 import { Metadata } from 'next';
+import { getDiscussionPageUrl } from '@/src/screens/news/lib/get-discussion-page-url';
 
 type Props = {
 	params: { locale: string; link: string };
@@ -62,10 +63,16 @@ export default async function Page({ params: { locale, link } }: Props) {
 	unstable_setRequestLocale(locale);
 
 	const id = link.split('-')[0];
-	const initialData = await getNews({
-		id,
-		locale
-	});
+	const [initialData, newsMetadata] = await Promise.all([
+		getNews({
+			id,
+			locale
+		}),
+		metadataAction.getNewsByIdMetadata({
+			id,
+			langCode: locale
+		})
+	]);
 
 	if (!initialData) {
 		notFound();
@@ -80,5 +87,14 @@ export default async function Page({ params: { locale, link } }: Props) {
 		});
 	}
 
-	return <NewsPage data={initialData} />;
+	return (
+		<NewsPage
+			data={initialData}
+			discussionPageUrl={getDiscussionPageUrl(
+				newsMetadata,
+				locale,
+				SITE_URL
+			)}
+		/>
+	);
 }

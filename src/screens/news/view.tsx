@@ -10,6 +10,7 @@ import Image from 'next/image';
 
 type Props = {
 	data: NewsResponse;
+	discussionPageUrl?: string;
 };
 
 /**
@@ -20,7 +21,10 @@ type Props = {
  * @param {Props} props - Contains data for a single news article.
  * @returns {JSX.Element} The NewsPage component.
  */
-export const NewsPage: FC<Props> = ({ data }: Props): JSX.Element => {
+export const NewsPage: FC<Props> = ({
+	data,
+	discussionPageUrl
+}: Props): JSX.Element => {
 	// Normalizes line breaks and pipes in news content.
 	const normalizedContent = data.data.news.content
 		.replace(/\\n/g, '\n')
@@ -54,7 +58,7 @@ export const NewsPage: FC<Props> = ({ data }: Props): JSX.Element => {
 				<div className='news-content'>
 					<MarkdownNews markdown={normalizedContent} />
 					<div className='actions mt-10 text-center'>
-						<DiscussionWidget />
+						<DiscussionWidget pageUrl={discussionPageUrl} />
 						<Ad adLink={data.data.news.adLink} city={data.data.news.city} />
 						<SubscribeNewsTg className={'lg:hidden'} />
 					</div>

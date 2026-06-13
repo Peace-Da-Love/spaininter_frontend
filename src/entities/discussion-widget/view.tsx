@@ -1,8 +1,12 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { FC, useEffect, useRef } from 'react';
 
-export const DiscussionWidget = () => {
+type Props = {
+	pageUrl?: string;
+};
+
+export const DiscussionWidget: FC<Props> = ({ pageUrl }) => {
 	const ref = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
@@ -12,13 +16,21 @@ export const DiscussionWidget = () => {
 		scriptElement.dataset.telegramDiscussion = 'spaininter';
 		scriptElement.dataset.commentsLimit = '5';
 		scriptElement.dataset.colorful = '1';
+		const discussionPageUrl =
+			pageUrl ??
+			document.querySelector<HTMLLinkElement>("link[rel='canonical']")?.href;
 
-		ref.current?.appendChild(scriptElement);
+		if (discussionPageUrl) {
+			scriptElement.dataset.pageUrl = discussionPageUrl;
+		}
+
+		const container = ref.current;
+		container?.appendChild(scriptElement);
 
 		return () => {
-			ref.current?.removeChild(scriptElement);
+			container?.removeChild(scriptElement);
 		};
-	}, []);
+	}, [pageUrl]);
 
 	return <div className={'mb-4'} ref={ref} />;
 };
