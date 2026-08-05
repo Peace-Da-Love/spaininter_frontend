@@ -1,16 +1,15 @@
 'use client'
 
 import * as React from 'react'
-import { Building2 } from 'lucide-react'
+import { Building, Building2, Home } from 'lucide-react'
 import { PropertyCatalogFiltersProps } from '../model'
 import { Button } from '@/src/shared/components/ui/button'
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/src/shared/components/ui/popover'
-
-const EMPTY_VALUE = '__empty__'
+  getNextPropertyTypeGroup,
+  propertyTypeGroupFromQuery,
+  propertyTypeGroupToQuery,
+  PropertyTypeGroup,
+} from '@/src/shared/utils'
 
 interface Props
   extends Pick<
@@ -23,15 +22,18 @@ interface Props
     | 'priceOrder'
     | 'refValue'
     | 'onApply'
-  > {
-  typesList: { name: string; count: number }[]
+  > {}
+
+const GROUP_ICONS: Record<PropertyTypeGroup, typeof Building2> = {
+  '': Building2,
+  houses: Home,
+  flats: Building,
 }
 
 export const MobileFilterType = React.forwardRef<HTMLDivElement, Props>(
   (
     {
       labels,
-      typesList,
       selectedType,
       setSelectedType,
       selectedProvince,
@@ -42,13 +44,15 @@ export const MobileFilterType = React.forwardRef<HTMLDivElement, Props>(
     },
     ref
   ) => {
-    const [open, setOpen] = React.useState(false)
-    const [hasSelected, setHasSelected] = React.useState(false)
+    const currentGroup = propertyTypeGroupFromQuery(selectedType)
+    const Icon = GROUP_ICONS[currentGroup]
+    const groupLabel = currentGroup ? labels[currentGroup] : labels.allTypes
 
-    function handleTypeChange(v: string) {
-      const type = v === EMPTY_VALUE ? '' : v
+    function handleClick() {
+      const nextGroup = getNextPropertyTypeGroup(currentGroup)
+      const type = propertyTypeGroupToQuery(nextGroup)
+
       setSelectedType(type)
-      setHasSelected(true)
       onApply({
         province: selectedProvince,
         town: selectedTown,
@@ -56,70 +60,23 @@ export const MobileFilterType = React.forwardRef<HTMLDivElement, Props>(
         order: priceOrder,
         ref: refValue,
       })
-      setOpen(false)
-    }
-
-    function handleTriggerClick() {
-      setHasSelected(false)
-      setOpen(true)
-    }
-
-    function handleOpenChange(open: boolean) {
-      if (!open && !hasSelected) {
-        // If we close popover with nothing selected, reset the type filter
-        setSelectedType('')
-        onApply({
-          province: selectedProvince,
-          town: selectedTown,
-          type: '',
-          order: priceOrder,
-          ref: refValue,
-        })
-      }
-      setOpen(open)
     }
 
     return (
       <div ref={ref}>
-        <Popover open={open} onOpenChange={handleOpenChange}>
-          <PopoverTrigger asChild>
-            <Button variant="menu" onClick={handleTriggerClick} className="relative">
-              <Building2  size={25} />
-              {selectedType && (
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full border-2 border-white" />
-              )}
-            </Button>
-          </PopoverTrigger>
-
-          <PopoverContent
-            side="left"
-            align="start"
-            className="w-52 p-3 bg-white rounded-2xl shadow-lg border border-gray-100 overflow-visible"
-          >
-            <div>
-              <label className="block text-xs font-medium text-foreground/90 mb-2">
-                {labels.type}
-              </label>
-
-              <div className="max-h-60 overflow-y-auto">
-                {typesList.map((t) => (
-                  <button
-                    key={t.name}
-                    className="w-full text-left px-3 py-2 text-sm hover:bg-gray-50 rounded-md transition-colors"
-                    onClick={() => handleTypeChange(t.name)}
-                  >
-                    <div className="flex justify-between items-center">
-                      <span className="truncate">{t.name}</span>
-                      <span className="ml-2 text-xs text-foreground/60">
-                        ({t.count})
-                      </span>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </div>
-          </PopoverContent>
-        </Popover>
+        <Button
+          variant="menu"
+          type="button"
+          onClick={handleClick}
+          className="relative"
+          aria-label={`${labels.type}: ${groupLabel}`}
+          title={`${labels.type}: ${groupLabel}`}
+        >
+          <Icon size={25} />
+          {currentGroup && (
+            <div className="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full border-2 border-white" />
+          )}
+        </Button>
       </div>
     )
   }

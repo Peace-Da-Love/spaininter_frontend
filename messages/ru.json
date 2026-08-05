@@ -21,6 +21,8 @@
 				"allTowns": "Все города",
 				"type": "Тип жилья",
 				"allTypes": "Все типы",
+				"houses": "Дома",
+				"flats": "Квартиры",
 				"price": "Цена",
 				"priceAsc": "Возр.",
 				"priceDesc": "Убыв.",

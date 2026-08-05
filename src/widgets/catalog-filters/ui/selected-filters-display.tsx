@@ -3,7 +3,7 @@
 import { FC } from 'react'
 import { X } from 'lucide-react'
 import { Button } from '@/src/shared/components/ui/button'
-import { cn } from '@/src/shared/utils'
+import { cn, propertyTypeGroupFromQuery } from '@/src/shared/utils'
 
 interface SelectedFiltersDisplayProps {
   selectedProvince: string
@@ -14,6 +14,8 @@ interface SelectedFiltersDisplayProps {
     province: string
     town: string
     type: string
+    houses: string
+    flats: string
     ref: string
   }
   onClearFilter: (filterType: 'province' | 'town' | 'type' | 'ref') => void
@@ -30,6 +32,10 @@ export const SelectedFiltersDisplay: FC<SelectedFiltersDisplayProps> = ({
   className,
 }) => {
   const hasAnyFilter = selectedProvince || selectedTown || selectedType || refValue
+  const selectedTypeGroup = propertyTypeGroupFromQuery(selectedType)
+  const selectedTypeLabel = selectedTypeGroup
+    ? labels[selectedTypeGroup]
+    : selectedType
 
   if (!hasAnyFilter) {
     return null
@@ -70,7 +76,7 @@ export const SelectedFiltersDisplay: FC<SelectedFiltersDisplayProps> = ({
       {selectedType && (
         <div className="flex items-center gap-1 bg-yellow-50 text-yellow-700 px-3 py-1 h-7 rounded-full text-sm whitespace-nowrap">
           <span className="font-medium">{labels.type}:</span>
-          <span>{selectedType}</span>
+          <span>{selectedTypeLabel}</span>
           <Button
             variant="ghost"
             size="sm"

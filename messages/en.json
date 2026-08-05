@@ -21,6 +21,8 @@
 				"allTowns": "All towns",
 				"type": "Property type",
 				"allTypes": "All types",
+				"houses": "Houses",
+				"flats": "Flats",
 				"price": "Price",
 				"priceAsc": "Asc.",
 				"priceDesc": "Desc.",

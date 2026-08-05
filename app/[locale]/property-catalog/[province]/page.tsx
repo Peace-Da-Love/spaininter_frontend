@@ -70,6 +70,8 @@ export default async function Page({ params: { locale, province }, searchParams 
     allTowns: t('Pages.PropertyCatalog.filters.allTowns'),
     type: t('Pages.PropertyCatalog.filters.type'),
     allTypes: t('Pages.PropertyCatalog.filters.allTypes'),
+    houses: t('Pages.PropertyCatalog.filters.houses'),
+    flats: t('Pages.PropertyCatalog.filters.flats'),
     price: t('Pages.PropertyCatalog.filters.price'),
     priceAsc: t('Pages.PropertyCatalog.filters.priceAsc'),
     priceDesc: t('Pages.PropertyCatalog.filters.priceDesc'),

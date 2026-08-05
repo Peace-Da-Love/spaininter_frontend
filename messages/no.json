@@ -21,6 +21,8 @@
 				"allTowns": "Alle byer",
 				"type": "Eiendomstype",
 				"allTypes": "Alle typer",
+				"houses": "Hus",
+				"flats": "Leiligheter",
 				"price": "Pris",
 				"priceAsc": "Stigende",
 				"priceDesc": "Synkende",

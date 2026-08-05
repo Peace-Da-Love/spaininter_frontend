@@ -17,6 +17,7 @@ import {
   PropertyCurrencyRates,
   PropertyDisplayCurrency
 } from '@/src/shared/utils';
+import { fetchPropertyTypeGroupPage } from '@/src/shared/utils/property-type-group-fetch';
 
 type Props = {
   data: Property[];
@@ -93,29 +94,38 @@ export const PropertyCatalogPage: FC<Props> = ({
     try {
       setError(null);
 
-      const params = new URLSearchParams();
       const province = filtersOverride?.province ?? selectedProvince;
       const town = filtersOverride?.town ?? selectedTown;
       const type = filtersOverride?.type ?? selectedType;
       const order = filtersOverride?.order ?? priceOrder;
       const ref = filtersOverride?.ref ?? refValue;
 
-      params.set('order', order === 'desc' ? '-price' : 'price');
-      if (province) params.set('province', province);
-      if (town) params.set('town', town);
-      if (type) params.set('type', type);
-      if (ref) params.set('ref', ref);
+      const { items } = await fetchPropertyTypeGroupPage({
+        type,
+        page: 1,
+        order,
+        fetchPage: async ({ type: memberType, page }) => {
+          const params = new URLSearchParams();
 
-      const qs = params.toString();
-      const url = `properties${qs ? `?${qs}` : ''}`;
+          params.set('page', String(page));
+          params.set('order', order === 'desc' ? '-price' : 'price');
+          if (province) params.set('province', province);
+          if (town) params.set('town', town);
+          if (memberType) params.set('type', memberType);
+          if (ref) params.set('ref', ref);
 
-      const res = await $fetchCP(url, {
-        headers: {
-          'Accept-Language': locale,
+          const res = await $fetchCP(`properties?${params.toString()}`, {
+            headers: {
+              'Accept-Language': locale,
+            },
+          });
+          if (!res.ok) throw new Error(`Request error (${res.status})`);
+
+          return (await res.json()) as Property[];
         },
       });
-      if (!res.ok) throw new Error(`Request error (${res.status})`);
-      let json = (await res.json()) as Property[];
+
+      let json = items;
       // Enrich properties with TON price on client-side using server-provided tonRate
       try {
         json = await Promise.all(json.map(async (p) => {
@@ -182,6 +192,8 @@ export const PropertyCatalogPage: FC<Props> = ({
             province: filterLabels.province,
             town: filterLabels.town,
             type: filterLabels.type,
+            houses: filterLabels.houses,
+            flats: filterLabels.flats,
             ref: filterLabels.ref,
           }}
           onClearFilter={onClearFilter}

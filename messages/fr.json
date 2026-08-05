@@ -21,6 +21,8 @@
 				"allTowns": "Toutes les villes",
 				"type": "Type de propriété",
 				"allTypes": "Tous les types",
+				"houses": "Maisons",
+				"flats": "Appartements",
 				"price": "Prix",
 				"priceAsc": "Croissant",
 				"priceDesc": "Décroissant",

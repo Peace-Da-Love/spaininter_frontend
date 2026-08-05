@@ -3,6 +3,7 @@
 import { $fetchP } from '../server-api';
 import { Property } from '@/src/shared/types';
 import { convertEurToTon } from '@/src/shared/utils/ton-converter';
+import { fetchPropertyTypeGroupPage } from '@/src/shared/utils/property-type-group-fetch';
 
 type Params = {
   locale: string;
@@ -18,30 +19,45 @@ export async function getCatalog(
   params: Params
 ): Promise<Property[] | undefined> {
 
-  const qs = new URLSearchParams();
+  // A grouped type filter is resolved by merging one request per member type,
+  // because the API only understands a single exact `type` value.
+  const order = params.order ?? 'asc';
 
-  qs.set('page', String(params.page));
+  let data: Property[];
 
-  if (params.order) {
-    qs.set('order', params.order === 'desc' ? '-price' : 'price');
+  try {
+    const result = await fetchPropertyTypeGroupPage({
+      type: params.type,
+      page: Number(params.page) || 1,
+      order,
+      fetchPage: async ({ type, page }) => {
+        const qs = new URLSearchParams();
+
+        qs.set('page', String(page));
+        qs.set('order', order === 'desc' ? '-price' : 'price');
+
+        if (params.province) qs.set('province', params.province);
+        if (params.town) qs.set('town', params.town);
+        if (type) qs.set('type', type);
+        if (params.ref) qs.set('ref', params.ref);
+
+        const response = await $fetchP(`properties?${qs.toString()}`, {
+          headers: {
+            'Accept-Language': params.locale,
+          },
+        });
+
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+        return (await response.json()) as Property[];
+      },
+    });
+
+    data = result.items;
+  } catch (error) {
+    console.warn('[getCatalog] Failed to load properties:', error);
+    return undefined;
   }
-
-  if (params.province) qs.set('province', params.province);
-  if (params.town) qs.set('town', params.town);
-  if (params.type) qs.set('type', params.type);
-  if (params.ref) qs.set('ref', params.ref);
-
-  const url = `properties?${qs.toString()}`;
-
-  const response = await $fetchP(url, {
-    headers: {
-      'Accept-Language': params.locale,
-    },
-  });
-
-  if (!response.ok) return undefined;
-
-  const data = (await response.json()) as Property[];
 
   // Convert EUR prices to TON
   try {

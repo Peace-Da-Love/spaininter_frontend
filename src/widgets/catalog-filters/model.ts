@@ -18,6 +18,8 @@ export interface PropertyCatalogFiltersProps {
     allTowns: string;
     type: string;
     allTypes: string;
+    houses: string;
+    flats: string;
     price: string;
     priceAsc: string;
     priceDesc: string;

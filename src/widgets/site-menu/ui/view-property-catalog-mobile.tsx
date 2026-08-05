@@ -28,7 +28,7 @@ import { MobileFilterTown } from '@/src/widgets/catalog-filters/ui/mobile-filter
 import { MobileFilterType } from '@/src/widgets/catalog-filters/ui/mobile-filter-type';
 import { MobileFilterPrice } from '@/src/widgets/catalog-filters/ui/mobile-filter-price';
 import { MobileFilterRef } from '@/src/widgets/catalog-filters/ui/mobile-filter-ref';
-import { PropertyCatalogFiltersProps, Place, TypeItem } from '@/src/widgets/catalog-filters/model';
+import { PropertyCatalogFiltersProps, Place } from '@/src/widgets/catalog-filters/model';
 import { SelectedFiltersDisplay } from '@/src/widgets/catalog-filters';
 
 type Props = {
@@ -56,7 +56,6 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
 }) => {
   const { toggle, isOpen } = useCatalogMenuStore();
   const [provinceList, setProvinceList] = useState<Place[]>([]);
-  const [typesList, setTypesList] = useState<TypeItem[]>([]);
   const menuRef = useRef<HTMLDivElement>(null);
 
   const router = useRouter();
@@ -89,13 +88,9 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
   useEffect(() => {
     async function loadFilters() {
       try {
-        const [placesRes, typesRes] = await Promise.all([
-          $fetchCP('places'),
-          $fetchCP('properties/types'),
-        ]);
-        if (!placesRes.ok || !typesRes.ok) throw new Error('Failed to load filter lists');
+        const placesRes = await $fetchCP('places');
+        if (!placesRes.ok) throw new Error('Failed to load filter lists');
         setProvinceList(await placesRes.json());
-        setTypesList(await typesRes.json());
       } catch (err) {
         console.error(err);
         setError?.('Failed to load filter lists');
@@ -268,7 +263,6 @@ export const SiteMenuPropertyCatalogMobile: FC<Props> = ({
 
             <MobileFilterType
               labels={labels}
-              typesList={typesList}
               selectedType={selectedType}
               setSelectedType={setSelectedType}
               selectedProvince={selectedProvince}
