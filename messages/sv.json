@@ -21,6 +21,8 @@
 				"allTowns": "Alla städer",
 				"type": "Fastighetstyp",
 				"allTypes": "Alla typer",
+				"houses": "Hus",
+				"flats": "Lägenheter",
 				"price": "Pris",
 				"priceAsc": "Stigande",
 				"priceDesc": "Fallande",

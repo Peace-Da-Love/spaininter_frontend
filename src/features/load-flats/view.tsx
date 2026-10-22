@@ -7,6 +7,7 @@ import { FlatCard } from '@/src/entities/flat-card';
 import { Property } from '@/src/shared/types';
 import { $fetchCP } from '@/src/app/client-api/model';
 import { PropertyCurrencyRates, PropertyDisplayCurrency } from '@/src/shared/utils';
+import { fetchPropertyTypeGroupPage } from '@/src/shared/utils/property-type-group-fetch';
 
 
 type Filters = {
@@ -61,25 +62,35 @@ export const LoadFlats = ({
     setIsFetching(true);
     try {
 
-      const params = new URLSearchParams();
-      if (filters.order) params.set('order', filters.order === 'desc' ? '-price' : 'price');
-      if (filters.province) params.set('province', filters.province);
-      if (filters.town) params.set('town', filters.town);
-      if (filters.type) params.set('type', filters.type);
-      if (filters.ref) params.set('ref', filters.ref);
-      params.set('page', String(page));
-      params.set('limit', String(LIMIT));
+      const order = filters.order ?? 'asc';
 
-      const url = `properties${params.toString() ? `?${params.toString()}` : ''}`;
-      const res = await $fetchCP(url, {
-        headers: {
-          'Accept-Language': locale
+      const { items, hasMore: moreAvailable } = await fetchPropertyTypeGroupPage({
+        type: filters.type,
+        page,
+        order,
+        fetchPage: async ({ type, page: memberPage }) => {
+          const params = new URLSearchParams();
+          params.set('order', order === 'desc' ? '-price' : 'price');
+          if (filters.province) params.set('province', filters.province);
+          if (filters.town) params.set('town', filters.town);
+          if (type) params.set('type', type);
+          if (filters.ref) params.set('ref', filters.ref);
+          params.set('page', String(memberPage));
+          params.set('limit', String(LIMIT));
+
+          const res = await $fetchCP(`properties?${params.toString()}`, {
+            headers: {
+              'Accept-Language': locale
+            }
+          });
+          if (!res.ok) {
+            throw new Error(`HTTP ${res.status}`);
+          }
+          return (await res.json()) as Property[];
         }
       });
-      if (!res.ok) {
-        throw new Error(`HTTP ${res.status}`);
-      }
-      let data = (await res.json()) as Property[];
+
+      let data = items;
       try {
         data = await Promise.all(data.map(async (p) => {
           if (p.price && p.currency === 'EUR' && !p.price_ton) {
@@ -92,12 +103,7 @@ export const LoadFlats = ({
       }
       setFlats(prev => [...prev, ...(data || [])]);
       setPage(prev => prev + 1);
-      // if less than limit - this is the last chunk
-      if (!data || data.length < LIMIT) {
-        setHasMore(false);
-      } else {
-        setHasMore(true);
-      }
+      setHasMore(moreAvailable);
     } catch (err) {
       console.error('Load flats error', err);
     } finally {

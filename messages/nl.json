@@ -21,6 +21,8 @@
 				"allTowns": "Alle plaatsen",
 				"type": "Type woning",
 				"allTypes": "Alle typen",
+				"houses": "Huizen",
+				"flats": "Appartementen",
 				"price": "Prijs",
 				"priceAsc": "Oplopend",
 				"priceDesc": "Aflopend",

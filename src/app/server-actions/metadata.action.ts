@@ -81,8 +81,19 @@ class Metadata {
 		return await response.json();
 	}
 
-	public async getPropertiesMetadata(): Promise<Property[] | undefined> {
-		const response = await $fetchP('properties');
+	public async getPropertiesMetadata(
+		locale?: string
+	): Promise<Property[] | undefined> {
+		const response = await $fetchP(
+			'properties',
+			locale
+				? {
+						headers: {
+							'Accept-Language': locale
+						}
+					}
+				: undefined
+		);
 		if (!response.ok) return undefined;
 		return await response.json();
 	}

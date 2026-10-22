@@ -1,0 +1,28 @@
+name: Deploy Spaininter frontend
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: spaininter-frontend-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Build, reload and check the existing frontend application
+        uses: appleboy/ssh-action@v1.2.4
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          port: ${{ secrets.PORT }}
+          command_timeout: 30m
+          script: frontend ${{ github.sha }}
