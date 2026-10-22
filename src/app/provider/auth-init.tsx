@@ -243,7 +243,8 @@ export const AuthInit = () => {
 
             removeAuthTokenFromUrl();
 
-            router.replace(`/${detectLocale()}`);
+            // Keep the catalogue, town and filters after the one-time handoff.
+            router.replace(getCurrentUrl());
             return;
           }
 

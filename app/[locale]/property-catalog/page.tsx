@@ -11,7 +11,7 @@ const SITE_URL = process.env.SITE_URL;
 
 type Props = {
   params: { locale: string };
-  searchParams: { type?: string; order?: 'asc' | 'desc'; ref?: string };
+  searchParams: { type?: string; order?: 'asc' | 'desc'; ref?: string; town?: string; province?: string };
 };
 
 export async function generateMetadata({
@@ -52,6 +52,8 @@ export default async function Page({ params: { locale }, searchParams }: Props) 
   const initialData = await getCatalog({
     locale,
     page: 1,
+    town: searchParams.town,
+    province: searchParams.province,
     type: searchParams.type,
     order: searchParams.order,
     ref: searchParams.ref,
@@ -85,6 +87,8 @@ export default async function Page({ params: { locale }, searchParams }: Props) 
       locale={locale}
       data={initialData}
       searchParams={searchParams}
+      townFromParams={searchParams.town}
+      provinceFromParams={searchParams.province}
       tonRate={tonRate}
       currencyRates={currencyRates}
     />
