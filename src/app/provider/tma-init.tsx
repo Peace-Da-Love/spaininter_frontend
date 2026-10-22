@@ -108,6 +108,17 @@ function buildWebFallbackUrl() {
 	return `${cleanPath}${cleanSearch ? `?${cleanSearch}` : ''}${hash || ''}`;
 }
 
+function isEmbeddedTwitris() {
+	if (window.self === window.top) return false;
+	if (new URLSearchParams(window.location.search).get('embedded') === 'twitris') return true;
+	try {
+		const parentOrigin = new URL(document.referrer).origin;
+		return ['https://twitris.com', 'https://www.twitris.com', 'https://twitris-webapp.pages.dev'].includes(parentOrigin);
+	} catch {
+		return false;
+	}
+}
+
 function applyTelegramContext() {
 	const webApp = window.Telegram?.WebApp;
 	if (!webApp) {
@@ -145,6 +156,13 @@ export default function TmaInit() {
 	const searchParams = useSearchParams();
 
 	useEffect(() => {
+		// The parent owns Telegram's SDK. Keep the compact shell in the embedded
+		// catalogue; authentication still consumes the server-issued handoff token.
+		if (isEmbeddedTwitris()) {
+			document.documentElement.setAttribute('data-client-channel', 'tma');
+			document.body.setAttribute('data-client-channel', 'tma');
+			return;
+		}
 		createDevMockIfNeeded();
 
 		if (applyTelegramContext()) {
