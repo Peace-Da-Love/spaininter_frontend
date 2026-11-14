@@ -161,6 +161,9 @@ export default function TmaInit() {
 		if (isEmbeddedTwitris()) {
 			document.documentElement.setAttribute('data-client-channel', 'tma');
 			document.body.setAttribute('data-client-channel', 'tma');
+			// The parent supplies its live gift wallpaper behind this frame.
+			document.documentElement.style.backgroundColor = 'transparent';
+			document.body.style.backgroundColor = 'transparent';
 			return;
 		}
 		createDevMockIfNeeded();
