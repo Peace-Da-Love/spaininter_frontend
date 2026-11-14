@@ -164,6 +164,7 @@ export default function TmaInit() {
 			// The parent supplies its live gift wallpaper behind this frame.
 			document.documentElement.style.backgroundColor = 'transparent';
 			document.body.style.backgroundColor = 'transparent';
+			document.documentElement.style.setProperty('--background', '0, 0%, 0%, 0');
 			return;
 		}
 		createDevMockIfNeeded();
